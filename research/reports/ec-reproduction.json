@@ -1,0 +1,22 @@
+{
+  "stock_sha256": "b77eb694c5af0d125bbca0a018ee18a2ad54409211b454e38f9bb545a62f7f64",
+  "r04_sha256": "5ef3e6e8ddf84fb36c6368156ef67adfd0a92ad362a460fc264c748d653b3549",
+  "research_output_sha256": "220eacbaa5ab1933bf0aada5ca8d4ddbaac2d6cac6f1b44a01c96ed7d25adb23",
+  "ec": [
+    {
+      "base": 0,
+      "length": 131072,
+      "reproduced_sha256": "8063366ffe585c60ce801cb9c8816bc5e1ec5bb6d379a66f1de7226ff2b85b51",
+      "released_sha256": "8063366ffe585c60ce801cb9c8816bc5e1ec5bb6d379a66f1de7226ff2b85b51",
+      "identical": true
+    },
+    {
+      "base": 262144,
+      "length": 131072,
+      "reproduced_sha256": "d7123142283fc3b7b2b599bb6aa244f5ed316a3c34fcd0e88a45772f780d801b",
+      "released_sha256": "d7123142283fc3b7b2b599bb6aa244f5ed316a3c34fcd0e88a45772f780d801b",
+      "identical": true
+    }
+  ],
+  "outside_ec_unchanged": true
+}

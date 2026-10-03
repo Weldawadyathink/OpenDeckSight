@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "opendecksight"
+version = "0.1.0"
+description = "Reproducible DeckSight firmware analysis and open brightness control"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+
+[project.scripts]
+opendecksight = "opendecksight.__main__:main"
+
+[tool.setuptools]
+packages = ["opendecksight"]

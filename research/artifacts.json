@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "retrieved_on": "2026-10-03",
+  "downloads": [
+    {
+      "filename": "DeckSight-r04.tar.gz",
+      "url": "https://github.com/ShadeTechnik/DeckSight-Public/releases/download/r04/DeckSight.tar.gz",
+      "size": 8226821,
+      "sha256": "25f8f7b38804e788ff4f2bfc20adc96b595e1fee38221c7873f538d9607a0466"
+    },
+    {
+      "filename": "DeckSight-r03.tar.gz",
+      "url": "https://github.com/ShadeTechnik/DeckSight-Public/releases/download/r03/DeckSight.tar.gz",
+      "size": 8222838,
+      "sha256": "4ba376f672665fd3d66f17f306926859c5076c6345a80ab108e7e9baac658b53"
+    },
+    {
+      "filename": "jupiter-hw-support-20260930.1-1-any.pkg.tar.zst",
+      "url": "https://steamdeck-packages.steamos.cloud/archlinux-mirror/jupiter-main/os/x86_64/jupiter-hw-support-20260930.1-1-any.pkg.tar.zst",
+      "size": 51580246,
+      "sha256": "0624f32c8edd362f90c46bf99091f753661473930e4d18c5c152366b75d6d6a9"
+    },
+    {
+      "filename": "UEFIExtract-A75.zip",
+      "url": "https://github.com/LongSoft/UEFITool/releases/download/A75/UEFIExtract_NE_A75_universal_mac.zip",
+      "size": 1515640,
+      "sha256": "8cbdd6d42193d6fb8a0c37dc860b4695c618f923b8ecfff9c0042fbdd80aaa80"
+    }
+  ],
+  "payloads": [
+    {
+      "release": "stock",
+      "path": "artifacts/extracted/stock/chunks/BIOSIMG.bin",
+      "size": 16777216,
+      "sha256": "b77eb694c5af0d125bbca0a018ee18a2ad54409211b454e38f9bb545a62f7f64"
+    },
+    {
+      "release": "stock",
+      "path": "artifacts/extracted/stock/usr/share/jupiter_bios/F7A0133_sign.fd",
+      "size": 17778888,
+      "sha256": "c8b1e749ad709bf20899eed59bd9012a8482b55003d2785134f0b17876a240d9"
+    },
+    {
+      "release": "r03",
+      "path": "artifacts/extracted/r03/bios/F7A0133_DeckSight_signed_r03.fd",
+      "size": 17778952,
+      "sha256": "95f0aad317a7931d998e7ff72400f2027999b5687f942234e5bb6e56ed77a80d"
+    },
+    {
+      "release": "r03",
+      "path": "artifacts/extracted/r03/chunks/BIOSIMG.bin",
+      "size": 16777216,
+      "sha256": "4c3289846b9c8b7c5f1197c7b89217a3648c4a1b17db75e567fe353d97c1f7ce"
+    },
+    {
+      "release": "r04",
+      "path": "artifacts/extracted/r04/bios/F7A0133_DeckSight_signed_r04.fd",
+      "size": 17778952,
+      "sha256": "4c0b33f4d48b9557337d690d20014941855acd39a1cfb7e3e46d04b1d12403ea"
+    },
+    {
+      "release": "r04",
+      "path": "artifacts/extracted/r04/chunks/BIOSIMG.bin",
+      "size": 16777216,
+      "sha256": "5ef3e6e8ddf84fb36c6368156ef67adfd0a92ad362a460fc264c748d653b3549"
+    },
+    {
+      "release": "r04",
+      "path": "artifacts/extracted/r04/decksight-brightnessctrl/decksight-brightnessctrl",
+      "size": 14600,
+      "sha256": "c7e62509bb327a93630071c535051f5e8506d7020c4fb1b18cba429f102994d9"
+    }
+  ]
+}
