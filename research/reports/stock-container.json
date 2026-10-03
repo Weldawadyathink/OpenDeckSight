@@ -1,0 +1,87 @@
+{
+  "sha256": "c8b1e749ad709bf20899eed59bd9012a8482b55003d2785134f0b17876a240d9",
+  "outer": {
+    "sections": [
+      {
+        "name": ".text",
+        "offset": 672,
+        "size": 82720,
+        "sha256": "a52488be8974bccadf9245e8d3e5cd7fb46f0f365ed41178d154a32272b776bc"
+      },
+      {
+        "name": "text",
+        "offset": 83392,
+        "size": 1184,
+        "sha256": "5ca3a31e3f5bfd9d3e07be034fafbef9923ab5757527422d5f7e8263e5f40e1f"
+      },
+      {
+        "name": "",
+        "offset": 84576,
+        "size": 2368,
+        "sha256": "a2057b8c530a7f23868e4faf5009bc5321567f4280dabda1e254d6b837b73a34"
+      },
+      {
+        "name": ".xdata",
+        "offset": 86944,
+        "size": 512,
+        "sha256": "076a27c79e5ace2a3d47f9dd2e83e4ff6ea8872b3c2218f66c92b89b55f36560"
+      },
+      {
+        "name": ".reloc",
+        "offset": 87456,
+        "size": 17690080,
+        "sha256": "014e75c607bc73333cb686e322936773c3df37b07897d7e6ef44d56342fa0e24"
+      }
+    ],
+    "signature_validation": "NOT PERFORMED",
+    "certificate": {
+      "offset": 17777536,
+      "size": 1352,
+      "revision": 512,
+      "pkcs7_sha256": "1a52060e8f49677436053c4529126c7f8b282ac3a04969e71edfba9ad159c246",
+      "metadata": "subject=CN=Jupiter\nissuer=CN=Jupiter"
+    }
+  },
+  "embedded_driver": {
+    "sections": [
+      {
+        "name": ".text",
+        "offset": 672,
+        "size": 853248,
+        "sha256": "bb58d7c75af6ec986097df077dfbc1ed1c82cba4d79253b127c33d5daca1872a"
+      },
+      {
+        "name": "text",
+        "offset": 853920,
+        "size": 3040,
+        "sha256": "5fe650cbf071662a5d9ae0aba91dc5aa3ec16178d0866de6a88785a706fde361"
+      },
+      {
+        "name": "",
+        "offset": 856960,
+        "size": 7072,
+        "sha256": "c3d00b87eb09258523e51439114e9084edd82c513d6da0cf09f9f7bff89d29fe"
+      },
+      {
+        "name": ".xdata",
+        "offset": 864032,
+        "size": 1696,
+        "sha256": "bf75520ae2a2df40c3d8b29b71564bac7a99659315d2e1c83b750c96807a078d"
+      },
+      {
+        "name": ".reloc",
+        "offset": 865728,
+        "size": 16822880,
+        "sha256": "b881b2326dc0eeedcc90ba7a663cd06673ff0f311204e76faf2845584876d6f4"
+      }
+    ],
+    "signature_validation": "NOT PERFORMED",
+    "certificate": {
+      "offset": 17688608,
+      "size": 1352,
+      "revision": 512,
+      "pkcs7_sha256": "951594b4aa39a4daa1dc0cf67a92049e10a29087bdeb72325ffc188186a9630e",
+      "metadata": "subject=CN=Jupiter\nissuer=CN=Jupiter"
+    }
+  }
+}

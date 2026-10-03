@@ -1,2 +1,4 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+# Preserve the upstream Lua artifact byte-for-byte, including its final blank line.
+third_party/gamescope/DeckSight.lua whitespace=-blank-at-eof

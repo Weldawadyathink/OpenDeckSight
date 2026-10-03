@@ -1,7 +1,9 @@
 import unittest
+from pathlib import Path
+from unittest.mock import patch
 
 from opendecksight.brightness import (
-    COMMAND, DATA, REGISTER, TARGET, Controller, Mailbox, brightness_value, packets,
+    COMMAND, DATA, REGISTER, TARGET, Controller, Mailbox, brightness_value, live_mailbox, packets,
 )
 
 
@@ -31,6 +33,24 @@ class FakeClock:
 
 
 class BrightnessTests(unittest.TestCase):
+    def test_unsupported_host_rejected_before_any_device_open(self):
+        for system, machine in (("Darwin", "arm64"), ("Linux", "aarch64")):
+            with patch("opendecksight.brightness.platform.system", return_value=system), \
+                 patch("opendecksight.brightness.platform.machine", return_value=machine), \
+                 patch("opendecksight.brightness.os.open") as device_open:
+                with self.assertRaises(RuntimeError):
+                    with live_mailbox(Path("/unused/brightness")):
+                        self.fail("unsupported host obtained a live mailbox")
+                device_open.assert_not_called()
+
+    def test_failed_identity_guard_rejected_before_lock_or_memory_open(self):
+        with patch("opendecksight.brightness.validate_device", side_effect=RuntimeError("wrong panel")), \
+             patch("opendecksight.brightness.os.open") as device_open:
+            with self.assertRaises(RuntimeError):
+                with live_mailbox(Path("/unused/brightness")):
+                    self.fail("failed validation obtained a live mailbox")
+            device_open.assert_not_called()
+
     def test_observed_packet_vectors(self):
         self.assertEqual(packets(0, 65535), ((0x70, b"\x51\x02\x80\x00"), (0x6C, b"\x39\x03\x00\x00")))
         self.assertEqual(packets(32768, 65535)[0][1], b"\x51\x05\xc0\x00")

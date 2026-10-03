@@ -18,5 +18,213 @@
       "identical": true
     }
   ],
-  "outside_ec_unchanged": true
+  "outside_ec_unchanged": true,
+  "ec_checksums": [
+    {
+      "base": 0,
+      "sha256": "8063366ffe585c60ce801cb9c8816bc5e1ec5bb6d379a66f1de7226ff2b85b51",
+      "checksum": 57706,
+      "stored_checksum": 57706,
+      "checksum_valid": true,
+      "edid_read_pointer": 32207,
+      "edid_read_limit": 255,
+      "display_selector": 1
+    },
+    {
+      "base": 262144,
+      "sha256": "d7123142283fc3b7b2b599bb6aa244f5ed316a3c34fcd0e88a45772f780d801b",
+      "checksum": 57706,
+      "stored_checksum": 57706,
+      "checksum_valid": true,
+      "edid_read_pointer": 32207,
+      "edid_read_limit": 255,
+      "display_selector": 1
+    }
+  ],
+  "comparisons": [
+    {
+      "before": "stock",
+      "after": "r03",
+      "changed_bytes": 4988315,
+      "spans_gap_15": [
+        {
+          "start": "0x68ed",
+          "end": "0x696e",
+          "size": 129
+        },
+        {
+          "start": "0x69af",
+          "end": "0x69d0",
+          "size": 33
+        },
+        {
+          "start": "0x6e55",
+          "end": "0x6ed7",
+          "size": 130
+        },
+        {
+          "start": "0xf2d2",
+          "end": "0xf2d3",
+          "size": 1
+        },
+        {
+          "start": "0x1f7fe",
+          "end": "0x1f800",
+          "size": 2
+        },
+        {
+          "start": "0x468ed",
+          "end": "0x4696e",
+          "size": 129
+        },
+        {
+          "start": "0x469af",
+          "end": "0x469d0",
+          "size": 33
+        },
+        {
+          "start": "0x46e55",
+          "end": "0x46ed7",
+          "size": 130
+        },
+        {
+          "start": "0x4f2d2",
+          "end": "0x4f2d3",
+          "size": 1
+        },
+        {
+          "start": "0x5f7fe",
+          "end": "0x5f800",
+          "size": 2
+        },
+        {
+          "start": "0x314088",
+          "end": "0x314093",
+          "size": 11
+        },
+        {
+          "start": "0x3140ae",
+          "end": "0x3140b0",
+          "size": 2
+        },
+        {
+          "start": "0x3140c1",
+          "end": "0x5774dc",
+          "size": 2503707
+        },
+        {
+          "start": "0x6a8015",
+          "end": "0x6a8018",
+          "size": 3
+        },
+        {
+          "start": "0xb14088",
+          "end": "0xb14093",
+          "size": 11
+        },
+        {
+          "start": "0xb140ae",
+          "end": "0xb140b0",
+          "size": 2
+        },
+        {
+          "start": "0xb140c1",
+          "end": "0xd774dc",
+          "size": 2503707
+        },
+        {
+          "start": "0xea8015",
+          "end": "0xea8018",
+          "size": 3
+        }
+      ]
+    },
+    {
+      "before": "r03",
+      "after": "r04",
+      "changed_bytes": 572,
+      "spans_gap_15": [
+        {
+          "start": "0x691b",
+          "end": "0x6926",
+          "size": 11
+        },
+        {
+          "start": "0x6951",
+          "end": "0x6968",
+          "size": 23
+        },
+        {
+          "start": "0x69d3",
+          "end": "0x69d4",
+          "size": 1
+        },
+        {
+          "start": "0x6e70",
+          "end": "0x6e7d",
+          "size": 13
+        },
+        {
+          "start": "0x7dcf",
+          "end": "0x7ecf",
+          "size": 256
+        },
+        {
+          "start": "0xf37d",
+          "end": "0xf37f",
+          "size": 2
+        },
+        {
+          "start": "0xf3ad",
+          "end": "0xf3ae",
+          "size": 1
+        },
+        {
+          "start": "0x1f7fe",
+          "end": "0x1f800",
+          "size": 2
+        },
+        {
+          "start": "0x4691b",
+          "end": "0x46926",
+          "size": 11
+        },
+        {
+          "start": "0x46951",
+          "end": "0x46968",
+          "size": 23
+        },
+        {
+          "start": "0x469d3",
+          "end": "0x469d4",
+          "size": 1
+        },
+        {
+          "start": "0x46e71",
+          "end": "0x46e7b",
+          "size": 10
+        },
+        {
+          "start": "0x47dcf",
+          "end": "0x47ecf",
+          "size": 256
+        },
+        {
+          "start": "0x4f37d",
+          "end": "0x4f37f",
+          "size": 2
+        },
+        {
+          "start": "0x4f3ad",
+          "end": "0x4f3ae",
+          "size": 1
+        },
+        {
+          "start": "0x5f7fe",
+          "end": "0x5f800",
+          "size": 2
+        }
+      ]
+    }
+  ]
 }

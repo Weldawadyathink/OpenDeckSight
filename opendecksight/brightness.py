@@ -132,8 +132,8 @@ def validate_device(source):
 
 @contextmanager
 def live_mailbox(source):
-    import fcntl
     validate_device(source)
+    import fcntl
     flags = os.O_CREAT | os.O_RDWR | os.O_CLOEXEC | os.O_NOFOLLOW
     lock_fd = os.open("/run/opendecksight-brightness.lock", flags, 0o600)
     try:

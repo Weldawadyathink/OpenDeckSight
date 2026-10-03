@@ -35,8 +35,10 @@
 
 Sources have been inspected by the same implementer. This is transparent
 reverse engineering, **not a claim of a legally isolated clean-room process**.
-The provided upstream repository has a GPLv2 license. No upstream Lua, shell,
-ICC profile or full firmware image is copied into the tracked implementation.
+The provided upstream repository has a GPLv2 license. Its already-open Lua
+profile is preserved unchanged under `third_party/gamescope/`, with attribution
+and a GPLv2 license copy under `licenses/`. No upstream shell script, ICC profile
+or full firmware image is copied into the tracked implementation.
 Original tooling retains this repository's existing MIT license; that does not
 relicense upstream artifacts or generated firmware containing their code.
 

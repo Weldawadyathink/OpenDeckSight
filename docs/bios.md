@@ -21,7 +21,23 @@ this is evidence limited to what the tool successfully parsed.
 
 The INI_IMG contents are identical. BIOSCER differs. The outer DRV_IMG contains
 the inner images, so a changed DRV_IMG hash alone does not establish that the
-flasher executable changed. Signing and trust behavior have not been analyzed.
+flasher executable changed. Signing and trust enforcement have not been validated.
+
+### Container certificates and executable sections
+
+Additional PE inspection establishes that `.text`, `text`, the unnamed section
+and `.xdata` match byte-for-byte in both the outer container and embedded
+DRV_IMG. Their `.reloc` sections include firmware payload data and differ.
+PE length/checksum/certificate-directory fields also change. See the
+[stock](../research/reports/stock-container.json) and
+[r04](../research/reports/r04-container.json) reports.
+
+Both outer and embedded r04 PKCS#7 certificate bundles report subject and issuer
+`CN=QA Certificate.`; stock reports `CN=Jupiter`. Certificate metadata was read
+with `openssl pkcs7 -print_certs`; cryptographic signature validity, chain trust
+and the updater's acceptance policy have **not** been tested. This is not
+evidence of a Valve-authorized signature, a recovered signing key or a usable
+open signing pipeline. It establishes another changed artifact to investigate.
 
 ## EC changes
 
