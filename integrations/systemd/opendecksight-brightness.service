@@ -1,0 +1,15 @@
+[Unit]
+Description=OpenDeckSight experimental hardware brightness controller
+After=systemd-udevd.service
+ConditionPathExists=/dev/mem
+
+[Service]
+Type=simple
+WorkingDirectory=/var/local/lib/opendecksight
+ExecStart=/usr/bin/python3 -m opendecksight brightness --watch --apply-mmio
+Restart=on-failure
+RestartSec=2
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

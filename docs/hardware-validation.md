@@ -17,6 +17,16 @@ configuration, credentials and unrestricted journal dumps. No sudo is needed.
 
 ## Runtime brightness validation
 
+The collector is now implemented. From a checkout on the Deck:
+
+```sh
+python3 -m opendecksight collect deck-report.json
+```
+
+It creates a new JSON file and refuses to overwrite an existing one. Only the
+allowlisted sysfs/OS fields, internal eDP EDID, two service states and hashes of
+known installed brightness binary paths are collected.
+
 1. Capture a read-only baseline and identify any running proprietary brightness daemon.
 2. Compare preview packets at minimum, middle and maximum OS settings.
 3. Coordinate a brief service stop and one explicit OpenDeckSight brightness write.

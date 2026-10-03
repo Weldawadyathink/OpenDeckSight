@@ -29,6 +29,14 @@ def main(argv=None):
     build = commands.add_parser("build-ec", help="create an UNSIGNED research BIOSIMG with r04 EC regions")
     build.add_argument("stock", type=Path)
     build.add_argument("output", type=Path)
+    bright = commands.add_parser("brightness", help="preview brightness protocol; writes require --apply-mmio")
+    bright.add_argument("--raw", type=int)
+    bright.add_argument("--max", dest="maximum", type=int)
+    bright.add_argument("--watch", action="store_true")
+    bright.add_argument("--apply-mmio", action="store_true")
+    bright.add_argument("--backlight", type=Path, help="brightness file for read-only preview")
+    collect = commands.add_parser("collect", help="collect read-only Deck diagnostics without sudo")
+    collect.add_argument("output", type=Path)
     args = parser.parse_args(argv)
     try:
         if args.command == "inspect":
@@ -62,6 +70,16 @@ def main(argv=None):
             emit({"output": str(args.output), "sha256": firmware.sha256(data),
                   "status": "UNSIGNED, NOT HARDWARE VALIDATED; reproduces the r04 second-bank anomaly",
                   "ec": firmware.describe_ec(data)})
+        elif args.command == "brightness":
+            from .brightness import run
+            run(args)
+        elif args.command == "collect":
+            from .collect import collect
+            report = collect()
+            with args.output.open("x") as output:
+                json.dump(report, output, indent=2)
+                output.write("\n")
+            emit({"output": str(args.output)})
     except (OSError, ValueError, RuntimeError) as error:
         parser.exit(1, f"error: {error}\n")
 

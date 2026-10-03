@@ -30,6 +30,24 @@ python3 -m opendecksight build-ec artifacts/stock.bin artifacts/r04-ec-research.
 python3 -m unittest discover -s tests -v
 ```
 
+## Brightness replacement and device inventory
+
+```sh
+# Works on this computer; prints packets and performs no MMIO.
+python3 -m opendecksight brightness --raw 32768 --max 65535
+
+# Run these from a checkout on the Steam Deck, without sudo.
+python3 -m opendecksight collect deck-report.json
+python3 -m opendecksight brightness --watch
+```
+
+The open brightness implementation includes the recovered EC transport,
+backlight discovery, retry-on-failure and suspend-gap reapplication. Hardware
+access requires `--apply-mmio`, root, Linux x86-64, Valve/Jupiter/F7A DMI and a
+valid DSO:5001 EDID. It refuses to run alongside the proprietary brightness
+process. This is implemented but **has not been hardware tested**. See the
+[runtime instructions](docs/brightness.md#running-the-replacement).
+
 `build-ec` accepts only the exact recorded stock BIOSIMG hash. Its output retains
 the stock UEFI modules and logo and reproduces the released EC changes, including
 the unexplained second-bank byte-order anomaly. It is an **unsigned research
