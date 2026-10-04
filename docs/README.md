@@ -14,6 +14,7 @@ is required for anything potentially dangerous to hardware or software.
 | [EC interpreter](ec-interpreter.md) | Instruction traces for table selection, bus buffers and delay counters |
 | [Brightness](brightness.md) | Recovered mailbox and panel protocol |
 | [Validation](hardware-validation.md) | Work requiring the physical device |
+| [Variable refresh feasibility](vrr-feasibility.md) | Read-only VRR finding, bridge/panel uncertainties and next evidence |
 | [Provenance](provenance.md) | Sources, tool versions, reproduction boundaries |
 | [Reproduction](reproduce.md) | Download, inspection, comparison and test commands |
 | [Artifact manifest](../research/artifacts.json) | Download URLs and SHA-256 digests |

@@ -26,6 +26,7 @@ require explicit human confirmation.
 - [Brightness protocol](docs/brightness.md)
 - [Artifact provenance](research/artifacts.json)
 - [Hardware validation plan](docs/hardware-validation.md)
+- [True variable refresh feasibility](docs/vrr-feasibility.md)
 - [Reproduction commands](docs/reproduce.md)
 - [Existing open Gamescope integration](third_party/gamescope/README.md)
 

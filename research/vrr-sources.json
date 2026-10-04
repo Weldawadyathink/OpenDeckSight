@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "retrieved_on": "2026-10-03",
+  "note": "Public reference sources, not necessarily the source versions installed on the observed system. Raw downloads are ignored. Mutable pages are identified by content hashes.",
+  "sources": [
+    {
+      "name": "amdgpu_dm.c",
+      "url": "https://raw.githubusercontent.com/torvalds/linux/v6.17/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c",
+      "size": 394215,
+      "sha256": "855bc28489428e3c5bd7c1376670a7add33cd8ca8b6faaaa806ee3b1df9beb7d"
+    },
+    {
+      "name": "drm_dp.h",
+      "url": "https://raw.githubusercontent.com/torvalds/linux/v6.17/include/drm/display/drm_dp.h",
+      "size": 78066,
+      "sha256": "0ca5de15b87b9cf91a021a8ae275a305bcd8d914337ce422f6ea738fa5728537"
+    },
+    {
+      "name": "drm_connector.c",
+      "url": "https://raw.githubusercontent.com/torvalds/linux/v6.17/drivers/gpu/drm/drm_connector.c",
+      "size": 121765,
+      "sha256": "38096102f5c06ec0ca69c75fc96d94fac282276fde60b1a32a82274506292c21"
+    },
+    {
+      "name": "drm_crtc.c",
+      "url": "https://raw.githubusercontent.com/torvalds/linux/v6.17/drivers/gpu/drm/drm_crtc.c",
+      "size": 26502,
+      "sha256": "4d4171d74e68980f6d2134fff85c8ff418d44994b8a6b3fdf572c596d2757786"
+    },
+    {
+      "name": "analogix-anx7580.html",
+      "url": "https://www.analogix.com/en/products/dp-mipi-converters/anx7580",
+      "size": 43576,
+      "sha256": "d65342723a80a422562b3e896b5ce1d1654105f077f88b2e388e5d9f8bd64545"
+    },
+    {
+      "name": "decksight-info.html",
+      "url": "https://www.shadetechnik.com/decksight_info",
+      "size": 474850,
+      "sha256": "35a673f8e63e7cac2e836add33384a249636e904cb45c7137b7e83e63b73fc43"
+    },
+    {
+      "name": "decksight-tips.html",
+      "url": "https://www.shadetechnik.com/decksight-tips",
+      "size": 942949,
+      "sha256": "5420882446c11f2a1a56548287d647b9a7c4f5429347a99ed70be80de17d92fa"
+    },
+    {
+      "name": "decksight-refresh-update.html",
+      "url": "https://www.crowdsupply.com/shade-technik/decksight/updates/progress-on-refresh-rates-and-more",
+      "size": 13123,
+      "sha256": "9c716002e2a4c9981eab28511194be243716691852e388aa1fe0e6c7ab85fe13"
+    },
+    {
+      "name": "ifixit-steam-deck-chip-id.html",
+      "url": "https://www.ifixit.com/Teardown/Steam+Deck+Chip+ID/147811",
+      "size": 238137,
+      "sha256": "adb693775e1de63a66e7d06352a35ab4498f41a8671e05e816801615b9095b89"
+    },
+    {
+      "name": "libdrm-2.4.124.tar.xz",
+      "url": "https://dri.freedesktop.org/libdrm/libdrm-2.4.124.tar.xz",
+      "size": 481244,
+      "sha256": "ac36293f61ca4aafaf4b16a2a7afff312aa4f5c37c9fbd797de9e3c0863ca379"
+    },
+    {
+      "name": "drm-kms.html",
+      "url": "https://docs.kernel.org/6.17/gpu/drm-kms.html",
+      "size": 1414201,
+      "sha256": "4017fa98f19a0f5d20cc42e4e89e5ba3a638974e9ca9bebab8c6df8c606e029a"
+    },
+    {
+      "name": "link_dp_capability.c",
+      "url": "https://raw.githubusercontent.com/torvalds/linux/v6.17/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c",
+      "size": 83247,
+      "sha256": "62fbf7419a48282f3cd0bf0a3f6953b9001992d9b25dfa5b46b60ce9ba721f5e"
+    },
+    {
+      "name": "libdrm-2.4.124-xf86drmMode.h",
+      "archive": "libdrm-2.4.124.tar.xz",
+      "member": "libdrm-2.4.124/xf86drmMode.h",
+      "size": 16557,
+      "sha256": "96d7da4829bd41f41a3e26011c7cf9a63a597d66407f3348aa9bb2bd3712e2e2"
+    },
+    {
+      "name": "libdrm-2.4.124-xf86drmMode.c",
+      "archive": "libdrm-2.4.124.tar.xz",
+      "member": "libdrm-2.4.124/xf86drmMode.c",
+      "size": 45167,
+      "sha256": "642bf81371fd6e8cc4b76147772f78bea5fbcdfdbfeecca5180877623dd80dda"
+    },
+    {
+      "name": "chicago_registers.h",
+      "url": "https://raw.githubusercontent.com/DeckHD/BiosMaker/master/chicago_registers.h",
+      "size": 29311,
+      "sha256": "9c2787c5c33595c74ae0443b87735e00abe83efa8826944dd5a17f76fe6e736c"
+    }
+  ],
+  "unavailable": [
+    {
+      "url": "https://www.analogix.com/en/system/files/AA-004748-PB-1-ANX7580.pdf",
+      "result": "HTTP 404"
+    }
+  ]
+}

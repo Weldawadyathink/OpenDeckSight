@@ -14,6 +14,10 @@ must receive human confirmation first. No runtime write tests are authorized.
   not a measurement of panel luminance.
 - The installed proprietary brightness executable's
   SHA-256 exactly matches the analyzed r04 binary.
+- A cached DRM property query reports `vrr_capable = 0` on the internal
+  connector. The matching r04 EDID has no refresh-range declaration. This is
+  a current software capability finding, not proof of hardware impossibility;
+  see [true VRR feasibility](vrr-feasibility.md).
 
 These observations establish software and EDID identity, not the contents of
 the device's full flash chip. They do not validate the open brightness controller

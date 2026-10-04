@@ -1,0 +1,195 @@
+{
+  "schema": 1,
+  "scope": "public artifact static analysis; no live register values or device settings",
+  "inputs": {
+    "r04_biosimg_sha256": "5ef3e6e8ddf84fb36c6368156ef67adfd0a92ad362a460fc264c748d653b3549",
+    "gamescope_lua_sha256": "f47e4ee9dec2533e86fe784b339bff9bcbd0c2af38c9f157ffd04fb33b879bd7"
+  },
+  "edid": {
+    "sha256": "53c47cbd31b785b332a890d5074b46ac4efe88d96cc210b041ee07773a4dfe48",
+    "decoded": {
+      "vendor": "DSO",
+      "product": 20481,
+      "version": "1.4",
+      "extensions": 1,
+      "timings": [
+        {
+          "width": 1080,
+          "height": 1920,
+          "pixel_clock_hz": 143180000,
+          "refresh_hz": 60.00033524422542,
+          "h_front": 32,
+          "h_sync": 8,
+          "h_back": 100,
+          "v_front": 8,
+          "v_sync": 2,
+          "v_back": 26
+        }
+      ],
+      "name": "DeckSight",
+      "cta_blocks": [
+        {
+          "tag": 7,
+          "payload_hex": "0605016a6a00",
+          "kind": "HDR static metadata",
+          "eotf_flags": 5,
+          "static_metadata_flags": 1,
+          "desired_max_luminance": 496.7431248293936
+        }
+      ]
+    },
+    "base_range_descriptor_count": 0,
+    "extension_tags": [
+      2
+    ]
+  },
+  "ec_link_configuration_tables": [
+    {
+      "ec_base": "0x0",
+      "records": [
+        {
+          "ec_offset": "0x6965",
+          "bytes_hex": "10010a",
+          "address": "0x1001",
+          "value": 10
+        },
+        {
+          "ec_offset": "0x6968",
+          "bytes_hex": "100282",
+          "address": "0x1002",
+          "value": 130
+        },
+        {
+          "ec_offset": "0x696b",
+          "bytes_hex": "110014",
+          "address": "0x1100",
+          "value": 20
+        },
+        {
+          "ec_offset": "0x696e",
+          "bytes_hex": "110182",
+          "address": "0x1101",
+          "value": 130
+        },
+        {
+          "ec_offset": "0x6971",
+          "bytes_hex": "110301",
+          "address": "0x1103",
+          "value": 1
+        },
+        {
+          "ec_offset": "0x6974",
+          "bytes_hex": "110401",
+          "address": "0x1104",
+          "value": 1
+        },
+        {
+          "ec_offset": "0x6977",
+          "bytes_hex": "110501",
+          "address": "0x1105",
+          "value": 1
+        },
+        {
+          "ec_offset": "0x697a",
+          "bytes_hex": "110601",
+          "address": "0x1106",
+          "value": 1
+        },
+        {
+          "ec_offset": "0x697d",
+          "bytes_hex": "ffffff",
+          "address": "0xffff",
+          "value": 255
+        }
+      ],
+      "contains_0x1007": false
+    },
+    {
+      "ec_base": "0x40000",
+      "records": [
+        {
+          "ec_offset": "0x6965",
+          "bytes_hex": "10010a",
+          "address": "0x1001",
+          "value": 10
+        },
+        {
+          "ec_offset": "0x6968",
+          "bytes_hex": "100282",
+          "address": "0x1002",
+          "value": 130
+        },
+        {
+          "ec_offset": "0x696b",
+          "bytes_hex": "110014",
+          "address": "0x1100",
+          "value": 20
+        },
+        {
+          "ec_offset": "0x696e",
+          "bytes_hex": "110182",
+          "address": "0x1101",
+          "value": 130
+        },
+        {
+          "ec_offset": "0x6971",
+          "bytes_hex": "110301",
+          "address": "0x1103",
+          "value": 1
+        },
+        {
+          "ec_offset": "0x6974",
+          "bytes_hex": "110401",
+          "address": "0x1104",
+          "value": 1
+        },
+        {
+          "ec_offset": "0x6977",
+          "bytes_hex": "110501",
+          "address": "0x1105",
+          "value": 1
+        },
+        {
+          "ec_offset": "0x697a",
+          "bytes_hex": "110601",
+          "address": "0x1106",
+          "value": 1
+        },
+        {
+          "ec_offset": "0x697d",
+          "bytes_hex": "ffffff",
+          "address": "0xffff",
+          "value": 255
+        }
+      ],
+      "contains_0x1007": false
+    }
+  ],
+  "ideal_timing_arithmetic": {
+    "note": "illustration, not validated modes; real clocks are quantized",
+    "fixed_40_hz": {
+      "clock_hz": 99100800,
+      "htotal": 1240,
+      "vtotal": 1998,
+      "v_front": 3
+    },
+    "fixed_80_hz": {
+      "clock_hz": 198201600,
+      "htotal": 1240,
+      "vtotal": 1998,
+      "v_front": 3
+    },
+    "hypothetical_40_hz_vrr_frame_at_80_hz_clock": {
+      "clock_hz": 198201600,
+      "htotal": 1240,
+      "vtotal": 3996,
+      "v_front": 2001
+    }
+  },
+  "unresolved": [
+    "live DPCD 0x00007 bit 6",
+    "bridge variable-interval behavior",
+    "panel controller identity and timing limits",
+    "true VRR physical scanout"
+  ]
+}
