@@ -17,6 +17,7 @@ is required for anything potentially dangerous to hardware or software.
 | [Validation](hardware-validation.md) | Work requiring the physical device |
 | [Variable refresh feasibility](vrr-feasibility.md) | Read-only VRR finding, bridge/panel uncertainties and next evidence |
 | [Bridge VRR experiment plan](vrr-bridge-test-plan.md) | Native AUX result, active-test prerequisites and decision points |
+| [Optical VRR measurement](vrr-optical-measurement.md) | Camera versus photodiode, microcontroller capture design and end-to-end evidence |
 | [Provenance](provenance.md) | Sources, tool versions, reproduction boundaries |
 | [Reproduction](reproduce.md) | Download, inspection, comparison and test commands |
 | [Artifact manifest](../research/artifacts.json) | Download URLs and SHA-256 digests |

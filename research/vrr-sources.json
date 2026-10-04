@@ -106,6 +106,36 @@
       "url": "https://raw.githubusercontent.com/torvalds/linux/v6.17/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c",
       "size": 112909,
       "sha256": "14fcba81adc3c179c33b9dce9106b485ae553dc1ad065c471bff7bf00b2d3d29"
+    },
+    {
+      "name": "iphone-14-pro-specifications.html",
+      "url": "https://support.apple.com/en-us/111849",
+      "size": 226748,
+      "sha256": "2abfb7507452a462a0b54fae61ede23d32dad6c15c841f03ad57334b2510bcf4"
+    },
+    {
+      "name": "final-cut-camera-overview.html",
+      "url": "https://support.apple.com/en-euro/guide/final-cut-camera/dev154067693/ios",
+      "size": 499447,
+      "sha256": "996354131c8432203ec500e6109e5ee65c0514b39ab8b904f03a35bbb8423f48"
+    },
+    {
+      "name": "esp32s3-adc-continuous.html",
+      "url": "https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/api-reference/peripherals/adc/adc_continuous.html",
+      "size": 135830,
+      "sha256": "faf7cb332f40512d2dd74e2e0017c463b5abbc449b486739b9bd60791b3ff040"
+    },
+    {
+      "name": "opt101-product.html",
+      "url": "https://www.ti.com/product/OPT101",
+      "size": 233383,
+      "sha256": "293109e7318d2fe10b1e5e6de499a9a843b08352d0694da9bd05d5df145786ce"
+    },
+    {
+      "name": "raspberry-pi-hardware-apis.html",
+      "url": "https://www.raspberrypi.com/documentation/pico-sdk/hardware.html",
+      "size": 2115819,
+      "sha256": "8793f26cd888715014ce9b7c788bd0a2d5177f8acfbeeb9c462e8207c73b004c"
     }
   ],
   "unavailable": [

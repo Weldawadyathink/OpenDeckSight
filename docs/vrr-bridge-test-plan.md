@@ -31,6 +31,13 @@ public board identification, not a chip-ID read in this test.
 
 ## The next blocker
 
+ANX7580 pass-through can remain a known unknown while testing end-to-end
+behavior. Manufacturer confirmation is not a gate. Prepare and validate the
+[optical measurement path](vrr-optical-measurement.md) alongside the source
+timing experiment; use failures to decide whether bridge-specific probing is
+needed. A successful measured workflow can establish a useful capability
+without explaining every bridge internal.
+
 We need a controlled way to make the GPU actually vary frame intervals while
 keeping pixel clock and active scan timing stable. The ordinary VRR path is
 currently gated off. An EDID override by itself would leave the receiver-bit
@@ -119,6 +126,14 @@ would justify widening the investigation in small steps.
   with display scanout; a narrow 59–60 Hz experiment calls for more precise
   timing measurement. Isolating the bridge electrically may require a DSI
   analyzer and suitable probing, not a generic USB logic analyzer.
+
+The preferred measurement setup is an RP2040 board with an amplified
+photodiode for timing, supplemented by a high-speed phone camera for visual
+context; a suitable ESP32-family board is an alternative. A 240-fps camera alone
+is a weak instrument for the proposed narrow 59–60 Hz test. The
+[optical plan](vrr-optical-measurement.md) specifies candidate
+sample rates, calibration, transport and false-positive checks. Final circuit
+and acquisition firmware depend on the exact board and sensor components.
 
 No purchase is necessary for the next offline development step. No outreach
 has been sent. Documentation would reduce uncertainty, but its absence does
