@@ -276,6 +276,13 @@ TEST_ONLY requests without applying a display change. Off and on requests were
 accepted, an invalid boolean was rejected, and checked live KMS state remained
 unchanged. The connector still advertised no VRR capability.
 
+The later [visual experiment bundle](vrr-visual-experiment.md) rebuilt the AMD
+driver and booted it with the override explicitly disabled. Its 720-frame native
+visual control completed and restored the framebuffer/mode. Experimental timing
+and the corresponding bridge control request remain pending separate approval.
+This reboot also reused the established Wi-Fi lease; USB-absent fallback remains
+untested. The factory recovery image is unchanged.
+
 ### Virtual-machine checkpoint
 
 The final 4 GiB data-partition image passed a complete virtual SSH update cycle:

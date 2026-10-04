@@ -139,10 +139,11 @@ the source has a variable-timing mechanism, not a measurement of this device or
 of the bridge output. No MMIO was accessed.
 [DCN 3.01 timing generator](https://github.com/OpenGamingCollective/linux/blob/151eb3adafae8820f349a4454c1f1e8d5fc991a4/drivers/gpu/drm/amd/display/dc/optc/dcn301/dcn301_optc.c#L47)
 
-There is no bootable diagnostic kernel or ready-to-run display override yet.
-The next useful software checkpoint is a narrowly scoped patch with these
-regressions covered, rather than a discovery-only override. Hardware tests
-remain subject to the concrete approval requirements in [AGENTS.md](../AGENTS.md).
+The subsequent [visual experiment checkpoint](vrr-visual-experiment.md) builds
+a scoped replacement AMD module against the distribution's prepared headers,
+retaining the existing kernel. It covers the narrow-range/fallback regressions
+and has booted with its override disabled. Experimental VRR remains untested on
+hardware and subject to the concrete approval requirements in [AGENTS.md](../AGENTS.md).
 
 ## Reproduce locally
 

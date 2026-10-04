@@ -1,0 +1,5 @@
+FROM opendecksight-lab-builder
+RUN dnf -y --setopt=install_weak_deps=False install \
+    gcc make elfutils-libelf-devel openssl-devel bc bison flex perl \
+    libdrm-devel diffutils patch clang llvm lld dwarves libasan libubsan && dnf clean all
+WORKDIR /work

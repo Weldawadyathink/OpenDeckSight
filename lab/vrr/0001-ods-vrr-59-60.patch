@@ -1,0 +1,303 @@
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+@@ -160,6 +160,25 @@
+ 
+ #define FIRMWARE_DCN_42B_DMUB "amdgpu/dcn_4_2_1_dmcub.bin"
+ MODULE_FIRMWARE(FIRMWARE_DCN_42B_DMUB);
++
++#include "ods_vrr_guard.h"
++
++/* Never enabled by default; changing this option requires a driver reload/boot.
++ * The lab image uses a reboot, never a live driver unload. No panel limits claimed.
++ */
++static bool ods_vrr_59_60;
++module_param_named(ods_vrr_59_60, ods_vrr_59_60, bool, 0444);
++MODULE_PARM_DESC(ods_vrr_59_60, "Experimental exact DeckSight r04 59-60 Hz override (default off)");
++
++static bool ods_vrr_sink(struct drm_connector *connector, const struct drm_edid *drm_edid)
++{
++	const struct edid *edid = drm_edid ? drm_edid_raw(drm_edid) : NULL;
++
++	/* drm_edid_raw returns the validated allocation; extension count is guarded. */
++	return ods_vrr_identity(ods_vrr_59_60,
++		connector->connector_type == DRM_MODE_CONNECTOR_eDP,
++		(const unsigned char *)edid, edid && edid->extensions == 1 ? 256 : 0);
++}
+ 
+ /* Maximum backlight level. */
+ #define AMDGPU_MAX_BL_LEVEL 0xFFFF
+@@ -11987,11 +12006,29 @@
+ 	struct drm_display_mode *mode = &new_crtc_state->base.mode;
+ 	int vrefresh = drm_mode_vrefresh(mode);
+ 	bool fs_vid_mode = false;
++	bool ods_target;
+ 
+ 	if (new_con_state->base.connector->connector_type == DRM_MODE_CONNECTOR_WRITEBACK)
+ 		return;
+ 
+ 	aconnector = to_amdgpu_dm_connector(new_con_state->base.connector);
++
++	ods_target = ods_vrr_sink(new_con_state->base.connector, aconnector->drm_edid);
++	new_crtc_state->stream->ods_vrr_lab = ods_target &&
++		ods_vrr_native(mode->clock, mode->hdisplay, mode->hsync_start,
++			mode->hsync_end, mode->htotal, mode->hskew, mode->vdisplay,
++			mode->vsync_start, mode->vsync_end, mode->vtotal, mode->vscan, mode->flags);
++	if (ods_target && !new_crtc_state->stream->ods_vrr_lab) {
++		new_crtc_state->vrr_supported = false;
++		new_crtc_state->stream->ignore_msa_timing_param = false;
++		new_crtc_state->stream->freesync_on_desktop = false;
++		config.state = VRR_STATE_UNSUPPORTED;
++		goto out;
++	}
++	if (new_crtc_state->stream->ods_vrr_lab) {
++		new_crtc_state->stream->timing.min_refresh_in_uhz = 59000000;
++		new_crtc_state->stream->timing.max_refresh_in_uhz = 60000000;
++	}
+ 
+ 	new_crtc_state->vrr_supported = new_con_state->freesync_capable &&
+ 					vrefresh >= aconnector->min_vfreq &&
+@@ -11999,14 +12036,15 @@
+ 
+ 	if (new_crtc_state->vrr_supported) {
+ 		new_crtc_state->stream->ignore_msa_timing_param = true;
+-		fs_vid_mode = new_crtc_state->freesync_config.state == VRR_STATE_ACTIVE_FIXED;
++		fs_vid_mode = !ods_target &&
++			new_crtc_state->freesync_config.state == VRR_STATE_ACTIVE_FIXED;
+ 
+ 		config.min_refresh_in_uhz = aconnector->min_vfreq * 1000000;
+ 		config.max_refresh_in_uhz = aconnector->max_vfreq * 1000000;
+-		config.vsif_supported = true;
+-		config.btr = true;
+-
+-		if (new_con_state->freesync_on_desktop_capable)
++		config.vsif_supported = !ods_target;
++		config.btr = !ods_target;
++
++		if (!ods_target && new_con_state->freesync_on_desktop_capable)
+ 			new_crtc_state->stream->freesync_on_desktop =
+ 				!new_crtc_state->base.passive_vrr_disabled;
+ 		else
+@@ -14008,6 +14046,15 @@
+ 
+ 	edid = drm_edid_raw(drm_edid); // FIXME: Get rid of drm_edid_raw()
+ 
++	/* Source-side experiment only. Do not modify sink registers or EDID. */
++	if (ods_vrr_sink(connector, drm_edid)) {
++		amdgpu_dm_connector->min_vfreq = 59;
++		amdgpu_dm_connector->max_vfreq = 60;
++		freesync_capable = true;
++		drm_info(connector->dev, "ODS_VRR: opt-in r04 source override 59-60 Hz; sink support unknown\n");
++		goto update;
++	}
++
+ 	/* Some eDP panels only have the refresh rate range info in DisplayID */
+ 	if ((connector->display_info.monitor_range.min_vfreq == 0 ||
+ 	     connector->display_info.monitor_range.max_vfreq == 0))
+@@ -14155,7 +14202,8 @@
+ update:
+ 	if (dm_con_state) {
+ 		dm_con_state->freesync_capable = freesync_capable;
+-		dm_con_state->freesync_on_desktop_capable = freesync_capable;
++		dm_con_state->freesync_on_desktop_capable =
++			freesync_capable && !ods_vrr_sink(connector, drm_edid);
+ 	}
+ 
+ 	drm_dbg_driver(adev_to_drm(adev),
+@@ -14174,7 +14222,8 @@
+ 						       freesync_capable);
+ 
+ 	if (connector->passive_vrr_capable_property)
+-		drm_connector_set_passive_vrr_capable_property(connector, freesync_capable);
++		drm_connector_set_passive_vrr_capable_property(connector,
++			freesync_capable && !ods_vrr_sink(connector, drm_edid));
+ }
+ 
+ void amdgpu_dm_trigger_timing_sync(struct drm_device *dev)
+--- a/drivers/gpu/drm/amd/display/dc/dc_stream.h
++++ b/drivers/gpu/drm/amd/display/dc/dc_stream.h
+@@ -207,6 +207,8 @@
+ 	enum view_3d_format view_format;
+ 
+ 	bool use_vsc_sdp_for_colorimetry;
++	/* Explicit opt-in, exact r04 native-timing experiment only. */
++	bool ods_vrr_lab;
+ 	bool ignore_msa_timing_param;
+ 
+ 	/**
+--- a/drivers/gpu/drm/amd/display/dc/core/dc.c
++++ b/drivers/gpu/drm/amd/display/dc/core/dc.c
+@@ -27,6 +27,7 @@
+ #include "amdgpu.h"
+ 
+ #include "dc.h"
++#include "ods_vrr_guard.h"
+ 
+ #include "core_status.h"
+ #include "core_types.h"
+@@ -1278,6 +1279,20 @@
+ 		struct dc_crtc_timing_adjust *adjust)
+ {
+ 	int i;
++	bool ods_changed = stream->ods_vrr_lab &&
++		(stream->adjust.v_total_min != adjust->v_total_min ||
++		 stream->adjust.v_total_max != adjust->v_total_max ||
++		 stream->adjust.timing_adjust_pending);
++
++	if (stream->ods_vrr_lab &&
++	    !ods_vrr_adjust_allowed(adjust->v_total_min, adjust->v_total_max,
++		adjust->v_total_mid, adjust->v_total_mid_frame_num,
++		adjust->allow_otg_v_count_halt)) {
++		pr_err_ratelimited("ODS_VRR: REJECT totals min=%u max=%u mid=%u halt=%d\n",
++			adjust->v_total_min, adjust->v_total_max, adjust->v_total_mid,
++			adjust->allow_otg_v_count_halt);
++		return false;
++	}
+ 
+ 	/*
+ 	 * Don't adjust DRR while there's bandwidth optimizations pending to
+@@ -1287,6 +1302,8 @@
+ 		if (dc->optimized_required &&
+ 			(stream->adjust.v_total_max != adjust->v_total_max ||
+ 			stream->adjust.v_total_min != adjust->v_total_min)) {
++			if (stream->ods_vrr_lab)
++				pr_info_ratelimited("ODS_VRR: DEFER timing update\n");
+ 			stream->adjust.timing_adjust_pending = true;
+ 			return false;
+ 		}
+@@ -1317,6 +1334,9 @@
+ 					1,
+ 					*adjust);
+ 			stream->adjust.timing_adjust_pending = false;
++			if (ods_changed)
++				pr_info("ODS_VRR: set_drr invoked min=%u max=%u\n",
++					adjust->v_total_min, adjust->v_total_max);
+ 
+ 			if (dc->debug.visual_confirm == VISUAL_CONFIRM_BOOSTED_REFRESH_RATE) {
+ 				if (pipe->stream && pipe->plane_state) {
+@@ -1333,6 +1353,8 @@
+ 		}
+ 	}
+ 
++	if (stream->ods_vrr_lab)
++		pr_err_ratelimited("ODS_VRR: FAIL no timing-generator pipe\n");
+ 	return false;
+ }
+ 
+--- a/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
++++ b/drivers/gpu/drm/amd/display/modules/freesync/freesync.c
+@@ -26,6 +26,7 @@
+ #include "dm_services.h"
+ #include "dc.h"
+ #include "mod_freesync.h"
++#include "ods_vrr_guard.h"
+ #include "core_types.h"
+ 
+ #define MOD_FREESYNC_MAX_CONCURRENT_STREAMS  32
+@@ -1108,7 +1109,9 @@
+ 		in_out_vrr->adjust.v_total_min = stream->timing.v_total;
+ 		in_out_vrr->adjust.v_total_max = stream->timing.v_total;
+ 	} else if (in_out_vrr->state == VRR_STATE_ACTIVE_VARIABLE &&
+-			refresh_range >= MIN_REFRESH_RANGE) {
++			(refresh_range >= MIN_REFRESH_RANGE ||
++			 (stream->ods_vrr_lab && min_refresh_in_uhz == 59000000 &&
++			  max_refresh_in_uhz == 60000000))) {
+ 
+ 		in_out_vrr->adjust.v_total_min =
+ 			mod_freesync_calc_v_total_from_refresh(stream,
+@@ -1139,6 +1142,10 @@
+ 		in_out_vrr->adjust.v_total_max = stream->timing.v_total;
+ 	}
+ 
++	if (stream->ods_vrr_lab) {
++		in_out_vrr->adjust.v_total_mid = 0;
++		in_out_vrr->adjust.v_total_mid_frame_num = 0;
++	}
+ 	in_out_vrr->adjust.allow_otg_v_count_halt = (in_config->state == VRR_STATE_ACTIVE_FIXED) ? true : false;
+ }
+ 
+@@ -1152,6 +1159,13 @@
+ 	unsigned int last_render_time_in_us = 0;
+ 
+ 	if (mod_freesync == NULL)
++		return;
++
++	/* Diagnostic keeps only the bounded variable window or native fixed mode.
++	 * No LFC, fixed fallback, or flip-interval workaround may alter its totals.
++	 * Missing a deadline therefore yields a max-duration refresh, not a new range.
++	 */
++	if (stream->ods_vrr_lab)
+ 		return;
+ 
+ 	core_freesync = MOD_FREESYNC_TO_CORE(mod_freesync);
+@@ -1189,6 +1203,13 @@
+ 	unsigned long long cur_tick;
+ 
+ 	if ((mod_freesync == NULL) || (stream == NULL) || (in_out_vrr == NULL))
++		return;
++
++	/* Diagnostic keeps only the bounded variable window or native fixed mode.
++	 * No LFC, fixed fallback, or flip-interval workaround may alter its totals.
++	 * Missing a deadline therefore yields a max-duration refresh, not a new range.
++	 */
++	if (stream->ods_vrr_lab)
+ 		return;
+ 
+ 	core_freesync = MOD_FREESYNC_TO_CORE(mod_freesync);
+--- /dev/null
++++ b/drivers/gpu/drm/amd/display/dc/ods_vrr_guard.h
+@@ -0,0 +1,55 @@
++/* SPDX-License-Identifier: MIT
++ * OpenDeckSight experiment guards. Caller supplies bool; no device I/O.
++ * These bounds are diagnostic candidates, not established panel limits.
++ */
++#ifndef ODS_VRR_GUARD_H
++#define ODS_VRR_GUARD_H
++#define ODS_VRR_MIN_TOTAL 1957u
++#define ODS_VRR_MAX_TOTAL 1989u
++static const unsigned char ods_r04_edid[256] = {
++	0x00, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x00, 0x12, 0x6f, 0x01, 0x50, 0x01, 0x00, 0x00, 0x00,
++	0x01, 0x23, 0x01, 0x04, 0xa5, 0x09, 0x10, 0x78, 0x17, 0xb9, 0x74, 0xae, 0x50, 0x3d, 0xb7, 0x23,
++	0x0b, 0x4f, 0x51, 0x00, 0x00, 0x00, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01,
++	0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0xee, 0x37, 0x38, 0x8c, 0x40, 0x80, 0x24, 0x70, 0x20, 0x08,
++	0x82, 0x00, 0x5a, 0xa0, 0x00, 0x00, 0x00, 0x1e, 0x00, 0x00, 0x00, 0xfc, 0x00, 0x44, 0x65, 0x63,
++	0x6b, 0x53, 0x69, 0x67, 0x68, 0x74, 0x0a, 0x20, 0x20, 0x20, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
++	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
++	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xe4,
++	0x02, 0x03, 0x0b, 0x00, 0xe6, 0x06, 0x05, 0x01, 0x6a, 0x6a, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
++	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
++	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
++	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
++	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
++	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
++	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
++	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x2a,
++};
++static inline bool ods_vrr_identity(bool opt_in, bool internal,
++                                    const unsigned char *edid, unsigned size)
++{
++    unsigned i;
++    if (!opt_in || !internal || !edid || size != sizeof(ods_r04_edid))
++        return false;
++    for (i = 0; i < sizeof(ods_r04_edid); i++)
++        if (edid[i] != ods_r04_edid[i])
++            return false;
++    return true;
++}
++static inline bool ods_vrr_native(unsigned clock, unsigned ha, unsigned hss,
++                                  unsigned hse, unsigned ht, unsigned skew,
++                                  unsigned va, unsigned vss, unsigned vse,
++                                  unsigned vt, unsigned scan, unsigned flags)
++{
++    return clock == 143180 && ha == 1080 && hss == 1112 && hse == 1120 &&
++        ht == 1220 && skew == 0 && va == 1920 && vss == 1928 && vse == 1930 &&
++        vt == 1956 && scan == 0 && flags == 5;
++}
++static inline bool ods_vrr_adjust_allowed(unsigned min, unsigned max,
++                                          unsigned mid, unsigned mid_frames,
++                                          bool halt)
++{
++    return !halt && !mid && !mid_frames &&
++        ((min == 1956 && max == 1956) ||
++         (min == ODS_VRR_MIN_TOTAL && max == ODS_VRR_MAX_TOTAL));
++}
++#endif

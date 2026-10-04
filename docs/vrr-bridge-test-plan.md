@@ -57,7 +57,9 @@ discovery only for the exact internal r04 display and supply a tightly bounded
 experimental range. This must be built against identified matching kernel
 source and reviewed before use. It would test behavior despite the advertised
 capabilities; it would not establish that those capabilities were incorrect.
-No such patch has been built or booted. The inspected upstream v6.17 AMD
+The [bounded diagnostic patch](vrr-visual-experiment.md) has now been built
+and its replacement module booted with the override disabled. Its opt-in
+hardware experiment has not run. The inspected upstream v6.17 AMD
 debugfs source has no `vrr`/`freesync` override entry; this is not an exhaustive
 claim about downstream kernels or other interfaces.
 
@@ -116,9 +118,9 @@ limits:
    A software timeout cannot guarantee recovery from a driver/display hang;
    the human recovery procedure must be agreed beforehand.
 
-No refresh-rate sweep, capability spoof, experimental kernel patch or hardware
-control-register write has been performed. The disposable USB has been updated
-and rebooted, and its native fixed-refresh control has run. A temporary software
+No variable-timing sweep or capability override has been activated on hardware.
+The disposable USB has been updated and rebooted, including a diagnostic module
+with its override disabled, and its native fixed-refresh control has run. A temporary software
 change can still drive real hardware outside documented behavior; lack of
 persistence does not make an unverified timing experiment risk-free.
 

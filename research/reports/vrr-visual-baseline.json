@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "date": "2026-10-04",
+  "scope": "Anonymous disabled-override physical control and local/virtual software checks; no experimental VRR output",
+  "kernel_release": "7.2.3-ogc3.1.fc44.x86_64",
+  "source_commit": "151eb3adafae8820f349a4454c1f1e8d5fc991a4",
+  "patch_sha256": "7488a11b9000d5f67140a3c75decbf8378ac9d357d63ea86f656ec908294a804",
+  "driver_sha256": "2aea311b29f2ca164c450e383bab84eb83186a4190bf00129461876abd1b6d34",
+  "visual_binary_sha256": "9818ecbaec3e91e12fc8eb2399ef2585a2d7b8595c6071866a3a06b4dd007c10",
+  "vm": {
+    "module_loaded": true,
+    "module_and_binary_hashes_verified": true,
+    "override_disabled": true,
+    "storage_isolation_verified": true,
+    "preview_runs": true,
+    "wrong_display_refused": true,
+    "internal_storage_canary_unchanged": true
+  },
+  "physical": {
+    "override_disabled": true,
+    "native_mode_verified": true,
+    "msa_ignore_clear_before_and_after": true,
+    "new_kernel_message_count": 0,
+    "timing": {
+      "schema": 1,
+      "phases": {
+        "0": {
+          "requested_vrr": false,
+          "frames": 720,
+          "complete": true,
+          "vblank_step_counts": {
+            "1": 710,
+            "2": 6
+          },
+          "intervals_analyzed": 716,
+          "mean_vblank_period_us": 16666.53282122905,
+          "vblank_period_us_range": [
+            16666.0,
+            16667.0
+          ],
+          "within_2us_of_native_fraction": 1.0,
+          "inside_candidate_window_with_2us_tolerance_fraction": 0.0,
+          "submission_lateness_us_median": 0.196,
+          "submission_lateness_over_500us_count": 0
+        }
+      },
+      "restore_verified": true,
+      "limits": [
+        "GPU event timestamps and sequence counters only; not optical scanout",
+        "Dividing by vblank steps averages across missing flips",
+        "No automatic claim of working bridge or panel VRR"
+      ]
+    }
+  },
+  "limits": [
+    "Experimental boot option remains disabled",
+    "No visual human judgment recorded",
+    "No optical or DSI measurements",
+    "set_drr instrumentation is a call-path observation, not register readback"
+  ],
+  "local_validation": {
+    "repository_unit_tests_passed": 77,
+    "edid_byte_mutations_rejected": 256,
+    "native_timing_field_mutations_rejected": 12,
+    "guard_total_pairs_checked": 2601,
+    "late_frame_cycles_preserving_variable_totals": 200,
+    "renderer_address_and_undefined_behavior_sanitizers_passed": true
+  }
+}

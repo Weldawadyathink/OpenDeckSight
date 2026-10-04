@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "kernel_release": "7.2.3-ogc3.1.fc44.x86_64",
+  "source_commit": "151eb3adafae8820f349a4454c1f1e8d5fc991a4",
+  "compiler_version_required": "16.2.1",
+  "inputs": {
+    "linux-151eb3a.tar.gz": {
+      "url": "https://codeload.github.com/OpenGamingCollective/linux/tar.gz/151eb3adafae8820f349a4454c1f1e8d5fc991a4",
+      "size": 266143484,
+      "sha256": "b8e3738f3f846f9fcd4c77fdde2adeab014e0ca4576d09db6f01a95201b8e841"
+    },
+    "kernel-devel.rpm": {
+      "url": "https://ghcr.io/v2/opengamingcollective/kernel-packages-fedora/blobs/sha256:8a158bb6a56c3e864477135b75e6f11d2083663c7de0d5f84c0d241a2a6a34db",
+      "size": 19466612,
+      "sha256": "8a158bb6a56c3e864477135b75e6f11d2083663c7de0d5f84c0d241a2a6a34db"
+    }
+  },
+  "header_comparison": {
+    "identical": 6670,
+    "different": 0,
+    "scope": "Matching non-generated include headers present in source archive and prepared development RPM; not proof of complete distribution build reproduction"
+  },
+  "build_limits": [
+    "CONFIG_MODVERSIONS is disabled in distribution config",
+    "Unsigned module; no signing keys enrolled",
+    "Module BTF omitted because distribution vmlinux is not available; code compiled with prepared distribution config",
+    "No physical VRR validation"
+  ]
+}

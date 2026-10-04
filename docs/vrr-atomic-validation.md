@@ -71,11 +71,10 @@ native presentation and GPU event collection. This test adds validation of the
 VRR request interface and demonstrates why a successful ioctl alone would be
 an inadequate success criterion.
 
-The remaining software step is to build the narrowly scoped, explicit-opt-in
-driver change described in [the kernel investigation](vrr-kernel-research.md).
-It must address discovery, the independent range check, bounded timing totals
-and late-frame fallback, then report whether variable timing is actually
-programmed. None of that development requires optical sensors. Sending those
-unverified timings to hardware remains a separate reviewed experiment.
+The subsequent [visual experiment checkpoint](vrr-visual-experiment.md) built the
+narrowly scoped driver change and stimulus, with discovery, independent range,
+timing-bound and fallback guards. Its disabled-override baseline has booted and
+run the native control. Sending unverified timings to hardware remains a separate
+reviewed experiment; neither development step required optical sensors.
 Optical measurements will then test whether the bridge and panel follow the
 source; no physical variable-refresh result exists yet.
