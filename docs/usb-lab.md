@@ -1,7 +1,8 @@
 # Disposable USB lab
 
 This builds a bootable x86-64 UEFI disk image for baseline DeckSight research.
-It starts a RAM-root Linux environment, networking and **passwordless root SSH**.
+It starts a RAM-root Linux environment, networking and **passwordless root SSH**,
+with explicit persistent USB updates over SSH.
 No client key is required. Anyone who can reach port 22 can control this lab
 environment; this is the requested private-network configuration.
 
@@ -12,7 +13,7 @@ experiments. Booting it is not evidence that the ANX bridge passes VRR.
 ## Create the image without a USB drive
 
 Requirements: Python 3.10+, a running Docker-compatible engine, internet access,
-and about 15 GB of free build space. The builder runs Linux amd64; an ARM host
+and about 25 GB of free build/test space. The builder runs Linux amd64; an ARM host
 needs amd64 container emulation. Allow at least 6 GB of memory to the container
 engine for the virtual-machine tests.
 
@@ -24,7 +25,7 @@ python3 -B tools/test_lab_image.py
 ```
 
 The first command creates `artifacts/usb-lab/opendecksight-lab.img`, its SHA-256
-file, the kernel/initramfs, a build manifest and a cache of input packages. It
+file, `opendecksight-lab-update.tar`, the kernel/initramfs, manifests and a cache of input packages. It
 never opens or writes a physical drive. The second command boots the USB layout
 under QEMU UEFI and checks remote access and storage isolation; its SSH forwarding
 is confined to the test container, with no host port published.
@@ -48,9 +49,10 @@ All downloads, complete payloads, images and raw test reports stay in ignored
 ## Configure the USB later
 
 When a drive is available, write the complete `.img` with a disk-image writer,
-then reconnect it and open the **ODSBOOT** volume. The image has a 1 GiB FAT32
-data partition and a separate small UEFI partition. A USB drive of 2 GB or more
-is sufficient. Selecting and overwriting a physical drive is a separate action;
+then reconnect it and open the **ODSBOOT** volume. The image has a 4 GiB FAT32
+data partition and a separate small UEFI partition. A USB drive of 8 GB or more
+is sufficient. The extra space holds the recovery baseline, two research builds
+and an incoming update. Selecting and overwriting a physical drive is a separate action;
 the generator does not do it.
 
 Either edit `wifi.json` using `wifi.example.json` as a guide, or run the helper
@@ -118,6 +120,81 @@ Copy useful observations off before using `ods-poweroff` or `ods-reboot`.
 These commands act immediately in this disposable environment. No installed
 desktop services or settings are involved.
 
+## Change the kernel or userspace over SSH, then reboot
+
+Ordinary edits to the running root filesystem still disappear at reboot.
+Persistent changes are installed explicitly as a **kernel plus matching initramfs
+bundle on the USB**. The initramfs contains the drivers, tools and startup code,
+so this updates both the kernel and userspace. The installed OS remains separate.
+
+After changing the image sources, rebuild only the bundle on the development host:
+
+```sh
+python3 -B tools/build_lab_image.py --bundle-only
+```
+
+Transfer it directly into an inactive USB research slot, without storing the
+whole upload in the Deck's RAM:
+
+```sh
+ssh root@<IP-address> 'ods-update install -' < artifacts/usb-lab/opendecksight-lab-update.tar
+ssh root@<IP-address> 'ods-update status'
+ssh root@<IP-address> 'ods-reboot'
+```
+
+The update command verifies both payload sizes and SHA-256 hashes before
+selecting the new slot. It mounts only the identified USB volume for writing,
+flushes it, and unmounts it before reporting success. It preserves `wifi.json`,
+the running research slot and the original recovery files. Installing an update
+does not itself reboot or start an experiment. These are commands for an
+explicitly authorized device session; the automated tests use only virtual hardware.
+
+Extra kernel arguments can be baked into the bundle with repeated `--boot-arg`
+options to the builder, or supplied to `ods-update install`. The installer option
+replaces the bundle's extra argument list. It rejects overrides of the lab's
+root/init and storage-isolation arguments. Persistent startup/tool changes belong
+in the image sources and are delivered in the next initramfs bundle.
+
+For a locally compiled OGC-compatible kernel, provide its core/modules RPM pair
+and exact release string:
+
+```sh
+python3 -B tools/build_lab_image.py --bundle-only \
+  --kernel-rpms artifacts/custom/kernel-core.rpm artifacts/custom/kernel-modules.rpm \
+  --kernel-release '<exact uname release>'
+```
+
+The builder checks the RPM package names/releases and hashes, extracts them
+without executing their scripts, and builds the matching initramfs. The kernel
+must retain the storage configuration/initcall names checked in `build.sh`.
+This accepts a previously built kernel; it does not compile one or implement
+the VRR patch. Custom kernels require `--bundle-only`, so they cannot accidentally
+replace the stock kernel in a newly generated recovery image.
+
+## Roll back without reimaging
+
+Each normal update alternates between `research-a` and `research-b`. The
+**OpenDeckSight recovery baseline** entry remains in the eight-second boot menu.
+To return to it through a working SSH connection:
+
+```sh
+ssh root@<IP-address> 'ods-update select baseline'
+ssh root@<IP-address> 'ods-reboot'
+```
+
+If a new build cannot boot or provide networking, reboot and choose the recovery
+entry locally. There is no automatic boot-failure detection or automatic reboot
+from a hang. From recovery, the updater can select a verified existing research
+slot or install another build. Reimaging should normally be needed only for
+damage to the USB filesystem, bootloader or recovery files, not each experiment.
+
+An incomplete/corrupt bundle is rejected before changing the default boot.
+Selection is written last, after flushing the staged payload. FAT still cannot
+guarantee recovery from every power loss or media failure during a write.
+The updater limits each bundle's kernel/initramfs payload to 1 GiB and checks
+free space before writing it. Hash checks validate transfer integrity, not
+kernel compatibility or the safety of experimental display timings.
+
 ## Isolation and remaining validation
 
 The Linux root is an initramfs. There is no installed-root mount, swap, resume,
@@ -138,7 +215,33 @@ with a bounded kernel change and paired fixed-refresh control. See the
 [kernel research](vrr-kernel-research.md) and
 [optical measurement plan](vrr-optical-measurement.md).
 
-## Validation checkpoint — 2026-10-04
+## Remote update validation — 2026-10-04
+
+The final 4 GiB data-partition image passed a complete virtual SSH update cycle:
+
+1. Boot the factory baseline with a synthetic Wi-Fi configuration.
+2. Stream a kernel/initramfs bundle over SSH into `research-a`. The test adds a
+   file to the initramfs using the kernel's documented
+   [concatenated archive format](https://docs.kernel.org/driver-api/early-userspace/buffer-format.html)
+   and supplies the harmless extra argument `ods.test=ssh-update`.
+3. Reboot and verify the new file, new kernel argument, selected research slot
+   and retained Wi-Fi profile.
+4. Select the recovery baseline over SSH and reboot again. Verify the recovery
+   slot is running and the test file is absent, then power off.
+
+The simulated internal NVMe contents remained unchanged across the cycle.
+The final source image SHA-256 was
+`ba9d539071719d850ee26156edb6f8e62d44904b7ce34ea219f4251411590cac`.
+Its raw report is `artifacts/usb-lab/uefi-smoke-wifi-report.json` (ignored).
+
+All 64 unit tests passed, including inactive-slot rotation, recovery selection,
+corrupt/truncated upload rejection, and protection of the running slot and boot
+arguments. The local-RPM `--bundle-only` path also built successfully using the
+known OGC package pair and produced no disk image. This validates that packaging
+path, not a new kernel patch or physical VRR operation. Physical Deck boot,
+wireless association and display timing remain untested by this checkpoint.
+
+## Initial baseline checkpoint — 2026-10-04 (`0ed2631`)
 
 The image was built and tested with QEMU/OVMF UEFI, an emulated USB boot disk,
 3 GiB of guest RAM, Ethernet and a writable simulated internal NVMe disk.
@@ -159,7 +262,7 @@ boot. All 58 repository unit tests passed, including a regression for incomplete
 network-address records during startup. Shell syntax and recorded build-source
 hashes were checked. No physical Deck or Wi-Fi radio was used for these tests.
 
-The tested default image's SHA-256 was
+The original baseline image's SHA-256 was
 `734ad4cc60e845580b448a676310e0d8a3b59a946ae289b0b1107ea806ea1db1`.
 Raw serial logs, VM reports and the image remain in ignored `artifacts/usb-lab/`.
 Later rebuilds have their own image hashes.

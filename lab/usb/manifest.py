@@ -16,8 +16,8 @@ sources = (list((root / 'lab/usb').glob('*')) + list((root / 'opendecksight').gl
            + list((root / 'tools').glob('*lab*.py')))
 manifest = {
     'schema': 1,
-    'purpose': 'RAM-only fixed-refresh diagnostic baseline; no VRR patch',
-    'kernel': json.loads((root / 'lab/usb/kernel.lock.json').read_text()),
+    'purpose': 'RAM-root lab with explicit USB update bundles; default kernel has no VRR patch',
+    'kernel': json.loads((esp / 'kernel.lock.json').read_text()),
     'runtime_lock_sha256': sha(esp / 'runtime.lock.json'),
     'source_sha256': {str(p.relative_to(root)): sha(p) for p in sources if p.is_file()},
     'payload_sha256': {str(p.relative_to(esp)): sha(p) for p in sorted(esp.rglob('*'))

@@ -1,11 +1,14 @@
 """Boot the real USB layout in an isolated QEMU VM and test unauthenticated SSH."""
 
 import hashlib
+import gzip
+import io
 import json
 import os
 from pathlib import Path
 import shutil
 import subprocess
+import tarfile
 import time
 
 out = Path('/out')
@@ -25,6 +28,7 @@ def sha(path):
 
 
 disk = out / 'opendecksight-lab.img'
+source_image_sha256 = sha(disk)
 if configured:
     # Use synthetic credentials on a disposable copy, never modify the output image.
     shutil.copyfile(disk, work / 'wifi-test.img')
@@ -50,7 +54,7 @@ args = ['qemu-system-x86_64', '-machine', 'q35', '-accel', 'tcg', '-cpu', 'max',
         '-drive', 'if=pflash,format=raw,readonly=on,file=' + str(code),
         '-drive', 'if=pflash,format=raw,file=/work/vars.fd',
         '-device', 'qemu-xhci',
-        '-drive', 'if=none,id=labusb,format=raw,readonly=on,file=' + str(disk),
+        '-drive', 'if=none,id=labusb,format=raw,readonly=' + ('off' if configured else 'on') + ',file=' + str(disk),
         '-device', 'usb-storage,drive=labusb,bootindex=1',
         '-drive', 'if=none,id=internal,format=raw,file=' + str(canary),
         '-device', 'nvme,drive=internal,serial=ODS-CANARY',
@@ -60,8 +64,15 @@ ssh = ['ssh', '-p', '2222', '-o', 'BatchMode=yes', '-o', 'PreferredAuthenticatio
        '-o', 'StrictHostKeyChecking=accept-new', '-o', 'UserKnownHostsFile=/work/known_hosts',
        '-o', 'ConnectTimeout=2', 'root@127.0.0.1']
 log = (out / (prefix + '-qemu.log')).open('w')
-vm = subprocess.Popen(args, stdout=log, stderr=log)
-try:
+
+
+def start_vm(phase):
+    (work / 'known_hosts').unlink(missing_ok=True)
+    args[args.index('-serial') + 1] = 'file:/out/' + prefix + '-' + phase + '-serial.log'
+    return subprocess.Popen(args, stdout=log, stderr=log)
+
+
+def wait_ssh(vm):
     deadline = time.monotonic() + 600
     while time.monotonic() < deadline:
         if vm.poll() is not None:
@@ -71,10 +82,49 @@ try:
         except subprocess.TimeoutExpired:
             continue
         if result.returncode == 0:
-            break
+            return
         time.sleep(3)
-    else:
-        raise RuntimeError('USB boot did not reach SSH within 600 seconds; inspect smoke logs')
+    raise RuntimeError('USB boot did not reach SSH within 600 seconds; inspect smoke logs')
+
+
+def remote_json(command):
+    result = subprocess.run(ssh + [command], capture_output=True, text=True, check=True, timeout=60)
+    return json.loads(result.stdout)
+
+
+def candidate_bundle():
+    """A real changed initramfs, using Linux's concatenated gzip/newc format."""
+    candidate = work / 'candidate'
+    candidate.mkdir()
+    with tarfile.open(out / 'opendecksight-lab-update.tar') as archive:
+        manifest = json.load(archive.extractfile('manifest.json'))
+        for name in ['vmlinuz', 'initramfs.img']:
+            with archive.extractfile(name) as src, (candidate / name).open('wb') as dest:
+                shutil.copyfileobj(src, dest)
+    marker = work / 'marker/etc'
+    marker.mkdir(parents=True)
+    (marker / 'ods-update-test.txt').write_text('SSH update persisted across reboot\n')
+    extra = subprocess.run(['cpio', '-o', '-H', 'newc', '--quiet'],
+                           cwd=marker.parent, input=b'etc/ods-update-test.txt\n',
+                           capture_output=True, check=True).stdout
+    with (candidate / 'initramfs.img').open('ab') as dest:
+        dest.write(gzip.compress(extra, mtime=0))
+    manifest['files']['initramfs.img'] = {'size': (candidate / 'initramfs.img').stat().st_size,
+                                         'sha256': sha(candidate / 'initramfs.img')}
+    path = work / 'candidate.tar'
+    raw = json.dumps(manifest).encode()
+    with tarfile.open(path, 'w') as archive:
+        header = tarfile.TarInfo('manifest.json')
+        header.size = len(raw)
+        archive.addfile(header, io.BytesIO(raw))
+        for name in ['vmlinuz', 'initramfs.img']:
+            archive.add(candidate / name, arcname=name)
+    return path
+
+
+vm = start_vm('initial')
+try:
+    wait_ssh(vm)
     program = 'configured = ' + repr(configured) + '\n' + r'''
 import glob,json,os,pathlib,subprocess
 mounts=pathlib.Path('/proc/mounts').read_text()
@@ -122,6 +172,39 @@ print(json.dumps({'uid':os.getuid(),'kernel':os.uname().release,'mounts':mounts.
     report = json.loads(result.stdout)
     report['test_scope'] = 'QEMU UEFI USB boot and Ethernet/SSH; no physical Deck, Wi-Fi radio or display timing test'
     report['image_sha256'] = sha(disk)
+    report['source_image_sha256'] = source_image_sha256
+    if configured:
+        assert remote_json('ods-update status')['running'] == 'baseline'
+        print('wifi: streaming a changed initramfs over SSH...', flush=True)
+        with candidate_bundle().open('rb') as bundle:
+            result = subprocess.run(ssh + ['ods-update install - --boot-arg ods.test=ssh-update'],
+                                    stdin=bundle, capture_output=True, text=True, timeout=600)
+        if result.returncode:
+            (out / 'update-install-check.log').write_text(result.stdout + result.stderr)
+            raise RuntimeError('SSH update failed; inspect update-install-check.log')
+        installed = json.loads(result.stdout)
+        assert installed['next_boot'] == 'research-a'
+        subprocess.run(ssh + ['ods-reboot'], capture_output=True, timeout=30)
+        vm.wait(timeout=60)
+        assert vm.returncode == 0
+        vm = start_vm('updated')
+        wait_ssh(vm)
+        status = remote_json('ods-update status')
+        assert status['running'] == status['next_boot'] == 'research-a'
+        check = "test -f /etc/ods-update-test.txt && grep -q 'ods.test=ssh-update' /proc/cmdline && test -f /run/NetworkManager/system-connections/ods-wifi.nmconnection"
+        subprocess.run(ssh + [check], capture_output=True, check=True, timeout=30)
+        print('wifi: changed userspace and kernel argument survived reboot; testing rollback...', flush=True)
+        assert remote_json('ods-update select baseline')['next_boot'] == 'baseline'
+        subprocess.run(ssh + ['ods-reboot'], capture_output=True, timeout=30)
+        vm.wait(timeout=60)
+        assert vm.returncode == 0
+        vm = start_vm('recovery')
+        wait_ssh(vm)
+        assert remote_json('ods-update status')['running'] == 'baseline'
+        subprocess.run(ssh + ['test ! -e /etc/ods-update-test.txt'], capture_output=True, check=True, timeout=30)
+        report['ssh_update_cycle'] = {'installed': installed, 'changed_userspace_booted': True,
+                                     'kernel_argument_persisted': True, 'wifi_preserved': True,
+                                     'recovery_baseline_booted': True}
     subprocess.run(ssh + ['ods-poweroff'], capture_output=True, timeout=15)
     vm.wait(timeout=60)
     assert vm.returncode == 0, 'Guest did not power off cleanly'

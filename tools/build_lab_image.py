@@ -5,10 +5,14 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import shutil
 import subprocess
+import sys
 import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from opendecksight.lab_update import validate_args
 
 
 def fetch_kernel(cache):
@@ -45,6 +49,7 @@ def fetch_kernel(cache):
             temp.rename(path)
         if path.stat().st_size != entry["size"] or hashlib.sha256(path.read_bytes()).hexdigest() != entry["sha256"]:
             raise ValueError("Cached kernel package hash mismatch: " + entry["name"])
+    (cache / 'kernel.lock.json').write_text(json.dumps(lock, indent=2) + '\n')
 
 
 def main():
@@ -53,7 +58,18 @@ def main():
     parser.add_argument("--refresh-runtime", action="store_true",
                         help="resolve a new Fedora package set instead of reusing the saved lock/cache")
     parser.add_argument("--skip-builder-build", action="store_true", help="reuse the local builder image")
+    parser.add_argument('--bundle-only', action='store_true', help='build an SSH update bundle without rebuilding the USB disk image')
+    parser.add_argument('--boot-arg', action='append', default=[], help='extra argument for this update bundle (repeatable)')
+    parser.add_argument('--kernel-rpms', nargs=2, type=Path, metavar=('CORE', 'MODULES'),
+                        help='local OGC-compatible kernel RPMs; requires --bundle-only and --kernel-release')
+    parser.add_argument('--kernel-release', help='exact uname release for the local kernel RPM pair')
     args = parser.parse_args()
+    try:
+        validate_args(args.boot_arg)
+    except ValueError as error:
+        parser.error(str(error))
+    if bool(args.kernel_rpms) != bool(args.kernel_release) or (args.kernel_rpms and not args.bundle_only):
+        parser.error('Local kernel RPMs require --kernel-release and --bundle-only; preserve the stock recovery image')
     out = args.output_dir.resolve()
     if out != (ROOT / "artifacts").resolve() and (ROOT / "artifacts").resolve() not in out.parents:
         parser.error("Keep image outputs and downloads inside this repository's ignored artifacts/ directory")
@@ -61,7 +77,20 @@ def main():
     cache = out / "inputs"
     cache.mkdir(exist_ok=True)
     subprocess.run(["docker", "info", "--format", "{{.ServerVersion}}"], check=True)
-    fetch_kernel(cache)
+    if args.kernel_rpms:
+        lock = {'schema': 1, 'release': args.kernel_release,
+                'origin': 'Local OGC-compatible RPM pair; scripts not executed; source correspondence unverified',
+                'packages': []}
+        for source, kind in zip(args.kernel_rpms, ['core', 'modules']):
+            target = cache / ('custom-kernel-' + kind + '.rpm')
+            if source.resolve() != target.resolve():
+                shutil.copyfile(source, target)
+            lock['packages'].append({'name': target.name, 'size': target.stat().st_size,
+                                     'sha256': hashlib.sha256(target.read_bytes()).hexdigest()})
+        (cache / 'kernel.lock.json').write_text(json.dumps(lock, indent=2) + '\n')
+    else:
+        fetch_kernel(cache)
+    (cache / 'boot-args.json').write_text(json.dumps(args.boot_arg) + '\n')
     if not args.skip_builder_build:
         subprocess.run(["docker", "build", "--platform", "linux/amd64", "-t", "opendecksight-lab-builder",
                         "-f", str(ROOT / "lab/usb/Containerfile"), str(ROOT / "lab/usb")], check=True)
@@ -69,9 +98,12 @@ def main():
                "--mount", f"type=bind,src={ROOT},dst=/src,readonly",
                "--mount", f"type=bind,src={out},dst=/out",
                "-e", "ODS_REFRESH_RUNTIME=" + ("1" if args.refresh_runtime else "0"),
+               '-e', 'ODS_BUNDLE_ONLY=' + ('1' if args.bundle_only else '0'),
                "opendecksight-lab-builder", "/src/lab/usb/build.sh"]
     subprocess.run(command, check=True)
-    print("Created " + str(out / "opendecksight-lab.img"))
+    print('Created ' + str(out / 'opendecksight-lab-update.tar'))
+    if not args.bundle_only:
+        print("Created " + str(out / "opendecksight-lab.img"))
     print("No USB device was written. See docs/usb-lab.md for configuration and boot testing.")
 
 

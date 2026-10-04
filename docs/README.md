@@ -19,7 +19,7 @@ is required for anything potentially dangerous to hardware or software.
 | [Bridge VRR experiment plan](vrr-bridge-test-plan.md) | Native AUX result, active-test prerequisites and decision points |
 | [Offline VRR kernel tests](vrr-kernel-research.md) | Candidate OGC source, independent range gates, late-frame fallback and quantization |
 | [Optical VRR measurement](vrr-optical-measurement.md) | Camera versus photodiode, microcontroller capture design and end-to-end evidence |
-| [Disposable USB lab](usb-lab.md) | RAM-root image builder, Wi-Fi file, passwordless SSH and virtual boot tests |
+| [Disposable USB lab](usb-lab.md) | RAM-root image builder, Wi-Fi, passwordless SSH, remote updates and recovery boot |
 | [Provenance](provenance.md) | Sources, tool versions, reproduction boundaries |
 | [Reproduction](reproduce.md) | Download, inspection, comparison and test commands |
 | [Artifact manifest](../research/artifacts.json) | Download URLs and SHA-256 digests |

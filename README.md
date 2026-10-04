@@ -27,7 +27,7 @@ require explicit human confirmation.
 - [Artifact provenance](research/artifacts.json)
 - [Hardware validation plan](docs/hardware-validation.md)
 - [True variable refresh feasibility](docs/vrr-feasibility.md)
-- [Disposable USB lab image builder](docs/usb-lab.md)
+- [USB lab image builder and SSH updates](docs/usb-lab.md)
 - [Reproduction commands](docs/reproduce.md)
 - [Existing open Gamescope integration](third_party/gamescope/README.md)
 
