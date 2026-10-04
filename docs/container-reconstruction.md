@@ -1,5 +1,8 @@
 # Signed-container reconstruction
 
+For an explanation of keys, signer identity and installation requirements,
+see [signing.md](signing.md).
+
 The complete 17,778,952-byte r04 `.fd` now reproduces byte-for-byte from the
 Valve F7A0133 `.fd`, generated BIOSIMG modifications, the identified PNG and
 three existing r04 signature resources. `build-fd` does not read the reference
