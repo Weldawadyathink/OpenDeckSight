@@ -1,0 +1,1020 @@
+{
+  "biosimg_sha256": "5ef3e6e8ddf84fb36c6368156ef67adfd0a92ad362a460fc264c748d653b3549",
+  "scope": "offline instruction interpretation; each record starts independently at index with selector 1; stops before bus I/O",
+  "not_modeled": [
+    "bank activation",
+    "peripherals",
+    "interrupts",
+    "wall-clock scheduling",
+    "bus success",
+    "panel behavior"
+  ],
+  "banks": [
+    {
+      "bank": 0,
+      "base": "0x0",
+      "selector_branch": [
+        {
+          "xram_0x160a_bit6": false,
+          "selector": 1
+        },
+        {
+          "xram_0x160a_bit6": true,
+          "selector": 1
+        }
+      ],
+      "counter_probes": [
+        {
+          "initial": 0,
+          "after": 0,
+          "reached_state_dispatch": true
+        },
+        {
+          "initial": 1,
+          "after": 0,
+          "reached_state_dispatch": false
+        },
+        {
+          "initial": 60,
+          "after": 59,
+          "reached_state_dispatch": false
+        },
+        {
+          "initial": 256,
+          "after": 255,
+          "reached_state_dispatch": false
+        },
+        {
+          "initial": 65535,
+          "after": 65534,
+          "reached_state_dispatch": false
+        }
+      ],
+      "records": [
+        {
+          "index": 0,
+          "code_reads": [
+            "0x6e55",
+            "0x6e59",
+            "0x6e58",
+            "0x6e57",
+            "0x6e56"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "70 9c a5 a5 00"
+        },
+        {
+          "index": 1,
+          "code_reads": [
+            "0x6e5a",
+            "0x6e5e",
+            "0x6e5d",
+            "0x6e5c",
+            "0x6e5b"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "6c 39 03 00 00"
+        },
+        {
+          "index": 2,
+          "code_reads": [
+            "0x6e5f",
+            "0x6e63",
+            "0x6e62",
+            "0x6e61",
+            "0x6e60"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "6c 05 11 00 00"
+        },
+        {
+          "index": 3,
+          "code_reads": [
+            "0x6e64",
+            "0x6e68",
+            "0x6e67",
+            "0x6e66",
+            "0x6e65"
+          ],
+          "visited_instructions": 104,
+          "kind": "delay",
+          "counter": 60,
+          "next_index": 4,
+          "unit": "scheduler invocations; wall-clock period unverified"
+        },
+        {
+          "index": 4,
+          "code_reads": [
+            "0x6e69",
+            "0x6e6d",
+            "0x6e6c",
+            "0x6e6b",
+            "0x6e6a"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "6c 15 48 03 00"
+        },
+        {
+          "index": 5,
+          "code_reads": [
+            "0x6e6e",
+            "0x6e72",
+            "0x6e71",
+            "0x6e70",
+            "0x6e6f"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "6c 15 53 69 00"
+        },
+        {
+          "index": 6,
+          "code_reads": [
+            "0x6e73",
+            "0x6e77",
+            "0x6e76",
+            "0x6e75",
+            "0x6e74"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "70 51 09 00 00"
+        },
+        {
+          "index": 7,
+          "code_reads": [
+            "0x6e78",
+            "0x6e7c",
+            "0x6e7b",
+            "0x6e7a",
+            "0x6e79"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "70 00 00 00 00"
+        },
+        {
+          "index": 8,
+          "code_reads": [
+            "0x6e7d",
+            "0x6e81",
+            "0x6e80",
+            "0x6e7f",
+            "0x6e7e"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "6c 39 06 00 00"
+        },
+        {
+          "index": 9,
+          "code_reads": [
+            "0x6e82",
+            "0x6e86",
+            "0x6e85",
+            "0x6e84",
+            "0x6e83"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "6c 05 34 00 00"
+        },
+        {
+          "index": 10,
+          "code_reads": [
+            "0x6e87",
+            "0x6e8b",
+            "0x6e8a",
+            "0x6e89",
+            "0x6e88"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "70 44 00 10 00"
+        },
+        {
+          "index": 11,
+          "code_reads": [
+            "0x6e8c",
+            "0x6e90",
+            "0x6e8f",
+            "0x6e8e",
+            "0x6e8d"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "6c 39 03 00 00"
+        },
+        {
+          "index": 12,
+          "code_reads": [
+            "0x6e91",
+            "0x6e95",
+            "0x6e94",
+            "0x6e93",
+            "0x6e92"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "6c 05 35 00 00"
+        },
+        {
+          "index": 13,
+          "code_reads": [
+            "0x6e96",
+            "0x6e9a",
+            "0x6e99",
+            "0x6e98",
+            "0x6e97"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "6c 07 01 00 00"
+        },
+        {
+          "index": 14,
+          "code_reads": [
+            "0x6e9b",
+            "0x6e9f",
+            "0x6e9e",
+            "0x6e9d",
+            "0x6e9c"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "6c 07 00 00 00"
+        },
+        {
+          "index": 15,
+          "code_reads": [
+            "0x6ea0",
+            "0x6ea4",
+            "0x6ea3",
+            "0x6ea2",
+            "0x6ea1"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "70 fd 5a 5a 00"
+        },
+        {
+          "index": 16,
+          "code_reads": [
+            "0x6ea5",
+            "0x6ea9",
+            "0x6ea8",
+            "0x6ea7",
+            "0x6ea6"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "6c 39 03 00 00"
+        },
+        {
+          "index": 17,
+          "code_reads": [
+            "0x6eaa",
+            "0x6eae",
+            "0x6ead",
+            "0x6eac",
+            "0x6eab"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "6c 15 9f 02 00"
+        },
+        {
+          "index": 18,
+          "code_reads": [
+            "0x6eaf",
+            "0x6eb3",
+            "0x6eb2",
+            "0x6eb1",
+            "0x6eb0"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "70 ed 00 30 00"
+        },
+        {
+          "index": 19,
+          "code_reads": [
+            "0x6eb4",
+            "0x6eb8",
+            "0x6eb7",
+            "0x6eb6",
+            "0x6eb5"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "6c 39 03 00 00"
+        },
+        {
+          "index": 20,
+          "code_reads": [
+            "0x6eb9",
+            "0x6ebd",
+            "0x6ebc",
+            "0x6ebb",
+            "0x6eba"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "6c 15 9f 01 00"
+        },
+        {
+          "index": 21,
+          "code_reads": [
+            "0x6ebe",
+            "0x6ec2",
+            "0x6ec1",
+            "0x6ec0",
+            "0x6ebf"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "70 b4 10 00 00"
+        },
+        {
+          "index": 22,
+          "code_reads": [
+            "0x6ec3",
+            "0x6ec7",
+            "0x6ec6",
+            "0x6ec5",
+            "0x6ec4"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "70 03 10 00 00"
+        },
+        {
+          "index": 23,
+          "code_reads": [
+            "0x6ec8",
+            "0x6ecc",
+            "0x6ecb",
+            "0x6eca",
+            "0x6ec9"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "6c 39 06 00 00"
+        },
+        {
+          "index": 24,
+          "code_reads": [
+            "0x6ecd",
+            "0x6ed1",
+            "0x6ed0",
+            "0x6ecf",
+            "0x6ece"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "6c 05 29 00 00"
+        },
+        {
+          "index": 25,
+          "code_reads": [
+            "0x6ed2",
+            "0x6ed6",
+            "0x6ed5",
+            "0x6ed4",
+            "0x6ed3"
+          ],
+          "visited_instructions": 89,
+          "kind": "end",
+          "next_state": "0x14"
+        }
+      ]
+    },
+    {
+      "bank": 1,
+      "base": "0x40000",
+      "selector_branch": [
+        {
+          "xram_0x160a_bit6": false,
+          "selector": 1
+        },
+        {
+          "xram_0x160a_bit6": true,
+          "selector": 1
+        }
+      ],
+      "counter_probes": [
+        {
+          "initial": 0,
+          "after": 0,
+          "reached_state_dispatch": true
+        },
+        {
+          "initial": 1,
+          "after": 0,
+          "reached_state_dispatch": false
+        },
+        {
+          "initial": 60,
+          "after": 59,
+          "reached_state_dispatch": false
+        },
+        {
+          "initial": 256,
+          "after": 255,
+          "reached_state_dispatch": false
+        },
+        {
+          "initial": 65535,
+          "after": 65534,
+          "reached_state_dispatch": false
+        }
+      ],
+      "records": [
+        {
+          "index": 0,
+          "code_reads": [
+            "0x6e55",
+            "0x6e59",
+            "0x6e58",
+            "0x6e57",
+            "0x6e56"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "70 00 a5 a5 9c"
+        },
+        {
+          "index": 1,
+          "code_reads": [
+            "0x6e5a",
+            "0x6e5e",
+            "0x6e5d",
+            "0x6e5c",
+            "0x6e5b"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "6c 00 00 03 39"
+        },
+        {
+          "index": 2,
+          "code_reads": [
+            "0x6e5f",
+            "0x6e63",
+            "0x6e62",
+            "0x6e61",
+            "0x6e60"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "6c 00 00 11 05"
+        },
+        {
+          "index": 3,
+          "code_reads": [
+            "0x6e64",
+            "0x6e68",
+            "0x6e67",
+            "0x6e66",
+            "0x6e65"
+          ],
+          "visited_instructions": 104,
+          "kind": "delay",
+          "counter": 0,
+          "next_index": 4,
+          "unit": "scheduler invocations; wall-clock period unverified"
+        },
+        {
+          "index": 4,
+          "code_reads": [
+            "0x6e69",
+            "0x6e6d",
+            "0x6e6c",
+            "0x6e6b",
+            "0x6e6a"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "6c 00 03 48 15"
+        },
+        {
+          "index": 5,
+          "code_reads": [
+            "0x6e6e",
+            "0x6e72",
+            "0x6e71",
+            "0x6e70",
+            "0x6e6f"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "6c 00 69 53 15"
+        },
+        {
+          "index": 6,
+          "code_reads": [
+            "0x6e73",
+            "0x6e77",
+            "0x6e76",
+            "0x6e75",
+            "0x6e74"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "70 00 00 09 51"
+        },
+        {
+          "index": 7,
+          "code_reads": [
+            "0x6e78",
+            "0x6e7c",
+            "0x6e7b",
+            "0x6e7a",
+            "0x6e79"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "70 00 00 00 00"
+        },
+        {
+          "index": 8,
+          "code_reads": [
+            "0x6e7d",
+            "0x6e81",
+            "0x6e80",
+            "0x6e7f",
+            "0x6e7e"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "6c 00 00 06 39"
+        },
+        {
+          "index": 9,
+          "code_reads": [
+            "0x6e82",
+            "0x6e86",
+            "0x6e85",
+            "0x6e84",
+            "0x6e83"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "6c 00 00 34 05"
+        },
+        {
+          "index": 10,
+          "code_reads": [
+            "0x6e87",
+            "0x6e8b",
+            "0x6e8a",
+            "0x6e89",
+            "0x6e88"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "70 00 10 00 44"
+        },
+        {
+          "index": 11,
+          "code_reads": [
+            "0x6e8c",
+            "0x6e90",
+            "0x6e8f",
+            "0x6e8e",
+            "0x6e8d"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "6c 00 00 03 39"
+        },
+        {
+          "index": 12,
+          "code_reads": [
+            "0x6e91",
+            "0x6e95",
+            "0x6e94",
+            "0x6e93",
+            "0x6e92"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "6c 00 00 35 05"
+        },
+        {
+          "index": 13,
+          "code_reads": [
+            "0x6e96",
+            "0x6e9a",
+            "0x6e99",
+            "0x6e98",
+            "0x6e97"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "6c 00 00 01 07"
+        },
+        {
+          "index": 14,
+          "code_reads": [
+            "0x6e9b",
+            "0x6e9f",
+            "0x6e9e",
+            "0x6e9d",
+            "0x6e9c"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "6c 00 00 00 07"
+        },
+        {
+          "index": 15,
+          "code_reads": [
+            "0x6ea0",
+            "0x6ea4",
+            "0x6ea3",
+            "0x6ea2",
+            "0x6ea1"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "70 00 5a 5a fd"
+        },
+        {
+          "index": 16,
+          "code_reads": [
+            "0x6ea5",
+            "0x6ea9",
+            "0x6ea8",
+            "0x6ea7",
+            "0x6ea6"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "6c 00 00 03 39"
+        },
+        {
+          "index": 17,
+          "code_reads": [
+            "0x6eaa",
+            "0x6eae",
+            "0x6ead",
+            "0x6eac",
+            "0x6eab"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "6c 00 02 9f 15"
+        },
+        {
+          "index": 18,
+          "code_reads": [
+            "0x6eaf",
+            "0x6eb3",
+            "0x6eb2",
+            "0x6eb1",
+            "0x6eb0"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "70 00 30 00 ed"
+        },
+        {
+          "index": 19,
+          "code_reads": [
+            "0x6eb4",
+            "0x6eb8",
+            "0x6eb7",
+            "0x6eb6",
+            "0x6eb5"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "6c 00 00 03 39"
+        },
+        {
+          "index": 20,
+          "code_reads": [
+            "0x6eb9",
+            "0x6ebd",
+            "0x6ebc",
+            "0x6ebb",
+            "0x6eba"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "6c 00 01 9f 15"
+        },
+        {
+          "index": 21,
+          "code_reads": [
+            "0x6ebe",
+            "0x6ec2",
+            "0x6ec1",
+            "0x6ec0",
+            "0x6ebf"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "70 00 00 10 b4"
+        },
+        {
+          "index": 22,
+          "code_reads": [
+            "0x6ec3",
+            "0x6ec7",
+            "0x6ec6",
+            "0x6ec5",
+            "0x6ec4"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "70 00 00 10 03"
+        },
+        {
+          "index": 23,
+          "code_reads": [
+            "0x6ec8",
+            "0x6ecc",
+            "0x6ecb",
+            "0x6eca",
+            "0x6ec9"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "6c 00 00 06 39"
+        },
+        {
+          "index": 24,
+          "code_reads": [
+            "0x6ecd",
+            "0x6ed1",
+            "0x6ed0",
+            "0x6ecf",
+            "0x6ece"
+          ],
+          "visited_instructions": 96,
+          "kind": "bus call boundary",
+          "address": "0xf129",
+          "device_argument": 1,
+          "port_argument": "0xc0",
+          "length": 5,
+          "pointer": "0xfd9",
+          "bytes_hex": "6c 00 00 29 05"
+        },
+        {
+          "index": 25,
+          "code_reads": [
+            "0x6ed2",
+            "0x6ed6",
+            "0x6ed5",
+            "0x6ed4",
+            "0x6ed3"
+          ],
+          "visited_instructions": 89,
+          "kind": "end",
+          "next_state": "0x14"
+        }
+      ]
+    }
+  ]
+}

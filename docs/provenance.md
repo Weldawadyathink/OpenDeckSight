@@ -25,6 +25,9 @@
   substituted for DeckSight values.
 - [Linux DRM MIPI definitions](https://github.com/torvalds/linux/blob/master/include/video/mipi_display.h)
   are the primary source for DCS command and packet-type names.
+- [Arm/Keil 8051 instruction manual](https://www.keil.com/support/man/docs/is51/is51_instructions.asp)
+  provides instruction semantics for the independently implemented, bounded
+  EC analysis model. No external emulator or disassembler code is incorporated.
 
 ## Method
 
@@ -41,6 +44,10 @@
 7. Verify the two PE Authenticode signatures using the embedded artifact
    certificate as an explicit anchor, and recover/compare BIOSCER's SHA-256
    DigestInfo. This is mathematical verification, not external trust validation.
+8. Interpret the original EC table-loading instructions in local Python arrays,
+   stopping before the bus routine; trace delay and selector paths separately.
+   Compare prepared buffers with the semantic table encoder. No EC code is
+   executed on the device, and no peripheral behavior is simulated as fact.
 
 Sources have been inspected by the same implementer. This is transparent
 reverse engineering, **not a claim of a legally isolated clean-room process**.

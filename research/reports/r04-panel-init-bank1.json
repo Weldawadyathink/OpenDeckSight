@@ -30,7 +30,8 @@
       "record_index": 3,
       "kind": "delay",
       "value": 1006632960,
-      "unit": "table delay units (ms inferred)"
+      "counter": 0,
+      "unit": "scheduler invocations; wall-clock period unverified"
     },
     {
       "ec_offset": "0x6e69",

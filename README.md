@@ -20,6 +20,7 @@ require explicit human confirmation.
 - [Research index](docs/README.md)
 - [BIOS changes and exact offsets](docs/bios.md)
 - [Decoded panel initialization and unresolved semantics](docs/panel-init.md)
+- [EC instruction traces and delay-counter findings](docs/ec-interpreter.md)
 - [Brightness protocol](docs/brightness.md)
 - [Artifact provenance](research/artifacts.json)
 - [Hardware validation plan](docs/hardware-validation.md)

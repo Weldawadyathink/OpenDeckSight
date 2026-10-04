@@ -63,7 +63,9 @@ reconstruction. Unknown header bytes will not be patched merely to match hashes.
 
 - Explain the proprietary commands, extra brightness parameters and unusual
   tear/compression sequence, beyond correctly decoding their packets.
-- Confirm the EC table interpreter and bank-selection behavior.
+- Identify physical EC-copy selection. The table loader, byte ordering,
+  display-selection branch and delay arithmetic are now traced offline in
+  [ec-interpreter.md](ec-interpreter.md); live activation remains unverified.
 - Explain and regenerate nested IFLASH/PE metadata, including signatures or an
   explicit, verified signature-reuse boundary for exact historical reproduction.
 - Test functionality only after the owner approves concrete device operations.

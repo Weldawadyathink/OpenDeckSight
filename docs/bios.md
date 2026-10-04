@@ -21,7 +21,8 @@ this is evidence limited to what the tool successfully parsed.
 
 The INI_IMG contents are identical. BIOSCER differs. The outer DRV_IMG contains
 the inner images, so a changed DRV_IMG hash alone does not establish that the
-flasher executable changed. Signing and trust enforcement have not been validated.
+flasher executable changed. The signatures have been checked offline; external
+trust enforcement has not been validated.
 
 ### Container certificates and executable sections
 
@@ -94,6 +95,11 @@ From r03 to r04, control-display changes `0x61→0x69`, and a six-byte long-writ
 payload beginning with brightness `0x51` changes from `51 99 19 99 19 c4` to
 `51 09 00 00 00 00`. Runtime brightness uses a three-byte payload instead.
 The effect of the additional initialization parameters needs validation.
+
+The original instruction path is now traced in [ec-interpreter.md](ec-interpreter.md).
+It confirms selector 1 is forced for either tested hardware-bit value and that
+the stored big-endian values are reversed into the five-byte bus buffer.
+Delay records use only the low byte as a scheduler-invocation counter.
 
 ## Important anomaly: opposite byte order in the second EC region
 

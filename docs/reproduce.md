@@ -91,6 +91,18 @@ python3 tools/collect_ssh.py user@host --output artifacts/device-report.json
 It uses existing trusted SSH host keys, batch authentication and `python3 -B -`.
 The output is written locally only. Keep raw device reports out of Git.
 
+## Trace the EC table loader offline
+
+```sh
+python3 tools/trace_ec.py artifacts/extracted/r04/chunks/BIOSIMG.bin
+python3 tools/trace_ec.py artifacts/extracted/stock/chunks/BIOSIMG.bin
+```
+
+The trace runs a bounded subset of 8051 instructions in isolated Python arrays.
+It stops before bus I/O and records prepared buffers, not successful writes.
+It confirms the low-byte delay counter and forced selector; see
+[ec-interpreter.md](ec-interpreter.md) for assumptions and limits.
+
 ## Tests
 
 ```sh
@@ -104,3 +116,5 @@ brightness scaling, mailbox write order, busy/timeout behavior and retries after
 failed resume refreshes. The Lua fixture validates registration and 41 timing
 requests without pretending to be a real Gamescope runtime. The separate
 artifact check establishes byte-for-byte correspondence with the pinned release.
+When the pinned r04 BIOSIMG is present, additional tests check original EC
+instruction traces against the generated bus buffers and delay/selector behavior.

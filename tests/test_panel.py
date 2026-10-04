@@ -15,6 +15,12 @@ class PanelTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             decode_table(bytes.fromhex("6c 00 00 03 39 ff 00 00 00 00"), offset=0)
 
+    def test_delay_counter_uses_low_byte(self):
+        events = decode_table(bytes.fromhex("aa 3c 00 00 00 ab 00 00 01 06 ff 00 00 00 00"), offset=0)
+        self.assertEqual(events[0]["value"], 0x3C000000)
+        self.assertEqual(events[0]["counter"], 0)
+        self.assertEqual(events[1]["counter"], 6)
+
     def test_missing_terminator_rejected(self):
         with self.assertRaises(ValueError):
             decode_table(bytes.fromhex("aa 00 00 00 3c"), offset=0)

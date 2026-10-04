@@ -10,6 +10,7 @@ potentially dangerous to hardware or software.
 | [BIOS](bios.md) | Stock/r03/r04 comparison, EC patch map, byte-order anomaly |
 | [Full reconstruction](full-reconstruction.md) | Whole BIOSIMG identity and remaining signed-container work |
 | [Panel initialization](panel-init.md) | Decoded packets, known meanings and explicit unknowns |
+| [EC interpreter](ec-interpreter.md) | Instruction traces for table selection, bus buffers and delay counters |
 | [Brightness](brightness.md) | Recovered mailbox and panel protocol |
 | [Validation](hardware-validation.md) | Work requiring the physical device |
 | [Provenance](provenance.md) | Sources, tool versions, reproduction boundaries |
@@ -32,6 +33,7 @@ or successful offline reproduction as hardware validation.
 - `8a04f83`: initial BIOS analysis, provenance, parsers and exact r04 EC reproduction.
 - `40f9b36`: open brightness implementation, protocol tests and read-only collector.
 - `3afcf54`: reproducible artifact tools, UEFI/container reports and upstream Lua profile.
+- `e9d94c9`: complete r04 BIOSIMG reproduction, packet decoding and cryptographic verification.
 
 ## Remaining work
 

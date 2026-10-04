@@ -14,7 +14,7 @@ the last FIFO word is padded. The original and reconstructed streams decode to:
 | --- | --- | --- |
 | `9c a5 a5` | Three-byte DCS long write | Vendor command; do not assert it is an unlock without a datasheet |
 | `11` | Standard sleep-out | Panel-specific minimum delay requirement |
-| Delay value 60 | Table delay; milliseconds inferred from the known initializer conventions | Interpreter timing calibration |
+| Delay value 60 | Low byte becomes a counter, decremented once per scheduler invocation | Scheduler's wall-clock period |
 | `48 03` | DCS short write with one parameter | Vendor command |
 | `53 69` | Write control display; standard brightness-control and dimming bits set, standard backlight bit clear | Meaning of remaining set bits `0x41` |
 | `51 09 00 00 00 00` | Brightness command, six-byte long write | Extra parameters beyond the ordinary two-byte brightness value |
@@ -43,15 +43,19 @@ alternating ordering observed in DeckSight's new initialization records.
 
 This is a concrete reproducible explanation for the pattern, not proof that
 DeckSight's private source uses that code. Both r03 and r04 show the pattern.
-Applying the stock/first-bank interpretation to the second bank produces packet
-type zero throughout and a delay value of 1,006,632,960 instead of 60. The actual
-EC-bank boot-selection path and delay arithmetic still need analysis. No live
-test of this anomaly is authorized or has occurred.
+Instruction-level tracing now confirms that the same loader reverses each
+stored value into a bus buffer in both copies. The second copy prepares packet
+type zero throughout. Its stored delay word is 1,006,632,960, but the code uses
+only the low byte, so the actual counter becomes **zero** instead of 60.
+See [EC interpreter evidence](ec-interpreter.md) for this correction, the forced
+display selection and exact code addresses. The EC-bank boot-selection path
+remains unresolved. No live test of this anomaly is authorized or has occurred.
 
 ## What would close the remaining semantic gap
 
-A panel/controller part number and programming specification, or original
-initialization documentation, would be stronger evidence than generic opcode
-searches. Without that, code can reproduce these writes exactly, but cannot
-honestly explain all their internal effects. The program labels that distinction
-and the project does not claim the user's full acceptance criterion is met yet.
+The owner has no part number or programming documentation and does not want a
+teardown. Continue with public artifacts, static analysis and independently
+available controller documentation. The absence of a part number does not block
+the reconstruction, but the internal effects of the vendor commands remain
+unexplained. The program labels that distinction and the project does not claim
+the user's full acceptance criterion is met yet.

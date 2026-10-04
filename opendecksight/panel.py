@@ -36,8 +36,10 @@ def decode_table(ec, offset=PANEL_INIT_OFFSET, max_records=256):
         if register == 0x70:
             fifo.extend(word.to_bytes(4, "little"))
             continue
-        if register == 0xAA:
-            events.append({**event, "kind": "delay", "value": word, "unit": "table delay units (ms inferred)"})
+        if register in (0xAA, 0xAB):
+            # F7A0133 helper 0xfab6 reads only the low byte at XRAM 0x0fda.
+            events.append({**event, "kind": "delay", "value": word, "counter": word & 255,
+                           "unit": "scheduler invocations; wall-clock period unverified"})
             continue
         if register != 0x6C:
             events.append({**event, "kind": "other bridge register", "register": hex(register), "value": hex(word)})
