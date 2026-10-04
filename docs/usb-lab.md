@@ -9,6 +9,9 @@ environment; this is the requested private-network configuration.
 The image does not include a VRR kernel patch, compositor, optical pattern
 generator or sensor firmware yet. It provides the isolated foundation for those
 experiments. Booting it is not evidence that the ANX bridge passes VRR.
+A separate [native fixed-refresh utility](vrr-fixed-refresh-control.md) has
+since been built and exercised on physical hardware; it is not started at boot
+or included in the original recovery image.
 
 ## Create the image without a USB drive
 
@@ -88,10 +91,21 @@ permissions. `wifi.json` is Git-ignored. The runtime treats it as data, mounts t
 USB read-only while importing it, creates a NetworkManager profile in RAM, then
 unmounts the USB. Malformed configuration is rejected without logging its values.
 
+Newly generated profiles explicitly use the adapter's permanent Wi-Fi MAC and
+a MAC-based IPv4 DHCP client identifier. Fedora's packaged `stable-ssid` default
+otherwise derives an address from identity that this RAM-only environment
+regenerates each boot. Stable adapter identity helps the router reuse a lease;
+it does not guarantee an unchanged IP address. This profile fix requires a new
+image or update bundle; the original `1b0a44a` recovery image predates it.
+See NetworkManager's [host identity](https://www.networkmanager.dev/docs/api/latest/settings-connection.html)
+and [DHCP client identifier](https://www.networkmanager.dev/docs/api/latest/settings-ipv4.html)
+documentation. The explicit profile fields also passed an `nmcli --offline`
+generation check using the physical lab's packaged NetworkManager.
+
 ## Connect and collect
 
-Booting the physical Deck has not been performed by this implementation work.
-The image uses an unsigned UEFI fallback loader and does not change Secure Boot
+Physical boot, Wi-Fi and SSH have now been exercised; see the validation
+checkpoint below. The image uses an unsigned UEFI fallback loader and does not change Secure Boot
 settings or enroll keys. Device boot/configuration changes and later active
 display experiments remain separate, concrete actions requiring human approval
 under the project's working constraints.
@@ -114,6 +128,16 @@ If SSH reports a changed host key after a reboot, remove only that lab entry
 from that file before connecting again. Passwordless login still uses encrypted
 SSH transport. The configuration follows OpenSSH's
 [PermitEmptyPasswords and PermitRootLogin settings](https://man.openbsd.org/sshd_config).
+
+Selecting the USB once in the firmware boot menu may apply to only that boot.
+The first physical remote-reboot test returned to the installed OS even though
+the USB update had been staged and verified successfully. Repeated unattended
+USB boots require an explicitly selected USB-first firmware boot preference,
+with the installed OS retained as fallback. This is separate from selecting a
+research slot inside the USB's GRUB menu. Save the existing order before changing
+it and verify the result across reboots; do not assume boot-entry numbers are
+the same on different machines. The image never changes firmware boot preference
+automatically. [UEFI boot-order tool documentation](https://github.com/rhboot/efibootmgr/blob/main/README.md)
 
 Logs are under `/run/ods/`; changes, profiles and logs disappear at shutdown.
 Copy useful observations off before using `ods-poweroff` or `ods-reboot`.
@@ -209,13 +233,37 @@ The original kernel is otherwise unpatched. Normal driver initialization still
 occurs; this is not a proof of hardware safety for future experiments.
 
 The virtual tests cannot establish physical Deck Wi-Fi, display, touchscreen,
-USB-adapter compatibility or variable scan timing. Those remain hardware checks.
+USB-adapter compatibility or variable scan timing. The physical checkpoint below
+covers boot, Wi-Fi and native fixed-refresh presentation; touchscreen, other
+USB adapters and variable scan timing remain unverified.
 The next display work is a separately reviewed, explicit experiment launcher
 with a bounded kernel change and paired fixed-refresh control. See the
 [kernel research](vrr-kernel-research.md) and
 [optical measurement plan](vrr-optical-measurement.md).
 
 ## Remote update validation — 2026-10-04
+
+### Physical checkpoint
+
+The original USB image booted on physical hardware, imported Wi-Fi credentials
+from USB into RAM, and provided working root SSH. The AMD display driver and
+wireless driver initialized. The internal NVMe controller remained unbound,
+no NVMe block device was exposed, and no disk filesystem or swap was mounted.
+This checks the intended isolation state; it is not an SSD byte-for-byte audit.
+
+The [native presentation control](vrr-fixed-refresh-control.md) completed 240
+page flips and restored the original framebuffer and timing. The receiver still
+advertised no MSA-ignore capability and the connector reported `vrr_capable = 0`.
+No variable timing or firmware operation was performed.
+
+A streamed update containing the unchanged kernel, a marker and the manually
+invoked display utility was verified and selected as a research slot. It booted
+successfully after manual USB selection, with the expected marker, utility hash
+and kernel argument; Wi-Fi configuration and storage isolation were retained.
+The installed-system fallback on the first reboot exposed the separate firmware
+boot-order requirement described above. The original recovery files were retained.
+
+### Virtual-machine checkpoint
 
 The final 4 GiB data-partition image passed a complete virtual SSH update cycle:
 

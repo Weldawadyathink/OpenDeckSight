@@ -54,7 +54,12 @@ def nmcli_arguments(wifi):
     args = ["nmcli", "--offline", "connection", "add", "type", "wifi",
             "con-name", "ods-wifi", "ssid", wifi["ssid"],
             "connection.autoconnect", "yes", "802-11-wireless.hidden",
-            "yes" if wifi["hidden"] else "no", "ipv4.method", "auto",
+            "yes" if wifi["hidden"] else "no",
+            # Fedora's stable-ssid default changes when this RAM-root boot
+            # regenerates machine identity. Keep the lab's network identity
+            # tied to the physical adapter so DHCP can reuse its lease.
+            "802-11-wireless.cloned-mac-address", "permanent",
+            "ipv4.dhcp-client-id", "mac", "ipv4.method", "auto",
             "ipv6.method", "auto"]
     if wifi["security"] != "open":
         args += ["802-11-wireless-security.key-mgmt", wifi["security"],

@@ -27,6 +27,12 @@ class LabConfigTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             parse_config(self.config(ssid="é" * 17))
 
+    def test_disposable_machine_identity_does_not_select_wifi_or_dhcp_identity(self):
+        for security, password in [("wpa-psk", "example-only"), ("sae", "x"), ("open", "")]:
+            args = nmcli_arguments(parse_config(self.config(security=security, password=password)))
+            self.assertEqual(args[args.index("802-11-wireless.cloned-mac-address") + 1], "permanent")
+            self.assertEqual(args[args.index("ipv4.dhcp-client-id") + 1], "mac")
+
     def test_psk_and_wpa3_validation(self):
         parse_config(self.config(password="a" * 64))
         parse_config(self.config(password="x", security="sae"))
