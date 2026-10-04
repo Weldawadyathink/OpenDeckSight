@@ -1,0 +1,38 @@
+{
+  "input_sha256": "4c0b33f4d48b9557337d690d20014941855acd39a1cfb7e3e46d04b1d12403ea",
+  "biosimg_sha256": "5ef3e6e8ddf84fb36c6368156ef67adfd0a92ad362a460fc264c748d653b3549",
+  "trust_scope": "artifact's own embedded certificate explicitly trusted for mathematical verification only",
+  "valve_trust_or_updater_acceptance": "NOT ESTABLISHED",
+  "authenticode": [
+    {
+      "layer": "outer",
+      "verified": true,
+      "pkcs7_sha256": "99dc44e865f788eb5dda3bc3df555b2c0d7632f20ec29d99550bf3770fc99fc7",
+      "method": "osslsigncode verify with artifact certificate, CRL fetching disabled",
+      "digest_lines": [
+        "Message digest algorithm  : SHA256",
+        "Current message digest    : 0631718DC53A56CB62CBC3892127399F28255819651F037467AB3FECE701C58E",
+        "Calculated message digest : 0631718DC53A56CB62CBC3892127399F28255819651F037467AB3FECE701C58E",
+        "Message digest algorithm: SHA256"
+      ]
+    },
+    {
+      "layer": "embedded_driver",
+      "verified": true,
+      "pkcs7_sha256": "abb31438cfa971e67a972182d8904504f3c04efc22bc9272ed844ce3c19fd6e4",
+      "method": "osslsigncode verify with artifact certificate, CRL fetching disabled",
+      "digest_lines": [
+        "Message digest algorithm  : SHA256",
+        "Current message digest    : E501C292C68CDB00DB13312457BCCADAB89049795BA26A69396D1C0C68363908",
+        "Calculated message digest : E501C292C68CDB00DB13312457BCCADAB89049795BA26A69396D1C0C68363908",
+        "Message digest algorithm: SHA256"
+      ]
+    }
+  ],
+  "bioscer": {
+    "verified": true,
+    "scheme": "RSA PKCS#1 v1.5 / SHA-256",
+    "signed_content": "entire BIOSIMG",
+    "recovered_digest_info_hex": "3031300d0609608648016503040201050004205ef3e6e8ddf84fb36c6368156ef67adfd0a92ad362a460fc264c748d653b3549"
+  }
+}

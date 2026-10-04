@@ -25,6 +25,18 @@
       "url": "https://github.com/LongSoft/UEFITool/releases/download/A75/UEFIExtract_NE_A75_universal_mac.zip",
       "size": 1515640,
       "sha256": "8cbdd6d42193d6fb8a0c37dc860b4695c618f923b8ecfff9c0042fbdd80aaa80"
+    },
+    {
+      "filename": "UEFIReplace-0.28.0-mac.zip",
+      "url": "https://github.com/LongSoft/UEFITool/releases/download/0.28.0/UEFIReplace_0.28.0_mac.zip",
+      "size": 1443425,
+      "sha256": "b9799237c2529d245ac98d80d70912b39ed16b23b40a5c2a8bd53dddaa4fe28a"
+    },
+    {
+      "filename": "osslsigncode-2.14.tar.gz",
+      "url": "https://github.com/mtrojnar/osslsigncode/archive/refs/tags/2.14.tar.gz",
+      "size": 1072906,
+      "sha256": "0f033fd6069387d2e489fbd2187e62f624764eb8c2758ee94e3e793e5150b5c5"
     }
   ],
   "payloads": [
@@ -69,6 +81,29 @@
       "path": "artifacts/extracted/r04/decksight-brightnessctrl/decksight-brightnessctrl",
       "size": 14600,
       "sha256": "c7e62509bb327a93630071c535051f5e8506d7020c4fb1b18cba429f102994d9"
+    }
+  ],
+  "identified_resources": [
+    {
+      "name": "r04 splash PNG",
+      "guid": "F0DA323C-43A4-48DB-AEFE-CB314F7F5F6E",
+      "section_type": "0x19 raw",
+      "size": 71735,
+      "sha256": "c6dc2f60bf6db651de288df56caeb3af8c57176faa2f4f27f6224cdce958b2b0"
+    }
+  ],
+  "analysis_tools": [
+    {
+      "name": "UEFIReplace",
+      "version": "0.28.0",
+      "platform": "macOS x86-64",
+      "executable_sha256": "157c0052dbaee81c4a4b8bfd9f7ffdb47ee73ef0cf4a9ec1c14103dcf55a794a"
+    },
+    {
+      "name": "osslsigncode",
+      "version": "2.14",
+      "platform": "locally built macOS arm64",
+      "executable_sha256": "817e1a2cadf5fd2dcec539162c780fafaf97147dc65d94f0b048f70b500f4453"
     }
   ]
 }

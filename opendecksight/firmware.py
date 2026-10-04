@@ -8,12 +8,15 @@ from dataclasses import dataclass
 import hashlib
 import struct
 
+from .edid import encode_detailed_timing
+
 STOCK_SHA256 = "b77eb694c5af0d125bbca0a018ee18a2ad54409211b454e38f9bb545a62f7f64"
 EC_BASES = (0, 0x40000)
 EC_SIZE = 0x20000
 EDID_OFFSET = 0x68E5
 EXTENDED_EDID_OFFSET = 0x7DCF
 PANEL_INIT_OFFSET = 0x6E55
+R04_SHA256 = "5ef3e6e8ddf84fb36c6368156ef67adfd0a92ad362a460fc264c748d653b3549"
 
 
 def sha256(data):
@@ -116,7 +119,10 @@ def r04_edid():
     base[:18] = bytes.fromhex("00ffffffffffff00 126f0150 01000000 0123")
     base[18:38] = bytes.fromhex("0104 a5091078 17b974ae503db7230b4f51 000000")
     base[38:54] = b"\x01\x01" * 8
-    base[54:72] = bytes.fromhex("ee37388c40802470200882005aa00000001e")
+    base[54:72] = encode_detailed_timing(
+        width=1080, height=1920, clock_hz=143180000,
+        h_front=32, h_sync=8, h_back=100, v_front=8, v_sync=2, v_back=26,
+        width_mm=90, height_mm=160)
     base[72:90] = b"\x00\x00\x00\xfc\x00DeckSight\n   "
     base[126] = 1
     base[127] = -sum(base) & 255
@@ -142,6 +148,29 @@ R04_PANEL_INIT = (
 )
 
 
+def r04_bridge_timings():
+    """ANX SPI register/value table, generated from named timing fields.
+
+    These initialization timings intentionally differ from the EDID and Lua.
+    0xb0: four MIPI lanes (encoded as 3), 0xb1: DPHY timing + mode field 1.
+    0x9f/0x9e preserve the observed notification/control values.
+    """
+    geometry = (1080, 136, 1, 24, 1920, 20, 1, 15)
+    records = bytearray()
+    for index, value in enumerate(geometry):
+        register = 0xA0 + index * 2
+        records.extend((register, value & 255, register + 1, value >> 8))
+    records.extend((0x9D, 80, 0xB0, 3 << 2, 0xB1, 0x40 | (1 << 2),
+                    0x9F, 0x7B, 0x9E, 0xC0, 0xFF, 0xFF))
+    return bytes(records)
+
+
+def replace_instruction(image, offset, before, after):
+    if len(before) != len(after) or image[offset:offset + len(before)] != before:
+        raise ValueError(f"unexpected 8051 instruction at {offset:#x}")
+    image[offset:offset + len(before)] = after
+
+
 def build_r04_ec_reproduction(stock):
     """Reproduce both released r04 EC regions; keep stock UEFI and branding.
 
@@ -159,19 +188,15 @@ def build_r04_ec_reproduction(stock):
         ec[EXTENDED_EDID_OFFSET:EXTENDED_EDID_OFFSET + 256] = edid
         ec[0x6967] = 0x0A  # DPCD MAX_LINK_RATE: 2.7 Gbit/s
         ec[0x696D] = 0x14  # Observed second link table field; meaning not established.
-        # Active geometry, porches and initial nominal refresh in ANX SPI table.
-        for offset, value in ((0x69AF, 0x38), (0x69B1, 4), (0x69B3, 0x88),
-                              (0x69B7, 1), (0x69BB, 0x18), (0x69BF, 0x80),
-                              (0x69C1, 7), (0x69C3, 20), (0x69C7, 1),
-                              (0x69CB, 15), (0x69CF, 80), (0x69D3, 0x44)):
-            ec[offset] = value
+        timing_table = r04_bridge_timings()
+        ec[0x69AE:0x69AE + len(timing_table)] = timing_table
         endian = "big" if bank == 0 else "little"
         table = b"".join(bytes([register]) + value.to_bytes(4, endian)
                          for register, value in R04_PANEL_INIT)
         ec[PANEL_INIT_OFFSET:PANEL_INIT_OFFSET + len(table)] = table
-        ec[0xF2D2] = 1
-        ec[0xF37D:0xF37F] = EXTENDED_EDID_OFFSET.to_bytes(2, "big")
-        ec[0xF3AD] = 255
+        replace_instruction(ec, 0xF2D1, b"\x74\x02", b"\x74\x01")  # MOV A,#display_id
+        replace_instruction(ec, 0xF37C, b"\x90\x68\xe5", b"\x90\x7d\xcf")  # MOV DPTR,#edid
+        replace_instruction(ec, 0xF3AC, b"\x94\x7f", b"\x94\xff")  # SUBB A,#last_edid_byte
         ec[0x1F7FE:0x1F800] = ec_checksum(ec).to_bytes(2, "big")
         output[base:base + EC_SIZE] = ec
     return bytes(output)

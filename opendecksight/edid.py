@@ -3,6 +3,27 @@
 HEADER = bytes.fromhex("00ffffffffffff00")
 
 
+def encode_detailed_timing(*, width, height, clock_hz, h_front, h_sync, h_back,
+                           v_front, v_sync, v_back, width_mm, height_mm):
+    """Encode a progressive DTD with separate positive H/V synchronization."""
+    hblank, vblank = h_front + h_sync + h_back, v_front + v_sync + v_back
+    if (clock_hz % 10000 or not 0 < clock_hz // 10000 <= 65535
+            or any(not 0 <= v <= 4095 for v in (width, height, hblank, vblank, width_mm, height_mm))
+            or any(not 0 <= v <= 1023 for v in (h_front, h_sync))
+            or any(not 0 <= v <= 63 for v in (v_front, v_sync))
+            or min(width, height) == 0 or min(h_back, v_back) < 0):
+        raise ValueError("timing cannot be represented in an EDID DTD")
+    d = bytearray(18)
+    d[:2] = (clock_hz // 10000).to_bytes(2, "little")
+    d[2:5] = bytes((width & 255, hblank & 255, (width >> 8) << 4 | hblank >> 8))
+    d[5:8] = bytes((height & 255, vblank & 255, (height >> 8) << 4 | vblank >> 8))
+    d[8:12] = bytes((h_front & 255, h_sync & 255, (v_front & 15) << 4 | (v_sync & 15),
+                     (h_front >> 8) << 6 | (h_sync >> 8) << 4 | (v_front >> 4) << 2 | v_sync >> 4))
+    d[12:15] = bytes((width_mm & 255, height_mm & 255, (width_mm >> 8) << 4 | height_mm >> 8))
+    d[17] = 0x1E
+    return bytes(d)
+
+
 def detailed_timing(d):
     if len(d) != 18:
         raise ValueError("DTD must contain 18 bytes")

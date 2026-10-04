@@ -2,15 +2,36 @@
 
 Device confirmed by owner: LCD Steam Deck originally sold with a 512 GB SSD,
 now upgraded, running Bazzite. A DeckSight display is installed. SSH can be made
-available. No connection or device modification has occurred.
+available. Read-only SSH inspection was performed on 2026-10-03; no device
+files, services, settings, MMIO or firmware were modified by the investigation.
+
+**Owner requirement:** anything potentially dangerous to hardware or software
+must receive human confirmation first. No runtime write tests are authorized.
+
+## Read-only findings on 2026-10-03
+
+- Valve Jupiter, DMI `F7A0133` (no ` DS` suffix exposed through DMI).
+- Bazzite 44, `bazzite-deck`, build `Stable (F44.20260907)`.
+- Running kernel `7.2.3-ogc3.1.fc44.x86_64`.
+- Connected internal `card1-eDP-1` exposes the exact 256-byte r04 EDID.
+- Backlight is `amdgpu_bl1`, maximum 65535. Snapshot requested value 19661;
+  `actual_brightness` was 11822. These are OS values, not measured panel luminance.
+- `decksight-brightnessctrl.service` is loaded and running. Installed binary
+  SHA-256 exactly matches the analyzed r04 binary.
+- OpenDeckSight's service is not installed.
+
+The collector was streamed to `python3 -B -` over SSH. Its raw report is saved
+locally in ignored `artifacts/device-readonly-2026-10-03.json`. The command did
+not create a remote file. These observations establish the current software and
+EDID identity, not the contents of the device's full flash chip.
 
 ## Information needed next
 
-Read-only SSH access, or the output of the collector, is sufficient for the next
-step. Record Bazzite version, running kernel, DMI BIOS version, the EDID actually
-exposed by eDP, available backlight path/max value and existing brightness
-services. The BIOS version may only say `F7A0133 DS`, which cannot distinguish
-r03 from r04 by itself. A 256-byte hardware EDID helps identify r04 behavior.
+The initial inventory is complete. Runtime write tests remain deferred until
+explicit human approval. Deeper offline firmware reconstruction can continue
+without changing the Deck. A panel/controller part number or datasheet would
+help explain the remaining vendor-specific initialization commands if the owner
+already has that information; opening the device is not requested.
 
 The collector must avoid firmware writes, MMIO, serial numbers, networking
 configuration, credentials and unrestricted journal dumps. No sudo is needed.

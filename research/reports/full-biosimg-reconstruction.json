@@ -1,0 +1,14 @@
+{
+  "method": "generated EC changes + fixed-width BVDT suffix + identified PNG resource replacement using UEFIReplace 0.28.0",
+  "stock_biosimg_sha256": "b77eb694c5af0d125bbca0a018ee18a2ad54409211b454e38f9bb545a62f7f64",
+  "output_size": 16777216,
+  "output_sha256": "5ef3e6e8ddf84fb36c6368156ef67adfd0a92ad362a460fc264c748d653b3549",
+  "r04_biosimg_sha256": "5ef3e6e8ddf84fb36c6368156ef67adfd0a92ad362a460fc264c748d653b3549",
+  "byte_identical": true,
+  "changed_bytes_vs_release": 0,
+  "uses_target_firmware_delta": false,
+  "splash_sha256": "c6dc2f60bf6db651de288df56caeb3af8c57176faa2f4f27f6224cdce958b2b0",
+  "engine_sha256": "157c0052dbaee81c4a4b8bfd9f7ffdb47ee73ef0cf4a9ec1c14103dcf55a794a",
+  "signed_fd_reconstructed": false,
+  "all_vendor_panel_semantics_understood": false
+}

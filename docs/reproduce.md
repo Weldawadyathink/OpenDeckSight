@@ -47,6 +47,50 @@ identical leaves, 9 changed leaves and 2 added padding leaves. Changed leaves
 are the two splash sections, padding and free space. That is parser coverage,
 not a proof about every possible embedded executable.
 
+## Build the complete r04 BIOSIMG
+
+After the UEFI extraction above, extract the identified artwork and use the
+hash-pinned reconstruction engine (the packaged 0.28.0 macOS tool is x86-64):
+
+```sh
+python3 tools/fetch_artifacts.py --include-tools
+mkdir -p .tools/uefireplace
+unzip -o artifacts/downloads/UEFIReplace-0.28.0-mac.zip -d .tools/uefireplace
+python3 tools/extract_splash.py artifacts/uefi/r04.bin.dump artifacts/r04-splash.png
+python3 -m opendecksight build-biosimg artifacts/uefi/stock.bin artifacts/r04-rebuilt.bin --splash artifacts/r04-splash.png --uefireplace .tools/uefireplace/UEFIReplace
+```
+
+It checks the stock input, artwork resource and entire output hash. No copy of
+the reference BIOSIMG is used by the builder. The output matches all 16 MiB of
+r04, but is not a signed `.fd` updater package. See
+[full reconstruction](full-reconstruction.md) for semantic limitations.
+
+## Verify cryptographic layers
+
+Build the pinned osslsigncode source locally, then check the existing release:
+
+```sh
+tar -xzf artifacts/downloads/osslsigncode-2.14.tar.gz -C .tools
+cmake -S .tools/osslsigncode-2.14 -B .tools/osslsigncode-build -DCMAKE_BUILD_TYPE=Release
+cmake --build .tools/osslsigncode-build
+python3 tools/verify_signatures.py artifacts/extracted/r04/bios/F7A0133_DeckSight_signed_r04.fd --osslsigncode .tools/osslsigncode-build/osslsigncode
+```
+
+The research host additionally set `-DOPENSSL_ROOT_DIR=/opt/homebrew/opt/openssl@3`
+for CMake. The verifier explicitly anchors trust to the certificate extracted
+from the artifact; it does not establish Valve trust or updater acceptance.
+
+## Read-only SSH collection
+
+When authorized, stream the collector without installing or writing remote files:
+
+```sh
+python3 tools/collect_ssh.py user@host --output artifacts/device-report.json
+```
+
+It uses existing trusted SSH host keys, batch authentication and `python3 -B -`.
+The output is written locally only. Keep raw device reports out of Git.
+
 ## Tests
 
 ```sh

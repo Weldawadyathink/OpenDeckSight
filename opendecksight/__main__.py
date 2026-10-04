@@ -29,6 +29,11 @@ def main(argv=None):
     build = commands.add_parser("build-ec", help="create an UNSIGNED research BIOSIMG with r04 EC regions")
     build.add_argument("stock", type=Path)
     build.add_argument("output", type=Path)
+    full = commands.add_parser("build-biosimg", help="rebuild the complete byte-identical r04 BIOSIMG")
+    full.add_argument("stock", type=Path)
+    full.add_argument("output", type=Path)
+    full.add_argument("--splash", required=True, type=Path)
+    full.add_argument("--uefireplace", required=True, type=Path)
     bright = commands.add_parser("brightness", help="preview brightness protocol; writes require --apply-mmio")
     bright.add_argument("--raw", type=int)
     bright.add_argument("--max", dest="maximum", type=int)
@@ -37,6 +42,9 @@ def main(argv=None):
     bright.add_argument("--backlight", type=Path, help="brightness file for read-only preview")
     collect = commands.add_parser("collect", help="collect read-only Deck diagnostics without sudo")
     collect.add_argument("output", type=Path)
+    panel = commands.add_parser("panel-init", help="decode EC initialization packets and unresolved commands")
+    panel.add_argument("image", type=Path)
+    panel.add_argument("--bank", type=int, choices=(0, 1), default=0)
     args = parser.parse_args(argv)
     try:
         if args.command == "inspect":
@@ -70,9 +78,23 @@ def main(argv=None):
             emit({"output": str(args.output), "sha256": firmware.sha256(data),
                   "status": "UNSIGNED, NOT HARDWARE VALIDATED; reproduces the r04 second-bank anomaly",
                   "ec": firmware.describe_ec(data)})
+        elif args.command == "build-biosimg":
+            from .build import build_biosimg
+            if args.output.suffix.lower() != ".bin":
+                raise ValueError("BIOSIMG output must use .bin; this does not produce a signed .fd")
+            if args.output.exists():
+                raise ValueError("output already exists")
+            data, report = build_biosimg(args.stock.read_bytes(), args.splash.read_bytes(), args.uefireplace)
+            with args.output.open("xb") as output:
+                output.write(data)
+            emit({"output": str(args.output), "sha256": firmware.sha256(data),
+                  "status": "byte-identical r04 BIOSIMG; not a signed update container", **report})
         elif args.command == "brightness":
             from .brightness import run
             run(args)
+        elif args.command == "panel-init":
+            from .panel import inspect
+            emit(inspect(args.image.read_bytes(), args.bank))
         elif args.command == "collect":
             from .collect import collect
             report = collect()

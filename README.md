@@ -3,15 +3,23 @@
 Open implementation and reproducible reverse engineering of the software needed
 for a DeckSight replacement display in an LCD Steam Deck.
 
-**Status: research implementation, not a complete open firmware stack.** The
-first verified result is source code that reproduces both r04 EC regions
-byte-for-byte from Valve's stock F7A0133 image. The underlying Valve/Insyde/AMD
-firmware remains binary-only. No firmware has been flashed or tested on hardware.
+**Status: the complete 16 MiB r04 BIOSIMG now reproduces byte-for-byte** from
+Valve F7A0133 using generated EC changes, a version-string update and a structural
+UEFI logo replacement. The signed `.fd` wrapper is not yet rebuilt, and several
+vendor-specific panel command meanings remain unresolved. A matching hash is
+not being presented as complete reverse engineering. See the
+[full reconstruction record](docs/full-reconstruction.md).
+
+The underlying Valve/Insyde/AMD firmware remains binary-only. The owner's Deck
+has been inspected read-only over SSH; no runtime brightness writes, service
+changes or firmware flashing have occurred. Potentially dangerous device actions
+require explicit human confirmation.
 
 ## Findings and evidence
 
 - [Research index](docs/README.md)
 - [BIOS changes and exact offsets](docs/bios.md)
+- [Decoded panel initialization and unresolved semantics](docs/panel-init.md)
 - [Brightness protocol](docs/brightness.md)
 - [Artifact provenance](research/artifacts.json)
 - [Hardware validation plan](docs/hardware-validation.md)
@@ -54,6 +62,10 @@ process. This is implemented but **has not been hardware tested**. See the
 the stock UEFI modules and logo and reproduces the released EC changes, including
 the unexplained second-bank byte-order anomaly. It is an **unsigned research
 image**, not an installable `.fd` release. There is no flashing command.
+
+`build-biosimg` additionally updates the version strings and rebuilds the UEFI
+splash resource. It verifies that the complete output matches r04's BIOSIMG.
+The resource extraction and build commands are in [reproduce.md](docs/reproduce.md).
 
 Downloaded firmware, extracted modules and local analysis tools are ignored by
 Git. The repository contains implementation source, measured interface data,

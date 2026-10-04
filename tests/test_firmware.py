@@ -2,9 +2,29 @@ import struct
 import unittest
 
 from opendecksight import edid, firmware
+from opendecksight.build import patch_version
 
 
 class FirmwareTests(unittest.TestCase):
+    def test_version_patch_preserves_image_layout(self):
+        data = bytearray(0x1000000)
+        for table in (0x6A8000, 0xEA8000):
+            data[table:table + 6] = b"$BVDT$"
+            data[table + 14:table + 21] = b"F7A0133"
+        result = patch_version(data)
+        self.assertEqual(len(result), len(data))
+        self.assertEqual(firmware.diff_spans(data, result), [(0x6A8015, 0x6A8018), (0xEA8015, 0xEA8018)])
+        self.assertEqual(result[0x6A800E:0x6A8019], b"F7A0133 DS\0")
+        with self.assertRaises(ValueError):
+            patch_version(bytes(len(data)))
+
+    def test_dtd_encoding_matches_observed_bytes(self):
+        encoded = edid.encode_detailed_timing(
+            width=1080, height=1920, clock_hz=143180000,
+            h_front=32, h_sync=8, h_back=100, v_front=8, v_sync=2, v_back=26,
+            width_mm=90, height_mm=160)
+        self.assertEqual(encoded.hex(), "ee37388c40802470200882005aa00000001e")
+
     def record(self, name=b"BIOSIMG", payload=b"hello"):
         return bytes(8) + b"$_IFLASH_" + name + struct.pack("<II", len(payload), len(payload)) + payload
 

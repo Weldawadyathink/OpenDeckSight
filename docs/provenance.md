@@ -12,7 +12,11 @@
   Downloaded directly from Valve's HTTPS package server; its package signature
   has not been independently verified against a SteamOS keyring.
 - [UEFIExtract A75](https://github.com/LongSoft/UEFITool/releases/tag/A75), universal
-  macOS binary. Only this analysis tool was executed, not a vendor installer or flasher.
+  macOS binary, and [UEFIReplace 0.28.0](https://github.com/LongSoft/UEFITool/releases/tag/0.28.0),
+  macOS x86-64 binary, for structural extraction/reconstruction on local files.
+- [osslsigncode 2.14](https://github.com/mtrojnar/osslsigncode/releases/tag/2.14),
+  built locally from the pinned source archive, for offline Authenticode verification.
+  No vendor installer or flasher was executed.
 - [jbit/uninsyde](https://github.com/jbit/uninsyde) provides the public IFLASH
   container layout. OpenDeckSight implements bounds-checked parsing independently.
 - [DeckHD/BiosMaker](https://github.com/DeckHD/BiosMaker), particularly its public
@@ -32,6 +36,11 @@
    extracted leaf bodies to separate compressed-data changes from code changes.
 5. Disassemble the released x86-64 brightness daemon using `objdump -d
    --x86-asm-syntax=intel`; inspect `.rodata`; recover protocol and arithmetic.
+6. Generate the EC and version changes, replace the identified PNG resource with
+   UEFIReplace 0.28.0, and compare the full reconstructed BIOSIMG.
+7. Verify the two PE Authenticode signatures using the embedded artifact
+   certificate as an explicit anchor, and recover/compare BIOSCER's SHA-256
+   DigestInfo. This is mathematical verification, not external trust validation.
 
 Sources have been inspected by the same implementer. This is transparent
 reverse engineering, **not a claim of a legally isolated clean-room process**.

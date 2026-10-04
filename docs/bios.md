@@ -34,7 +34,9 @@ PE length/checksum/certificate-directory fields also change. See the
 
 Both outer and embedded r04 PKCS#7 certificate bundles report subject and issuer
 `CN=QA Certificate.`; stock reports `CN=Jupiter`. Certificate metadata was read
-with `openssl pkcs7 -print_certs`; cryptographic signature validity, chain trust
+with `openssl pkcs7 -print_certs`. Subsequent offline checks now establish
+cryptographic validity of both PE signatures and BIOSCER against the included
+certificate; see [full-reconstruction.md](full-reconstruction.md). External trust
 and the updater's acceptance policy have **not** been tested. This is not
 evidence of a Valve-authorized signature, a recovered signing key or a usable
 open signing pipeline. It establishes another changed artifact to investigate.
@@ -115,7 +117,9 @@ hardware validation, not something to slip into a claimed exact reproduction.
 `build_r04_ec_reproduction()` accepts only the pinned stock BIOSIMG hash, creates
 the EDID and tables from source, changes the identified EC instructions, and
 recomputes both checksums. Both resulting EC regions have been compared in full
-with r04 and match exactly. The stock logo, version and UEFI remain intact.
+with r04 and match exactly. The stock logo, version and UEFI remain intact in
+`build-ec` output. The later `build-biosimg` command also regenerates the version
+and logo changes and matches the entire r04 BIOSIMG.
 
 This does not rebuild EC firmware from source: it applies documented changes to
 Valve's existing EC program. It does not create a signed `.fd`, replace the

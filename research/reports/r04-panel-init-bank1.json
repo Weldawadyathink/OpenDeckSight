@@ -1,0 +1,195 @@
+{
+  "bank": 1,
+  "base": "0x40000",
+  "word_byte_order": "big (stock/first-bank interpretation)",
+  "events": [
+    {
+      "ec_offset": "0x6e5a",
+      "record_index": 1,
+      "kind": "DSI packet",
+      "header_hex": "00 00 03 39",
+      "data_type": "0x0",
+      "virtual_channel": 0,
+      "name": "unrecognized packet type",
+      "raw_fifo_hex": "00 a5 a5 9c",
+      "confidence": "unresolved / potentially invalid encoding"
+    },
+    {
+      "ec_offset": "0x6e5f",
+      "record_index": 2,
+      "kind": "DSI packet",
+      "header_hex": "00 00 11 05",
+      "data_type": "0x0",
+      "virtual_channel": 0,
+      "name": "unrecognized packet type",
+      "raw_fifo_hex": "",
+      "confidence": "unresolved / potentially invalid encoding"
+    },
+    {
+      "ec_offset": "0x6e64",
+      "record_index": 3,
+      "kind": "delay",
+      "value": 1006632960,
+      "unit": "table delay units (ms inferred)"
+    },
+    {
+      "ec_offset": "0x6e69",
+      "record_index": 4,
+      "kind": "DSI packet",
+      "header_hex": "00 03 48 15",
+      "data_type": "0x0",
+      "virtual_channel": 0,
+      "name": "unrecognized packet type",
+      "raw_fifo_hex": "",
+      "confidence": "unresolved / potentially invalid encoding"
+    },
+    {
+      "ec_offset": "0x6e6e",
+      "record_index": 5,
+      "kind": "DSI packet",
+      "header_hex": "00 69 53 15",
+      "data_type": "0x0",
+      "virtual_channel": 0,
+      "name": "unrecognized packet type",
+      "raw_fifo_hex": "",
+      "confidence": "unresolved / potentially invalid encoding"
+    },
+    {
+      "ec_offset": "0x6e7d",
+      "record_index": 8,
+      "kind": "DSI packet",
+      "header_hex": "00 00 06 39",
+      "data_type": "0x0",
+      "virtual_channel": 0,
+      "name": "unrecognized packet type",
+      "raw_fifo_hex": "00 00 09 51 00 00 00 00",
+      "confidence": "unresolved / potentially invalid encoding"
+    },
+    {
+      "ec_offset": "0x6e82",
+      "record_index": 9,
+      "kind": "DSI packet",
+      "header_hex": "00 00 34 05",
+      "data_type": "0x0",
+      "virtual_channel": 0,
+      "name": "unrecognized packet type",
+      "raw_fifo_hex": "",
+      "confidence": "unresolved / potentially invalid encoding"
+    },
+    {
+      "ec_offset": "0x6e8c",
+      "record_index": 11,
+      "kind": "DSI packet",
+      "header_hex": "00 00 03 39",
+      "data_type": "0x0",
+      "virtual_channel": 0,
+      "name": "unrecognized packet type",
+      "raw_fifo_hex": "00 10 00 44",
+      "confidence": "unresolved / potentially invalid encoding"
+    },
+    {
+      "ec_offset": "0x6e91",
+      "record_index": 12,
+      "kind": "DSI packet",
+      "header_hex": "00 00 35 05",
+      "data_type": "0x0",
+      "virtual_channel": 0,
+      "name": "unrecognized packet type",
+      "raw_fifo_hex": "",
+      "confidence": "unresolved / potentially invalid encoding"
+    },
+    {
+      "ec_offset": "0x6e96",
+      "record_index": 13,
+      "kind": "DSI packet",
+      "header_hex": "00 00 01 07",
+      "data_type": "0x0",
+      "virtual_channel": 0,
+      "name": "unrecognized packet type",
+      "raw_fifo_hex": "",
+      "confidence": "unresolved / potentially invalid encoding"
+    },
+    {
+      "ec_offset": "0x6e9b",
+      "record_index": 14,
+      "kind": "DSI packet",
+      "header_hex": "00 00 00 07",
+      "data_type": "0x0",
+      "virtual_channel": 0,
+      "name": "unrecognized packet type",
+      "raw_fifo_hex": "",
+      "confidence": "unresolved / potentially invalid encoding"
+    },
+    {
+      "ec_offset": "0x6ea5",
+      "record_index": 16,
+      "kind": "DSI packet",
+      "header_hex": "00 00 03 39",
+      "data_type": "0x0",
+      "virtual_channel": 0,
+      "name": "unrecognized packet type",
+      "raw_fifo_hex": "00 5a 5a fd",
+      "confidence": "unresolved / potentially invalid encoding"
+    },
+    {
+      "ec_offset": "0x6eaa",
+      "record_index": 17,
+      "kind": "DSI packet",
+      "header_hex": "00 02 9f 15",
+      "data_type": "0x0",
+      "virtual_channel": 0,
+      "name": "unrecognized packet type",
+      "raw_fifo_hex": "",
+      "confidence": "unresolved / potentially invalid encoding"
+    },
+    {
+      "ec_offset": "0x6eb4",
+      "record_index": 19,
+      "kind": "DSI packet",
+      "header_hex": "00 00 03 39",
+      "data_type": "0x0",
+      "virtual_channel": 0,
+      "name": "unrecognized packet type",
+      "raw_fifo_hex": "00 30 00 ed",
+      "confidence": "unresolved / potentially invalid encoding"
+    },
+    {
+      "ec_offset": "0x6eb9",
+      "record_index": 20,
+      "kind": "DSI packet",
+      "header_hex": "00 01 9f 15",
+      "data_type": "0x0",
+      "virtual_channel": 0,
+      "name": "unrecognized packet type",
+      "raw_fifo_hex": "",
+      "confidence": "unresolved / potentially invalid encoding"
+    },
+    {
+      "ec_offset": "0x6ec8",
+      "record_index": 23,
+      "kind": "DSI packet",
+      "header_hex": "00 00 06 39",
+      "data_type": "0x0",
+      "virtual_channel": 0,
+      "name": "unrecognized packet type",
+      "raw_fifo_hex": "00 00 10 b4 00 00 10 03",
+      "confidence": "unresolved / potentially invalid encoding"
+    },
+    {
+      "ec_offset": "0x6ecd",
+      "record_index": 24,
+      "kind": "DSI packet",
+      "header_hex": "00 00 29 05",
+      "data_type": "0x0",
+      "virtual_channel": 0,
+      "name": "unrecognized packet type",
+      "raw_fifo_hex": "",
+      "confidence": "unresolved / potentially invalid encoding"
+    },
+    {
+      "ec_offset": "0x6ed2",
+      "record_index": 25,
+      "kind": "end"
+    }
+  ]
+}
