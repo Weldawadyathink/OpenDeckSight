@@ -94,6 +94,18 @@
       "url": "https://raw.githubusercontent.com/DeckHD/BiosMaker/master/chicago_registers.h",
       "size": 29311,
       "sha256": "9c2787c5c33595c74ae0443b87735e00abe83efa8826944dd5a17f76fe6e736c"
+    },
+    {
+      "name": "drm_dp_aux_dev.c",
+      "url": "https://raw.githubusercontent.com/torvalds/linux/v6.17/drivers/gpu/drm/display/drm_dp_aux_dev.c",
+      "size": 8639,
+      "sha256": "3c2184a5ef59121341f06b3bbca34c89556c815657fd7ed9ad5dcd10dae11b38"
+    },
+    {
+      "name": "amdgpu_dm_debugfs.c",
+      "url": "https://raw.githubusercontent.com/torvalds/linux/v6.17/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_debugfs.c",
+      "size": 112909,
+      "sha256": "14fcba81adc3c179c33b9dce9106b485ae553dc1ad065c471bff7bf00b2d3d29"
     }
   ],
   "unavailable": [

@@ -34,6 +34,7 @@ modes does not establish a VRR range.
 | Evidence | Result | Meaning and limit |
 | --- | --- | --- |
 | Anonymous compatibility query on Bazzite, kernel `7.2.3-ogc3.1.fc44.x86_64` | Internal eDP connector has `vrr_capable = 0` | The running driver does not advertise VRR for this path. Does not prove a silicon limitation. |
+| Follow-up native AUX capability read | DPCD `0x00007` is `0x00`; bit 6 is clear | The receiver does not advertise ignoring MSA timing parameters. This is another discovery obstacle, not a silicon impossibility result. |
 | Internal connector EDID | Exact match to the public r04 256-byte EDID; SHA-256 `53c47cbd31b785b332a890d5074b46ac4efe88d96cc210b041ee07773a4dfe48` | Connects the observation to the analyzed release metadata; not a dump of installed firmware. |
 | r04 EDID base block | One 1080 × 1920 DTD, about 60 Hz; no monitor-range descriptor (`0xfd`) | No advertised min/max vertical-frequency range. |
 | r04 EDID extensions | One CTA extension containing only HDR static metadata | No DisplayID timing-range block or AMD FreeSync vendor block. HDR metadata is independent of VRR. |
@@ -80,9 +81,11 @@ be the exact source of the tested downstream kernel.
 [AMDGPU source, lines 12599–12710](https://github.com/torvalds/linux/blob/v6.17/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c#L12599)
 
 The relevant receiver capability is DPCD `0x00007`, bit 6
-(`DP_MSA_TIMING_PAR_IGNORED`). Its **live value was not read**. A zero
-`vrr_capable` cannot tell us whether that bit is also a blocker when the range
-is already missing.
+(`DP_MSA_TIMING_PAR_IGNORED`). A follow-up native AUX read found **byte 7 =
+`0x00`, so this capability is not advertised**. The base block also reports no
+extended receiver-capability block. The missing EDID range and clear receiver
+bit are two distinct discovery obstacles. Neither determines whether different
+bridge configuration could support the behavior.
 [Linux DP definitions](https://github.com/torvalds/linux/blob/v6.17/include/drm/display/drm_dp.h#L143)
 
 The short EC link-configuration table at `0x6965..0x697f` contains no entry for
@@ -175,10 +178,11 @@ required initialization, and brightness behavior. No messages have been sent
 to manufacturers as part of this work.
 
 Offline analysis can then trace how bridge firmware relates incoming frame
-boundaries to DSI vertical timing. A separately reviewed, bounded read of the
-receiver's DPCD capability could resolve the remaining discovery bit, but would
-still not validate physical scanout. Direct bus/register probing was not part
-of this investigation.
+boundaries to DSI vertical timing. The follow-up bounded receiver-capability
+read resolved the discovery bit, but did not validate physical scanout. The
+next experimental blocker is generating known variable timing despite the
+driver's current capability rejection, then observing the output. See the
+[staged bridge test plan](vrr-bridge-test-plan.md).
 
 Only after those questions have useful answers should a concrete temporary
 timing experiment be proposed for human approval. A credible success test
@@ -191,6 +195,8 @@ and [signing.md](signing.md) resolved or explicitly accounted for.
 
 No display settings, services, installed files, firmware or power state were
 changed. There were no timing sweeps, panel commands or flasher invocations.
+The follow-up used one 16-byte native AUX capability read through an existing
+kernel device node; it did not access arbitrary bridge registers or MMIO.
 Under the repository's safety constraints, even temporary configuration writes
 require approval for the concrete action; this assessment needed only reads.
 
@@ -206,6 +212,21 @@ python3 tools/collect_ssh.py USER@HOST --kind vrr --output artifacts/vrr-report.
 It needs an existing authenticated SSH connection, Linux Python and installed
 `libdrm.so.2`; it installs nothing and needs no sudo. The baseline collector
 remains available without `--kind vrr`.
+
+The separate bounded AUX collector verifies the exact r04 EDID, discovers the
+internal connector's own AUX child, verifies its device number, and opens it
+read-only. It accepts no arbitrary address or write operation. If existing
+permissions require it, its wrapper supports noninteractive sudo only for this
+collector, without changing permissions or prompting for credentials:
+
+```sh
+python3 tools/collect_ssh.py USER@HOST --kind dpcd --sudo-read-only --output artifacts/dpcd-report.json
+```
+
+This command sends native AUX reads; it is distinct from the cached `vrr`
+query. The upstream [AUX device read implementation](https://github.com/torvalds/linux/blob/v6.17/drivers/gpu/drm/display/drm_dp_aux_dev.c#L147)
+dispatches to `drm_dp_dpcd_read`. The userspace request covers offsets
+`0x00000..0x0000f`; kernel-level retries may occur. Raw reports remain ignored.
 
 Regenerate the static analysis from an already-extracted public r04 input:
 

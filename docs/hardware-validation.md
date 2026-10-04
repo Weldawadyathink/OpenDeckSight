@@ -18,6 +18,11 @@ must receive human confirmation first. No runtime write tests are authorized.
   connector. The matching r04 EDID has no refresh-range declaration. This is
   a current software capability finding, not proof of hardware impossibility;
   see [true VRR feasibility](vrr-feasibility.md).
+- A subsequent bounded native AUX capability read found DPCD `0x00007` bit 6
+  clear. The internal receiver does not advertise ignoring MSA timing
+  parameters. No variable-timing signal has been tested; the
+  [bridge investigation plan](vrr-bridge-test-plan.md) separates discovery,
+  signal generation and physical verification.
 
 These observations establish software and EDID identity, not the contents of
 the device's full flash chip. They do not validate the open brightness controller
