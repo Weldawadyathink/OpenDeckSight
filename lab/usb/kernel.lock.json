@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "release": "7.2.3-ogc3.1.fc44.x86_64",
+  "repository": "opengamingcollective/kernel-packages-fedora",
+  "tag": "7.2.3-ogc3.1-fc44",
+  "manifest_digest": "sha256:f9230b299c52b11273de5e34d17e766b739543e357a5fe0811abaf9f74a1f7d2",
+  "source_candidate_commit": "151eb3adafae8820f349a4454c1f1e8d5fc991a4",
+  "packages": [
+    {
+      "name": "kernel-core-7.2.3-ogc3.1.fc44.x86_64.rpm",
+      "sha256": "4a28aa928214073fcf5d54fddcc6a9033dd56855a15973ce97fda32c7cd4b9f4",
+      "size": 21850364
+    },
+    {
+      "name": "kernel-modules-7.2.3-ogc3.1.fc44.x86_64.rpm",
+      "sha256": "fe582c0702bbc05fb0aea6a933a70c437b70d3114455427f63ccef5f402eb730",
+      "size": 108398581
+    }
+  ]
+}

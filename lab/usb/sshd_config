@@ -1,0 +1,16 @@
+# Deliberately passwordless root access, requested for the isolated lab network.
+Port 22
+ListenAddress 0.0.0.0
+ListenAddress ::
+PermitRootLogin yes
+PermitEmptyPasswords yes
+PasswordAuthentication yes
+KbdInteractiveAuthentication no
+UsePAM no
+PubkeyAuthentication yes
+AllowUsers root
+UseDNS no
+PidFile /run/sshd.pid
+HostKey /run/ssh/ssh_host_ed25519_key
+Subsystem sftp internal-sftp
+PrintMotd yes

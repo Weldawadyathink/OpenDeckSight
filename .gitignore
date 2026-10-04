@@ -10,3 +10,5 @@ __pycache__/
 build/
 dist/
 .DS_Store
+# Local lab-network credentials (the tracked template has a different name).
+wifi.json

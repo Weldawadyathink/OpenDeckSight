@@ -1,0 +1,8 @@
+{
+  "wifi": {
+    "ssid": "YOUR_NETWORK_NAME",
+    "password": "YOUR_WIFI_PASSWORD",
+    "security": "wpa-psk",
+    "hidden": false
+  }
+}

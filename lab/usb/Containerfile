@@ -1,0 +1,7 @@
+FROM --platform=linux/amd64 quay.io/fedora/fedora@sha256:7011f51bd8089d345be42d41f0aa3190d258823528852a5e7ec976fe2fd20f53
+RUN dnf -y --setopt=install_weak_deps=False install \
+    dnf5-plugins python3 cpio rpm-build kmod gzip zstd findutils \
+    mtools dosfstools gdisk grub2-tools-extra grub2-efi-x64-modules \
+    qemu-system-x86-core edk2-ovmf openssh-clients && dnf clean all
+WORKDIR /src
+ENTRYPOINT ["/bin/bash"]

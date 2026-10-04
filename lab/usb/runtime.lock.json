@@ -1,0 +1,1077 @@
+{
+  "schema": 1,
+  "origin": "Fedora 44 signed repositories",
+  "packages": [
+    {
+      "file": "NetworkManager-1.56.1-2.fc44.x86_64.rpm",
+      "size": 2411313,
+      "sha256": "8ccdaa8da6ab019fe629bd492ad12c88bb0157608908c3e98f1008f2186a5b62",
+      "nevra": "NetworkManager-1:1.56.1-2.fc44.x86_64",
+      "source_rpm": "NetworkManager-1.56.1-2.fc44.src.rpm"
+    },
+    {
+      "file": "NetworkManager-libnm-1.56.1-2.fc44.x86_64.rpm",
+      "size": 2022242,
+      "sha256": "fdac14ad1ce2d8d05fd134d89fe703b555232adb14296a879fad91564ad39daf",
+      "nevra": "NetworkManager-libnm-1:1.56.1-2.fc44.x86_64",
+      "source_rpm": "NetworkManager-1.56.1-2.fc44.src.rpm"
+    },
+    {
+      "file": "NetworkManager-wifi-1.56.1-2.fc44.x86_64.rpm",
+      "size": 139854,
+      "sha256": "50bf1c5803feca1922c16e2a21769dee72ce6a26b2ee57ef56806450bbd92bd7",
+      "nevra": "NetworkManager-wifi-1:1.56.1-2.fc44.x86_64",
+      "source_rpm": "NetworkManager-1.56.1-2.fc44.src.rpm"
+    },
+    {
+      "file": "alternatives-1.33-5.fc44.x86_64.rpm",
+      "size": 41829,
+      "sha256": "0179df0fadb4de141ec94d765a539cf4ebfaf986de19b7a81850a1ed324d290c",
+      "nevra": "alternatives-1.33-5.fc44.x86_64",
+      "source_rpm": "chkconfig-1.33-5.fc44.src.rpm"
+    },
+    {
+      "file": "amd-gpu-firmware-20260916-1.fc44.noarch.rpm",
+      "size": 29598258,
+      "sha256": "088cdfce2354bcceb38b0523fab3548a70333da1c678c8e6b58439f22ea2e256",
+      "nevra": "amd-gpu-firmware-20260916-1.fc44.noarch",
+      "source_rpm": "linux-firmware-20260916-1.fc44.src.rpm"
+    },
+    {
+      "file": "atheros-firmware-20260916-1.fc44.noarch.rpm",
+      "size": 49477499,
+      "sha256": "b186ec575d14cfec0056f98251042911dabb86e4fedf3363f0b091f00ee4d285",
+      "nevra": "atheros-firmware-20260916-1.fc44.noarch",
+      "source_rpm": "linux-firmware-20260916-1.fc44.src.rpm"
+    },
+    {
+      "file": "audit-libs-4.2.1-1.fc44.x86_64.rpm",
+      "size": 147056,
+      "sha256": "62a4d7ff91d2115e539b8bcac21c711b591837e1a23ca0be5718c1be788129b5",
+      "nevra": "audit-libs-4.2.1-1.fc44.x86_64",
+      "source_rpm": "audit-4.2.1-1.fc44.src.rpm"
+    },
+    {
+      "file": "authselect-1.7.1-1.fc44.x86_64.rpm",
+      "size": 200892,
+      "sha256": "3dd63f279248807a0b96e2c35288117eb987ac1a68bdabc575c87c174e2700ba",
+      "nevra": "authselect-1.7.1-1.fc44.x86_64",
+      "source_rpm": "authselect-1.7.1-1.fc44.src.rpm"
+    },
+    {
+      "file": "authselect-libs-1.7.1-1.fc44.x86_64.rpm",
+      "size": 243149,
+      "sha256": "ecdc8487654c247e74b72e101a7071a1d93572b7488c588dd6d05929bcf9c019",
+      "nevra": "authselect-libs-1.7.1-1.fc44.x86_64",
+      "source_rpm": "authselect-1.7.1-1.fc44.src.rpm"
+    },
+    {
+      "file": "bash-5.3.9-3.fc44.x86_64.rpm",
+      "size": 1985877,
+      "sha256": "2ccb046d638f5ad23f5613222a78ee71067dc43f0bdf03b60ce311536bc4bed5",
+      "nevra": "bash-5.3.9-3.fc44.x86_64",
+      "source_rpm": "bash-5.3.9-3.fc44.src.rpm"
+    },
+    {
+      "file": "bzip2-libs-1.0.8-23.fc44.x86_64.rpm",
+      "size": 44832,
+      "sha256": "ead652ccea75f1345305c82e97759a360da5e4f46b2f1862a18ebf0f8547d2b9",
+      "nevra": "bzip2-libs-1.0.8-23.fc44.x86_64",
+      "source_rpm": "bzip2-1.0.8-23.fc44.src.rpm"
+    },
+    {
+      "file": "ca-certificates-2026.2.90_v9.0.317-1.fc44.noarch.rpm",
+      "size": 996680,
+      "sha256": "15c37ee7ed6f27598f540496146726cdbc5e8d0518a3acba5101f2164707eeeb",
+      "nevra": "ca-certificates-2026.2.90_v9.0.317-1.fc44.noarch",
+      "source_rpm": "ca-certificates-2026.2.90_v9.0.317-1.fc44.src.rpm"
+    },
+    {
+      "file": "coreutils-9.10-5.fc44.x86_64.rpm",
+      "size": 1237923,
+      "sha256": "3c8b2c0b3f3e604c78d991a6569ed98a0dbd496bcf54bded2f62649a4e174073",
+      "nevra": "coreutils-9.10-5.fc44.x86_64",
+      "source_rpm": "coreutils-9.10-5.fc44.src.rpm"
+    },
+    {
+      "file": "coreutils-common-9.10-5.fc44.x86_64.rpm",
+      "size": 2235117,
+      "sha256": "042f818350a1b12fc7e7ede9255bafdc9248fabd9001452a062aebe75521a4c9",
+      "nevra": "coreutils-common-9.10-5.fc44.x86_64",
+      "source_rpm": "coreutils-9.10-5.fc44.src.rpm"
+    },
+    {
+      "file": "cracklib-2.10.3-1.fc44.x86_64.rpm",
+      "size": 98240,
+      "sha256": "d44fb8d9feac4b9c20106d56570cd50932a9718f274da73f75d02f124feaaba1",
+      "nevra": "cracklib-2.10.3-1.fc44.x86_64",
+      "source_rpm": "cracklib-2.10.3-1.fc44.src.rpm"
+    },
+    {
+      "file": "crypto-policies-20251128-3.git19878fe.fc44.noarch.rpm",
+      "size": 100658,
+      "sha256": "bc91e5ceafb7c9884654dc86da14187493a16cec8e6a279d625efb0e3aa4d005",
+      "nevra": "crypto-policies-20251128-3.git19878fe.fc44.noarch",
+      "source_rpm": "crypto-policies-20251128-3.git19878fe.fc44.src.rpm"
+    },
+    {
+      "file": "cryptsetup-libs-2.8.8-1.fc44.x86_64.rpm",
+      "size": 644372,
+      "sha256": "76b604d13be697c0e82c6c2b441d361ba1da6d3854e37c01e96461b653dbdb37",
+      "nevra": "cryptsetup-libs-2.8.8-1.fc44.x86_64",
+      "source_rpm": "cryptsetup-2.8.8-1.fc44.src.rpm"
+    },
+    {
+      "file": "cyrus-sasl-lib-2.1.28-35.fc44.x86_64.rpm",
+      "size": 819940,
+      "sha256": "0175ce156be22a2d129754c74ad0089d02a94a5255cec33320b51c2cc884c47e",
+      "nevra": "cyrus-sasl-lib-2.1.28-35.fc44.x86_64",
+      "source_rpm": "cyrus-sasl-2.1.28-35.fc44.src.rpm"
+    },
+    {
+      "file": "dbus-1.16.2-1.fc44.x86_64.rpm",
+      "size": 7649,
+      "sha256": "95e855674c4e3a419335f5b110ef1931a8df1635c9276ec468c1cc34381e6620",
+      "nevra": "dbus-1:1.16.2-1.fc44.x86_64",
+      "source_rpm": "dbus-1.16.2-1.fc44.src.rpm"
+    },
+    {
+      "file": "dbus-broker-37-8.fc44.x86_64.rpm",
+      "size": 183096,
+      "sha256": "9cdd6cc622610ca0c3b9c72242e1787811524f506b77fb00e0367baec660e179",
+      "nevra": "dbus-broker-37-8.fc44.x86_64",
+      "source_rpm": "dbus-broker-37-8.fc44.src.rpm"
+    },
+    {
+      "file": "dbus-common-1.16.2-1.fc44.noarch.rpm",
+      "size": 14517,
+      "sha256": "e4bf3a067db6424b9cd06259de46b8719bd34bc0dac90a8861245f6e3e9e3aac",
+      "nevra": "dbus-common-1:1.16.2-1.fc44.noarch",
+      "source_rpm": "dbus-1.16.2-1.fc44.src.rpm"
+    },
+    {
+      "file": "dbus-daemon-1.16.2-1.fc44.x86_64.rpm",
+      "size": 186417,
+      "sha256": "1b5671b58f987ff8dde9b88840ef9163905abf91135f10689099bb6df3148289",
+      "nevra": "dbus-daemon-1:1.16.2-1.fc44.x86_64",
+      "source_rpm": "dbus-1.16.2-1.fc44.src.rpm"
+    },
+    {
+      "file": "dbus-libs-1.16.2-1.fc44.x86_64.rpm",
+      "size": 158816,
+      "sha256": "7feb93ce981ee35dc4a2d7f960a1077bf7656bc439335ff49bf51dfa0ddbd236",
+      "nevra": "dbus-libs-1:1.16.2-1.fc44.x86_64",
+      "source_rpm": "dbus-1.16.2-1.fc44.src.rpm"
+    },
+    {
+      "file": "dbus-tools-1.16.2-1.fc44.x86_64.rpm",
+      "size": 45450,
+      "sha256": "be1b64d3f66e22a36da73b0b35f8755cc320e2cbecb8b8c976c36c558431a883",
+      "nevra": "dbus-tools-1:1.16.2-1.fc44.x86_64",
+      "source_rpm": "dbus-1.16.2-1.fc44.src.rpm"
+    },
+    {
+      "file": "device-mapper-1.02.212-2.fc44.x86_64.rpm",
+      "size": 144499,
+      "sha256": "d559d7d859ef61fc8676e8dda182ad8df88aac68fc64dea195076dae93210cc4",
+      "nevra": "device-mapper-1.02.212-2.fc44.x86_64",
+      "source_rpm": "lvm2-2.03.38-2.fc44.src.rpm"
+    },
+    {
+      "file": "device-mapper-libs-1.02.212-2.fc44.x86_64.rpm",
+      "size": 191119,
+      "sha256": "faaf83a68262d5bff1e09ae4f7b5596b1acd349b410b3cf3baf7d73e80017b2a",
+      "nevra": "device-mapper-libs-1.02.212-2.fc44.x86_64",
+      "source_rpm": "lvm2-2.03.38-2.fc44.src.rpm"
+    },
+    {
+      "file": "elfutils-libelf-0.196-1.fc44.x86_64.rpm",
+      "size": 243870,
+      "sha256": "2298bdb5f374e624389f8ebfc7fedceaa31704f6ab227e4650c04deee94f5691",
+      "nevra": "elfutils-libelf-0.196-1.fc44.x86_64",
+      "source_rpm": "elfutils-0.196-1.fc44.src.rpm"
+    },
+    {
+      "file": "ethtool-7.1-1.fc44.x86_64.rpm",
+      "size": 341870,
+      "sha256": "1776e10227893e31de024dd98dd5db17a8e7a1e827c5144e6b5765c0a62a9b7d",
+      "nevra": "ethtool-2:7.1-1.fc44.x86_64",
+      "source_rpm": "ethtool-7.1-1.fc44.src.rpm"
+    },
+    {
+      "file": "expat-2.8.3-1.fc44.x86_64.rpm",
+      "size": 135077,
+      "sha256": "e33cc17f17d2b45c7ed2c62eff063737b8d0e0ff8479ed80efcdaf01159d5e25",
+      "nevra": "expat-2.8.3-1.fc44.x86_64",
+      "source_rpm": "expat-2.8.3-1.fc44.src.rpm"
+    },
+    {
+      "file": "fedora-gpg-keys-44-2.noarch.rpm",
+      "size": 192112,
+      "sha256": "9d9b65b4d52ca949a0b80bf909c7add1f327baea797febb72314019261960958",
+      "nevra": "fedora-gpg-keys-44-2.noarch",
+      "source_rpm": "fedora-repos-44-2.src.rpm"
+    },
+    {
+      "file": "fedora-release-44-18.noarch.rpm",
+      "size": 12761,
+      "sha256": "a85259328505a417ddc862747a68ad255bd9b574b9fc0550051549903be67053",
+      "nevra": "fedora-release-44-18.noarch",
+      "source_rpm": "fedora-release-44-18.src.rpm"
+    },
+    {
+      "file": "fedora-release-common-44-18.noarch.rpm",
+      "size": 24167,
+      "sha256": "ea06ce5597746df56a5cc7c3bd184a8e0b05eec048f60456b0b9469fc59a0cdc",
+      "nevra": "fedora-release-common-44-18.noarch",
+      "source_rpm": "fedora-release-44-18.src.rpm"
+    },
+    {
+      "file": "fedora-release-identity-basic-44-18.noarch.rpm",
+      "size": 13542,
+      "sha256": "39b4b8a1339183697a6e342062ee8e84bad7457273c4e2c81f6a29e87c082346",
+      "nevra": "fedora-release-identity-basic-44-18.noarch",
+      "source_rpm": "fedora-release-44-18.src.rpm"
+    },
+    {
+      "file": "fedora-repos-44-2.noarch.rpm",
+      "size": 9300,
+      "sha256": "a2371ee2ea46ee2787b366e1659bae18d8f495ee7970f09a90e31ea05098b6b9",
+      "nevra": "fedora-repos-44-2.noarch",
+      "source_rpm": "fedora-repos-44-2.src.rpm"
+    },
+    {
+      "file": "filesystem-3.18-52.fc44.x86_64.rpm",
+      "size": 1398770,
+      "sha256": "7abc643d653bf2773c38e183e0e33489cab4880c8a540b315fcd7fff09c6c52c",
+      "nevra": "filesystem-3.18-52.fc44.x86_64",
+      "source_rpm": "filesystem-3.18-52.fc44.src.rpm"
+    },
+    {
+      "file": "findutils-4.10.0-7.fc44.x86_64.rpm",
+      "size": 565758,
+      "sha256": "b1f9fe72be7a0cf0fb53ec00ef9e6b8ccc9987cb5f55e9de02bbc67f9cf3b5cf",
+      "nevra": "findutils-1:4.10.0-7.fc44.x86_64",
+      "source_rpm": "findutils-4.10.0-7.fc44.src.rpm"
+    },
+    {
+      "file": "gdbm-1.23-11.fc44.x86_64.rpm",
+      "size": 156723,
+      "sha256": "3cab341f8d7325a3645764038eaf5deacc5e4343b104472354ee67f5ff1cca9f",
+      "nevra": "gdbm-1:1.23-11.fc44.x86_64",
+      "source_rpm": "gdbm-1.23-11.fc44.src.rpm"
+    },
+    {
+      "file": "gdbm-libs-1.23-11.fc44.x86_64.rpm",
+      "size": 60220,
+      "sha256": "3fb13a4e2d4292ef3482732f51de572ded34bdf4c657c2dc4dbafe8d0ba2d4b8",
+      "nevra": "gdbm-libs-1:1.23-11.fc44.x86_64",
+      "source_rpm": "gdbm-1.23-11.fc44.src.rpm"
+    },
+    {
+      "file": "glib2-2.88.3-1.fc44.x86_64.rpm",
+      "size": 3291840,
+      "sha256": "03e0c616f95cbcee3a076d4f235f0ce7ec4707926257e4ea73f5fa4f8e2bb888",
+      "nevra": "glib2-2.88.3-1.fc44.x86_64",
+      "source_rpm": "glib2-2.88.3-1.fc44.src.rpm"
+    },
+    {
+      "file": "glibc-2.43-9.fc44.x86_64.rpm",
+      "size": 2486629,
+      "sha256": "594ef5114f0713bdba2a819b70e662e67321755889247ffec2bed31ad6ca4d9f",
+      "nevra": "glibc-2.43-9.fc44.x86_64",
+      "source_rpm": "glibc-2.43-9.fc44.src.rpm"
+    },
+    {
+      "file": "glibc-common-2.43-9.fc44.x86_64.rpm",
+      "size": 384572,
+      "sha256": "3568d7e83e59a6ee97a08c8a5ecee8e435afaa74a9273042945a148845c3c733",
+      "nevra": "glibc-common-2.43-9.fc44.x86_64",
+      "source_rpm": "glibc-2.43-9.fc44.src.rpm"
+    },
+    {
+      "file": "glibc-minimal-langpack-2.43-9.fc44.x86_64.rpm",
+      "size": 87437,
+      "sha256": "b9da9b984d902a5bd983c5ad700be1e8adaf36224a3713955228a1128e5c4631",
+      "nevra": "glibc-minimal-langpack-2.43-9.fc44.x86_64",
+      "source_rpm": "glibc-2.43-9.fc44.src.rpm"
+    },
+    {
+      "file": "gmp-6.3.0-5.fc44.x86_64.rpm",
+      "size": 330200,
+      "sha256": "94b960c5eaba00c1cb56abdbed05bd348d1256360cf68fd9cd7a24b3232d6558",
+      "nevra": "gmp-1:6.3.0-5.fc44.x86_64",
+      "source_rpm": "gmp-6.3.0-5.fc44.src.rpm"
+    },
+    {
+      "file": "gnulib-l10n-20241231-2.fc44.noarch.rpm",
+      "size": 153933,
+      "sha256": "5e55fb0fd56734e71aa6ebeba0a66fde69c07964b43591464a0bb2edf96d18e7",
+      "nevra": "gnulib-l10n-20241231-2.fc44.noarch",
+      "source_rpm": "gnulib-l10n-20241231-2.fc44.src.rpm"
+    },
+    {
+      "file": "gnutls-3.8.13-1.fc44.x86_64.rpm",
+      "size": 1495935,
+      "sha256": "3cd4e8a10a6ff6a9e3d2bac05f4cdc7573e7d94737f7070e5b1ab21a90d4857c",
+      "nevra": "gnutls-3.8.13-1.fc44.x86_64",
+      "source_rpm": "gnutls-3.8.13-1.fc44.src.rpm"
+    },
+    {
+      "file": "grep-3.12-3.fc44.x86_64.rpm",
+      "size": 308807,
+      "sha256": "0b1e3d96f14f6346d0af992a8cdc1af696ff8e616311abfdee49d6a3a3f1e746",
+      "nevra": "grep-3.12-3.fc44.x86_64",
+      "source_rpm": "grep-3.12-3.fc44.src.rpm"
+    },
+    {
+      "file": "gzip-1.14-2.fc44.x86_64.rpm",
+      "size": 183368,
+      "sha256": "a94d5384a9e8c30b31f5a85ae2ca953f8b0af946f425103f942457770fb268b4",
+      "nevra": "gzip-1.14-2.fc44.x86_64",
+      "source_rpm": "gzip-1.14-2.fc44.src.rpm"
+    },
+    {
+      "file": "hwdata-0.412-1.fc44.noarch.rpm",
+      "size": 1798675,
+      "sha256": "ffb9a07e488b23a81fc682b9c1acd66be3e5e0839f5199e302440fc7c31f8ecd",
+      "nevra": "hwdata-0.412-1.fc44.noarch",
+      "source_rpm": "hwdata-0.412-1.fc44.src.rpm"
+    },
+    {
+      "file": "iproute-6.17.0-2.fc44.x86_64.rpm",
+      "size": 884945,
+      "sha256": "756b149f3d89a8a1dfb1d91abbb85fc2c9f0775283e4db6848aec356b1c73517",
+      "nevra": "iproute-6.17.0-2.fc44.x86_64",
+      "source_rpm": "iproute-6.17.0-2.fc44.src.rpm"
+    },
+    {
+      "file": "iw-6.17-2.fc44.x86_64.rpm",
+      "size": 127472,
+      "sha256": "98c98440f39814159f49af2bde8aa7e1654df45015a0db5fbfb2180692e2e5e6",
+      "nevra": "iw-6.17-2.fc44.x86_64",
+      "source_rpm": "iw-6.17-2.fc44.src.rpm"
+    },
+    {
+      "file": "json-c-0.18-8.fc44.x86_64.rpm",
+      "size": 47441,
+      "sha256": "af4cf667585ec8618b8bf352b4323bb69422130be253fdc4803e2f720dfd893c",
+      "nevra": "json-c-0.18-8.fc44.x86_64",
+      "source_rpm": "json-c-0.18-8.fc44.src.rpm"
+    },
+    {
+      "file": "kbd-2.9.0-4.fc44.x86_64.rpm",
+      "size": 398326,
+      "sha256": "1299ebb685439c9f0b35a2fb0503f028e1a8ece642d035f2c3d0378a0fb7104f",
+      "nevra": "kbd-2.9.0-4.fc44.x86_64",
+      "source_rpm": "kbd-2.9.0-4.fc44.src.rpm"
+    },
+    {
+      "file": "kbd-legacy-2.9.0-4.fc44.noarch.rpm",
+      "size": 595210,
+      "sha256": "ca7e486c221d3f8631a6bf5286d009a579af504a197a278bee4358f1a29cb56d",
+      "nevra": "kbd-legacy-2.9.0-4.fc44.noarch",
+      "source_rpm": "kbd-2.9.0-4.fc44.src.rpm"
+    },
+    {
+      "file": "kbd-misc-2.9.0-4.fc44.noarch.rpm",
+      "size": 1732352,
+      "sha256": "9b17d0f1c4955af2112333fb359462d2e2e653c5a436becdcc429f5494a8cdd2",
+      "nevra": "kbd-misc-2.9.0-4.fc44.noarch",
+      "source_rpm": "kbd-2.9.0-4.fc44.src.rpm"
+    },
+    {
+      "file": "keyutils-libs-1.6.3-7.fc44.x86_64.rpm",
+      "size": 32285,
+      "sha256": "28b1b356688c24c51affa429feaf908425d52e42758ee068836cdb547aedf8dc",
+      "nevra": "keyutils-libs-1.6.3-7.fc44.x86_64",
+      "source_rpm": "keyutils-1.6.3-7.fc44.src.rpm"
+    },
+    {
+      "file": "kmod-34.2-4.fc44.x86_64.rpm",
+      "size": 139316,
+      "sha256": "a43624a70c2f9782a3dc75c8e8c789a65004835e2ea23ab63cb52b8ad2d8a5f0",
+      "nevra": "kmod-34.2-4.fc44.x86_64",
+      "source_rpm": "kmod-34.2-4.fc44.src.rpm"
+    },
+    {
+      "file": "kmod-libs-34.2-4.fc44.x86_64.rpm",
+      "size": 72084,
+      "sha256": "f048ca8c013278d1ffc8a6b8ff1b6c1782fc19878fe9a55068b1441771fa2c10",
+      "nevra": "kmod-libs-34.2-4.fc44.x86_64",
+      "source_rpm": "kmod-34.2-4.fc44.src.rpm"
+    },
+    {
+      "file": "krb5-libs-1.22.2-4.fc44.x86_64.rpm",
+      "size": 821831,
+      "sha256": "4f39c52d3e38fb68dc2cb3c2b808333d29e0abde497802ffbee26c2fafab2548",
+      "nevra": "krb5-libs-1.22.2-4.fc44.x86_64",
+      "source_rpm": "krb5-1.22.2-4.fc44.src.rpm"
+    },
+    {
+      "file": "libacl-2.4.0-1.fc44.x86_64.rpm",
+      "size": 27922,
+      "sha256": "993c3fa1677ce9234530cce9d9bb40ad2292847e18193d37bea881712ded9b27",
+      "nevra": "libacl-2.4.0-1.fc44.x86_64",
+      "source_rpm": "acl-2.4.0-1.fc44.src.rpm"
+    },
+    {
+      "file": "libattr-2.6.0-1.fc44.x86_64.rpm",
+      "size": 18214,
+      "sha256": "d9d3147eaff6f6a6c2472a9b96d9a96878e0e14e17330a2faa7247fc909509e5",
+      "nevra": "libattr-2.6.0-1.fc44.x86_64",
+      "source_rpm": "attr-2.6.0-1.fc44.src.rpm"
+    },
+    {
+      "file": "libblkid-2.41.5-1.fc44.x86_64.rpm",
+      "size": 132961,
+      "sha256": "4d38e51d031a32ff4bd64d2ba9022eb11e984c6db7db66dbbe57d12af8516b3b",
+      "nevra": "libblkid-2.41.5-1.fc44.x86_64",
+      "source_rpm": "util-linux-2.41.5-1.fc44.src.rpm"
+    },
+    {
+      "file": "libbpf-1.6.3-2.fc44.x86_64.rpm",
+      "size": 204066,
+      "sha256": "fa02ef95e23708061adb6b59fc69741a27c119c8f43dafa477c5b55600fbd9b9",
+      "nevra": "libbpf-2:1.6.3-2.fc44.x86_64",
+      "source_rpm": "libbpf-1.6.3-2.fc44.src.rpm"
+    },
+    {
+      "file": "libbrotli-1.2.0-3.fc44.x86_64.rpm",
+      "size": 356158,
+      "sha256": "3f678e2c3eadfb559b3f91489cea1118cffe230219366426038a023bb34f5054",
+      "nevra": "libbrotli-1.2.0-3.fc44.x86_64",
+      "source_rpm": "brotli-1.2.0-3.fc44.src.rpm"
+    },
+    {
+      "file": "libcap-2.78-1.fc44.x86_64.rpm",
+      "size": 90258,
+      "sha256": "69e2f92edc1178b35562b5d92a64d482191eb0fb7e3fc6f6adad853175a2c96b",
+      "nevra": "libcap-2.78-1.fc44.x86_64",
+      "source_rpm": "libcap-2.78-1.fc44.src.rpm"
+    },
+    {
+      "file": "libcap-ng-0.9.6-1.fc44.x86_64.rpm",
+      "size": 35601,
+      "sha256": "707c173b60e1f75079a04932b23b413b6d2442e9311c590258c429985d4be009",
+      "nevra": "libcap-ng-0.9.6-1.fc44.x86_64",
+      "source_rpm": "libcap-ng-0.9.6-1.fc44.src.rpm"
+    },
+    {
+      "file": "libcbor-0.13.0-2.fc44.x86_64.rpm",
+      "size": 36819,
+      "sha256": "e5ed0379715086b19c4cf34ba02b5df1543e0648fe8bb1e0b0e7df315b508bc6",
+      "nevra": "libcbor-0.13.0-2.fc44.x86_64",
+      "source_rpm": "libcbor-0.13.0-2.fc44.src.rpm"
+    },
+    {
+      "file": "libcom_err-1.47.3-4.fc44.x86_64.rpm",
+      "size": 27759,
+      "sha256": "c163f4fce53aa42e032c04299cecf9cc57e69437515a095e667b5a91b7859878",
+      "nevra": "libcom_err-1.47.3-4.fc44.x86_64",
+      "source_rpm": "e2fsprogs-1.47.3-4.fc44.src.rpm"
+    },
+    {
+      "file": "libcurl-8.18.0-10.fc44.x86_64.rpm",
+      "size": 466630,
+      "sha256": "d064bca267fd13259594bfcc12e5ab72981cb5c06fbd9e1f925cf864fb3c2bee",
+      "nevra": "libcurl-8.18.0-10.fc44.x86_64",
+      "source_rpm": "curl-8.18.0-10.fc44.src.rpm"
+    },
+    {
+      "file": "libdrm-2.4.134-1.fc44.x86_64.rpm",
+      "size": 170660,
+      "sha256": "edd4ba5100079961bb7f9ebcb3efda75dac38f7be79f73e55839c699e236e997",
+      "nevra": "libdrm-2.4.134-1.fc44.x86_64",
+      "source_rpm": "libdrm-2.4.134-1.fc44.src.rpm"
+    },
+    {
+      "file": "libeconf-0.7.9-3.fc44.x86_64.rpm",
+      "size": 37085,
+      "sha256": "f8212f510faaa3d6dca692478a686f44f0c27bdad9741e83e3940c17a2d4eb69",
+      "nevra": "libeconf-0.7.9-3.fc44.x86_64",
+      "source_rpm": "libeconf-0.7.9-3.fc44.src.rpm"
+    },
+    {
+      "file": "libevent-2.1.13-1.fc44.x86_64.rpm",
+      "size": 296090,
+      "sha256": "5ed6be9fadb91187080d63a4036227b53fcce1db82983ab5ec24e0d6493e066f",
+      "nevra": "libevent-2.1.13-1.fc44.x86_64",
+      "source_rpm": "libevent-2.1.13-1.fc44.src.rpm"
+    },
+    {
+      "file": "libfdisk-2.41.5-1.fc44.x86_64.rpm",
+      "size": 172696,
+      "sha256": "0793107e9b41f79b6ea7ed493f16a5e0aa5de5c29a4e8717197ad567d40a212c",
+      "nevra": "libfdisk-2.41.5-1.fc44.x86_64",
+      "source_rpm": "util-linux-2.41.5-1.fc44.src.rpm"
+    },
+    {
+      "file": "libffi-3.5.2-2.fc44.x86_64.rpm",
+      "size": 43388,
+      "sha256": "a7dae96d30d007140c7dab605df40e55f90ef16f04392dd8ded32fa230c10dd6",
+      "nevra": "libffi-3.5.2-2.fc44.x86_64",
+      "source_rpm": "libffi-3.5.2-2.fc44.src.rpm"
+    },
+    {
+      "file": "libfido2-1.16.0-5.fc44.x86_64.rpm",
+      "size": 107020,
+      "sha256": "e71e9bb6308be5a693c69f4fac0460e58b5ed58b8fe164e162a6d959a9085f36",
+      "nevra": "libfido2-1.16.0-5.fc44.x86_64",
+      "source_rpm": "libfido2-1.16.0-5.fc44.src.rpm"
+    },
+    {
+      "file": "libgcc-16.2.1-2.fc44.x86_64.rpm",
+      "size": 139555,
+      "sha256": "e9ccd7564d639c85ae455693f11d7a6cd990d1efdae6889656dacbeb9e0f846d",
+      "nevra": "libgcc-16.2.1-2.fc44.x86_64",
+      "source_rpm": "gcc-16.2.1-2.fc44.src.rpm"
+    },
+    {
+      "file": "libidn2-2.3.8-3.fc44.x86_64.rpm",
+      "size": 179767,
+      "sha256": "430ed4991a4364fe88bc220c1771c768b8ef4ebcc9ad6af3afcfea8ab609fa18",
+      "nevra": "libidn2-2.3.8-3.fc44.x86_64",
+      "source_rpm": "libidn2-2.3.8-3.fc44.src.rpm"
+    },
+    {
+      "file": "liblastlog2-2.41.5-1.fc44.x86_64.rpm",
+      "size": 24753,
+      "sha256": "b1327aeae3d88c0c65c2070fc3117569cbf101b1aa92d9b05963ca058e9d0349",
+      "nevra": "liblastlog2-2.41.5-1.fc44.x86_64",
+      "source_rpm": "util-linux-2.41.5-1.fc44.src.rpm"
+    },
+    {
+      "file": "libmnl-1.0.5-9.fc44.x86_64.rpm",
+      "size": 28736,
+      "sha256": "58147320637f46f579e9daca75b454f16856bc3ef9107843a6f5d043c634020f",
+      "nevra": "libmnl-1.0.5-9.fc44.x86_64",
+      "source_rpm": "libmnl-1.0.5-9.fc44.src.rpm"
+    },
+    {
+      "file": "libmount-2.41.5-1.fc44.x86_64.rpm",
+      "size": 176565,
+      "sha256": "75ac4afc36e36e6e5c6e888c10075d049f26205edc900b84e99dc111a5439150",
+      "nevra": "libmount-2.41.5-1.fc44.x86_64",
+      "source_rpm": "util-linux-2.41.5-1.fc44.src.rpm"
+    },
+    {
+      "file": "libndp-1.9-5.fc44.x86_64.rpm",
+      "size": 38328,
+      "sha256": "0ed643a11f18c65ceb742d6a5ee2123a6cc7e179597865caed0bb0e4b51baa33",
+      "nevra": "libndp-1.9-5.fc44.x86_64",
+      "source_rpm": "libndp-1.9-5.fc44.src.rpm"
+    },
+    {
+      "file": "libnghttp2-1.68.0-5.fc44.x86_64.rpm",
+      "size": 78484,
+      "sha256": "8361227cb08abb0ed63de90960a988d3d513180d83f49a081c830865b12a2f1d",
+      "nevra": "libnghttp2-1.68.0-5.fc44.x86_64",
+      "source_rpm": "nghttp2-1.68.0-5.fc44.src.rpm"
+    },
+    {
+      "file": "libnghttp3-1.18.0-1.fc44.x86_64.rpm",
+      "size": 77067,
+      "sha256": "e0e422716b5db9f519f02f6a314850bd1eb7753b2cbfd3b49d138fd2685d15d1",
+      "nevra": "libnghttp3-1.18.0-1.fc44.x86_64",
+      "source_rpm": "nghttp3-1.18.0-1.fc44.src.rpm"
+    },
+    {
+      "file": "libnl3-3.12.0-3.fc44.x86_64.rpm",
+      "size": 386399,
+      "sha256": "f2b9bc51d69cef3b8610eb0446d176b442e266b4288f4ad40246a0886130b902",
+      "nevra": "libnl3-3.12.0-3.fc44.x86_64",
+      "source_rpm": "libnl3-3.12.0-3.fc44.src.rpm"
+    },
+    {
+      "file": "libnsl2-2.0.1-5.fc44.x86_64.rpm",
+      "size": 30679,
+      "sha256": "23373b28ffac80ed35b4d39f0e7133c05b9cf72b7e45811ecda1decd3489ad1a",
+      "nevra": "libnsl2-2.0.1-5.fc44.x86_64",
+      "source_rpm": "libnsl2-2.0.1-5.fc44.src.rpm"
+    },
+    {
+      "file": "libpciaccess-0.16-17.fc44.x86_64.rpm",
+      "size": 27863,
+      "sha256": "6883cf376da3dd09ff28923c74f7647c02e14996dddd64e49ae39bcd8085e69d",
+      "nevra": "libpciaccess-0.16-17.fc44.x86_64",
+      "source_rpm": "libpciaccess-0.16-17.fc44.src.rpm"
+    },
+    {
+      "file": "libpkgconf-2.5.1-1.fc44.x86_64.rpm",
+      "size": 43700,
+      "sha256": "b59040138169f46c60b79230941ffc0dbce15b9e897bd46d1e83361a393400b8",
+      "nevra": "libpkgconf-2.5.1-1.fc44.x86_64",
+      "source_rpm": "pkgconf-2.5.1-1.fc44.src.rpm"
+    },
+    {
+      "file": "libpsl-0.21.5-7.fc44.x86_64.rpm",
+      "size": 66819,
+      "sha256": "9ea7b4480a43788ec32e0ba44e7a8bc263265fece99f0173b68a469d55374a50",
+      "nevra": "libpsl-0.21.5-7.fc44.x86_64",
+      "source_rpm": "libpsl-0.21.5-7.fc44.src.rpm"
+    },
+    {
+      "file": "libpwquality-1.4.5-15.fc44.x86_64.rpm",
+      "size": 121109,
+      "sha256": "d388f6f45ddc2f20f35be561117392a9a5bf4701bc059a6fc2ac56532d16f1a7",
+      "nevra": "libpwquality-1.4.5-15.fc44.x86_64",
+      "source_rpm": "libpwquality-1.4.5-15.fc44.src.rpm"
+    },
+    {
+      "file": "libseccomp-2.6.1-2.fc44.x86_64.rpm",
+      "size": 77791,
+      "sha256": "739e423dd898fd54ccadb93a731018d44881536f6d80c0b1ee3885095881d807",
+      "nevra": "libseccomp-2.6.1-2.fc44.x86_64",
+      "source_rpm": "libseccomp-2.6.1-2.fc44.src.rpm"
+    },
+    {
+      "file": "libselinux-3.11-2.fc44.x86_64.rpm",
+      "size": 106767,
+      "sha256": "50fc29cc4e31824d87a2a709f4c3e4873fbc1785da333cd05dc5138a8eceea5f",
+      "nevra": "libselinux-3.11-2.fc44.x86_64",
+      "source_rpm": "libselinux-3.11-2.fc44.src.rpm"
+    },
+    {
+      "file": "libsemanage-3.11-1.fc44.x86_64.rpm",
+      "size": 130372,
+      "sha256": "70551ff6dd31c9c25e2fe2680351a6988794cf3eee350c94882bf97bb00c9e16",
+      "nevra": "libsemanage-3.11-1.fc44.x86_64",
+      "source_rpm": "libsemanage-3.11-1.fc44.src.rpm"
+    },
+    {
+      "file": "libsepol-3.11-1.fc44.x86_64.rpm",
+      "size": 374084,
+      "sha256": "8d37fd4f74457700dc646ca9d0b0691debb58ec3627ace0c50b7398fbbad736e",
+      "nevra": "libsepol-3.11-1.fc44.x86_64",
+      "source_rpm": "libsepol-3.11-1.fc44.src.rpm"
+    },
+    {
+      "file": "libsmartcols-2.41.5-1.fc44.x86_64.rpm",
+      "size": 89483,
+      "sha256": "f6743acc4b48d79f8d9c213d5647d7073daeac2fa3e7292e3f4f1471cc9c94ab",
+      "nevra": "libsmartcols-2.41.5-1.fc44.x86_64",
+      "source_rpm": "util-linux-2.41.5-1.fc44.src.rpm"
+    },
+    {
+      "file": "libssh-0.12.2-1.fc44.x86_64.rpm",
+      "size": 302976,
+      "sha256": "b99bf757d615dfc15cd6f0c9da944b72dcc38c3d9ae4246b40fc7be142a5e5e1",
+      "nevra": "libssh-0.12.2-1.fc44.x86_64",
+      "source_rpm": "libssh-0.12.2-1.fc44.src.rpm"
+    },
+    {
+      "file": "libssh-config-0.12.2-1.fc44.noarch.rpm",
+      "size": 9154,
+      "sha256": "1230cf27692948004c2b6ebc8904b2a28aa9735c827049d54985ce4cdc8fd595",
+      "nevra": "libssh-config-0.12.2-1.fc44.noarch",
+      "source_rpm": "libssh-0.12.2-1.fc44.src.rpm"
+    },
+    {
+      "file": "libtasn1-4.21.0-1.fc44.x86_64.rpm",
+      "size": 77814,
+      "sha256": "32806a98942dc5492838b4642cb830ce20f478609733326fb9388539930d6596",
+      "nevra": "libtasn1-4.21.0-1.fc44.x86_64",
+      "source_rpm": "libtasn1-4.21.0-1.fc44.src.rpm"
+    },
+    {
+      "file": "libtirpc-1.3.8-0.fc44.x86_64.rpm",
+      "size": 101555,
+      "sha256": "3a9bb07325da4ca2d3ff3e2a44cd758f5a67c4e8b300ef34e1878e10cdbafa4e",
+      "nevra": "libtirpc-1.3.8-0.fc44.x86_64",
+      "source_rpm": "libtirpc-1.3.8-0.fc44.src.rpm"
+    },
+    {
+      "file": "libtool-ltdl-2.5.4-10.fc44.x86_64.rpm",
+      "size": 37921,
+      "sha256": "7b9bea37da808d074b26072c9f13612f6997a646e84b8b9b81ca147452d33a88",
+      "nevra": "libtool-ltdl-2.5.4-10.fc44.x86_64",
+      "source_rpm": "libtool-2.5.4-10.fc44.src.rpm"
+    },
+    {
+      "file": "libunistring-1.1-11.fc44.x86_64.rpm",
+      "size": 560970,
+      "sha256": "578749cc0f7ac197be5434e65c42f9e88112e3561be731edd52c820cdcacfae5",
+      "nevra": "libunistring-1.1-11.fc44.x86_64",
+      "source_rpm": "libunistring-1.1-11.fc44.src.rpm"
+    },
+    {
+      "file": "libusb1-1.0.30-1.fc44.x86_64.rpm",
+      "size": 85378,
+      "sha256": "537c67003264f26559326bc9bf194dcbf03f6a13123a827a6f71fdf457d8838a",
+      "nevra": "libusb1-1.0.30-1.fc44.x86_64",
+      "source_rpm": "libusb1-1.0.30-1.fc44.src.rpm"
+    },
+    {
+      "file": "libuuid-2.41.5-1.fc44.x86_64.rpm",
+      "size": 27715,
+      "sha256": "766313b4be6b60e5f4ef22346f29aeb2c0b6a4d2d13931733ba7e6111f401c3a",
+      "nevra": "libuuid-2.41.5-1.fc44.x86_64",
+      "source_rpm": "util-linux-2.41.5-1.fc44.src.rpm"
+    },
+    {
+      "file": "libverto-0.3.2-12.fc44.x86_64.rpm",
+      "size": 21633,
+      "sha256": "3e2ef69df14272b2f666be05312242cb65c0e385bd813007362204b5e19c7cb0",
+      "nevra": "libverto-0.3.2-12.fc44.x86_64",
+      "source_rpm": "libverto-0.3.2-12.fc44.src.rpm"
+    },
+    {
+      "file": "libxcrypt-4.5.2-3.fc44.x86_64.rpm",
+      "size": 134355,
+      "sha256": "4be1ebfa6079b11d5b4e5119c702df69153788cef8c5b71600482617bdc4ab25",
+      "nevra": "libxcrypt-4.5.2-3.fc44.x86_64",
+      "source_rpm": "libxcrypt-4.5.2-3.fc44.src.rpm"
+    },
+    {
+      "file": "libzstd-1.5.7-5.fc44.x86_64.rpm",
+      "size": 372900,
+      "sha256": "af98832cf1d93eabb442d18520bad10f03f4278a99d54c5d071b2903f6f50fac",
+      "nevra": "libzstd-1.5.7-5.fc44.x86_64",
+      "source_rpm": "zstd-1.5.7-5.fc44.src.rpm"
+    },
+    {
+      "file": "linux-firmware-whence-20260916-1.fc44.noarch.rpm",
+      "size": 72395,
+      "sha256": "7a459a689bde9212c7291c7653cfe4a4c84657ba8d0f82a19f711bdf13e16b49",
+      "nevra": "linux-firmware-whence-20260916-1.fc44.noarch",
+      "source_rpm": "linux-firmware-20260916-1.fc44.src.rpm"
+    },
+    {
+      "file": "mpdecimal-4.0.1-3.fc44.x86_64.rpm",
+      "size": 101509,
+      "sha256": "f9495b4a3f05e370f6ad6fea7632c83473d94609fe9f8d508a8696bcecf5ab6f",
+      "nevra": "mpdecimal-4.0.1-3.fc44.x86_64",
+      "source_rpm": "mpdecimal-4.0.1-3.fc44.src.rpm"
+    },
+    {
+      "file": "ncurses-base-6.6-1.fc44.noarch.rpm",
+      "size": 90110,
+      "sha256": "19c6053ad3e76d47f330da92e5c97e2b9a3617b4ddd8fa2139d9066092cfc181",
+      "nevra": "ncurses-base-6.6-1.fc44.noarch",
+      "source_rpm": "ncurses-6.6-1.fc44.src.rpm"
+    },
+    {
+      "file": "ncurses-libs-6.6-1.fc44.x86_64.rpm",
+      "size": 352355,
+      "sha256": "d9afd13714bac08fdfbe9b9f5bc5d298497fc1c3fee31fb2e1274ed95ab3d96a",
+      "nevra": "ncurses-libs-6.6-1.fc44.x86_64",
+      "source_rpm": "ncurses-6.6-1.fc44.src.rpm"
+    },
+    {
+      "file": "nettle-3.10.1-3.fc44.x86_64.rpm",
+      "size": 438310,
+      "sha256": "36d7fea745c4d0b17f6dbee48c8f6fe3ca444984aee8ecab863dffa5b5042114",
+      "nevra": "nettle-3.10.1-3.fc44.x86_64",
+      "source_rpm": "nettle-3.10.1-3.fc44.src.rpm"
+    },
+    {
+      "file": "ngtcp2-1.22.1-1.fc44.x86_64.rpm",
+      "size": 161199,
+      "sha256": "0ca9f4a87d2c3657a7c802e2cc3b9fd09e7668d474dee662b6f221cb92fb7565",
+      "nevra": "ngtcp2-1.22.1-1.fc44.x86_64",
+      "source_rpm": "ngtcp2-1.22.1-1.fc44.src.rpm"
+    },
+    {
+      "file": "ngtcp2-crypto-ossl-1.22.1-1.fc44.x86_64.rpm",
+      "size": 28418,
+      "sha256": "6057b74cea8407eb14e55827d317a0bf3ac4a8dbfd4ee018563a0f285792a5aa",
+      "nevra": "ngtcp2-crypto-ossl-1.22.1-1.fc44.x86_64",
+      "source_rpm": "ngtcp2-1.22.1-1.fc44.src.rpm"
+    },
+    {
+      "file": "openldap-2.6.14-1.fc44.x86_64.rpm",
+      "size": 277979,
+      "sha256": "2651c87ee3543f1c6fd0b8e8c55daea42798d7a768e5310c3a60a344e4396ccf",
+      "nevra": "openldap-2.6.14-1.fc44.x86_64",
+      "source_rpm": "openldap-2.6.14-1.fc44.src.rpm"
+    },
+    {
+      "file": "openssh-10.2p1-14.fc44.x86_64.rpm",
+      "size": 364824,
+      "sha256": "ba7ae55d89ecc3d5712c8331240ca695caa5b1cb11f3734dd1a9a35389f680fd",
+      "nevra": "openssh-10.2p1-14.fc44.x86_64",
+      "source_rpm": "openssh-10.2p1-14.fc44.src.rpm"
+    },
+    {
+      "file": "openssh-server-10.2p1-14.fc44.x86_64.rpm",
+      "size": 645396,
+      "sha256": "4b99dde616024f190e005b7eef82df0ff8c6b86906939e881f4aedf6b9ccf9a2",
+      "nevra": "openssh-server-10.2p1-14.fc44.x86_64",
+      "source_rpm": "openssh-10.2p1-14.fc44.src.rpm"
+    },
+    {
+      "file": "openssl-libs-3.5.9-1.fc44.x86_64.rpm",
+      "size": 2890271,
+      "sha256": "9b0efe3cf1f2ebaa3dfa0367c0cff4790c6c5d1269f2bcad53d7ace2759e0ede",
+      "nevra": "openssl-libs-1:3.5.9-1.fc44.x86_64",
+      "source_rpm": "openssl-3.5.9-1.fc44.src.rpm"
+    },
+    {
+      "file": "p11-kit-0.26.5-1.fc44.x86_64.rpm",
+      "size": 574015,
+      "sha256": "cb0ad8fd9fcc88689a6854096126fe3830ee8d660854326da0560b9e0b04f928",
+      "nevra": "p11-kit-0.26.5-1.fc44.x86_64",
+      "source_rpm": "p11-kit-0.26.5-1.fc44.src.rpm"
+    },
+    {
+      "file": "p11-kit-trust-0.26.5-1.fc44.x86_64.rpm",
+      "size": 150057,
+      "sha256": "65b326ddb0099b88267e388800b1f38afdc2adba98d9f62699a7225b92389f2b",
+      "nevra": "p11-kit-trust-0.26.5-1.fc44.x86_64",
+      "source_rpm": "p11-kit-0.26.5-1.fc44.src.rpm"
+    },
+    {
+      "file": "pam-1.7.2-2.fc44.x86_64.rpm",
+      "size": 566354,
+      "sha256": "2827529cc727da309ab58ebb852bac171b37c2b8d23503bc6920a3e10b943304",
+      "nevra": "pam-1.7.2-2.fc44.x86_64",
+      "source_rpm": "pam-1.7.2-2.fc44.src.rpm"
+    },
+    {
+      "file": "pam-libs-1.7.2-2.fc44.x86_64.rpm",
+      "size": 60028,
+      "sha256": "14336e0fbc52bd6106d2fb4f7d9f6d5912b2e2332cf08c4e9237fe99bcdae031",
+      "nevra": "pam-libs-1.7.2-2.fc44.x86_64",
+      "source_rpm": "pam-1.7.2-2.fc44.src.rpm"
+    },
+    {
+      "file": "pciutils-3.15.0-1.fc44.x86_64.rpm",
+      "size": 131960,
+      "sha256": "6e8640cfc5ea32b2b9ec8ad6f6f01f9be2b68a728520db635b2b8a3b318e36da",
+      "nevra": "pciutils-3.15.0-1.fc44.x86_64",
+      "source_rpm": "pciutils-3.15.0-1.fc44.src.rpm"
+    },
+    {
+      "file": "pciutils-libs-3.15.0-1.fc44.x86_64.rpm",
+      "size": 54459,
+      "sha256": "c348bcd36b0a2870b27c11016ae1404874ba2dd619aeca6430b9af7a1da962e4",
+      "nevra": "pciutils-libs-3.15.0-1.fc44.x86_64",
+      "source_rpm": "pciutils-3.15.0-1.fc44.src.rpm"
+    },
+    {
+      "file": "pcre2-10.47-1.fc44.1.x86_64.rpm",
+      "size": 284397,
+      "sha256": "9e3498c301b011ed0f517090e45798fbd3063a10b46468f2f8359738975f8702",
+      "nevra": "pcre2-10.47-1.fc44.1.x86_64",
+      "source_rpm": "pcre2-10.47-1.fc44.1.src.rpm"
+    },
+    {
+      "file": "pcre2-syntax-10.47-1.fc44.1.noarch.rpm",
+      "size": 168666,
+      "sha256": "f764ad48aff82dc0805ce5db071e91c805dea73dcc9696f8686583b1a2b19c16",
+      "nevra": "pcre2-syntax-10.47-1.fc44.1.noarch",
+      "source_rpm": "pcre2-10.47-1.fc44.1.src.rpm"
+    },
+    {
+      "file": "pkgconf-2.5.1-1.fc44.x86_64.rpm",
+      "size": 49863,
+      "sha256": "ee3f9558c65ca0a92de766ce54e218be780e703f8d2b1353ebbbff762f067d6e",
+      "nevra": "pkgconf-2.5.1-1.fc44.x86_64",
+      "source_rpm": "pkgconf-2.5.1-1.fc44.src.rpm"
+    },
+    {
+      "file": "pkgconf-m4-2.5.1-1.fc44.noarch.rpm",
+      "size": 14083,
+      "sha256": "5b45fb58dec26385b34f937b2917608abd66d531eb7d78a878e8ed426c65eff5",
+      "nevra": "pkgconf-m4-2.5.1-1.fc44.noarch",
+      "source_rpm": "pkgconf-2.5.1-1.fc44.src.rpm"
+    },
+    {
+      "file": "pkgconf-pkg-config-2.5.1-1.fc44.x86_64.rpm",
+      "size": 9695,
+      "sha256": "da2ce9b6c5e9fac1da7e418be923ff2bbd202180e4812d7b91f118fcd549ede5",
+      "nevra": "pkgconf-pkg-config-2.5.1-1.fc44.x86_64",
+      "source_rpm": "pkgconf-2.5.1-1.fc44.src.rpm"
+    },
+    {
+      "file": "popt-1.19-10.fc44.x86_64.rpm",
+      "size": 68537,
+      "sha256": "95d460bfdc12f762ead084ae00f1686ae8bb22ebeed86c097db8a80dd3cf270d",
+      "nevra": "popt-1.19-10.fc44.x86_64",
+      "source_rpm": "popt-1.19-10.fc44.src.rpm"
+    },
+    {
+      "file": "procps-ng-4.0.6-1.fc44.x86_64.rpm",
+      "size": 408466,
+      "sha256": "72336f2e3930ffb779fe205b461bcf5d0debb38bf31d1ee40ec85f27da647017",
+      "nevra": "procps-ng-4.0.6-1.fc44.x86_64",
+      "source_rpm": "procps-ng-4.0.6-1.fc44.src.rpm"
+    },
+    {
+      "file": "psmisc-23.7-7.fc44.x86_64.rpm",
+      "size": 328883,
+      "sha256": "aa9bf1e4324bb7f35a9b7700831e613bb65c5c8b7b78565f21111a0eb3ca2515",
+      "nevra": "psmisc-23.7-7.fc44.x86_64",
+      "source_rpm": "psmisc-23.7-7.fc44.src.rpm"
+    },
+    {
+      "file": "publicsuffix-list-dafsa-20260116-1.fc44.noarch.rpm",
+      "size": 61722,
+      "sha256": "90884464488a98f478d93c76b46e48400de7b2fdb0188ec61dc614def78c1f8b",
+      "nevra": "publicsuffix-list-dafsa-20260116-1.fc44.noarch",
+      "source_rpm": "publicsuffix-list-20260116-1.fc44.src.rpm"
+    },
+    {
+      "file": "python-pip-wheel-26.0.1-3.fc44.noarch.rpm",
+      "size": 1205378,
+      "sha256": "e9a4e974a23e196584716000c0d46a5462c14fd08c4038d2ee46c9b3bc5ac78f",
+      "nevra": "python-pip-wheel-26.0.1-3.fc44.noarch",
+      "source_rpm": "python-pip-26.0.1-3.fc44.src.rpm"
+    },
+    {
+      "file": "python3-3.14.7-1.fc44.x86_64.rpm",
+      "size": 29725,
+      "sha256": "3cd7dd81a6a500363663e12f84bb4613508a702bddcf60e06aa7045c2b65dbbc",
+      "nevra": "python3-3.14.7-1.fc44.x86_64",
+      "source_rpm": "python3.14-3.14.7-1.fc44.src.rpm"
+    },
+    {
+      "file": "python3-libs-3.14.7-1.fc44.x86_64.rpm",
+      "size": 10636540,
+      "sha256": "cd05a17cb745e4603cc92631d369374177e090a5d750b7e5f0bbeb91e68cc52e",
+      "nevra": "python3-libs-3.14.7-1.fc44.x86_64",
+      "source_rpm": "python3.14-3.14.7-1.fc44.src.rpm"
+    },
+    {
+      "file": "readline-8.3-4.fc44.x86_64.rpm",
+      "size": 235274,
+      "sha256": "d1f99a29cb7d03781bdf69ae8dcc7aebe7fe45205a36f3756bc67bbe26609608",
+      "nevra": "readline-8.3-4.fc44.x86_64",
+      "source_rpm": "readline-8.3-4.fc44.src.rpm"
+    },
+    {
+      "file": "realtek-firmware-20260916-1.fc44.noarch.rpm",
+      "size": 6867785,
+      "sha256": "66732a153bb21bec7a985a604a15ad11b8571815cc95012450b8b3c4b4f17358",
+      "nevra": "realtek-firmware-20260916-1.fc44.noarch",
+      "source_rpm": "linux-firmware-20260916-1.fc44.src.rpm"
+    },
+    {
+      "file": "sed-4.9-7.fc44.x86_64.rpm",
+      "size": 326830,
+      "sha256": "f1cf741fb40f3a911f32ad0161c689c4b9811a604599fc41f33c867c775cd4d1",
+      "nevra": "sed-4.9-7.fc44.x86_64",
+      "source_rpm": "sed-4.9-7.fc44.src.rpm"
+    },
+    {
+      "file": "setup-2.15.0-28.fc44.noarch.rpm",
+      "size": 160947,
+      "sha256": "55d58325996df10b4be2f1a9b963dbec3cea3099e43f9f4295eea6e8adfaf7b8",
+      "nevra": "setup-2.15.0-28.fc44.noarch",
+      "source_rpm": "setup-2.15.0-28.fc44.src.rpm"
+    },
+    {
+      "file": "shadow-utils-4.19.0-7.fc44.x86_64.rpm",
+      "size": 1361457,
+      "sha256": "e2a9f1c6f738acd21d59436373067479f3c4df1bd3f56fdea89a132694f71d65",
+      "nevra": "shadow-utils-2:4.19.0-7.fc44.x86_64",
+      "source_rpm": "shadow-utils-4.19.0-7.fc44.src.rpm"
+    },
+    {
+      "file": "sqlite-libs-3.51.2-2.fc44.x86_64.rpm",
+      "size": 815700,
+      "sha256": "c1c6c6cb5258e361068379c9eeef6897e256b3d99a8d65cbb9c3cff29d9bf775",
+      "nevra": "sqlite-libs-3.51.2-2.fc44.x86_64",
+      "source_rpm": "sqlite-3.51.2-2.fc44.src.rpm"
+    },
+    {
+      "file": "systemd-259.9-1.fc44.x86_64.rpm",
+      "size": 4488185,
+      "sha256": "e5ebedb5c7b0893ec884cf8f187b39c6937d1b753c888f8b5f30761217400c88",
+      "nevra": "systemd-259.9-1.fc44.x86_64",
+      "source_rpm": "systemd-259.9-1.fc44.src.rpm"
+    },
+    {
+      "file": "systemd-libs-259.9-1.fc44.x86_64.rpm",
+      "size": 889602,
+      "sha256": "c95149e789f24bc4c840fd2446a95adab661ea93b0f106ea9496b97eccd2ca55",
+      "nevra": "systemd-libs-259.9-1.fc44.x86_64",
+      "source_rpm": "systemd-259.9-1.fc44.src.rpm"
+    },
+    {
+      "file": "systemd-shared-259.9-1.fc44.x86_64.rpm",
+      "size": 2107838,
+      "sha256": "5164dd19e6330fcac0158b75ecc9678bbef8e7f47d8966ee42904542fb54c64f",
+      "nevra": "systemd-shared-259.9-1.fc44.x86_64",
+      "source_rpm": "systemd-259.9-1.fc44.src.rpm"
+    },
+    {
+      "file": "systemd-sysusers-259.9-1.fc44.x86_64.rpm",
+      "size": 50563,
+      "sha256": "114d9939037f8bdd1e62fd9c42d11dcb56ab53e413f2ea487fa86b958a096ed1",
+      "nevra": "systemd-sysusers-259.9-1.fc44.x86_64",
+      "source_rpm": "systemd-259.9-1.fc44.src.rpm"
+    },
+    {
+      "file": "systemd-udev-259.9-1.fc44.x86_64.rpm",
+      "size": 2786187,
+      "sha256": "ccd4e09a7ccc249bcfc56928b28943d2c4ef02f5cc22a8524f504c1e61157e79",
+      "nevra": "systemd-udev-259.9-1.fc44.x86_64",
+      "source_rpm": "systemd-259.9-1.fc44.src.rpm"
+    },
+    {
+      "file": "tar-1.35-9.fc44.x86_64.rpm",
+      "size": 890873,
+      "sha256": "d1d18fd2dcac33b12bc6c02d9bdf4472cc8abb951a392c57507c53aee4da3d28",
+      "nevra": "tar-2:1.35-9.fc44.x86_64",
+      "source_rpm": "tar-1.35-9.fc44.src.rpm"
+    },
+    {
+      "file": "tzdata-2026c-2.fc44.noarch.rpm",
+      "size": 729012,
+      "sha256": "ba94cb4a2601ee913801ceee8213614563c2dc7277e941431892e73bc9176ce9",
+      "nevra": "tzdata-2026c-2.fc44.noarch",
+      "source_rpm": "tzdata-2026c-2.fc44.src.rpm"
+    },
+    {
+      "file": "usbutils-019-2.fc44.x86_64.rpm",
+      "size": 117966,
+      "sha256": "b50b8153ac50ec8f245d49e0d101308acb3b0315242b35a9603d4a3dbeab49d1",
+      "nevra": "usbutils-019-2.fc44.x86_64",
+      "source_rpm": "usbutils-019-2.fc44.src.rpm"
+    },
+    {
+      "file": "util-linux-2.41.5-1.fc44.x86_64.rpm",
+      "size": 1262928,
+      "sha256": "b02ace204e78425e41c9abb33fd3f3f91794f42a13aac28310dae6fb02cc39e1",
+      "nevra": "util-linux-2.41.5-1.fc44.x86_64",
+      "source_rpm": "util-linux-2.41.5-1.fc44.src.rpm"
+    },
+    {
+      "file": "util-linux-core-2.41.5-1.fc44.x86_64.rpm",
+      "size": 571516,
+      "sha256": "a3e4e4994216ced856b71153b9311135c5cde9d00b66c0f61a492916a51f5f7d",
+      "nevra": "util-linux-core-2.41.5-1.fc44.x86_64",
+      "source_rpm": "util-linux-2.41.5-1.fc44.src.rpm"
+    },
+    {
+      "file": "wireless-regdb-2026.09.03-1.fc44.noarch.rpm",
+      "size": 16884,
+      "sha256": "79f4c2e327cf492082475dd8d0ad7e1a0cc735ff42a1340e8323c73e9a0ce134",
+      "nevra": "wireless-regdb-2026.09.03-1.fc44.noarch",
+      "source_rpm": "wireless-regdb-2026.09.03-1.fc44.src.rpm"
+    },
+    {
+      "file": "wpa_supplicant-2.11-9.fc44.x86_64.rpm",
+      "size": 1873356,
+      "sha256": "d96282350b8a1ee90c9cf4d0d4e62902f9595518fe2b75822b6cf11c7b800a30",
+      "nevra": "wpa_supplicant-1:2.11-9.fc44.x86_64",
+      "source_rpm": "wpa_supplicant-2.11-9.fc44.src.rpm"
+    },
+    {
+      "file": "xz-libs-5.8.2-2.fc44.x86_64.rpm",
+      "size": 119631,
+      "sha256": "dfe774d950f79fd04deb36c3ff3863c6b8072a41ba578de1c20d33b8e2c2aa45",
+      "nevra": "xz-libs-1:5.8.2-2.fc44.x86_64",
+      "source_rpm": "xz-5.8.2-2.fc44.src.rpm"
+    },
+    {
+      "file": "zlib-ng-compat-2.3.3-3.fc44.x86_64.rpm",
+      "size": 93304,
+      "sha256": "53ee3cd7082b1a34e4901f13079b1840648113c809effb5b78e7725235a7d939",
+      "nevra": "zlib-ng-compat-2.3.3-3.fc44.x86_64",
+      "source_rpm": "zlib-ng-2.3.3-3.fc44.src.rpm"
+    }
+  ]
+}
