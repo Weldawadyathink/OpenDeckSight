@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "date": "2026-10-04",
+  "scope": "anonymous physical USB-lab fixed-refresh control; kernel events, not optical scanout measurement",
+  "kernel": "7.2.3-ogc3.1.fc44.x86_64",
+  "source_sha256": "3e8c9e3498eef20d192627c529aa30e6d564a34f4432ed3e3213d03620058c56",
+  "edid_sha256": "53c47cbd31b785b332a890d5074b46ac4efe88d96cc210b041ee07773a4dfe48",
+  "fixed_mode": {
+    "clock_hz": 143180000,
+    "htotal": 1220,
+    "vtotal": 1956,
+    "active_width": 1080,
+    "active_height": 1920
+  },
+  "completed_flips": 240,
+  "restore_framebuffer_and_mode_verified": true,
+  "new_filtered_gpu_log_messages": 0,
+  "phases": {
+    "regular_submissions": {
+      "interval_count": 111,
+      "interval_us": {
+        "minimum": 16666.0,
+        "median": 16667.0,
+        "maximum": 16667.0
+      },
+      "vblank_step_counts": {
+        "1": 111
+      }
+    },
+    "alternating_short_late_submissions": {
+      "interval_count": 119,
+      "interval_us": {
+        "minimum": 16666.0,
+        "median": 33333.0,
+        "maximum": 33334.0
+      },
+      "vblank_step_counts": {
+        "2": 60,
+        "1": 59
+      }
+    }
+  },
+  "limits": [
+    "No variable-refresh request or timing-range change",
+    "No optical or DSI measurement",
+    "Successful restore is KMS state verification, not a human visual assessment"
+  ]
+}

@@ -24,6 +24,14 @@ These are advertised maxima, not measured negotiated link settings. Their
 difference reinforces why a static table is not a complete description of live
 bridge initialization; the responsible override/default path remains unknown.
 
+A subsequent physical USB-baseline boot on 2026-10-04 returned the base block
+`120a8201010001000202040000000000`, unchanged on a repeat read. Its maximum
+link-rate code is `0x0a` and lane count is two, matching that EC setup table.
+The MSA-ignore bit and extended-capability flag remain clear. The difference
+between captures means the advertised maxima must not be treated as immutable
+silicon limits. The responsible initialization/reset/configuration difference
+has not been isolated.
+
 This does **not** show that the bridge has been sent a VRR stream, that it
 rejected one, or that its silicon cannot pass one. It only establishes its
 current capability advertisement. The assumed ANX7580 identity comes from
@@ -52,6 +60,11 @@ capabilities; it would not establish that those capabilities were incorrect.
 No such patch has been built or booted. The inspected upstream v6.17 AMD
 debugfs source has no `vrr`/`freesync` override entry; this is not an exhaustive
 claim about downstream kernels or other interfaces.
+
+The [physical fixed-refresh control](vrr-fixed-refresh-control.md) now verifies
+native-mode presentation and page-flip event collection in the USB environment.
+Its late submissions remain quantized to one or two 60 Hz periods, as expected.
+This removes a presentation-tool prerequisite without testing variable timing.
 
 The [2026-10-04 offline source tests](vrr-kernel-research.md) found a second
 minimum-range check in AMD's timing builder, beyond discovery. A 59–60 Hz

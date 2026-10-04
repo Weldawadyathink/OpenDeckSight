@@ -4,7 +4,9 @@ Target platform: LCD Steam Deck (Valve Jupiter) with a DeckSight display.
 The findings below summarize a read-only compatibility check on Bazzite.
 
 **Safety requirement:** anything potentially dangerous to hardware or software
-must receive human confirmation first. No runtime write tests are authorized.
+must receive human confirmation first. The read-only observations below are
+separate from the controlled [disposable USB tests](usb-lab.md) and
+[native fixed-refresh control](vrr-fixed-refresh-control.md).
 
 ## Read-only compatibility findings
 
@@ -32,7 +34,7 @@ transient settings.
 
 ## Information needed next
 
-Runtime write tests remain deferred until explicit human approval. Deeper
+Brightness/mailbox writes remain deferred until explicit human approval. Deeper
 offline firmware reconstruction can continue without changing a device.
 Public panel/controller identification or programming documentation would help
 explain the remaining vendor-specific initialization commands.

@@ -20,6 +20,7 @@ is required for anything potentially dangerous to hardware or software.
 | [Offline VRR kernel tests](vrr-kernel-research.md) | Candidate OGC source, independent range gates, late-frame fallback and quantization |
 | [Optical VRR measurement](vrr-optical-measurement.md) | Camera versus photodiode, microcontroller capture design and end-to-end evidence |
 | [Disposable USB lab](usb-lab.md) | RAM-root image builder, Wi-Fi, passwordless SSH, remote updates and recovery boot |
+| [Fixed-refresh control](vrr-fixed-refresh-control.md) | Physical native-mode page flips, timing guards and fixed-cadence control results |
 | [Provenance](provenance.md) | Sources, tool versions, reproduction boundaries |
 | [Reproduction](reproduce.md) | Download, inspection, comparison and test commands |
 | [Artifact manifest](../research/artifacts.json) | Download URLs and SHA-256 digests |
