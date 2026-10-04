@@ -1,0 +1,32 @@
+{
+  "output": "artifacts/r04-semantic-reconstruction.fd",
+  "sha256": "4c0b33f4d48b9557337d690d20014941855acd39a1cfb7e3e46d04b1d12403ea",
+  "size": 17778952,
+  "biosimg_sha256": "5ef3e6e8ddf84fb36c6368156ef67adfd0a92ad362a460fc264c748d653b3549",
+  "signature_mode": "explicit reuse of three existing historical r04 signatures; no new signing key",
+  "signature_resources": [
+    {
+      "name": "bioscer.sig",
+      "size": 256,
+      "sha256": "9939dcfa18573e43afccf34d88e1ab6461af95aeb787315f653c5698c0f8490d"
+    },
+    {
+      "name": "driver.p7b",
+      "size": 1371,
+      "sha256": "b60aea2f5718bff14e6a1c2de317a0237aa751a33d722bf89f6cd72ce28d7952"
+    },
+    {
+      "name": "outer.p7b",
+      "size": 1371,
+      "sha256": "3f6afb6959e803ff13834a252306bb5067b575194301fe6ec7928a1833315382"
+    }
+  ],
+  "status": "byte-identical historical r04 .fd; vendor-command semantics and hardware validation remain incomplete",
+  "engine_sha256": "157c0052dbaee81c4a4b8bfd9f7ffdb47ee73ef0cf4a9ec1c14103dcf55a794a",
+  "engine_log": "parseBios: one of volumes inside overlaps the end of data\nparseBios: one of volumes inside overlaps the end of data\nparseVolume: unknown file system FFF12B8D-7696-4C8B-A985-2747075B4F50\nparseBios: unaligned revision 2 volume\nparseBios: one of volumes inside overlaps the end of data\nparseBios: one of volumes inside overlaps the end of data\nparseVolume: unknown file system FFF12B8D-7696-4C8B-A985-2747075B4F50\nparseBios: unaligned revision 2 volume\nFile replaced\n",
+  "comparison": {
+    "reference": "pinned DeckSight r04 .fd",
+    "method": "cmp plus SHA-256",
+    "all_bytes_identical": true
+  }
+}

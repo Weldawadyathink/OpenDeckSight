@@ -48,6 +48,10 @@
    stopping before the bus routine; trace delay and selector paths separately.
    Compare prepared buffers with the semantic table encoder. No EC code is
    executed on the device, and no peripheral behavior is simulated as fact.
+9. Statically inspect the packaged updater's BIOSIMG extraction routine and
+   distinguish the two IFLASH extent conventions. Rebuild the container from
+   original Valve wrapper code and generated metadata, explicitly reusing the
+   three r04 signature resources; compare the entire `.fd` and reverify signatures.
 
 Sources have been inspected by the same implementer. This is transparent
 reverse engineering, **not a claim of a legally isolated clean-room process**.

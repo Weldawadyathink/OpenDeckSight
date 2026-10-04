@@ -35,11 +35,15 @@ Whole output SHA-256, identical to r04 BIOSIMG:
 This accounts for every changed BIOSIMG byte structurally. It does **not** mean
 every vendor-specific panel command is understood; see [panel-init.md](panel-init.md).
 
-## Not yet reconstructed: signed `.fd` container
+## Verified: entire signed `.fd`, with explicit historical signature reuse
 
 The `.fd` also includes unchanged executable code, nested IFLASH records,
 header/extent/checksum metadata, a BIOSCER signature, and two PE signatures.
-All three cryptographic layers have now been checked offline:
+The container is now reconstructed structurally from the Valve wrapper plus
+generated records and metadata. Its complete 17,778,952 bytes match r04,
+SHA-256 `4c0b33f4d48b9557337d690d20014941855acd39a1cfb7e3e46d04b1d12403ea`.
+The source includes no binary-diff overlay or target-header correction bytes.
+All three cryptographic layers have been checked offline on the rebuilt output:
 
 - `BIOSCER` is a 256-byte RSA PKCS#1 v1.5 signature. Recovering its DigestInfo
   with the included QA public key gives SHA-256 of the complete r04 BIOSIMG.
@@ -53,11 +57,12 @@ as an anchor. It establishes signature mathematics and matching content, **not
 Valve trust or the firmware updater's acceptance policy**. No signing timestamp
 is present. The QA private key has not been provided or recovered.
 
-A faithfully reconstructed identical input could reuse its existing valid
-signatures, but that would be signature reuse, not an open signer for new
-firmware. The project has not implemented that as a shortcut. IFLASH extent
-fields and nested PE repacking must be explained before claiming a full `.fd`
-reconstruction. Unknown header bytes will not be patched merely to match hashes.
+`build-fd` explicitly requires three existing release signature resources.
+The IFLASH extent conventions, nested PE repacking, certificate wrappers and
+checksums are explained and regenerated in
+[container-reconstruction.md](container-reconstruction.md). This is historical
+signature reuse, not an open signer for new firmware. The target's firmware,
+wrapper code and metadata are not imported as replacement regions.
 
 ## Acceptance criteria remaining
 
@@ -66,8 +71,8 @@ reconstruction. Unknown header bytes will not be patched merely to match hashes.
 - Identify physical EC-copy selection. The table loader, byte ordering,
   display-selection branch and delay arithmetic are now traced offline in
   [ec-interpreter.md](ec-interpreter.md); live activation remains unverified.
-- Explain and regenerate nested IFLASH/PE metadata, including signatures or an
-  explicit, verified signature-reuse boundary for exact historical reproduction.
+- Recover or replace the signing process for future changed payloads; exact
+  historical reconstruction now has an explicit, verified signature-reuse boundary.
 - Test functionality only after the owner approves concrete device operations.
 
 Exact historical reproduction and the ability to sign arbitrary future builds

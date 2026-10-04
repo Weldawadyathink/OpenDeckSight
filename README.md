@@ -3,9 +3,10 @@
 Open implementation and reproducible reverse engineering of the software needed
 for a DeckSight replacement display in an LCD Steam Deck.
 
-**Status: the complete 16 MiB r04 BIOSIMG now reproduces byte-for-byte** from
-Valve F7A0133 using generated EC changes, a version-string update and a structural
-UEFI logo replacement. The signed `.fd` wrapper is not yet rebuilt, and several
+**Status: the complete r04 `.fd` now reproduces byte-for-byte** from Valve
+F7A0133 using generated EC changes, a version-string update, structural UEFI
+logo replacement and regenerated container metadata. This explicitly reuses
+three existing release signatures; it does not sign new firmware. Several
 vendor-specific panel command meanings remain unresolved. A matching hash is
 not being presented as complete reverse engineering. See the
 [full reconstruction record](docs/full-reconstruction.md).
@@ -21,6 +22,7 @@ require explicit human confirmation.
 - [BIOS changes and exact offsets](docs/bios.md)
 - [Decoded panel initialization and unresolved semantics](docs/panel-init.md)
 - [EC instruction traces and delay-counter findings](docs/ec-interpreter.md)
+- [Container reconstruction and explicit signature reuse](docs/container-reconstruction.md)
 - [Brightness protocol](docs/brightness.md)
 - [Artifact provenance](research/artifacts.json)
 - [Hardware validation plan](docs/hardware-validation.md)
@@ -61,12 +63,16 @@ process. This is implemented but **has not been hardware tested**. See the
 
 `build-ec` accepts only the exact recorded stock BIOSIMG hash. Its output retains
 the stock UEFI modules and logo and reproduces the released EC changes, including
-the unexplained second-bank byte-order anomaly. It is an **unsigned research
+the documented second-bank byte-order anomaly. It is an **unsigned research
 image**, not an installable `.fd` release. There is no flashing command.
 
 `build-biosimg` additionally updates the version strings and rebuilds the UEFI
 splash resource. It verifies that the complete output matches r04's BIOSIMG.
 The resource extraction and build commands are in [reproduce.md](docs/reproduce.md).
+
+`build-fd` runs that reconstruction and repacks the complete historical release,
+requiring `--reuse-release-signatures` explicitly. The resulting file matches
+all 17,778,952 bytes of r04. It is not a signer for arbitrary future builds.
 
 Downloaded firmware, extracted modules and local analysis tools are ignored by
 Git. The repository contains implementation source, measured interface data,

@@ -12,6 +12,7 @@ import tempfile
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from opendecksight.firmware import chunks
+from opendecksight.container import align, der_sequence, pe_checksum
 
 
 def inspect_pe(data):
@@ -41,7 +42,12 @@ def inspect_pe(data):
         content = bounded(offset, size)
         sections.append({"name": header[:8].rstrip(b"\0").decode("ascii", errors="replace"),
                          "offset": offset, "size": size, "sha256": hashlib.sha256(content).hexdigest()})
-    result = {"sections": sections, "signature_validation": "NOT PERFORMED"}
+    checksum = struct.unpack("<I", bounded(optional + 64, 4))[0]
+    computed = pe_checksum(data, optional + 64)
+    result = {"sections": sections, "signature_validation": "NOT PERFORMED",
+              "pe_checksum": {"stored": checksum, "computed": computed, "valid": checksum == computed},
+              "size_of_image": struct.unpack("<I", bounded(optional + 56, 4))[0],
+              "file_alignment": struct.unpack("<I", bounded(optional + 36, 4))[0]}
     offset, size = struct.unpack("<II", bounded(optional + dir_relative + 32, 8))
     if size:
         certificate = bounded(offset, size)
@@ -50,7 +56,7 @@ def inspect_pe(data):
         length, revision, kind = struct.unpack_from("<IHH", certificate)
         if length < 8 or length > size or kind != 2:
             raise ValueError("invalid/unsupported WIN_CERTIFICATE")
-        der = certificate[8:length]
+        der = der_sequence(certificate[8:length])
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "certificate.der"
             path.write_bytes(der)
@@ -67,8 +73,15 @@ def main():
     args = parser.parse_args()
     try:
         data = args.container.read_bytes()
-        result = {"sha256": hashlib.sha256(data).hexdigest(), "outer": inspect_pe(data)}
+        result = {"sha256": hashlib.sha256(data).hexdigest(), "outer": inspect_pe(data), "iflash_records": []}
         for chunk in chunks(data):
+            slot = align(24 + len(chunk.data), 32)
+            convention = ("excludes 24-byte header" if chunk.declared_size == slot - 24 else
+                          "includes 24-byte header" if chunk.declared_size == slot else "unclassified")
+            result["iflash_records"].append({"name": chunk.name, "marker_offset": chunk.header_offset + 8,
+                                            "payload_offset": chunk.payload_offset, "payload_size": len(chunk.data),
+                                            "declared_size": chunk.declared_size, "aligned_slot_size": slot,
+                                            "padding_size": slot - 24 - len(chunk.data), "extent_convention": convention})
             if chunk.name == "DRV_IMG":
                 result["embedded_driver"] = inspect_pe(chunk.data)
         print(json.dumps(result, indent=2))

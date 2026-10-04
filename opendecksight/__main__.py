@@ -34,6 +34,13 @@ def main(argv=None):
     full.add_argument("output", type=Path)
     full.add_argument("--splash", required=True, type=Path)
     full.add_argument("--uefireplace", required=True, type=Path)
+    signed = commands.add_parser("build-fd", help="reconstruct historical r04 .fd by explicitly reusing its signatures")
+    signed.add_argument("stock", type=Path)
+    signed.add_argument("output", type=Path)
+    signed.add_argument("--splash", required=True, type=Path)
+    signed.add_argument("--uefireplace", required=True, type=Path)
+    signed.add_argument("--reuse-release-signatures", required=True, type=Path,
+                        help="directory with the three extracted r04 signatures; this does not sign new firmware")
     bright = commands.add_parser("brightness", help="preview brightness protocol; writes require --apply-mmio")
     bright.add_argument("--raw", type=int)
     bright.add_argument("--max", dest="maximum", type=int)
@@ -92,6 +99,26 @@ def main(argv=None):
         elif args.command == "brightness":
             from .brightness import run
             run(args)
+        elif args.command == "build-fd":
+            from .build import build_biosimg
+            from .container import SIGNATURE_HASHES, build_container
+            if args.output.suffix.lower() != ".fd":
+                raise ValueError("historical container output must use .fd")
+            if args.output.exists():
+                raise ValueError("output already exists")
+            stock = args.stock.read_bytes()
+            signatures = {name: (args.reuse_release_signatures / name).read_bytes() for name in SIGNATURE_HASHES}
+            biosimg, report = build_biosimg(stock, args.splash.read_bytes(), args.uefireplace)
+            data = build_container(stock, biosimg, signatures)
+            with args.output.open("xb") as output:
+                output.write(data)
+            emit({"output": str(args.output), "sha256": firmware.sha256(data), "size": len(data),
+                  "biosimg_sha256": firmware.sha256(biosimg),
+                  "signature_mode": "explicit reuse of three existing historical r04 signatures; no new signing key",
+                  "signature_resources": [{"name": n, "size": len(b), "sha256": firmware.sha256(b)}
+                                          for n, b in signatures.items()],
+                  "status": "byte-identical historical r04 .fd; vendor-command semantics and hardware validation remain incomplete",
+                  **report})
         elif args.command == "panel-init":
             from .panel import inspect
             emit(inspect(args.image.read_bytes(), args.bank))

@@ -14,7 +14,8 @@ python3 tools/inspect_container.py artifacts/extracted/r04/bios/F7A0133_DeckSigh
 ```
 
 The fetcher verifies exact size and SHA-256 from `research/artifacts.json`, and
-extracts only the explicitly named BIOS and brightness data files. It refuses
+extracts only the explicitly named BIOS, brightness and updater files as data.
+The updater is for static disassembly only and is never executed. It refuses
 to replace an existing mismatched file. It needs a `tar` with zstd support for
 the Valve package. The built-in macOS `tar` worked on the research machine.
 `inspect_container.py` also needs `openssl`; it extracts certificate metadata,
@@ -50,7 +51,8 @@ not a proof about every possible embedded executable.
 ## Build the complete r04 BIOSIMG
 
 After the UEFI extraction above, extract the identified artwork and use the
-hash-pinned reconstruction engine (the packaged 0.28.0 macOS tool is x86-64):
+recorded reconstruction engine (the packaged 0.28.0 macOS tool is x86-64;
+the builder verifies the complete output hash):
 
 ```sh
 python3 tools/fetch_artifacts.py --include-tools
@@ -65,6 +67,23 @@ the reference BIOSIMG is used by the builder. The output matches all 16 MiB of
 r04, but is not a signed `.fd` updater package. See
 [full reconstruction](full-reconstruction.md) for semantic limitations.
 
+## Build the complete historical r04 `.fd`
+
+Extract only the three identified signature resources. Then build from Valve's
+`.fd`, the artwork and those explicit resources:
+
+```sh
+python3 tools/extract_signatures.py artifacts/extracted/r04/bios/F7A0133_DeckSight_signed_r04.fd artifacts/r04-signatures
+python3 -m opendecksight build-fd artifacts/extracted/stock/usr/share/jupiter_bios/F7A0133_sign.fd artifacts/r04-rebuilt.fd --splash artifacts/r04-splash.png --uefireplace .tools/uefireplace/UEFIReplace --reuse-release-signatures artifacts/r04-signatures
+cmp artifacts/r04-rebuilt.fd artifacts/extracted/r04/bios/F7A0133_DeckSight_signed_r04.fd
+```
+
+The extraction directory and output must not already exist. The builder reads
+no target firmware or executable regions; it regenerates the BIOSIMG and
+container metadata and checks the complete final hash. This operation reuses
+valid historical signatures rather than signing new content. See
+[container-reconstruction.md](container-reconstruction.md) for field semantics.
+
 ## Verify cryptographic layers
 
 Build the pinned osslsigncode source locally, then check the existing release:
@@ -74,6 +93,7 @@ tar -xzf artifacts/downloads/osslsigncode-2.14.tar.gz -C .tools
 cmake -S .tools/osslsigncode-2.14 -B .tools/osslsigncode-build -DCMAKE_BUILD_TYPE=Release
 cmake --build .tools/osslsigncode-build
 python3 tools/verify_signatures.py artifacts/extracted/r04/bios/F7A0133_DeckSight_signed_r04.fd --osslsigncode .tools/osslsigncode-build/osslsigncode
+python3 tools/verify_signatures.py artifacts/r04-rebuilt.fd --osslsigncode .tools/osslsigncode-build/osslsigncode
 ```
 
 The research host additionally set `-DOPENSSL_ROOT_DIR=/opt/homebrew/opt/openssl@3`

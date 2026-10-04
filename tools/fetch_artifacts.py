@@ -23,6 +23,7 @@ EXTRACTIONS = {
     "DeckSight-r03.tar.gz": (("bios/F7A0133_DeckSight_signed_r03.fd", "r03/bios/F7A0133_DeckSight_signed_r03.fd"),),
     "jupiter-hw-support-20260930.1-1-any.pkg.tar.zst": (
         ("usr/share/jupiter_bios/F7A0133_sign.fd", "stock/usr/share/jupiter_bios/F7A0133_sign.fd"),
+        ("usr/share/jupiter_bios_updater/h2offt", "stock/usr/share/jupiter_bios_updater/h2offt"),
     ),
 }
 
@@ -79,7 +80,7 @@ def extract(archive, member, destination, expected):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--include-tools", action="store_true", help="also download pinned UEFIExtract ZIP; do not execute it")
+    parser.add_argument("--include-tools", action="store_true", help="also download pinned analysis tool archives; do not execute them")
     args = parser.parse_args()
     manifest = json.loads((ROOT / "research/artifacts.json").read_text())
     directory = ROOT / "artifacts/downloads"

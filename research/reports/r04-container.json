@@ -34,14 +34,73 @@
       }
     ],
     "signature_validation": "NOT PERFORMED",
+    "pe_checksum": {
+      "stored": 17781271,
+      "computed": 17781271,
+      "valid": true
+    },
+    "size_of_image": 17777568,
+    "file_alignment": 32,
     "certificate": {
       "offset": 17777568,
       "size": 1384,
       "revision": 512,
-      "pkcs7_sha256": "99dc44e865f788eb5dda3bc3df555b2c0d7632f20ec29d99550bf3770fc99fc7",
+      "pkcs7_sha256": "3f6afb6959e803ff13834a252306bb5067b575194301fe6ec7928a1833315382",
       "metadata": "subject=CN=QA Certificate.\nissuer=CN=QA Certificate."
     }
   },
+  "iflash_records": [
+    {
+      "name": "DRV_IMG",
+      "marker_offset": 87552,
+      "payload_offset": 87576,
+      "payload_size": 17689992,
+      "declared_size": 17689992,
+      "aligned_slot_size": 17690016,
+      "padding_size": 0,
+      "extent_convention": "excludes 24-byte header"
+    },
+    {
+      "name": "BIOSIMG",
+      "marker_offset": 953432,
+      "payload_offset": 953456,
+      "payload_size": 16777216,
+      "declared_size": 16777224,
+      "aligned_slot_size": 16777248,
+      "padding_size": 8,
+      "extent_convention": "excludes 24-byte header"
+    },
+    {
+      "name": "INI_IMG",
+      "marker_offset": 17730680,
+      "payload_offset": 17730704,
+      "payload_size": 45146,
+      "declared_size": 45160,
+      "aligned_slot_size": 45184,
+      "padding_size": 14,
+      "extent_convention": "excludes 24-byte header"
+    },
+    {
+      "name": "BIOSCER",
+      "marker_offset": 17775864,
+      "payload_offset": 17775888,
+      "payload_size": 256,
+      "declared_size": 264,
+      "aligned_slot_size": 288,
+      "padding_size": 8,
+      "extent_convention": "excludes 24-byte header"
+    },
+    {
+      "name": "BIOSCR2",
+      "marker_offset": 17776152,
+      "payload_offset": 17776176,
+      "payload_size": 0,
+      "declared_size": 8,
+      "aligned_slot_size": 32,
+      "padding_size": 8,
+      "extent_convention": "excludes 24-byte header"
+    }
+  ],
   "embedded_driver": {
     "sections": [
       {
@@ -76,11 +135,18 @@
       }
     ],
     "signature_validation": "NOT PERFORMED",
+    "pe_checksum": {
+      "stored": 17695125,
+      "computed": 17695125,
+      "valid": true
+    },
+    "size_of_image": 17688608,
+    "file_alignment": 32,
     "certificate": {
       "offset": 17688608,
       "size": 1384,
       "revision": 512,
-      "pkcs7_sha256": "abb31438cfa971e67a972182d8904504f3c04efc22bc9272ed844ce3c19fd6e4",
+      "pkcs7_sha256": "b60aea2f5718bff14e6a1c2de317a0237aa751a33d722bf89f6cd72ce28d7952",
       "metadata": "subject=CN=QA Certificate.\nissuer=CN=QA Certificate."
     }
   }

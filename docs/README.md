@@ -8,7 +8,8 @@ potentially dangerous to hardware or software.
 | Record | Contents |
 | --- | --- |
 | [BIOS](bios.md) | Stock/r03/r04 comparison, EC patch map, byte-order anomaly |
-| [Full reconstruction](full-reconstruction.md) | Whole BIOSIMG identity and remaining signed-container work |
+| [Full reconstruction](full-reconstruction.md) | Whole `.fd` identity and remaining semantic/signing requirements |
+| [Container reconstruction](container-reconstruction.md) | IFLASH/PE metadata and explicit historical signature reuse |
 | [Panel initialization](panel-init.md) | Decoded packets, known meanings and explicit unknowns |
 | [EC interpreter](ec-interpreter.md) | Instruction traces for table selection, bus buffers and delay counters |
 | [Brightness](brightness.md) | Recovered mailbox and panel protocol |
@@ -34,6 +35,7 @@ or successful offline reproduction as hardware validation.
 - `40f9b36`: open brightness implementation, protocol tests and read-only collector.
 - `3afcf54`: reproducible artifact tools, UEFI/container reports and upstream Lua profile.
 - `e9d94c9`: complete r04 BIOSIMG reproduction, packet decoding and cryptographic verification.
+- `d9a999d`: original EC instruction traces, forced selector and corrected delay-counter behavior.
 
 ## Remaining work
 

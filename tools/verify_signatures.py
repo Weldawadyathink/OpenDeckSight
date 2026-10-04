@@ -16,6 +16,7 @@ import tempfile
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from opendecksight.firmware import chunks, sha256
+from opendecksight.container import der_sequence
 
 
 def certificate(data):
@@ -37,7 +38,7 @@ def certificate(data):
     length, revision, kind = struct.unpack_from("<IHH", data, offset)
     if not 8 <= length <= size or kind != 2:
         raise ValueError("unsupported WIN_CERTIFICATE")
-    return data[offset + 8:offset + length]
+    return der_sequence(data[offset + 8:offset + length])
 
 
 def run(command):

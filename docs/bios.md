@@ -128,7 +128,9 @@ with r04 and match exactly. The stock logo, version and UEFI remain intact in
 and logo changes and matches the entire r04 BIOSIMG.
 
 This does not rebuild EC firmware from source: it applies documented changes to
-Valve's existing EC program. It does not create a signed `.fd`, replace the
-Insyde/AMD platform firmware, or establish bootability. The old 8051 interpreter,
-touch controller firmware and many panel-specific command meanings remain
-outside the reconstructed source.
+Valve's existing EC program. The additional `build-fd` operation now reconstructs
+the signed historical release with explicit reuse of its three signatures; see
+[container reconstruction](container-reconstruction.md). It does not sign new
+firmware, replace the Insyde/AMD platform firmware, or establish bootability.
+The old 8051 interpreter, touch controller firmware and many panel-specific
+command meanings remain outside the reconstructed source.

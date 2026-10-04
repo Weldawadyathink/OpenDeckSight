@@ -34,14 +34,73 @@
       }
     ],
     "signature_validation": "NOT PERFORMED",
+    "pe_checksum": {
+      "stored": 17839418,
+      "computed": 17839418,
+      "valid": true
+    },
+    "size_of_image": 17777536,
+    "file_alignment": 32,
     "certificate": {
       "offset": 17777536,
       "size": 1352,
       "revision": 512,
-      "pkcs7_sha256": "1a52060e8f49677436053c4529126c7f8b282ac3a04969e71edfba9ad159c246",
+      "pkcs7_sha256": "e0a49d555ed3169edaf592b65993b1dac3e0f9b788d3da0114f62b8e618b31c5",
       "metadata": "subject=CN=Jupiter\nissuer=CN=Jupiter"
     }
   },
+  "iflash_records": [
+    {
+      "name": "DRV_IMG",
+      "marker_offset": 87552,
+      "payload_offset": 87576,
+      "payload_size": 17689960,
+      "declared_size": 17689984,
+      "aligned_slot_size": 17689984,
+      "padding_size": 0,
+      "extent_convention": "includes 24-byte header"
+    },
+    {
+      "name": "BIOSIMG",
+      "marker_offset": 953432,
+      "payload_offset": 953456,
+      "payload_size": 16777216,
+      "declared_size": 16777248,
+      "aligned_slot_size": 16777248,
+      "padding_size": 8,
+      "extent_convention": "includes 24-byte header"
+    },
+    {
+      "name": "INI_IMG",
+      "marker_offset": 17730680,
+      "payload_offset": 17730704,
+      "payload_size": 45146,
+      "declared_size": 45184,
+      "aligned_slot_size": 45184,
+      "padding_size": 14,
+      "extent_convention": "includes 24-byte header"
+    },
+    {
+      "name": "BIOSCER",
+      "marker_offset": 17775864,
+      "payload_offset": 17775888,
+      "payload_size": 256,
+      "declared_size": 288,
+      "aligned_slot_size": 288,
+      "padding_size": 8,
+      "extent_convention": "includes 24-byte header"
+    },
+    {
+      "name": "BIOSCR2",
+      "marker_offset": 17776152,
+      "payload_offset": 17776176,
+      "payload_size": 0,
+      "declared_size": 32,
+      "aligned_slot_size": 32,
+      "padding_size": 8,
+      "extent_convention": "includes 24-byte header"
+    }
+  ],
   "embedded_driver": {
     "sections": [
       {
@@ -76,11 +135,18 @@
       }
     ],
     "signature_validation": "NOT PERFORMED",
+    "pe_checksum": {
+      "stored": 17712650,
+      "computed": 17712650,
+      "valid": true
+    },
+    "size_of_image": 17688608,
+    "file_alignment": 32,
     "certificate": {
       "offset": 17688608,
       "size": 1352,
       "revision": 512,
-      "pkcs7_sha256": "951594b4aa39a4daa1dc0cf67a92049e10a29087bdeb72325ffc188186a9630e",
+      "pkcs7_sha256": "35808ec6c3db9110f84690fc622f5b503b3a40e9d8cf2acb76947db2910e79dd",
       "metadata": "subject=CN=Jupiter\nissuer=CN=Jupiter"
     }
   }

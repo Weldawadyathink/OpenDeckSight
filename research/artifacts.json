@@ -81,6 +81,13 @@
       "path": "artifacts/extracted/r04/decksight-brightnessctrl/decksight-brightnessctrl",
       "size": 14600,
       "sha256": "c7e62509bb327a93630071c535051f5e8506d7020c4fb1b18cba429f102994d9"
+    },
+    {
+      "release": "stock",
+      "path": "artifacts/extracted/stock/usr/share/jupiter_bios_updater/h2offt",
+      "size": 1301523,
+      "sha256": "7295a98ec04fe3a73d4778d2add15ccef0ef685e34322fca725af6913d222447",
+      "use": "static disassembly only; never executed"
     }
   ],
   "identified_resources": [
@@ -90,6 +97,24 @@
       "section_type": "0x19 raw",
       "size": 71735,
       "sha256": "c6dc2f60bf6db651de288df56caeb3af8c57176faa2f4f27f6224cdce958b2b0"
+    },
+    {
+      "name": "r04 historical signature bioscer.sig",
+      "size": 256,
+      "sha256": "9939dcfa18573e43afccf34d88e1ab6461af95aeb787315f653c5698c0f8490d",
+      "use": "explicit signature reuse for identical historical reconstruction; no private key"
+    },
+    {
+      "name": "r04 historical signature driver.p7b",
+      "size": 1371,
+      "sha256": "b60aea2f5718bff14e6a1c2de317a0237aa751a33d722bf89f6cd72ce28d7952",
+      "use": "explicit signature reuse for identical historical reconstruction; no private key"
+    },
+    {
+      "name": "r04 historical signature outer.p7b",
+      "size": 1371,
+      "sha256": "3f6afb6959e803ff13834a252306bb5067b575194301fe6ec7928a1833315382",
+      "use": "explicit signature reuse for identical historical reconstruction; no private key"
     }
   ],
   "analysis_tools": [
