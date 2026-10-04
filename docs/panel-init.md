@@ -1,6 +1,6 @@
 # Panel initialization: decoded behavior and remaining unknowns
 
-The user's acceptance criterion is an explained reconstruction, not just a byte
+The project's acceptance criterion is an explained reconstruction, not just a byte
 match. This record deliberately distinguishes packet decoding from understanding
 what proprietary panel commands do.
 
@@ -53,9 +53,9 @@ remains unresolved. No live test of this anomaly is authorized or has occurred.
 
 ## What would close the remaining semantic gap
 
-The owner has no part number or programming documentation and does not want a
-teardown. Continue with public artifacts, static analysis and independently
+Controller identification and vendor programming documentation remain
+unavailable. Continue with public artifacts, static analysis and independently
 available controller documentation. The absence of a part number does not block
 the reconstruction, but the internal effects of the vendor commands remain
 unexplained. The program labels that distinction and the project does not claim
-the user's full acceptance criterion is met yet.
+the full acceptance criterion is met yet.

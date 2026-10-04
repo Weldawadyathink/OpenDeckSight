@@ -1,9 +1,8 @@
 # Research index
 
-Research date: 2026-10-03. Target hardware: owner's LCD Steam Deck, originally
-512 GB, upgraded SSD, running Bazzite. Read-only SSH access has been provided
-and the first inventory completed. Human confirmation is required for anything
-potentially dangerous to hardware or software.
+Target hardware: LCD Steam Deck with a DeckSight display. Anonymous read-only
+compatibility findings are recorded in the validation notes. Human confirmation
+is required for anything potentially dangerous to hardware or software.
 
 | Record | Contents |
 | --- | --- |
@@ -40,14 +39,15 @@ or successful offline reproduction as hardware validation.
 
 ## Remaining work
 
-- Runtime testing only after explicit human approval; read-only inventory is complete.
+- Runtime testing only after explicit human approval; read-only compatibility
+  observations are available.
 - Determine which EC bank is active and whether the reversed table is reachable.
 - Verify command meanings still marked opaque, mailbox arbitration and wake behavior.
 - Analyze firmware signature verification and produce a supported build/update path.
 - Locate touchscreen firmware artifacts/source and assess remaining closed dependencies.
 - Explain all modifications, not just reproduce bytes, before claiming equivalence
-  to the original developer's process. The owner does not want a teardown for
-  panel identification; continue from public artifacts and static analysis.
+  to the original developer's process. Continue panel identification from public
+  artifacts and static analysis.
 
 The project is not ready to replace firmware on a device. Offline reconstruction
 and source availability are established for the documented changes; full hardware

@@ -1,8 +1,8 @@
 # Signing, signer identity and installation
 
-For the byte-identical r04 `.fd` produced by `build-fd`, the owner does not need
-to sign anything again. It contains the release's original signatures over the
-same reconstructed content. A different BIOS payload is a separate case: its
+The byte-identical r04 `.fd` produced by `build-fd` needs no new signing step.
+It contains the release's original signatures over the same reconstructed
+content. A different BIOS payload is a separate case: its
 existing signatures would no longer match, and the accepted signing/update
 mechanism still needs investigation.
 
@@ -60,13 +60,13 @@ be analyzed separately; the presence of an embedded self-signed certificate
 does not mean arbitrary self-signed firmware will be accepted.
 
 The [public installer](https://github.com/ShadeTechnik/DeckSight-Public/blob/2baab5bb4366e419bfad68beda5910a8fd2e8e32/install.sh)
-passes its existing `.fd` to the system's `h2offt`. It has no owner-side signing
-step. Which signature layers and trust anchors are enforced in the owner's
-current configuration has not been established by a live test.
+passes its existing `.fd` to the system's `h2offt`. It has no end-user signing
+step. Enforcement of signature layers and trust anchors by the update path
+has not been established by a live test.
 
 ## Consequences for OpenDeckSight
 
-| Output | Owner needs a new signing step? |
+| Output | New signing step needed? |
 | --- | --- |
 | Original released r04 `.fd` | No; signatures are already included |
 | Byte-identical reconstructed r04 `.fd` | No; the original signatures still match |
@@ -75,9 +75,9 @@ current configuration has not been established by a live test.
 Given identical input bytes and the same update conditions, the original r04
 file and our reconstructed file are indistinguishable to signature checking.
 That establishes no additional signing obstacle for the reconstruction; it is
-not a promise that an untested flash will succeed on the present device.
+not a promise that an untested flash will succeed on a device.
 
-For new content, generating an owner's private/public key pair would make
+For new content, generating a private/public key pair would make
 signing mathematically possible, but would not automatically authorize that key
 to update the firmware. Determining an accepted method is the remaining work.
 No installer, updater, trust-store change or firmware write was performed to

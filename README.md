@@ -11,9 +11,9 @@ vendor-specific panel command meanings remain unresolved. A matching hash is
 not being presented as complete reverse engineering. See the
 [full reconstruction record](docs/full-reconstruction.md).
 
-The underlying Valve/Insyde/AMD firmware remains binary-only. The owner's Deck
-has been inspected read-only over SSH; no runtime brightness writes, service
-changes or firmware flashing have occurred. Potentially dangerous device actions
+The underlying Valve/Insyde/AMD firmware remains binary-only. Hardware evidence
+is limited to read-only compatibility observations; runtime brightness writes
+and firmware flashing remain untested. Potentially dangerous device actions
 require explicit human confirmation.
 
 ## Findings and evidence
@@ -50,7 +50,8 @@ python3 -m unittest discover -s tests -v
 python3 -m opendecksight brightness --raw 32768 --max 65535
 
 # Run these from a checkout on the Steam Deck, without sudo.
-python3 -m opendecksight collect deck-report.json
+mkdir -p artifacts
+python3 -m opendecksight collect artifacts/device-report.json
 python3 -m opendecksight brightness --watch
 ```
 
@@ -81,7 +82,7 @@ provenance and reports; it does not vendor the complete proprietary firmware.
 ## Scope
 
 Implement the DeckSight-specific software openly, explain every known firmware
-change, and validate the result on the owner's LCD Steam Deck running Bazzite.
+change, and validate the result on LCD Steam Deck hardware with a DeckSight display.
 Replacing all of the Steam Deck's proprietary platform and peripheral firmware
 would be a separate, much larger effort. Touchscreen firmware source and a public
 firmware payload have not been located in the supplied artifacts.

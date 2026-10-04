@@ -1,4 +1,7 @@
 artifacts/
+# Device reports from older examples that wrote to the repository root.
+/deck-report.json
+/device-report.json
 .tools/
 .venv/
 __pycache__/

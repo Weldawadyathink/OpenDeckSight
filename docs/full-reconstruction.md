@@ -2,7 +2,7 @@
 
 The target is a semantic patch program: starting with the Valve-provided BIOS
 binary, apply understood DeckSight modifications and reproduce the released
-image exactly. This is not permission to flash or modify the owner's device.
+image exactly. Flashing or modifying a device requires explicit human approval.
 
 ## Verified: entire 16 MiB BIOSIMG is byte-identical
 
@@ -73,7 +73,7 @@ wrapper code and metadata are not imported as replacement regions.
   [ec-interpreter.md](ec-interpreter.md); live activation remains unverified.
 - Recover or replace the signing process for future changed payloads; exact
   historical reconstruction now has an explicit, verified signature-reuse boundary.
-- Test functionality only after the owner approves concrete device operations.
+- Test functionality only after explicit human approval for concrete device operations.
 
 Exact historical reproduction and the ability to sign arbitrary future builds
 are separate capabilities. The latter needs an appropriate signing authority
