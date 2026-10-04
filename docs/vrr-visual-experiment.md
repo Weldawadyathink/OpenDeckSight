@@ -1,9 +1,60 @@
 # Bounded visual VRR experiment
 
 The diagnostic AMD driver, visual stimulus and USB update bundle were built on
-2026-10-04. The rebuilt driver has booted on physical hardware **with its override
-disabled**. Experimental VRR has not yet been enabled on the device. The ready
-bundle defaults to `amdgpu.ods_vrr_59_60=0`; installing it never starts a test.
+2026-10-04. **One approved physical A/B/A experiment completed: GPU event
+intervals varied during B and returned to fixed timing afterward. No visual
+anomalies were reported. Bridge/panel VRR remains unconfirmed.** The disabled
+baseline was restored by reboot and verified. The ready bundle defaults to
+`amdgpu.ods_vrr_59_60=0`; installing it never starts a test.
+
+## Physical experiment result
+
+The experiment used the exact prepared module and stimulus, matching r04 EDID
+and native mode, and the explicit boot opt-in. The driver exposed
+`vrr_capable = 1`. The sequence completed all 1,800 flips without timeout or
+stderr, then verified restoration of the prior framebuffer, native mode and
+VRR-off property.
+
+| Phase | Completed frames | Analyzed intervals | Reported period per vblank |
+| --- | --- | --- | --- |
+| A, fixed | 720 | 716 | 16.666–16.667 ms |
+| B, VRR requested | 720 | 716 | 16.674–16.948 ms |
+| A again, fixed | 360 | 356 | 16.666–16.667 ms |
+
+All analyzed fixed-phase periods were within 2 microseconds of native timing.
+All analyzed B periods were outside that tolerance and inside the candidate
+variable window with the same tolerance. B contained 713 single-vblank
+intervals and three two-vblank intervals; the latter are averages of two periods.
+The single-vblank intervals had 55 distinct values at the reported microsecond
+resolution, with a median of 16.675 ms. Most stayed near the fastest variable
+bound: this is evidence of changed source timing, not faithful tracking of
+every application target. No analyzed submission was over 500 microseconds late.
+
+The only two new kernel messages recorded calls to `set_drr` with totals
+1957/1989 and then 1956/1956. These are call-path observations, not register
+readback. The observer reported that B appeared just as smooth as A, with no
+tearing, flicker or other visual anomaly during the sequence. This qualitative
+observation cannot resolve timing differences over such a narrow range.
+
+DPCD `0x107` read **`00` before and after the animation**, as it had immediately
+after the experimental boot. The expected MSA-ignore bit was not reflected in
+those sampled reads. No AUX write/acknowledgement trace or read during B was
+collected, so the exact write behavior and receiver acceptance remain open.
+Do not infer that the bridge accepted the control request, nor that it is
+incapable of passing variable timing.
+
+After the run, a new boot into the disabled baseline verified the payload
+hashes, native mode, `vrr_capable = 0`, disabled override and control byte `00`.
+The next boot also selects the disabled baseline. Internal storage remained
+unbound and unmounted, with no swap.
+
+This removes the source-generation prerequisite far enough to proceed to
+optical measurement. The next decisive test is a synchronized photodiode capture
+of visible frame transitions against a controlled irregular submission sequence,
+with a fixed-refresh control. Instrumenting the standard AUX control path would
+also clarify the zero readback. This single short run establishes neither a
+safe operating range nor end-to-end VRR support.
+[Anonymous experiment report](../research/reports/vrr-visual-experiment.json)
 
 ## Driver boundary
 

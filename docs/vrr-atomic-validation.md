@@ -74,7 +74,8 @@ an inadequate success criterion.
 The subsequent [visual experiment checkpoint](vrr-visual-experiment.md) built the
 narrowly scoped driver change and stimulus, with discovery, independent range,
 timing-bound and fallback guards. Its disabled-override baseline has booted and
-run the native control. Sending unverified timings to hardware remains a separate
-reviewed experiment; neither development step required optical sensors.
-Optical measurements will then test whether the bridge and panel follow the
-source; no physical variable-refresh result exists yet.
+run the native control. A separately approved physical A/B/A experiment then
+produced variable GPU event intervals in its guarded window, with no reported
+visual anomalies, and restored the disabled baseline. Neither development nor
+this source-side observation required optical sensors. Optical measurements
+must still establish whether the bridge and panel follow the source.

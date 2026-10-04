@@ -1,0 +1,209 @@
+{
+  "schema": 1,
+  "date": "2026-10-04",
+  "scope": "One bounded physical fixed / VRR-requested / fixed experiment; source-event evidence and qualitative visual observation, without optical measurement",
+  "kernel_release": "7.2.3-ogc3.1.fc44.x86_64",
+  "source_commit": "151eb3adafae8820f349a4454c1f1e8d5fc991a4",
+  "patch_sha256": "7488a11b9000d5f67140a3c75decbf8378ac9d357d63ea86f656ec908294a804",
+  "driver_sha256": "2aea311b29f2ca164c450e383bab84eb83186a4190bf00129461876abd1b6d34",
+  "visual_binary_sha256": "9818ecbaec3e91e12fc8eb2399ef2585a2d7b8595c6071866a3a06b4dd007c10",
+  "private_evidence_sha256": {
+    "physical-experimental-boot.json": "a060b15d42e054ccad581f3fe24beb3c25c7a86a3034521c0c4314499ede1af9",
+    "physical-experiment-preflight.json": "61ec07e5fac9720bab49783c7e5dfe33e7ef63eee46aa6b6ddbb7013a0349b4b",
+    "physical-visual-experiment.json": "627dc6229564646033e0babbb83c8b54a21d500e9246223f238406ad0205bf52",
+    "physical-restored-boot.json": "2b13cc22e718096e68f99bc4baadc3414d63fdc6ffd9f8d72ca481c83cf9ea14",
+    "physical-restored-preflight.json": "0de4753ff3eb339c0978c0e197e56aabe133fb979a3f07bc50cbcff015fb5d80"
+  },
+  "experiment": {
+    "native_mode_verified": true,
+    "exact_r04_edid_verified": true,
+    "payload_hashes_verified": true,
+    "vrr_capable_with_override": 1,
+    "pixel_clock_khz": 143180,
+    "horizontal_total": 1220,
+    "fixed_vertical_total": 1956,
+    "variable_vertical_totals": [
+      1957,
+      1989
+    ],
+    "variable_window_hz": [
+      59.00485456898186,
+      59.969675900717895
+    ],
+    "run_count": 1,
+    "returncode": 0,
+    "timed_out": false,
+    "stderr": "",
+    "timing": {
+      "schema": 1,
+      "phases": {
+        "0": {
+          "requested_vrr": false,
+          "frames": 720,
+          "complete": true,
+          "vblank_step_counts": {
+            "1": 710,
+            "2": 6
+          },
+          "intervals_analyzed": 716,
+          "mean_vblank_period_us": 16666.54399441341,
+          "vblank_period_us_range": [
+            16666.0,
+            16667.0
+          ],
+          "within_2us_of_native_fraction": 1.0,
+          "inside_candidate_window_with_2us_tolerance_fraction": 0.0,
+          "submission_lateness_us_median": 0.201,
+          "submission_lateness_over_500us_count": 0
+        },
+        "1": {
+          "requested_vrr": true,
+          "frames": 720,
+          "complete": true,
+          "vblank_step_counts": {
+            "1": 713,
+            "2": 3
+          },
+          "intervals_analyzed": 716,
+          "mean_vblank_period_us": 16714.95530726257,
+          "vblank_period_us_range": [
+            16674.0,
+            16948.0
+          ],
+          "within_2us_of_native_fraction": 0.0,
+          "inside_candidate_window_with_2us_tolerance_fraction": 1.0,
+          "submission_lateness_us_median": 0.199,
+          "submission_lateness_over_500us_count": 0
+        },
+        "2": {
+          "requested_vrr": false,
+          "frames": 360,
+          "complete": true,
+          "vblank_step_counts": {
+            "1": 353,
+            "2": 3
+          },
+          "intervals_analyzed": 356,
+          "mean_vblank_period_us": 16666.54353932584,
+          "vblank_period_us_range": [
+            16666.0,
+            16667.0
+          ],
+          "within_2us_of_native_fraction": 1.0,
+          "inside_candidate_window_with_2us_tolerance_fraction": 0.0,
+          "submission_lateness_us_median": 0.1995,
+          "submission_lateness_over_500us_count": 0
+        }
+      },
+      "restore_verified": true,
+      "limits": [
+        "GPU event timestamps and sequence counters only; not optical scanout",
+        "Dividing by vblank steps averages across missing flips",
+        "No automatic claim of working bridge or panel VRR"
+      ]
+    },
+    "variable_phase_single_vblank_intervals": {
+      "count": 713,
+      "distinct_periods_at_reported_microsecond_resolution": 55,
+      "median_period_us": 16675.0,
+      "period_histogram_us": {
+        "16674": 2,
+        "16675": 442,
+        "16676": 33,
+        "16683": 3,
+        "16692": 3,
+        "16700": 3,
+        "16701": 6,
+        "16709": 7,
+        "16710": 2,
+        "16717": 2,
+        "16718": 8,
+        "16726": 12,
+        "16727": 4,
+        "16734": 10,
+        "16735": 5,
+        "16743": 10,
+        "16744": 2,
+        "16751": 1,
+        "16752": 11,
+        "16760": 7,
+        "16761": 6,
+        "16768": 5,
+        "16769": 15,
+        "16777": 2,
+        "16778": 1,
+        "16786": 6,
+        "16794": 1,
+        "16795": 1,
+        "16803": 1,
+        "16811": 2,
+        "16812": 2,
+        "16820": 8,
+        "16828": 4,
+        "16829": 1,
+        "16837": 9,
+        "16845": 1,
+        "16846": 1,
+        "16854": 8,
+        "16855": 1,
+        "16862": 4,
+        "16863": 3,
+        "16871": 15,
+        "16872": 1,
+        "16879": 6,
+        "16880": 5,
+        "16888": 7,
+        "16889": 2,
+        "16896": 3,
+        "16897": 4,
+        "16905": 5,
+        "16913": 2,
+        "16914": 2,
+        "16922": 1,
+        "16939": 1,
+        "16948": 4
+      },
+      "interpretation": "Most reported periods stayed near the minimum variable total; this is not proof of faithful tracking of every target interval."
+    },
+    "new_kernel_messages": [
+      "ODS_VRR: set_drr invoked min=1957 max=1989",
+      "ODS_VRR: set_drr invoked min=1956 max=1956"
+    ],
+    "msa_control_before": {
+      "address": "0x107",
+      "value_hex": "00",
+      "ignore_msa_enabled": false
+    },
+    "msa_control_after": {
+      "address": "0x107",
+      "value_hex": "00",
+      "ignore_msa_enabled": false
+    },
+    "msa_control_interpretation": "Both sampled control reads were zero. No AUX write/acknowledgement trace or in-phase control read was collected; receiver acceptance and exact write behavior remain unresolved.",
+    "human_observation": {
+      "reported_visual_anomalies": false,
+      "summary": "VRR-requested and fixed sections appeared equally smooth. No tearing, flickering or other visual anomalies were reported during the test.",
+      "measurement_type": "Qualitative unaided observation; no optical timing capture"
+    }
+  },
+  "restoration": {
+    "program_restored_framebuffer_native_mode_and_vrr_off": true,
+    "rebooted_to_disabled_override": true,
+    "disabled_baseline_selected_for_next_boot": true,
+    "new_boot_and_payload_hashes_verified": true,
+    "vrr_capable": 0,
+    "native_mode_verified": true,
+    "msa_control_hex": "00",
+    "internal_storage_unbound_and_unmounted": true,
+    "no_swap": true
+  },
+  "conclusion": "The guarded source path produced variable GPU event intervals in the requested narrow window and returned to fixed timing. No visual anomalies were reported. End-to-end bridge/panel VRR is unconfirmed.",
+  "limits": [
+    "One approximately 30-second test of a narrow range does not establish a safe operating range, stability or production suitability.",
+    "DRM event timestamps and vblank counters are source-side observations, not direct eDP, DSI or optical measurements.",
+    "Three analyzed intervals in the variable phase advanced two vblanks; period division averages the two.",
+    "Timing-generator call logging does not provide MMIO register readback.",
+    "The sampled MSA-ignore control stayed clear; this neither confirms bridge support nor proves impossibility.",
+    "Optical measurements must distinguish irregular visible updates from fixed-rate buffering, repeats and tearing."
+  ]
+}

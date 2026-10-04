@@ -142,8 +142,12 @@ of the bridge output. No MMIO was accessed.
 The subsequent [visual experiment checkpoint](vrr-visual-experiment.md) builds
 a scoped replacement AMD module against the distribution's prepared headers,
 retaining the existing kernel. It covers the narrow-range/fallback regressions
-and has booted with its override disabled. Experimental VRR remains untested on
-hardware and subject to the concrete approval requirements in [AGENTS.md](../AGENTS.md).
+and has booted with its override disabled. One subsequently approved physical
+A/B/A run produced variable GPU event intervals in the guarded window, then
+returned to fixed timing. No visual anomalies were reported, and the disabled
+baseline was restored. This is source-side evidence; bridge/panel VRR still
+needs optical measurement. Further hardware experiments remain subject to the
+concrete approval requirements in [AGENTS.md](../AGENTS.md).
 
 ## Reproduce locally
 

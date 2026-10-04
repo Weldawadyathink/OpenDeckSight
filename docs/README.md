@@ -22,7 +22,7 @@ is required for anything potentially dangerous to hardware or software.
 | [Disposable USB lab](usb-lab.md) | RAM-root image builder, Wi-Fi, passwordless SSH, remote updates and recovery boot |
 | [Fixed-refresh control](vrr-fixed-refresh-control.md) | Physical native-mode page flips, timing guards and fixed-cadence control results |
 | [VRR request validation](vrr-atomic-validation.md) | Physical TEST_ONLY results: accepted requests do not establish variable timing |
-| [Bounded visual experiment](vrr-visual-experiment.md) | Built driver override, A/B stimulus, default-off validation and explicit hardware test boundary |
+| [Bounded visual experiment](vrr-visual-experiment.md) | Physical A/B/A source timing changes, visual observation, restoration and remaining optical uncertainty |
 | [Provenance](provenance.md) | Sources, tool versions, reproduction boundaries |
 | [Reproduction](reproduce.md) | Download, inspection, comparison and test commands |
 | [Artifact manifest](../research/artifacts.json) | Download URLs and SHA-256 digests |

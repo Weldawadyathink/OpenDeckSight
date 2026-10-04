@@ -58,8 +58,10 @@ experimental range. This must be built against identified matching kernel
 source and reviewed before use. It would test behavior despite the advertised
 capabilities; it would not establish that those capabilities were incorrect.
 The [bounded diagnostic patch](vrr-visual-experiment.md) has now been built
-and its replacement module booted with the override disabled. Its opt-in
-hardware experiment has not run. The inspected upstream v6.17 AMD
+and its replacement module booted with the override disabled. One approved
+opt-in A/B/A experiment subsequently produced variable GPU event intervals
+without reported visual anomalies, then restored the disabled baseline.
+End-to-end optical timing remains unmeasured. The inspected upstream v6.17 AMD
 debugfs source has no `vrr`/`freesync` override entry; this is not an exhaustive
 claim about downstream kernels or other interfaces.
 
@@ -91,8 +93,8 @@ still requires approval and a concrete recovery plan.
 
 ## Smallest useful active experiment
 
-The following is a design target, not a ready command or a claim of safe panel
-limits:
+The following design led to the implemented [bounded experiment](vrr-visual-experiment.md).
+Its completion does not establish safe panel limits:
 
 1. Identify the matching kernel source/configuration and implement a strictly
    opt-in quirk, tied to internal connector and full EDID identity. Preserve
@@ -118,11 +120,14 @@ limits:
    A software timeout cannot guarantee recovery from a driver/display hang;
    the human recovery procedure must be agreed beforehand.
 
-No variable-timing sweep or capability override has been activated on hardware.
-The disposable USB has been updated and rebooted, including a diagnostic module
-with its override disabled, and its native fixed-refresh control has run. A temporary software
-change can still drive real hardware outside documented behavior; lack of
-persistence does not make an unverified timing experiment risk-free.
+One approved source-timing sweep and capability override have now run on
+hardware. GPU event periods changed from the fixed 16.666–16.667 ms cadence to
+16.674–16.948 ms during the VRR-requested phase and returned afterward. The
+observer reported equally smooth motion with no visual anomalies. The sampled
+DPCD control byte stayed zero, so its write/acceptance behavior remains unresolved.
+The disabled baseline was restored by reboot. Optical measurement is now the
+main experimental prerequisite for testing end-to-end behavior; a temporary
+software change and one uneventful short run do not establish panel limits.
 
 ## What evidence would distinguish the outcomes
 

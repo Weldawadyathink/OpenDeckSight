@@ -1,16 +1,25 @@
 # True variable refresh on DeckSight: feasibility assessment
 
-Research date: 2026-10-03. Scope: LCD Steam Deck / DeckSight r04, using this
-project's reconstructed firmware, public sources and read-only compatibility
-observations. **True VRR is currently unavailable through the tested Linux
-display interface. A software/firmware implementation is conceivable, but
-hardware feasibility is unproven; confidence in a simple unlock is low.**
+Initial research: 2026-10-03; experimental update: 2026-10-04. Scope: LCD Steam
+Deck / DeckSight r04, using this project's reconstructed firmware, public
+sources, compatibility observations and one approved bounded timing experiment.
+**The ordinary Linux interface does not advertise VRR. A diagnostic driver now
+produces variable GPU event intervals without reported visual anomalies, but
+end-to-end bridge/panel VRR remains unproven.**
 
 The project has useful control over initialization and display metadata. It has
 not established the two crucial behaviors: variable timing through the bridge,
 and acceptance of that timing by the panel. No defensible success percentage
 can be assigned until those are understood. This is a research direction, not
 an implementation commitment or a finding that VRR is physically impossible.
+
+The [physical A/B/A experiment](vrr-visual-experiment.md) kept the native pixel
+clock and used a roughly 59–60 Hz window. Reported GPU periods varied only in
+the VRR-requested phase and returned to fixed cadence afterward. Motion looked
+equally smooth in both phases, with no reported tearing or flicker. Sampled
+DPCD `0x107` reads remained zero, leaving standard control-request behavior
+unresolved. The disabled baseline was restored. This is progress past the
+source-generation obstacle, not an optical measurement of variable scanout.
 
 ## What counts as true VRR
 
@@ -176,35 +185,40 @@ low-frame-rate compensation behavior has been established.
 | Bridge/panel firmware changes | May be necessary; understanding register transport and reproducing r04 do not provide arbitrary firmware functionality or signing. |
 | Hardware replacement | Could become necessary if the bridge or panel cannot support the required timing; no evidence yet requires this conclusion. |
 
-The highest-value next work is to obtain an ANX7580 programming manual or a
-documented example of variable-interval DP-to-DSI operation, and identify the
-panel controller from public artifacts or manufacturer documentation. Specific
-questions are its supported video/command modes, variable-blanking limits,
-required initialization, and brightness behavior. No messages have been sent
-to manufacturers as part of this work.
+The highest-value experimental next step is optical measurement of visible
+frame transitions against controlled irregular submissions, including a
+fixed-refresh control. The narrow source experiment provides a starting point;
+an ANX7580 programming manual is not a prerequisite for testing the entire path.
+A manual or documented DP-to-DSI example, and identification of the panel
+controller from public artifacts, would still help explain failures and possible
+configuration changes. Supported modes, blanking limits, initialization and
+brightness behavior remain open. No messages have been sent to manufacturers
+as part of this work.
 
 Offline analysis can then trace how bridge firmware relates incoming frame
 boundaries to DSI vertical timing. The follow-up bounded receiver-capability
 read resolved the discovery bit, but did not validate physical scanout. The
-next experimental blocker is generating known variable timing despite the
-driver's current capability rejection, then observing the output. See the
+diagnostic driver has now passed the capability gates and produced variable
+GPU event intervals. The remaining experimental blocker is observing actual
+panel output and distinguishing variable updates from fixed-rate buffering or
+repeats. The zero control-byte readback also warrants tracing the standard
+driver write path before attributing it to receiver behavior. See the
 [staged bridge test plan](vrr-bridge-test-plan.md).
 
-Only after those questions have useful answers should a concrete temporary
-timing experiment be proposed for human approval. A credible success test
-would compare deliberately irregular frame delivery against actual panel
-updates, with optical measurement where practical, and check for tearing,
-repeats, blanking and flicker. A changed property or an application FPS counter
-alone is insufficient. Firmware experiments additionally need the recovery,
+Further timing experiments need concrete human approval under the project's
+hardware-risk boundary. A credible success test compares deliberately irregular
+frame delivery against actual panel updates and checks for tearing, repeats,
+blanking and flicker. A changed property or an application FPS counter alone is
+insufficient. Firmware experiments additionally need the recovery,
 bank-selection and signing issues in [hardware-validation.md](hardware-validation.md)
 and [signing.md](signing.md) resolved or explicitly accounted for.
 
-No display settings, services, installed files, firmware or power state were
-changed. There were no timing sweeps, panel commands or flasher invocations.
-The follow-up used one 16-byte native AUX capability read through an existing
-kernel device node; it did not access arbitrary bridge registers or MMIO.
-Under the repository's safety constraints, even temporary configuration writes
-require approval for the concrete action; this assessment needed only reads.
+The initial read-only assessment changed no display settings, services,
+installed files, firmware or power state. Its follow-up used one 16-byte native
+AUX capability read through an existing kernel device node, without arbitrary
+bridge-register or MMIO access. The separately approved disposable-USB timing
+experiment and its restoration are documented in the later visual report.
+Neither activity used a vendor installer or flasher.
 
 ## Reproduction and provenance
 

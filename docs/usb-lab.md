@@ -278,10 +278,13 @@ unchanged. The connector still advertised no VRR capability.
 
 The later [visual experiment bundle](vrr-visual-experiment.md) rebuilt the AMD
 driver and booted it with the override explicitly disabled. Its 720-frame native
-visual control completed and restored the framebuffer/mode. Experimental timing
-and the corresponding bridge control request remain pending separate approval.
-This reboot also reused the established Wi-Fi lease; USB-absent fallback remains
-untested. The factory recovery image is unchanged.
+visual control completed and restored the framebuffer/mode. A separately
+approved A/B/A run subsequently enabled the guarded source path: GPU event
+intervals varied during B, with no reported visual anomalies. A final reboot
+restored and verified the disabled baseline and its selection for future boots.
+The sampled bridge control byte remained zero, and optical VRR remains
+unconfirmed. These reboots reused the established Wi-Fi lease; USB-absent
+fallback remains untested. The factory recovery image is unchanged.
 
 ### Virtual-machine checkpoint
 
