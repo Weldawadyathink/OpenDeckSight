@@ -80,6 +80,12 @@ The released r04 metadata lacks that range. This reference is not asserted to
 be the exact source of the tested downstream kernel.
 [AMDGPU source, lines 12599–12710](https://github.com/torvalds/linux/blob/v6.17/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c#L12599)
 
+The [2026-10-04 candidate OGC source investigation](vrr-kernel-research.md)
+confirmed those discovery gates and found an additional minimum-range check
+inside the timing builder. Local tests also reproduced a late-frame fallback
+that can hold a narrow-range experiment at fixed refresh. These are software
+experiment-design constraints, not evidence against bridge or panel support.
+
 The relevant receiver capability is DPCD `0x00007`, bit 6
 (`DP_MSA_TIMING_PAR_IGNORED`). A follow-up native AUX read found **byte 7 =
 `0x00`, so this capability is not advertised**. The base block also reports no

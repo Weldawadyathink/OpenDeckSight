@@ -1,0 +1,194 @@
+{
+  "schema": 1,
+  "scope": "Local userspace tests of extracted source functions with minimal data stubs; no device I/O, kernel boot or electrical evidence.",
+  "source_commit": "151eb3adafae8820f349a4454c1f1e8d5fc991a4",
+  "source_hashes": {
+    "drivers/gpu/drm/amd/display/modules/freesync/freesync.c": "0f8545961812c69a85b7bd2243f6d89c68c4f8f0f1f10d5009daaa53689f9e3d",
+    "drivers/gpu/drm/amd/display/modules/inc/mod_freesync.h": "22eaa2c7ba848f87dfff083933e0da391a297b2ba7c75776843a2e3decbfeb87"
+  },
+  "functions": [
+    "calc_duration_in_us_from_refresh_in_uhz",
+    "calc_max_hardware_v_total",
+    "mod_freesync_calc_v_total_from_refresh",
+    "mod_freesync_calc_nominal_field_rate",
+    "vrr_settings_require_update",
+    "mod_freesync_build_vrr_params",
+    "apply_fixed_refresh"
+  ],
+  "fixture": "Public r04 EDID timing: 143.18 MHz, 1220 x 1956 total, 8-line vertical front porch. Range fields and hardware limits are synthetic test inputs.",
+  "compiler": "Apple clang version 17.0.0 (clang-1700.6.4.2)",
+  "runs": [
+    {
+      "minimum_range_hz": 10,
+      "cases": [
+        {
+          "case": "59-60-after-discovery",
+          "state": "inactive",
+          "supported": true,
+          "v_total_min": 1956,
+          "v_total_max": 1956,
+          "btr_enabled": false,
+          "fixed_fallback_active": false
+        },
+        {
+          "case": "50-60-builder-boundary-only",
+          "state": "variable",
+          "supported": true,
+          "v_total_min": 1957,
+          "v_total_max": 2347,
+          "btr_enabled": false,
+          "fixed_fallback_active": false
+        },
+        {
+          "case": "49-60-positive-control",
+          "state": "variable",
+          "supported": true,
+          "v_total_min": 1957,
+          "v_total_max": 2395,
+          "btr_enabled": false,
+          "fixed_fallback_active": false
+        },
+        {
+          "case": "unsupported-stays-fixed",
+          "state": "unsupported",
+          "supported": false,
+          "v_total_min": 1956,
+          "v_total_max": 1956,
+          "btr_enabled": false,
+          "fixed_fallback_active": false
+        },
+        {
+          "case": "disabled-request-stays-fixed",
+          "state": "inactive",
+          "supported": true,
+          "v_total_min": 1956,
+          "v_total_max": 1956,
+          "btr_enabled": false,
+          "fixed_fallback_active": false
+        },
+        {
+          "case": "zero-span-stays-fixed",
+          "state": "inactive",
+          "supported": true,
+          "v_total_min": 1956,
+          "v_total_max": 1956,
+          "btr_enabled": false,
+          "fixed_fallback_active": false
+        }
+      ]
+    },
+    {
+      "minimum_range_hz": 1,
+      "cases": [
+        {
+          "case": "59-60-after-discovery",
+          "state": "variable",
+          "supported": true,
+          "v_total_min": 1957,
+          "v_total_max": 1989,
+          "btr_enabled": false,
+          "fixed_fallback_active": false
+        },
+        {
+          "case": "50-60-builder-boundary-only",
+          "state": "variable",
+          "supported": true,
+          "v_total_min": 1957,
+          "v_total_max": 2347,
+          "btr_enabled": false,
+          "fixed_fallback_active": false
+        },
+        {
+          "case": "49-60-positive-control",
+          "state": "variable",
+          "supported": true,
+          "v_total_min": 1957,
+          "v_total_max": 2395,
+          "btr_enabled": false,
+          "fixed_fallback_active": false
+        },
+        {
+          "case": "unsupported-stays-fixed",
+          "state": "unsupported",
+          "supported": false,
+          "v_total_min": 1956,
+          "v_total_max": 1956,
+          "btr_enabled": false,
+          "fixed_fallback_active": false
+        },
+        {
+          "case": "disabled-request-stays-fixed",
+          "state": "inactive",
+          "supported": true,
+          "v_total_min": 1956,
+          "v_total_max": 1956,
+          "btr_enabled": false,
+          "fixed_fallback_active": false
+        },
+        {
+          "case": "zero-span-stays-fixed",
+          "state": "inactive",
+          "supported": true,
+          "v_total_min": 1956,
+          "v_total_max": 1956,
+          "btr_enabled": false,
+          "fixed_fallback_active": false
+        },
+        {
+          "case": "six-slow-submissions-enter-fallback",
+          "state": "variable",
+          "supported": true,
+          "v_total_min": 1957,
+          "v_total_max": 1957,
+          "btr_enabled": false,
+          "fixed_fallback_active": true
+        },
+        {
+          "case": "in-range-submissions-do-not-exit-fallback",
+          "state": "variable",
+          "supported": true,
+          "v_total_min": 1957,
+          "v_total_max": 1957,
+          "btr_enabled": false,
+          "fixed_fallback_active": true
+        },
+        {
+          "case": "faster-submissions-exit-fallback",
+          "state": "variable",
+          "supported": true,
+          "v_total_min": 1957,
+          "v_total_max": 1989,
+          "btr_enabled": false,
+          "fixed_fallback_active": false
+        },
+        {
+          "case": "clean-in-range-start-retains-variable-totals",
+          "state": "variable",
+          "supported": true,
+          "v_total_min": 1957,
+          "v_total_max": 1989,
+          "btr_enabled": false,
+          "fixed_fallback_active": false
+        },
+        {
+          "case": "zero-stream-limits-round-59-hz-below-bound",
+          "state": "variable",
+          "supported": true,
+          "v_total_min": 1957,
+          "v_total_max": 1990,
+          "btr_enabled": false,
+          "fixed_fallback_active": false
+        },
+        {
+          "case": "synthetic-gpu-limit-clamps-range",
+          "state": "variable",
+          "supported": true,
+          "v_total_min": 1957,
+          "v_total_max": 1980,
+          "btr_enabled": false,
+          "fixed_fallback_active": false
+        }
+      ]
+    }
+  ]
+}

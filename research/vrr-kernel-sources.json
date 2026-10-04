@@ -1,0 +1,133 @@
+{
+  "schema": 1,
+  "retrieved_on": "2026-10-04",
+  "repository": "https://github.com/OpenGamingCollective/linux",
+  "tag": "v7.2.3-ogc3",
+  "commit": "151eb3adafae8820f349a4454c1f1e8d5fc991a4",
+  "scope": "Candidate source matching previously observed release family; exact distribution build not yet verified. Public source only.",
+  "sources": [
+    {
+      "path": "Makefile",
+      "url": "https://raw.githubusercontent.com/OpenGamingCollective/linux/151eb3adafae8820f349a4454c1f1e8d5fc991a4/Makefile",
+      "size": 79208,
+      "sha256": "ed3ee2eae8991156839b01f508dfd7b0a071da08e408469d282ffb4ba6c4739c"
+    },
+    {
+      "path": "drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c",
+      "url": "https://raw.githubusercontent.com/OpenGamingCollective/linux/151eb3adafae8820f349a4454c1f1e8d5fc991a4/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c",
+      "size": 447754,
+      "sha256": "f5172130336c7b26e62f7ec3baca76a22f113157c93be78cac80b9aa9befe128"
+    },
+    {
+      "path": "drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h",
+      "url": "https://raw.githubusercontent.com/OpenGamingCollective/linux/151eb3adafae8820f349a4454c1f1e8d5fc991a4/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h",
+      "size": 30677,
+      "sha256": "99fa9801c4ce43e3672bcacec939b1287eaec4e3b8fdffcd786c1d5a1ababd84"
+    },
+    {
+      "path": "drivers/gpu/drm/amd/display/modules/freesync/freesync.c",
+      "url": "https://raw.githubusercontent.com/OpenGamingCollective/linux/151eb3adafae8820f349a4454c1f1e8d5fc991a4/drivers/gpu/drm/amd/display/modules/freesync/freesync.c",
+      "size": 42444,
+      "sha256": "0f8545961812c69a85b7bd2243f6d89c68c4f8f0f1f10d5009daaa53689f9e3d"
+    },
+    {
+      "path": "drivers/gpu/drm/amd/display/modules/inc/mod_freesync.h",
+      "url": "https://raw.githubusercontent.com/OpenGamingCollective/linux/151eb3adafae8820f349a4454c1f1e8d5fc991a4/drivers/gpu/drm/amd/display/modules/inc/mod_freesync.h",
+      "size": 4394,
+      "sha256": "22eaa2c7ba848f87dfff083933e0da391a297b2ba7c75776843a2e3decbfeb87"
+    },
+    {
+      "path": "drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c",
+      "url": "https://raw.githubusercontent.com/OpenGamingCollective/linux/151eb3adafae8820f349a4454c1f1e8d5fc991a4/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_capability.c",
+      "size": 87728,
+      "sha256": "7f31b30277f95f6d777260680a6b0ab6aa55b3394139755478cb94ced3911902"
+    },
+    {
+      "path": "drivers/gpu/drm/amd/display/dc/core/dc_stream.c",
+      "url": "https://raw.githubusercontent.com/OpenGamingCollective/linux/151eb3adafae8820f349a4454c1f1e8d5fc991a4/drivers/gpu/drm/amd/display/dc/core/dc_stream.c",
+      "size": 39294,
+      "sha256": "c5c658ba98b7c72c83fe5f38f09707018c858ba10832b2cb65eafde4b671ad41"
+    },
+    {
+      "path": "drivers/gpu/drm/amd/display/dc/core/dc.c",
+      "url": "https://raw.githubusercontent.com/OpenGamingCollective/linux/151eb3adafae8820f349a4454c1f1e8d5fc991a4/drivers/gpu/drm/amd/display/dc/core/dc.c",
+      "size": 267868,
+      "sha256": "415c36392c0e8766d423b26759d154d72ea20dad6a9a6962130ca7ffdb38ff47"
+    },
+    {
+      "path": "drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c",
+      "url": "https://raw.githubusercontent.com/OpenGamingCollective/linux/151eb3adafae8820f349a4454c1f1e8d5fc991a4/drivers/gpu/drm/amd/display/dc/hwss/dcn10/dcn10_hwseq.c",
+      "size": 133997,
+      "sha256": "8279fd2368900f035902b841ebe8bf4e8affeb8eb02846bde6c9789d6a3505a5"
+    },
+    {
+      "path": "drivers/gpu/drm/amd/display/dc/resource/dcn301/dcn301_resource.c",
+      "url": "https://raw.githubusercontent.com/OpenGamingCollective/linux/151eb3adafae8820f349a4454c1f1e8d5fc991a4/drivers/gpu/drm/amd/display/dc/resource/dcn301/dcn301_resource.c",
+      "size": 44886,
+      "sha256": "3456a85dafe1a314c1d6dd8ebcd1b55f496db12d0dc12ea06973aed0ae2ce5e2"
+    },
+    {
+      "path": "drivers/gpu/drm/amd/display/dc/optc/dcn10/dcn10_optc.c",
+      "url": "https://raw.githubusercontent.com/OpenGamingCollective/linux/151eb3adafae8820f349a4454c1f1e8d5fc991a4/drivers/gpu/drm/amd/display/dc/optc/dcn10/dcn10_optc.c",
+      "size": 47200,
+      "sha256": "5a50cefb12a6427a182f7c1ccb60753e61218253f74e5256d31c600713644333"
+    },
+    {
+      "path": "drivers/gpu/drm/amd/display/dc/optc/dcn301/dcn301_optc.c",
+      "url": "https://raw.githubusercontent.com/OpenGamingCollective/linux/151eb3adafae8820f349a4454c1f1e8d5fc991a4/drivers/gpu/drm/amd/display/dc/optc/dcn301/dcn301_optc.c",
+      "size": 6781,
+      "sha256": "2789ee8164332f7c936f39e57869ccd2f69614e48b5e0f6fa927492dd92cac24"
+    },
+    {
+      "path": "drivers/gpu/drm/amd/display/dc/dio/dcn10/dcn10_stream_encoder.c",
+      "url": "https://raw.githubusercontent.com/OpenGamingCollective/linux/151eb3adafae8820f349a4454c1f1e8d5fc991a4/drivers/gpu/drm/amd/display/dc/dio/dcn10/dcn10_stream_encoder.c",
+      "size": 47256,
+      "sha256": "d28376338093ef2913ea3feef1c5e5d7d17f37f014077dbd4be00648108aa949"
+    },
+    {
+      "path": "drivers/gpu/drm/amd/display/dc/dio/dcn20/dcn20_stream_encoder.c",
+      "url": "https://raw.githubusercontent.com/OpenGamingCollective/linux/151eb3adafae8820f349a4454c1f1e8d5fc991a4/drivers/gpu/drm/amd/display/dc/dio/dcn20/dcn20_stream_encoder.c",
+      "size": 20328,
+      "sha256": "6b0ad29ddeea3617f31502ef98c2cfb752d529c2f833334a638c91b3411947a5"
+    },
+    {
+      "path": "drivers/gpu/drm/amd/display/dc/hwss/dcn301/dcn301_init.c",
+      "url": "https://raw.githubusercontent.com/OpenGamingCollective/linux/151eb3adafae8820f349a4454c1f1e8d5fc991a4/drivers/gpu/drm/amd/display/dc/hwss/dcn301/dcn301_init.c",
+      "size": 7114,
+      "sha256": "7296d968d610cc0f2466ee4bd74a44cae86d262e1d3080e736bfb8c9a18df6be"
+    },
+    {
+      "path": "drivers/gpu/drm/amd/display/dc/core/dc_resource.c",
+      "url": "https://raw.githubusercontent.com/OpenGamingCollective/linux/151eb3adafae8820f349a4454c1f1e8d5fc991a4/drivers/gpu/drm/amd/display/dc/core/dc_resource.c",
+      "size": 193712,
+      "sha256": "d87199cee82854ff86f2ca83e9126ec88c2e4a298d49cd4e0b10b09dcedc86fd"
+    }
+  ],
+  "unavailable": [
+    {
+      "path": "drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_stream_encoder.c",
+      "url": "https://raw.githubusercontent.com/OpenGamingCollective/linux/151eb3adafae8820f349a4454c1f1e8d5fc991a4/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_stream_encoder.c",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "path": "drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c",
+      "url": "https://raw.githubusercontent.com/OpenGamingCollective/linux/151eb3adafae8820f349a4454c1f1e8d5fc991a4/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_optc.c",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "path": "drivers/gpu/drm/amd/display/dc/dcn10/dcn10_stream_encoder.c",
+      "url": "https://raw.githubusercontent.com/OpenGamingCollective/linux/151eb3adafae8820f349a4454c1f1e8d5fc991a4/drivers/gpu/drm/amd/display/dc/dcn10/dcn10_stream_encoder.c",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "path": "drivers/gpu/drm/amd/display/dc/dcn20/dcn20_stream_encoder.c",
+      "url": "https://raw.githubusercontent.com/OpenGamingCollective/linux/151eb3adafae8820f349a4454c1f1e8d5fc991a4/drivers/gpu/drm/amd/display/dc/dcn20/dcn20_stream_encoder.c",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "path": "drivers/gpu/drm/amd/display/dc/dcn30/dcn30_optc.c",
+      "url": "https://raw.githubusercontent.com/OpenGamingCollective/linux/151eb3adafae8820f349a4454c1f1e8d5fc991a4/drivers/gpu/drm/amd/display/dc/dcn30/dcn30_optc.c",
+      "error": "HTTP Error 404: Not Found"
+    }
+  ]
+}

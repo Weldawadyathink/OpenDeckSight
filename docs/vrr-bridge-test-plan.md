@@ -53,6 +53,15 @@ No such patch has been built or booted. The inspected upstream v6.17 AMD
 debugfs source has no `vrr`/`freesync` override entry; this is not an exhaustive
 claim about downstream kernels or other interfaces.
 
+The [2026-10-04 offline source tests](vrr-kernel-research.md) found a second
+minimum-range check in AMD's timing builder, beyond discovery. A 59–60 Hz
+request remains inactive even after assumed discovery. A harness-only control
+also exposed fixed-refresh fallback that does not recover under ordinary
+in-range submissions after late frames. A diagnostic implementation must
+address both policies and verify final timing totals before evaluating the
+bridge. The tests use a pinned candidate OGC source, not a verified installed
+kernel build, and perform no hardware I/O.
+
 The implementation must also arrange display ownership and restore the prior
 state. It cannot assume that an SSH process can modeset while the desktop
 compositor owns the display. A driver change and a temporary diagnostic boot
@@ -75,7 +84,9 @@ limits:
    pixel clock and active scanout. Investigate a very narrow downward range
    first, rather than assuming 40–80 Hz works. For illustration, 59–60 Hz is
    roughly 16.67–16.95 ms per frame. A narrow range would also need an explicit
-   exception to the inspected driver's greater-than-10-Hz discovery heuristic.
+   exception to both the driver's greater-than-10-Hz discovery heuristic and
+   the timing builder's independent at-least-10-Hz check. Validate integer-line
+   rounding and late-frame fallback as described in the offline source tests.
    Panel tolerance for even this range remains unverified.
 4. Use a short deterministic sequence of irregular frame intervals and encoded
    visible frame numbers. Record GPU flip/vblank timing to verify that the
