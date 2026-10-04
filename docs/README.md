@@ -21,6 +21,7 @@ is required for anything potentially dangerous to hardware or software.
 | [Optical VRR measurement](vrr-optical-measurement.md) | Camera versus photodiode, microcontroller capture design and end-to-end evidence |
 | [Disposable USB lab](usb-lab.md) | RAM-root image builder, Wi-Fi, passwordless SSH, remote updates and recovery boot |
 | [Fixed-refresh control](vrr-fixed-refresh-control.md) | Physical native-mode page flips, timing guards and fixed-cadence control results |
+| [VRR request validation](vrr-atomic-validation.md) | Physical TEST_ONLY results: accepted requests do not establish variable timing |
 | [Provenance](provenance.md) | Sources, tool versions, reproduction boundaries |
 | [Reproduction](reproduce.md) | Download, inspection, comparison and test commands |
 | [Artifact manifest](../research/artifacts.json) | Download URLs and SHA-256 digests |

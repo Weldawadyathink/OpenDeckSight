@@ -12,9 +12,10 @@ not being presented as complete reverse engineering. See the
 [full reconstruction record](docs/full-reconstruction.md).
 
 The underlying Valve/Insyde/AMD firmware remains binary-only. Hardware evidence
-is limited to read-only compatibility observations; runtime brightness writes
-and firmware flashing remain untested. Potentially dangerous device actions
-require explicit human confirmation.
+includes compatibility observations and a native fixed-refresh presentation
+control in the disposable USB lab. True VRR, runtime brightness writes and
+firmware flashing remain untested. Potentially dangerous device actions require
+explicit human confirmation.
 
 ## Findings and evidence
 

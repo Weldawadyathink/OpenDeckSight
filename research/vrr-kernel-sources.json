@@ -101,6 +101,18 @@
       "url": "https://raw.githubusercontent.com/OpenGamingCollective/linux/151eb3adafae8820f349a4454c1f1e8d5fc991a4/drivers/gpu/drm/amd/display/dc/core/dc_resource.c",
       "size": 193712,
       "sha256": "d87199cee82854ff86f2ca83e9126ec88c2e4a298d49cd4e0b10b09dcedc86fd"
+    },
+    {
+      "path": "include/uapi/drm/drm_mode.h",
+      "url": "https://raw.githubusercontent.com/OpenGamingCollective/linux/151eb3adafae8820f349a4454c1f1e8d5fc991a4/include/uapi/drm/drm_mode.h",
+      "size": 49986,
+      "sha256": "d31f97c9f3bab0966f2877c4426e65e5553345a5251d6e7c7627ed980e38169f"
+    },
+    {
+      "path": "drivers/gpu/drm/drm_atomic_uapi.c",
+      "url": "https://raw.githubusercontent.com/OpenGamingCollective/linux/151eb3adafae8820f349a4454c1f1e8d5fc991a4/drivers/gpu/drm/drm_atomic_uapi.c",
+      "size": 53879,
+      "sha256": "932c2f98ca0cbbdce2f9a4bdaf4f6f6b675b5df6ed038feb1f8e40565fee9702"
     }
   ],
   "unavailable": [

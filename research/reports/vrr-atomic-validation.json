@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "date": "2026-10-04",
+  "scope": "Anonymous physical USB-lab DRM atomic validation; TEST_ONLY requests, no applying commit or optical measurement",
+  "kernel": "7.2.3-ogc3.1.fc44.x86_64",
+  "edid_sha256": "53c47cbd31b785b332a890d5074b46ac4efe88d96cc210b041ee07773a4dfe48",
+  "source_sha256": {
+    "opendecksight/vrr_dry_run.py": "a8575f30f762076fd609292339c8cccbb6717f63cfd15037cb05a05c6c86cfcc",
+    "opendecksight/vrr.py": "52d52f6dd80d526e7055c06df437670641f534d096756df80a018330d1fbfe8e",
+    "opendecksight/dpcd.py": "bee64707ac55841a80f233fc747313851e643f4c7c04cc58cd9c13ae2cfb4e0a",
+    "tools/test_vrr_atomic.py": "6d75da7ebe4f71ce5293af9e7680103da5d8b10b1cfa99959d5b09aece611487"
+  },
+  "test_only_flags": "0x100",
+  "vrr_capable": 0,
+  "native_mode_verified": true,
+  "cases": [
+    {
+      "requested_vrr_enabled": 0,
+      "returncode": 0,
+      "errno": 0,
+      "error": null,
+      "live_state_unchanged": true
+    },
+    {
+      "requested_vrr_enabled": 1,
+      "returncode": 0,
+      "errno": 0,
+      "error": null,
+      "live_state_unchanged": true
+    },
+    {
+      "requested_vrr_enabled": 2,
+      "returncode": -22,
+      "errno": 22,
+      "error": "Invalid argument",
+      "live_state_unchanged": true
+    }
+  ],
+  "checked_live_state": [
+    "connector binding and capability",
+    "CRTC active, mode and VRR properties",
+    "complete mode blob"
+  ],
+  "limits": [
+    "Accepted VRR request is validation only",
+    "No variable timing applied",
+    "No bridge pass-through or physical panel scanout evidence"
+  ]
+}

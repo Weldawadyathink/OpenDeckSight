@@ -66,6 +66,12 @@ native-mode presentation and page-flip event collection in the USB environment.
 Its late submissions remain quantized to one or two 60 Hz periods, as expected.
 This removes a presentation-tool prerequisite without testing variable timing.
 
+The [physical atomic TEST_ONLY test](vrr-atomic-validation.md) also accepted a
+VRR-on request while the connector advertised no VRR capability. An invalid
+boolean was rejected, and checked live KMS state remained unchanged. This
+confirms that request acceptance alone cannot be used as the experiment's
+success criterion. No variable timing was applied by that test.
+
 The [2026-10-04 offline source tests](vrr-kernel-research.md) found a second
 minimum-range check in AMD's timing builder, beyond discovery. A 59–60 Hz
 request remains inactive even after assumed discovery. A harness-only control
@@ -110,10 +116,11 @@ limits:
    A software timeout cannot guarantee recovery from a driver/display hang;
    the human recovery procedure must be agreed beforehand.
 
-No refresh-rate sweep, capability spoof, kernel patch, register write, service
-stop, or reboot has been performed. A temporary software change can still
-drive real hardware outside documented behavior; lack of persistence does not
-make the experiment risk-free.
+No refresh-rate sweep, capability spoof, experimental kernel patch or hardware
+control-register write has been performed. The disposable USB has been updated
+and rebooted, and its native fixed-refresh control has run. A temporary software
+change can still drive real hardware outside documented behavior; lack of
+persistence does not make an unverified timing experiment risk-free.
 
 ## What evidence would distinguish the outcomes
 

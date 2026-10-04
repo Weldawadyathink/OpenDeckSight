@@ -263,6 +263,19 @@ and kernel argument; Wi-Fi configuration and storage isolation were retained.
 The installed-system fallback on the first reboot exposed the separate firmware
 boot-order requirement described above. The original recovery files were retained.
 
+A subsequent research-slot update added the permanent-MAC/DHCP identity fix.
+After reboot, the selected updated slot, expected utility hash, preserved Wi-Fi
+configuration and storage isolation were verified. The connected Wi-Fi MAC
+matched the adapter's permanent address, and the explicit MAC-based DHCP policy
+was present. Separately, a manually selected USB-first firmware boot preference
+survived that reboot, which returned to the USB. A second consecutive lease
+reuse and a physical USB-absent fallback boot have not been tested.
+
+The [atomic VRR validation](vrr-atomic-validation.md) subsequently exercised
+TEST_ONLY requests without applying a display change. Off and on requests were
+accepted, an invalid boolean was rejected, and checked live KMS state remained
+unchanged. The connector still advertised no VRR capability.
+
 ### Virtual-machine checkpoint
 
 The final 4 GiB data-partition image passed a complete virtual SSH update cycle:
