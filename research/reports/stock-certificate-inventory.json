@@ -1,0 +1,314 @@
+{
+  "schema": 1,
+  "stock_biosimg_sha256": "b77eb694c5af0d125bbca0a018ee18a2ad54409211b454e38f9bb545a62f7f64",
+  "decksight_r04_qa_certificate_sha256": "f14700fcca6aed9c5d33f356e3f8a3413beda76dacaa1324b00e3d0a05446b18",
+  "scope": "static public firmware data; live NVRAM and execution paths not verified",
+  "certificate_resources": [
+    {
+      "role": "firmware certificate resource",
+      "path": "23 1FD0BACE-6F0A-4085-901E-F6210385CB6F/0 20BC8AC9-94D1-4208-AB28-5D673FD73486/0 EE4E5898-3914-4259-9D6E-DC7BD79403CF/1 Volume image section/0 8C8CE578-8A3D-4F1C-9935-896185C32DD3/115 9F4F421C-CE02-42C1-92FB-CF26C52B9526/0 Raw section/body.bin",
+      "size": 1636,
+      "sha256": "386d1e7c08e79b2b6b238f974454d3e0754909099069bc16d688127868d4444d",
+      "signature_lists": [
+        {
+          "offset": 0,
+          "type": "a5c059a1-94e4-4aa7-87b5-ab155c2bf072",
+          "size": 829,
+          "header_size": 0,
+          "entry_size": 801,
+          "entries": [
+            {
+              "payload_offset": 44,
+              "size": 785,
+              "sha256": "f14700fcca6aed9c5d33f356e3f8a3413beda76dacaa1324b00e3d0a05446b18",
+              "matches_decksight_r04_qa": true,
+              "certificate": [
+                "subject=CN=QA Certificate.",
+                "issuer=CN=QA Certificate."
+              ]
+            }
+          ]
+        },
+        {
+          "offset": 829,
+          "type": "a5c059a1-94e4-4aa7-87b5-ab155c2bf072",
+          "size": 807,
+          "header_size": 0,
+          "entry_size": 779,
+          "entries": [
+            {
+              "payload_offset": 873,
+              "size": 763,
+              "sha256": "eb2abdf3e150dba4b69987ffe9f2b5b947889ffceaf2bcaf8f252e44ef9cad77",
+              "matches_decksight_r04_qa": false,
+              "certificate": [
+                "subject=CN=Jupiter",
+                "issuer=CN=Jupiter"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "firmware certificate resource",
+      "path": "9 1FD0BACE-6F0A-4085-901E-F6210385CB6F/0 20BC8AC9-94D1-4208-AB28-5D673FD73486/0 EE4E5898-3914-4259-9D6E-DC7BD79403CF/1 Volume image section/0 8C8CE578-8A3D-4F1C-9935-896185C32DD3/115 9F4F421C-CE02-42C1-92FB-CF26C52B9526/0 Raw section/body.bin",
+      "size": 1636,
+      "sha256": "386d1e7c08e79b2b6b238f974454d3e0754909099069bc16d688127868d4444d",
+      "signature_lists": [
+        {
+          "offset": 0,
+          "type": "a5c059a1-94e4-4aa7-87b5-ab155c2bf072",
+          "size": 829,
+          "header_size": 0,
+          "entry_size": 801,
+          "entries": [
+            {
+              "payload_offset": 44,
+              "size": 785,
+              "sha256": "f14700fcca6aed9c5d33f356e3f8a3413beda76dacaa1324b00e3d0a05446b18",
+              "matches_decksight_r04_qa": true,
+              "certificate": [
+                "subject=CN=QA Certificate.",
+                "issuer=CN=QA Certificate."
+              ]
+            }
+          ]
+        },
+        {
+          "offset": 829,
+          "type": "a5c059a1-94e4-4aa7-87b5-ab155c2bf072",
+          "size": 807,
+          "header_size": 0,
+          "entry_size": 779,
+          "entries": [
+            {
+              "payload_offset": 873,
+              "size": 763,
+              "sha256": "eb2abdf3e150dba4b69987ffe9f2b5b947889ffceaf2bcaf8f252e44ef9cad77",
+              "matches_decksight_r04_qa": false,
+              "certificate": [
+                "subject=CN=Jupiter",
+                "issuer=CN=Jupiter"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "factory default db in Insyde FDC store",
+      "path": "13 FFF12B8D-7696-4C8B-A985-2747075B4F50/3 Insyde FDC store/0 VSS store/2 db/body.bin",
+      "size": 4779,
+      "sha256": "de765623284d261951900bcf2fa96e57c2843b9b180e431407f48bcb09d7bac5",
+      "signature_lists": [
+        {
+          "offset": 0,
+          "type": "a5c059a1-94e4-4aa7-87b5-ab155c2bf072",
+          "size": 1543,
+          "header_size": 0,
+          "entry_size": 1515,
+          "entries": [
+            {
+              "payload_offset": 44,
+              "size": 1499,
+              "sha256": "e8e95f0733a55e8bad7be0a1413ee23c51fcea64b3c8fa6a786935fddcc71961",
+              "matches_decksight_r04_qa": false,
+              "certificate": [
+                "subject=C=US, ST=Washington, L=Redmond, O=Microsoft Corporation, CN=Microsoft Windows Production PCA 2011",
+                "issuer=C=US, ST=Washington, L=Redmond, O=Microsoft Corporation, CN=Microsoft Root Certificate Authority 2010"
+              ]
+            }
+          ]
+        },
+        {
+          "offset": 1543,
+          "type": "a5c059a1-94e4-4aa7-87b5-ab155c2bf072",
+          "size": 1600,
+          "header_size": 0,
+          "entry_size": 1572,
+          "entries": [
+            {
+              "payload_offset": 1587,
+              "size": 1556,
+              "sha256": "48e99b991f57fc52f76149599bff0a58c47154229b9f8d603ac40d3500248507",
+              "matches_decksight_r04_qa": false,
+              "certificate": [
+                "subject=C=US, ST=Washington, L=Redmond, O=Microsoft Corporation, CN=Microsoft Corporation UEFI CA 2011",
+                "issuer=C=US, ST=Washington, L=Redmond, O=Microsoft Corporation, CN=Microsoft Corporation Third Party Marketplace Root"
+              ]
+            }
+          ]
+        },
+        {
+          "offset": 3143,
+          "type": "a5c059a1-94e4-4aa7-87b5-ab155c2bf072",
+          "size": 829,
+          "header_size": 0,
+          "entry_size": 801,
+          "entries": [
+            {
+              "payload_offset": 3187,
+              "size": 785,
+              "sha256": "f14700fcca6aed9c5d33f356e3f8a3413beda76dacaa1324b00e3d0a05446b18",
+              "matches_decksight_r04_qa": true,
+              "certificate": [
+                "subject=CN=QA Certificate.",
+                "issuer=CN=QA Certificate."
+              ]
+            }
+          ]
+        },
+        {
+          "offset": 3972,
+          "type": "a5c059a1-94e4-4aa7-87b5-ab155c2bf072",
+          "size": 807,
+          "header_size": 0,
+          "entry_size": 779,
+          "entries": [
+            {
+              "payload_offset": 4016,
+              "size": 763,
+              "sha256": "eb2abdf3e150dba4b69987ffe9f2b5b947889ffceaf2bcaf8f252e44ef9cad77",
+              "matches_decksight_r04_qa": false,
+              "certificate": [
+                "subject=CN=Jupiter",
+                "issuer=CN=Jupiter"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "factory default db in Insyde FDC store",
+      "path": "27 FFF12B8D-7696-4C8B-A985-2747075B4F50/3 Insyde FDC store/0 VSS store/2 db/body.bin",
+      "size": 4779,
+      "sha256": "de765623284d261951900bcf2fa96e57c2843b9b180e431407f48bcb09d7bac5",
+      "signature_lists": [
+        {
+          "offset": 0,
+          "type": "a5c059a1-94e4-4aa7-87b5-ab155c2bf072",
+          "size": 1543,
+          "header_size": 0,
+          "entry_size": 1515,
+          "entries": [
+            {
+              "payload_offset": 44,
+              "size": 1499,
+              "sha256": "e8e95f0733a55e8bad7be0a1413ee23c51fcea64b3c8fa6a786935fddcc71961",
+              "matches_decksight_r04_qa": false,
+              "certificate": [
+                "subject=C=US, ST=Washington, L=Redmond, O=Microsoft Corporation, CN=Microsoft Windows Production PCA 2011",
+                "issuer=C=US, ST=Washington, L=Redmond, O=Microsoft Corporation, CN=Microsoft Root Certificate Authority 2010"
+              ]
+            }
+          ]
+        },
+        {
+          "offset": 1543,
+          "type": "a5c059a1-94e4-4aa7-87b5-ab155c2bf072",
+          "size": 1600,
+          "header_size": 0,
+          "entry_size": 1572,
+          "entries": [
+            {
+              "payload_offset": 1587,
+              "size": 1556,
+              "sha256": "48e99b991f57fc52f76149599bff0a58c47154229b9f8d603ac40d3500248507",
+              "matches_decksight_r04_qa": false,
+              "certificate": [
+                "subject=C=US, ST=Washington, L=Redmond, O=Microsoft Corporation, CN=Microsoft Corporation UEFI CA 2011",
+                "issuer=C=US, ST=Washington, L=Redmond, O=Microsoft Corporation, CN=Microsoft Corporation Third Party Marketplace Root"
+              ]
+            }
+          ]
+        },
+        {
+          "offset": 3143,
+          "type": "a5c059a1-94e4-4aa7-87b5-ab155c2bf072",
+          "size": 829,
+          "header_size": 0,
+          "entry_size": 801,
+          "entries": [
+            {
+              "payload_offset": 3187,
+              "size": 785,
+              "sha256": "f14700fcca6aed9c5d33f356e3f8a3413beda76dacaa1324b00e3d0a05446b18",
+              "matches_decksight_r04_qa": true,
+              "certificate": [
+                "subject=CN=QA Certificate.",
+                "issuer=CN=QA Certificate."
+              ]
+            }
+          ]
+        },
+        {
+          "offset": 3972,
+          "type": "a5c059a1-94e4-4aa7-87b5-ab155c2bf072",
+          "size": 807,
+          "header_size": 0,
+          "entry_size": 779,
+          "entries": [
+            {
+              "payload_offset": 4016,
+              "size": 763,
+              "sha256": "eb2abdf3e150dba4b69987ffe9f2b5b947889ffceaf2bcaf8f252e44ef9cad77",
+              "matches_decksight_r04_qa": false,
+              "certificate": [
+                "subject=CN=Jupiter",
+                "issuer=CN=Jupiter"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "driver_guid_occurrences": [
+    {
+      "module": "BdsDxe",
+      "path": "23 1FD0BACE-6F0A-4085-901E-F6210385CB6F/0 20BC8AC9-94D1-4208-AB28-5D673FD73486/0 EE4E5898-3914-4259-9D6E-DC7BD79403CF/1 Volume image section/0 8C8CE578-8A3D-4F1C-9935-896185C32DD3/49 BdsDxe/2 PE32 image section/body.bin",
+      "sha256": "79f072d3e3b7c78cc48be998916701f6c9f48e5419817cbfe251cc3081bae82f",
+      "file_offsets": [
+        213816
+      ]
+    },
+    {
+      "module": "BdsDxe",
+      "path": "9 1FD0BACE-6F0A-4085-901E-F6210385CB6F/0 20BC8AC9-94D1-4208-AB28-5D673FD73486/0 EE4E5898-3914-4259-9D6E-DC7BD79403CF/1 Volume image section/0 8C8CE578-8A3D-4F1C-9935-896185C32DD3/49 BdsDxe/2 PE32 image section/body.bin",
+      "sha256": "79f072d3e3b7c78cc48be998916701f6c9f48e5419817cbfe251cc3081bae82f",
+      "file_offsets": [
+        213816
+      ]
+    },
+    {
+      "module": "SecureFlashDxe",
+      "path": "23 1FD0BACE-6F0A-4085-901E-F6210385CB6F/0 20BC8AC9-94D1-4208-AB28-5D673FD73486/0 EE4E5898-3914-4259-9D6E-DC7BD79403CF/1 Volume image section/0 8C8CE578-8A3D-4F1C-9935-896185C32DD3/114 SecureFlashDxe/1 PE32 image section/body.bin",
+      "sha256": "69a68654bc7ddee714e1d77552063ca81d4fa917bf1fead37ab8372c3a5f7c98",
+      "file_offsets": [
+        35816
+      ]
+    },
+    {
+      "module": "SecureFlashDxe",
+      "path": "9 1FD0BACE-6F0A-4085-901E-F6210385CB6F/0 20BC8AC9-94D1-4208-AB28-5D673FD73486/0 EE4E5898-3914-4259-9D6E-DC7BD79403CF/1 Volume image section/0 8C8CE578-8A3D-4F1C-9935-896185C32DD3/114 SecureFlashDxe/1 PE32 image section/body.bin",
+      "sha256": "69a68654bc7ddee714e1d77552063ca81d4fa917bf1fead37ab8372c3a5f7c98",
+      "file_offsets": [
+        35816
+      ]
+    },
+    {
+      "module": "SecurityStubDxe",
+      "path": "23 1FD0BACE-6F0A-4085-901E-F6210385CB6F/0 20BC8AC9-94D1-4208-AB28-5D673FD73486/0 EE4E5898-3914-4259-9D6E-DC7BD79403CF/1 Volume image section/0 8C8CE578-8A3D-4F1C-9935-896185C32DD3/54 SecurityStubDxe/1 PE32 image section/body.bin",
+      "sha256": "db59a5d76758ab55a79208695d36707dc5f2fb013df73e0e013a6da61566564a",
+      "file_offsets": []
+    },
+    {
+      "module": "SecurityStubDxe",
+      "path": "9 1FD0BACE-6F0A-4085-901E-F6210385CB6F/0 20BC8AC9-94D1-4208-AB28-5D673FD73486/0 EE4E5898-3914-4259-9D6E-DC7BD79403CF/1 Volume image section/0 8C8CE578-8A3D-4F1C-9935-896185C32DD3/54 SecurityStubDxe/1 PE32 image section/body.bin",
+      "sha256": "db59a5d76758ab55a79208695d36707dc5f2fb013df73e0e013a6da61566564a",
+      "file_offsets": []
+    }
+  ]
+}

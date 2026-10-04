@@ -46,6 +46,13 @@ the developer signs locally, uses a partner or uses a signing service. The
 generic QA label is not proof of ownership, Valve endorsement, Insyde ownership
 or a publicly available signing key. No private key has been recovered.
 
+Subsequent offline inspection found this **exact QA certificate already present
+in Valve's stock F7A0133**, beside `CN=Jupiter`, in a firmware certificate
+resource and factory-default `db` records. This supports a specific existing
+trust relationship; it does not identify the private-key operator. See the
+[custom BIOS research](custom-bios-research.md) for the measured locations,
+other projects' signing methods and evidence limits.
+
 ## Valid signature versus accepted signer
 
 There are two independent checks:
@@ -53,11 +60,16 @@ There are two independent checks:
 1. Does this signature match the content and public key?
 2. Does this update path authorize that key/content for this device?
 
-Our offline checks establish the first. They explicitly use the certificate
+Our signature checks establish the first. They explicitly use the certificate
 inside the artifact as a verification anchor, rather than proving it belongs
 to an independently trusted authority. The Deck's updater/firmware policy must
 be analyzed separately; the presence of an embedded self-signed certificate
 does not mean arbitrary self-signed firmware will be accepted.
+
+Public projects describe ways to substitute a new trusted certificate on
+vulnerable Insyde firmware. That changes the trust configuration; it is not
+ordinary acceptance of any signer. These methods have not been validated here,
+and public implementations and success reports require careful review.
 
 The [public installer](https://github.com/ShadeTechnik/DeckSight-Public/blob/2baab5bb4366e419bfad68beda5910a8fd2e8e32/install.sh)
 passes its existing `.fd` to the system's `h2offt`. It has no end-user signing

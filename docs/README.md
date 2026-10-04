@@ -10,6 +10,7 @@ is required for anything potentially dangerous to hardware or software.
 | [Full reconstruction](full-reconstruction.md) | Whole `.fd` identity and remaining semantic/signing requirements |
 | [Container reconstruction](container-reconstruction.md) | IFLASH/PE metadata and explicit historical signature reuse |
 | [Signing and installation](signing.md) | How signatures work, signer identity and whether a new signing step is needed |
+| [Other custom BIOS projects](custom-bios-research.md) | Public signing/bypass research, conflicting reports and the QA certificate in stock firmware |
 | [Panel initialization](panel-init.md) | Decoded packets, known meanings and explicit unknowns |
 | [EC interpreter](ec-interpreter.md) | Instruction traces for table selection, bus buffers and delay counters |
 | [Brightness](brightness.md) | Recovered mailbox and panel protocol |

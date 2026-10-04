@@ -100,6 +100,21 @@ The research host additionally set `-DOPENSSL_ROOT_DIR=/opt/homebrew/opt/openssl
 for CMake. The verifier explicitly anchors trust to the certificate extracted
 from the artifact; it does not establish Valve trust or updater acceptance.
 
+## Inspect the stock firmware's public certificate lists
+
+After the stock UEFI extraction above:
+
+```sh
+python3 tools/inspect_stock_certificates.py artifacts/uefi/stock.bin.dump > artifacts/stock-certificate-inventory.json
+```
+
+This reads the pinned stock extraction and parses EFI signature lists, using
+OpenSSL only to describe embedded public certificates. The report records the
+exact DeckSight QA certificate match in the stock certificate resource and
+factory-default `db`, plus GUID occurrences in firmware drivers. It does not
+read live NVRAM or establish which verification path executes. See
+[custom BIOS research](custom-bios-research.md) for interpretation and limits.
+
 ## Read-only SSH collection
 
 When authorized, stream the collector without installing or writing remote files:

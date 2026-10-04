@@ -1,0 +1,157 @@
+{
+  "retrieved_on": "2026-10-03",
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/DeckHD/BiosMaker/81c9f6863c9512fbbdcbb5c7a299badf1e54a328/README.md",
+      "repo": "DeckHD/BiosMaker",
+      "commit": "81c9f6863c9512fbbdcbb5c7a299badf1e54a328",
+      "path": "README.md",
+      "local_path": "artifacts/online-signing-research/DeckHD--BiosMaker/README.md",
+      "bytes": 464,
+      "sha256": "b40b42d24ef836638c2c5cac6a1e1e297bbce5168b0415180d4441c532bc066b"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/DeckHD/BiosMaker/81c9f6863c9512fbbdcbb5c7a299badf1e54a328/biosmaker.sh",
+      "repo": "DeckHD/BiosMaker",
+      "commit": "81c9f6863c9512fbbdcbb5c7a299badf1e54a328",
+      "path": "biosmaker.sh",
+      "local_path": "artifacts/online-signing-research/DeckHD--BiosMaker/biosmaker.sh",
+      "bytes": 587,
+      "sha256": "2896ffa4eeb63dec2679674476640ecf25f97074e997a0553dbeecf4c789daef"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/syberphunk/sdbios-rebuild/63bae8e933053f03a4f09e05f3f4ba6936962f54/README.MD",
+      "repo": "syberphunk/sdbios-rebuild",
+      "commit": "63bae8e933053f03a4f09e05f3f4ba6936962f54",
+      "path": "README.MD",
+      "local_path": "artifacts/online-signing-research/syberphunk--sdbios-rebuild/README.MD",
+      "bytes": 1551,
+      "sha256": "816e113c7f226c69af14b3e832a61998a89de336ceff8d05e8a7f42c30bd559e"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/syberphunk/sdbios-rebuild/63bae8e933053f03a4f09e05f3f4ba6936962f54/build-fd-bios/readme.md",
+      "repo": "syberphunk/sdbios-rebuild",
+      "commit": "63bae8e933053f03a4f09e05f3f4ba6936962f54",
+      "path": "build-fd-bios/readme.md",
+      "local_path": "artifacts/online-signing-research/syberphunk--sdbios-rebuild/build-fd-bios/readme.md",
+      "bytes": 1639,
+      "sha256": "a6916425ac4de2ca98648661fa26a7ec45e4c628fffe5bb271c746674ae56b7e"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/syberphunk/sdbios-rebuild/63bae8e933053f03a4f09e05f3f4ba6936962f54/build-fd-bios/extract-template.py",
+      "repo": "syberphunk/sdbios-rebuild",
+      "commit": "63bae8e933053f03a4f09e05f3f4ba6936962f54",
+      "path": "build-fd-bios/extract-template.py",
+      "local_path": "artifacts/online-signing-research/syberphunk--sdbios-rebuild/build-fd-bios/extract-template.py",
+      "bytes": 305,
+      "sha256": "3528bf02a5034bcd94427eefa197fb6ff8ee1b24be64c77babc0a48846572ae8"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/syberphunk/sdbios-rebuild/63bae8e933053f03a4f09e05f3f4ba6936962f54/build-fd-bios/sign_bios_preserve_header.py",
+      "repo": "syberphunk/sdbios-rebuild",
+      "commit": "63bae8e933053f03a4f09e05f3f4ba6936962f54",
+      "path": "build-fd-bios/sign_bios_preserve_header.py",
+      "local_path": "artifacts/online-signing-research/syberphunk--sdbios-rebuild/build-fd-bios/sign_bios_preserve_header.py",
+      "bytes": 12851,
+      "sha256": "3a1b119acc342e1b82e856491c7da8e66d4e8f402134aa3b695ddcd16d4992ae"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/syberphunk/sdbios-rebuild/63bae8e933053f03a4f09e05f3f4ba6936962f54/bypass-cert-check/readme.md",
+      "repo": "syberphunk/sdbios-rebuild",
+      "commit": "63bae8e933053f03a4f09e05f3f4ba6936962f54",
+      "path": "bypass-cert-check/readme.md",
+      "local_path": "artifacts/online-signing-research/syberphunk--sdbios-rebuild/bypass-cert-check/readme.md",
+      "bytes": 8560,
+      "sha256": "646423d57e547e4d814dc8e25622774b4631d3e7869672b789ff0888018a39f7"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/syberphunk/sdbios-rebuild/63bae8e933053f03a4f09e05f3f4ba6936962f54/bypass-cert-check/set_nvram_variables.sh",
+      "repo": "syberphunk/sdbios-rebuild",
+      "commit": "63bae8e933053f03a4f09e05f3f4ba6936962f54",
+      "path": "bypass-cert-check/set_nvram_variables.sh",
+      "local_path": "artifacts/online-signing-research/syberphunk--sdbios-rebuild/bypass-cert-check/set_nvram_variables.sh",
+      "bytes": 2372,
+      "sha256": "68f8943ea7d98e9b028a6223f18e40818887aafff1e56aa2c30c2f28e9f7ed79"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/djanice1980/SD-APCB-Tool/ac3e93aedc86acf3c7902ea904addb328e251a18/README.md",
+      "repo": "djanice1980/SD-APCB-Tool",
+      "commit": "ac3e93aedc86acf3c7902ea904addb328e251a18",
+      "path": "README.md",
+      "local_path": "artifacts/online-signing-research/djanice1980--SD-APCB-Tool/README.md",
+      "bytes": 30283,
+      "sha256": "d53e26a6aed8e37ca5f744f39ebdd81b21cdca61eaa71b64fc3c4cdb936d442d"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/djanice1980/SD-APCB-Tool/ac3e93aedc86acf3c7902ea904addb328e251a18/CHANGELOG.md",
+      "repo": "djanice1980/SD-APCB-Tool",
+      "commit": "ac3e93aedc86acf3c7902ea904addb328e251a18",
+      "path": "CHANGELOG.md",
+      "local_path": "artifacts/online-signing-research/djanice1980--SD-APCB-Tool/CHANGELOG.md",
+      "bytes": 23973,
+      "sha256": "71c3987d6f36b557d0883a7a22d41f5f993758133b5776c64aff58c1578df3c5"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/djanice1980/SD-APCB-Tool/ac3e93aedc86acf3c7902ea904addb328e251a18/secureflash_resign.py",
+      "repo": "djanice1980/SD-APCB-Tool",
+      "commit": "ac3e93aedc86acf3c7902ea904addb328e251a18",
+      "path": "secureflash_resign.py",
+      "local_path": "artifacts/online-signing-research/djanice1980--SD-APCB-Tool/secureflash_resign.py",
+      "bytes": 26608,
+      "sha256": "5d46dc43100440660d7db4ca72af6ba9f78fc384e67a10e6aa2a0cc283c36789"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/DavidS95/Smokeless_UMAF/c003b126cab6e29b1d72d061d59cea9e721a6910/README.md",
+      "repo": "DavidS95/Smokeless_UMAF",
+      "commit": "c003b126cab6e29b1d72d061d59cea9e721a6910",
+      "path": "README.md",
+      "local_path": "artifacts/online-signing-research/DavidS95--Smokeless_UMAF/README.md",
+      "bytes": 4481,
+      "sha256": "1f654d24746cb43b1668c4b5bbfcb0514571b341c5f70f143ebc1c24c4ff90e7"
+    },
+    {
+      "url": "https://www.stanto.com/steam-deck/unlocking-the-steam-deck-bios-secure-boot-options-higher-tdp-and-amd-cbs-pbs-for-ram-tweaking-with-a-flash/",
+      "local_path": "artifacts/online-signing-research/stanto-custom-bios.html",
+      "error": "HTTP Error 500: Internal Server Error"
+    },
+    {
+      "url": "https://coderush.me/hydroph0bia-part1/",
+      "local_path": "artifacts/online-signing-research/hydroph0bia-part1.html",
+      "bytes": 24174,
+      "sha256": "55d3d9e95d21559e92c45a6e18918b4092273dffb5ca5ef7aa2c4a87fd73f264"
+    },
+    {
+      "url": "https://coderush.me/hydroph0bia-part2/",
+      "local_path": "artifacts/online-signing-research/hydroph0bia-part2.html",
+      "bytes": 42799,
+      "sha256": "38e7f9f259f23d7632e28baf833b1d7edf8ff0e97a105838e3790b9a6e80e1ba"
+    },
+    {
+      "url": "https://coderush.me/hydroph0bia-part3/",
+      "local_path": "artifacts/online-signing-research/hydroph0bia-part3.html",
+      "bytes": 14019,
+      "sha256": "45e13b8b03c10e4599b80f26266c2efbd4c7c433710bb9fe1a0172169c1818bf"
+    },
+    {
+      "url": "https://www.insyde.com/security-pledge/sa-2025002/",
+      "local_path": "artifacts/online-signing-research/insyde-sa-2025002.html",
+      "bytes": 94154,
+      "sha256": "78e549c46a0bf7b453fdb36dca81b64fc15f1f55792067e8bd3dbdf714e98116"
+    },
+    {
+      "url": "https://api.github.com/repos/DeckHD/BiosMaker/issues/4/comments?per_page=100",
+      "local_path": "artifacts/online-signing-research/deckhd-issue-4-comments.json",
+      "bytes": 47456,
+      "sha256": "48f2debf0f75e022dce6b77cf05d41710c8e97759c2c457375bce03e5a3ee3d2"
+    }
+  ],
+  "scope": "Public online sources read as data; no downloaded installer, bypass, flasher or firmware was executed.",
+  "indexed_only_sources": [
+    {
+      "url": "https://www.stanto.com/",
+      "title": "Unlocking the Steam Deck BIOS Secure Boot Options, Higher TDP and AMD CBS/PBS for RAM Tweaking with a Flash",
+      "publication_date": "2026-07-27",
+      "retrieval": "Search index text; direct homepage and article requests returned HTTP 500. No release artifact verified."
+    }
+  ]
+}
