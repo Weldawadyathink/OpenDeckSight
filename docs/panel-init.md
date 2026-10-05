@@ -53,9 +53,13 @@ remains unresolved. No live test of this anomaly is authorized or has occurred.
 
 ## What would close the remaining semantic gap
 
-Controller identification and vendor programming documentation remain
-unavailable. Continue with public artifacts, static analysis and independently
-available controller documentation. The absence of a part number does not block
-the reconstruction, but the internal effects of the vendor commands remain
-unexplained. The program labels that distinction and the project does not claim
-the full acceptance criterion is met yet.
+Exact controller identification remains unavailable. A subsequently retained
+[ICNA3512 datasheet](vrr-icna3512.md) now provides conditional definitions for
+several matching commands, including `48 03` as video mode with GRAM bypass,
+the two command-access sequences and register-group selection. These matches
+make it a controller-family lead, not proof that every definition applies to
+DeckSight. The table and decoder above preserve the unresolved status until
+that applicability is established; grouped payload effects also remain unknown.
+Continue with public artifacts and static analysis. The absence of a part
+number does not block reconstruction, but the project does not claim the full
+semantic acceptance criterion is met yet.

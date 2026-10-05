@@ -15,3 +15,7 @@ to it.
 Several commands match DeckSight’s initialization stream. This makes ICNA3512
 a useful controller-family lead; it does not yet establish the exact chip in
 the DeckSight panel or validate a DSC setup for the ANX7580 bridge.
+
+The [VRR relevance notes](../vrr-icna3512.md) identify the conditional
+`48 03` video-mode/GRAM-bypass interpretation, useful timing and readback
+sections, and the limits of applying this controller-family document.

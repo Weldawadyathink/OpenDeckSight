@@ -48,7 +48,7 @@ modes does not establish a VRR range.
 | r04 EDID base block | One 1080 × 1920 DTD, about 60 Hz; no monitor-range descriptor (`0xfd`) | No advertised min/max vertical-frequency range. |
 | r04 EDID extensions | One CTA extension containing only HDR static metadata | No DisplayID timing-range block or AMD FreeSync vendor block. HDR metadata is independent of VRR. |
 | Existing EC reconstruction | EDID relocation, bridge configuration and panel commands are understood at the transport level | Provides places to investigate changes; several command effects remain opaque. |
-| Public panel identification | Model/controller programming documentation remains unidentified | The generated `DSO:5001` identity is not a controller part number. |
+| Public panel identification | A retained ICNA3512 datasheet matches several initialization commands; exact controller identity remains unverified | The generated `DSO:5001` identity is not a controller part number. See the [controller-family evidence](vrr-icna3512.md). |
 
 The new [collector](../opendecksight/vrr.py) opens the DRM card read-only and
 calls only `drmModeObjectGetProperties` and `drmModeGetProperty`, plus their
@@ -135,6 +135,13 @@ and/or documented configuration may be needed; an inflexible timing generator
 would make support on the existing hardware much less likely.
 
 ### 3. Panel timing: a separate hardware uncertainty
+
+The subsequently retained [ICNA3512 datasheet](vrr-icna3512.md) provides a
+conditional interpretation of the existing `48 03` initialization: video mode
+with GRAM bypass. This makes independent full-frame rescan a less compelling
+assumption if the definitions apply, but proves neither controller identity nor
+variable blanking support. Its dynamic-frame-rate feature listing and typical
+video timings do not establish an allowed DeckSight VRR range.
 
 Even a transparent bridge would not be sufficient. The panel controller must
 accept variable frame intervals in its configured mode and preserve correct

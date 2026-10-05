@@ -23,6 +23,7 @@ is required for anything potentially dangerous to hardware or software.
 | [Fixed-refresh control](vrr-fixed-refresh-control.md) | Physical native-mode page flips, timing guards and fixed-cadence control results |
 | [VRR request validation](vrr-atomic-validation.md) | Physical TEST_ONLY results: accepted requests do not establish variable timing |
 | [Bounded visual experiment](vrr-visual-experiment.md) | Physical A/B/A source timing changes, visual observation, restoration and remaining optical uncertainty |
+| [ICNA3512 and VRR](vrr-icna3512.md) | Retained controller datasheet, conditional video/GRAM-bypass interpretation and timing limits |
 | [Provenance](provenance.md) | Sources, tool versions, reproduction boundaries |
 | [Reproduction](reproduce.md) | Download, inspection, comparison and test commands |
 | [Artifact manifest](../research/artifacts.json) | Download URLs and SHA-256 digests |
