@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "docs/datasheets/ICNA3512_Preliminary_Datasheet_V0.00.pdf",
+      "title": "ICNA3512 Preliminary Datasheet",
+      "version": "0.00",
+      "document_date": "September 2021",
+      "pages": 314,
+      "size": 18926223,
+      "sha256": "afa40b8f9d7dcd13b3716a8524d7316bb4869966e5494dcae623ac571858f991",
+      "url": "https://github.com/user-attachments/files/29510919/ICNA3512_Preliminary.Datasheet_V0.00.pdf",
+      "public_reference": "https://github.com/Studented0/universal-ai-terminal/blob/f647e5f3e615e85d3fb7d6849655ec857b07f67f/journal.md",
+      "retrieved_on": "2026-10-04",
+      "stored_unmodified": true,
+      "rights_note": "Document retains the original Chipone copyright and confidentiality markings; public availability does not establish a redistribution license.",
+      "applicability": "Controller-family research lead; exact DeckSight controller identity not yet verified."
+    }
+  ]
+}
