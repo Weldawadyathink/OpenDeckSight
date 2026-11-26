@@ -221,3 +221,22 @@ and edge characterization. One working sensor is sufficient to begin local
 content-arrival measurements and VRR implementation experiments. A second
 sensor strengthens spatial consistency and tearing checks; one trace alone
 does not prove correct whole-panel VRR.
+
+### Successful optical response after repositioning
+
+A subsequent run of the same probe, after repositioning the sensor toward
+the onboard LED, established a strong functional response on GP26. Across
+eight windows of each state (2,048 samples per state), the nominal mean was
+31.12 mV with the LED off and 1.71260 V with it on: a 1.68148 V difference.
+Every on-window was clearly separated from every off-window. Within-state
+sample standard deviations were 2.57 mV off and 27.64 mV on. No ADC-rail hits
+were observed. The [successful response report](../research/reports/pico-optical-response.json)
+preserves the statistics, source/capture hashes and limitations; the earlier
+unsuccessful placement remains in the initial report.
+
+This confirms a functional sensor-to-ADC path and removes the initial
+light-detection blocker. It does not independently verify every connection,
+the bypass capacitor, amplifier linearity, or temporal response. GP27 showed
+coupling as an auxiliary unconnected input and must not be interpreted as a
+second working sensor. The next instrument work is hardware-paced acquisition
+and edge characterization; one validated optical channel is enough to begin.

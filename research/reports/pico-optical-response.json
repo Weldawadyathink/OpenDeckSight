@@ -1,0 +1,59 @@
+{
+  "schema": "pico-optical-response-v1",
+  "date": "2026-11-26",
+  "instrument": "Raspberry Pi Pico W / RP2040",
+  "sensor": "OPT101P, intended circuit at 3.3 V; output GP26",
+  "firmware": "MicroPython v1.29.0, RPI_PICO_W",
+  "firmware_provenance_report": "pico-optical-bringup.json",
+  "probe_source_sha256": "b446e81bdfd59be6c0375b67eb60abbd218aab349d66c6163939f843fc0f939e",
+  "raw_sha256": "df955d5492c447ce8f73073bb18fb59e132029b70149bd30f4d4567b59a87e7e",
+  "method": "Same 16-window slow LED-state test after repositioning sensor toward the onboard LED. 50 ms settling, 256 ADC reads per input per window.",
+  "nominal_adc_reference_v": 3.3,
+  "gpio": 26,
+  "result": "Strong repeatable light response confirms functional sensor-to-ADC path.",
+  "timing_validated": false,
+  "limits": [
+    "This verifies functional light detection, not a visual inspection of every wire or the decoupling capacitor.",
+    "Sampling is software paced; no edge-response, absolute timing or VRR claim.",
+    "No ADC-rail hits were observed; amplifier linearity and headroom remain to be characterized.",
+    "GP27 is an auxiliary unconnected input with coupling, not a second functional optical channel.",
+    "Voltage estimates use nominal 3.3 V ADC reference."
+  ],
+  "off": {
+    "windows": 8,
+    "samples": 2048,
+    "mean_v": 0.031121609636072328,
+    "stddev_v": 0.002570713608163725,
+    "min_u16": 288,
+    "max_u16": 928,
+    "window_means_v": [
+      0.031216811627374684,
+      0.03121995880064088,
+      0.03134899290455481,
+      0.031075188830395967,
+      0.030927271686884868,
+      0.03095244907301442,
+      0.031166456855115585,
+      0.03106574731059739
+    ]
+  },
+  "on": {
+    "windows": 8,
+    "samples": 2048,
+    "mean_v": 1.7126007922472246,
+    "stddev_v": 0.02763564636170725,
+    "min_u16": 32455,
+    "max_u16": 34664,
+    "window_means_v": [
+      1.7137692049095903,
+      1.7159537365529869,
+      1.7118749999999998,
+      1.7189508289940487,
+      1.7126043574044403,
+      1.7074770220588236,
+      1.7114652773804073,
+      1.7087109106775005
+    ]
+  },
+  "on_minus_off_v": 1.6814791826111524
+}
