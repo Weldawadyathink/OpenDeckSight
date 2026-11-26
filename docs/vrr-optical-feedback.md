@@ -1,9 +1,79 @@
 # Controlled timing repeat before expanding the VRR range
 
-Prepared 2026-11-26. **Built and tested locally; not deployed or run on the
-display.** The [first optical result](vrr-optical-ab.md) supports continuing,
-but a repeat with better source timing control should precede range expansion.
-No device was contacted while preparing this checkpoint.
+Prepared and physically attempted 2026-11-26. **The fixed control passed;
+the first experimental run stopped at its submission-deadline guard after
+320 of 720 B flips. The second run was skipped, and the disabled native
+baseline was restored by reboot and verified.** The completed portion adds
+useful optical evidence, but the session failed its completion/repeatability
+criteria. No wider range was tested.
+
+## Approved session result
+
+The exact prepared binary and unchanged driver were used. The disabled-boot
+control completed all 1,800 flips, matched all 1,442 intended optical changes
+and produced no new kernel messages. Its middle-phase optical-minus-source
+residual had 6.89 us standard deviation. All source phases stayed native-periodic.
+
+The experiment completed the preamble, first fixed A and 320 B flips: 1,040
+flips total, with 682 intended content changes. Before submitting B frame 321,
+the program reported `Missed feedback submission deadline; refusing catch-up.`
+It exited with status 1, without a timeout, and verified framebuffer/native-mode
+and VRR-off restoration. The exact rejected submission timestamp was not
+logged, so its lateness and the underlying wakeup/preemption cause cannot be
+recovered. The completed paced submissions were at most 12.581 us late; this
+does not bound the rejected submission.
+
+Both 50-second recordings contained 5,000,000 samples and passed all
+packet/count/checksum and hardware-status checks. The only new experimental
+kernel lines recorded `set_drr` calls for 1957/1989 and then 1956/1956. No new
+kernel error was recorded. Following the stop rule, no second experiment was
+attempted. Final reboot checks verified native mode, the disabled override,
+`vrr_capable = 0`, disabled next-boot selection, isolated internal storage and
+no active swap. No firmware was flashed.
+
+### Diagnostic evidence from the completed portion
+
+The normal full-run analyzer still rejects this experiment. A separate
+[`analyze_optical_feedback_prefix.py`](../tools/analyze_optical_feedback_prefix.py)
+requires this exact deadline-abort outcome and the exact contiguous source
+prefix. It recovered all 682 optical changes, with no extra/missing qualified
+edges and no removed timing outliers. Its clock and polarity fit uses only
+the complete first fixed A. It always labels the result aborted, with
+`progression_passed = false`; it cannot promote the partial trace to a pass.
+
+The 320 completed B transitions followed GPU timing with 7.18 us residual
+standard deviation and a -36.06 to +64.48 us range. Their distance from the
+original uninterrupted 60 Hz grid had 4.25 ms standard deviation. These are
+model residuals, not a calibrated absolute timing accuracy or latency claim.
+
+| B block | Requested total | Completed flips | Median source period |
+| --- | --- | --- | --- |
+| 0 | 1964 | 60 / 60 | 16.735 ms |
+| 1 | 1980 | 60 / 60 | 16.879 ms |
+| 2 | 1964 | 60 / 60 | 16.735 ms |
+| 3 | 1980 | 60 / 60 | 16.879 ms |
+| 4 | 1964 | 60 / 60 | 16.743 ms |
+| 5 | 1980 | 20 / 60 | 16.879 ms |
+
+The first block has 59 measured within-B intervals because its first flip
+seeds the schedule. All other reported block intervals include their transition
+from the preceding block. B frame 61 spanned two vblanks; it remains in the
+statistics. The first two complete fast/slow block pairs separated by 144 us.
+This is improved cadence coverage, but fewer than the planned six pairs were
+completed and the final fixed A was never reached.
+
+The [anonymous session record](../research/reports/optical-feedback-session.json)
+preserves input hashes, all block summaries, the failed outcome and restoration
+evidence. Raw reports remain ignored. No whole-screen visual assessment was
+available. The partial result strengthens the narrow-range visible-update
+finding; it does not establish repeatability or justify range expansion yet.
+
+The next software step is to log the attempted deadline, actual submission
+time and preceding callback time on abort, then investigate scheduling latency.
+Any scheduling-policy change or retry needs a concrete reviewed procedure.
+The existing guard should not simply be relaxed to turn this failed run into
+a pass, and the first optical result should not be treated as invalidated by
+this source-scheduling stop.
 
 ## What the original sweep actually exercised
 
@@ -54,7 +124,7 @@ It reports all twelve block distributions. All optical edges remain included;
 the first fixed A alone calibrates the clock and polarity bias. A/B transition
 holds remain explicit, as in the previous analysis.
 
-## Concrete session awaiting approval
+## Approved session procedure and stop rule
 
 1. Copy the reviewed feedback binary into the disposable lab's `/run` RAM
    filesystem. Verify the existing disabled driver, native mode and storage
@@ -93,8 +163,10 @@ that experiment.
 Approval is required by [AGENTS.md](../AGENTS.md): “Do not stop/start services,
 install/copy files on the Deck, change settings, access MMIO, run a flasher,
 or reboot without explicit human approval for the concrete action.” The prior
-approval covered the completed optical session; this is a new display program
-and new session.
+approval covered the earlier optical session; the new session above received
+separate explicit approval. That session is now complete after the required
+stop and restoration. A later retry or expanded-range test needs its own
+concrete approval.
 
 ## Candidate first expansion: nominal 58–60 Hz
 
@@ -127,6 +199,12 @@ capture/delivery integrity and the existing optical hypotheses. Reanalysis of
 both original physical recordings retained all 1,442 edges and identical
 middle-phase residual statistics. No optical thresholds or clock fitting
 rules were changed.
+
+Three additional prefix-analysis tests verify that incomplete data stays
+failed, extra/missing/reordered edges are rejected, partial blocks remain
+visible, and an injected held-out delay cannot change the clock fit. The
+original full-run analyzer was also checked against the stopped recording
+and continued to reject it.
 
 ```sh
 python3 -B -m unittest tests.test_optical_ab

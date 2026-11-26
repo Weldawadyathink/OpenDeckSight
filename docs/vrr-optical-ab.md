@@ -70,9 +70,11 @@ The evidence argues against an absolute ANX/panel timing incompatibility in
 this narrow case; it does not establish standard Adaptive-Sync compliance or
 exclude every possible buffering mechanism.
 
-The next [controlled timing repeat](vrr-optical-feedback.md) has been prepared
-locally to improve cadence coverage and check repeatability before considering
-a nominal 58–60 Hz range. It has not yet run on the display.
+The later [controlled timing follow-up](vrr-optical-feedback.md) improved
+cadence coverage in its completed portion but stopped at a submission-deadline
+guard after 320 B flips. Its partial optical evidence supports this first
+result; it did not meet completion/repeatability criteria. The disabled
+baseline was restored, and nominal 58–60 Hz remains untested.
 
 ## Stimulus and guards
 

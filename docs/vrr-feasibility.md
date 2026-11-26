@@ -226,11 +226,14 @@ simultaneously; the existing sensor remains useful for repeatability and
 sequential location checks. No further hardware purchase is required to
 continue software analysis and narrow-range test development.
 
-The [prepared controlled repeat](vrr-optical-feedback.md) addresses that next
-step. It replaces the free-running triangle schedule with event-anchored
-two-rate blocks inside the unchanged guard. The source-log review found
-374 of 719 intervals near the fast bound in the original sweep. Nominal
-58–60 Hz is a candidate first expansion after repeatability and cadence checks;
+The [controlled timing follow-up](vrr-optical-feedback.md) replaced the
+free-running triangle with event-anchored two-rate blocks inside the unchanged
+guard. Its fixed control passed, but the first experiment stopped at its
+submission-deadline guard after 320 B flips; no repeat was attempted. The
+completed portion separated the rates and followed GPU timing optically with
+7.18 us residual standard deviation. The disabled baseline was restored.
+Completion and repeatability remain unresolved, with scheduling diagnosis the
+immediate next step. Nominal 58–60 Hz remains a candidate after those checks;
 its extra blanking has not been tested or established safe.
 
 An ANX7580 programming manual remains useful but is not a prerequisite for

@@ -1,0 +1,357 @@
+{
+  "schema": "optical-feedback-session-v1",
+  "date": "2026-11-26",
+  "prepared_commit": "ad1b8b9",
+  "outcome": "stopped_after_first_experimental_run_missed_submission_deadline",
+  "display_binary_sha256": "d71d5dd704f399b1f20d8d37650c7191167da41c36472853e4f6cc3ab3a22a68",
+  "driver_module_sha256": "2aea311b29f2ca164c450e383bab84eb83186a4190bf00129461876abd1b6d34",
+  "control": {
+    "mode": "control",
+    "returncode": 0,
+    "timed_out": false,
+    "stderr": "",
+    "capture_sha256": "f432e9c93e9311d913ed20a2cc383b8649b2dee33a0072c3de8c8d9c73a72da5",
+    "source_sha256": "9ba6749e5f9b3b035141017613950ed95cd51fd5462e7752b25b35b7be5ceec9",
+    "analysis_sha256": "fcba629e4be0e58306cefe3cbd340dbdd4c66c23685ce0be5fe3b59c238feb08",
+    "source_flips": 1800,
+    "B_flips": 720,
+    "first_to_last_flip_seconds": 29.983166,
+    "sample_count": 5000000,
+    "raw_crossings": 1448,
+    "qualified_edges": 1442,
+    "settling_groups": 2,
+    "largest_settling_span_us": 82.44911512732506,
+    "sample_integrity_checks_passed": true,
+    "capture_status": {
+      "flags": 0,
+      "sent": 5000000,
+      "produced": 5000007,
+      "fcs": 16777485,
+      "cs": 257,
+      "dma_ctrl": 17958885,
+      "max_backlog": 2051
+    },
+    "model": {
+      "offset_us": 776347.4620512426,
+      "scale": 0.9999992998545729,
+      "scale_error_ppm": -0.7001454270794127,
+      "rising_relative_to_falling_us": 215.93644866719842
+    },
+    "phase_summary": {
+      "-1": {
+        "source_period_per_vblank_us": {
+          "count": 359,
+          "min": 16666.0,
+          "median": 16667.0,
+          "max": 16667.0,
+          "stddev": 0.49452115739877966
+        },
+        "source_intervals_outside_native_2us": 0,
+        "source_residual_us": {
+          "count": 2,
+          "min": -13.62447938369587,
+          "median": 10.515026497421786,
+          "max": 34.65453237853944,
+          "stddev": 24.139505881117657
+        },
+        "fixed_native_grid_residual_us": {
+          "count": 2,
+          "min": -12.973969990734986,
+          "median": 11.252908367301643,
+          "max": 35.47978672533827,
+          "stddev": 24.22687835803663
+        }
+      },
+      "0": {
+        "source_period_per_vblank_us": {
+          "count": 359,
+          "min": 16666.0,
+          "median": 16667.0,
+          "max": 16667.0,
+          "stddev": 0.49452115739877966
+        },
+        "source_intervals_outside_native_2us": 0,
+        "source_residual_us": {
+          "count": 360,
+          "min": -15.113169524818659,
+          "median": -2.6841241512447596,
+          "max": 60.97720264643431,
+          "stddev": 9.88732571486674
+        },
+        "fixed_native_grid_residual_us": {
+          "count": 360,
+          "min": -14.686713614379187,
+          "median": -2.264390480277143,
+          "max": 61.83011446731143,
+          "stddev": 9.893309279097688
+        }
+      },
+      "1": {
+        "source_period_per_vblank_us": {
+          "count": 719,
+          "min": 16666.0,
+          "median": 16667.0,
+          "max": 16667.0,
+          "stddev": 0.4944323163128691
+        },
+        "source_intervals_outside_native_2us": 0,
+        "source_residual_us": {
+          "count": 720,
+          "min": -12.042014956474304,
+          "median": 2.2562705036252737,
+          "max": 54.95029326155782,
+          "stddev": 6.8882127984733135
+        },
+        "fixed_native_grid_residual_us": {
+          "count": 720,
+          "min": -11.312444299115668,
+          "median": 2.955835662278332,
+          "max": 56.200187618693235,
+          "stddev": 6.916941900605442
+        }
+      },
+      "2": {
+        "source_period_per_vblank_us": {
+          "count": 359,
+          "min": 16666.0,
+          "median": 16667.0,
+          "max": 16667.0,
+          "stddev": 0.49452115739877966
+        },
+        "source_intervals_outside_native_2us": 0,
+        "source_residual_us": {
+          "count": 360,
+          "min": -4.012276288121939,
+          "median": 7.402400966733694,
+          "max": 81.80746874213219,
+          "stddev": 7.799901199915942
+        },
+        "fixed_native_grid_residual_us": {
+          "count": 360,
+          "min": -3.442504376564102,
+          "median": 8.351895467560098,
+          "max": 82.5983607683429,
+          "stddev": 7.815652477453444
+        }
+      }
+    },
+    "B_multi_vblank_content_holds": [],
+    "display_restore_verified": true,
+    "new_kernel_messages": []
+  },
+  "experiment": {
+    "mode": "experiment",
+    "returncode": 1,
+    "timed_out": false,
+    "stderr": "Missed feedback submission deadline; refusing catch-up.\nOptical A/B test failed, timed out or preflight refused.\n",
+    "capture_sha256": "94f78a88af1d2ad4a2882e5537ea7bf27cda0f1fb360add1068aeb476220d90f",
+    "source_sha256": "bd5e45318327f39a276e66e0b123ed8babcbc162b5a55b4ddb9effb5b474877d",
+    "analysis_sha256": "eb449c60971c4fa65d5eb1d0402c3e47da63d39af094a1b5aefadff4edab0c7c",
+    "source_flips": 1040,
+    "B_flips": 320,
+    "first_to_last_flip_seconds": 17.426725,
+    "sample_count": 5000000,
+    "raw_crossings": 692,
+    "qualified_edges": 682,
+    "settling_groups": 4,
+    "largest_settling_span_us": 66.97654498182237,
+    "sample_integrity_checks_passed": true,
+    "capture_status": {
+      "flags": 0,
+      "sent": 5000000,
+      "produced": 5000007,
+      "fcs": 16777485,
+      "cs": 257,
+      "dma_ctrl": 17958885,
+      "max_backlog": 2051
+    },
+    "model": {
+      "offset_us": 823664.9736064207,
+      "scale": 1.0000025968913278,
+      "scale_error_ppm": 2.596891327755202,
+      "rising_relative_to_falling_us": 214.55801491811872
+    },
+    "phase_summary": {
+      "-1": {
+        "source_residual_us": {
+          "count": 2,
+          "min": -6.387700106482953,
+          "median": 18.246817752020434,
+          "max": 42.88133561052382,
+          "stddev": 24.634517858503386
+        },
+        "fixed_native_grid_residual_us": {
+          "count": 2,
+          "min": 4.262837400166973,
+          "median": 26.48472153135117,
+          "max": 48.70660566253537,
+          "stddev": 22.221884131184197
+        }
+      },
+      "0": {
+        "source_residual_us": {
+          "count": 360,
+          "min": -31.21309328638017,
+          "median": -1.1866541700437665,
+          "max": 54.86705848388374,
+          "stddev": 8.69763518870174
+        },
+        "fixed_native_grid_residual_us": {
+          "count": 360,
+          "min": -43.43815646350595,
+          "median": -7.155783688991505,
+          "max": 43.48203826173449,
+          "stddev": 9.739380651689775
+        }
+      },
+      "1": {
+        "source_residual_us": {
+          "count": 320,
+          "min": -36.06367385946214,
+          "median": -3.7855815840885043,
+          "max": 64.48281302675605,
+          "stddev": 7.175966711557358
+        },
+        "fixed_native_grid_residual_us": {
+          "count": 320,
+          "min": -8272.898518371772,
+          "median": 2348.315835030635,
+          "max": 8255.155833962652,
+          "stddev": 4247.925418726507
+        }
+      }
+    },
+    "B_multi_vblank_content_holds": [
+      {
+        "frame": 61,
+        "vblank_steps": 2
+      }
+    ],
+    "display_restore_verified": true,
+    "new_kernel_messages": [
+      "amdgpu: ODS_VRR: set_drr invoked min=1957 max=1989",
+      "amdgpu: ODS_VRR: set_drr invoked min=1956 max=1956"
+    ]
+  },
+  "prefix_diagnostics": {
+    "completion_status": "aborted",
+    "progression_passed": false,
+    "source_flips": 1040,
+    "completed_B_flips": 320,
+    "matched_prefix_edges": 682,
+    "feedback_blocks": [
+      {
+        "block": 0,
+        "target_total": 1964,
+        "completed_frames": 60,
+        "complete": true,
+        "source_period_us": {
+          "count": 59,
+          "min": 16675.0,
+          "median": 16735.0,
+          "max": 16947.0,
+          "stddev": 41.5781332713665
+        }
+      },
+      {
+        "block": 1,
+        "target_total": 1980,
+        "completed_frames": 60,
+        "complete": true,
+        "source_period_us": {
+          "count": 60,
+          "min": 16675.0,
+          "median": 16879.0,
+          "max": 16905.0,
+          "stddev": 26.662890357615435
+        }
+      },
+      {
+        "block": 2,
+        "target_total": 1964,
+        "completed_frames": 60,
+        "complete": true,
+        "source_period_us": {
+          "count": 60,
+          "min": 16726.0,
+          "median": 16735.0,
+          "max": 16828.0,
+          "stddev": 13.093371944953251
+        }
+      },
+      {
+        "block": 3,
+        "target_total": 1980,
+        "completed_frames": 60,
+        "complete": true,
+        "source_period_us": {
+          "count": 60,
+          "min": 16862.0,
+          "median": 16879.0,
+          "max": 16896.0,
+          "stddev": 6.5621812091881635
+        }
+      },
+      {
+        "block": 4,
+        "target_total": 1964,
+        "completed_frames": 60,
+        "complete": true,
+        "source_period_us": {
+          "count": 60,
+          "min": 16734.0,
+          "median": 16743.0,
+          "max": 16828.0,
+          "stddev": 16.40029640653553
+        }
+      },
+      {
+        "block": 5,
+        "target_total": 1980,
+        "completed_frames": 20,
+        "complete": false,
+        "source_period_us": {
+          "count": 20,
+          "min": 16871.0,
+          "median": 16879.0,
+          "max": 16905.0,
+          "stddev": 7.3039372943639105
+        }
+      }
+    ],
+    "final_fixed_phase_available": false,
+    "limitations": [
+      "An exact observed prefix is analyzed; the planned full sequence failed.",
+      "No final fixed A or independent repeat is available.",
+      "Clock and polarity calibration use only the complete first fixed A.",
+      "No timing outliers or extra optical edges are removed."
+    ]
+  },
+  "full_run_validation_passed": false,
+  "second_experiment_run_performed": false,
+  "abort_diagnosis": {
+    "next_unsubmitted_B_frame": 321,
+    "submission_lateness_limit_us": 150,
+    "exact_rejected_submission_lateness_available": false,
+    "interpretation": "The source program reported a missed submission deadline and restored the display. Exact abort timestamp/lateness was not logged, so the scheduler/interrupt cause cannot be isolated. No evidence here establishes a bridge/panel rejection."
+  },
+  "final_restoration": {
+    "disabled_override": true,
+    "native_mode_verified": true,
+    "vrr_capable": 0,
+    "disabled_slot_running_and_default": true,
+    "internal_storage_unbound": true,
+    "swap_inactive": true,
+    "report_sha256": "514664689c894adba946a14fe2ea75e9c574ad8e83c82077c70087427d6ca20d"
+  },
+  "interpretation": "The completed prefix strengthens narrow-range visible-update evidence and shows improved source rate separation. The session did not satisfy completion/repeatability criteria and does not justify widening the range yet.",
+  "visual_assessment_available": false,
+  "new_range_tested": false,
+  "diagnostic_sources_sha256": {
+    "tools/analyze_optical_feedback_prefix.py": "0c4128ef3f435ae3cf03fe9d67fcaec683a8eec04d43ce6625bae4542d22ff42",
+    "opendecksight/optical_ab.py": "c8d7570aea5705c79dde58a55490610cf43ce24a2fb8c0e806bea7433aeafce4",
+    "opendecksight/optical_alignment.py": "d591d112dff0b1fc056e5e5b87247d2dfed310c7287c5bb613c5bb44ad60e229",
+    "tools/analyze_pico_panel.py": "59df799028665a6b47aa3b81b242cbe101c3f9c064c9dff1392cd8a36856ef3d",
+    "tests/test_optical_feedback_prefix.py": "d98569e0c115bfb4ef3a19c03239efafe88736d99c32743f1dccedaf78d46b20"
+  }
+}
