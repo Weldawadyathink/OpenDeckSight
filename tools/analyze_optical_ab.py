@@ -7,7 +7,7 @@ from pathlib import Path
 import sys
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from opendecksight.optical_ab import NATIVE_US,compare
+from opendecksight.optical_ab import NATIVE_US,compare,validate_pacing
 from opendecksight.optical_alignment import qualify_edges
 from opendecksight.optical_stream import read_capture
 from tools.analyze_pico_panel import edges,summary
@@ -22,7 +22,7 @@ def analyze(capture_path,source_path):
     enabled=mode=='experiment'
     events=source['events']
     pre=[e for e in events if e.get('event')=='preflight']
-    if len(pre)!=1 or pre[0].get('program')!='optical-ab-v1' or not pre[0].get('native_mode_verified'):
+    if len(pre)!=1 or pre[0].get('program') not in ('optical-ab-v1','optical-feedback-v1') or not pre[0].get('native_mode_verified'):
         raise ValueError('Missing native-mode preflight')
     if (pre[0]['vrr_capable'],pre[0]['opt_in'],pre[0]['experiment'])!=(int(enabled),enabled,enabled):
         raise ValueError('Wrong capability/boot opt-in')
@@ -43,12 +43,14 @@ def analyze(capture_path,source_path):
     raw=edges(values,capture['config']['rate'])
     qualified,groups=qualify_edges(raw)
     flips=[e for e in events if e.get('event')=='flip']
-    for f in flips:
-        if f['phase']<0:expected_total=1956
-        else:
-            step=(f['frame']-1)%720
-            expected_total=1960+26*min(step,720-step)//360
-        if f['target_total']!=expected_total:raise ValueError('Unexpected submission target')
+    program=pre[0]['program']
+    validate_pacing(flips,program,enabled)
+    if program=='optical-feedback-v1':
+        deliveries=[e for e in events if e.get('event')=='delivery']
+        if [e['ordinal'] for e in deliveries]!=list(range(1800)):
+            raise ValueError('Incomplete delivery timestamps')
+        if any(e['received_ns']<f['submitted_ns'] for f,e in zip(flips,deliveries)):
+            raise ValueError('Noncausal delivery timestamp')
     result=compare(flips,qualified)
     phase_summary={}
     for phase in (-1,0,1,2):
@@ -65,7 +67,22 @@ def analyze(capture_path,source_path):
         raise ValueError('Fixed source control was not native-periodic')
     if not enabled and phase_summary['1']['source_intervals_outside_native_2us']:
         raise ValueError('Control run has non-native source intervals')
-    result.update(schema='optical-ab-analysis-v1',mode=mode,phase_summary=phase_summary,
+    if enabled:
+        period_bounds=phase_summary['1']['source_period_per_vblank_us']
+        if (period_bounds['min']<1220*1957/143180000*1e6-2 or
+                period_bounds['max']>1220*1989/143180000*1e6+2):
+            raise ValueError('Source intervals exceed the existing guarded range')
+    if program=='optical-feedback-v1' and enabled:
+        middle=[f for f in flips if f['phase']==1]
+        blocks=[[] for _ in range(12)]
+        for a,b in zip(middle,middle[1:]):
+            blocks[(b['frame']-1)//60].append((b['event_ns']-a['event_ns'])/1000/((b['sequence']-a['sequence'])&0xffffffff))
+        result['feedback_blocks']=[dict(block=i,target_total=1980 if i%2 else 1964,
+                                        source_period_us=summary(values)) for i,values in enumerate(blocks)]
+        fast=summary([v for i,values in enumerate(blocks) if i%2==0 for v in values])
+        slow=summary([v for i,values in enumerate(blocks) if i%2 for v in values])
+        result['feedback_slow_minus_fast_median_us']=slow['median']-fast['median']
+    result.update(schema='optical-ab-analysis-v1',program=program,mode=mode,phase_summary=phase_summary,
         capture_sha256=hashlib.sha256(Path(capture_path).read_bytes()).hexdigest(),
         source_sha256=hashlib.sha256(Path(source_path).read_bytes()).hexdigest(),
         sample_count=len(values),raw_crossings=len(raw),qualified_edges=len(qualified),

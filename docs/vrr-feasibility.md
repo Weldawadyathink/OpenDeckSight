@@ -226,6 +226,13 @@ simultaneously; the existing sensor remains useful for repeatability and
 sequential location checks. No further hardware purchase is required to
 continue software analysis and narrow-range test development.
 
+The [prepared controlled repeat](vrr-optical-feedback.md) addresses that next
+step. It replaces the free-running triangle schedule with event-anchored
+two-rate blocks inside the unchanged guard. The source-log review found
+374 of 719 intervals near the fast bound in the original sweep. Nominal
+58–60 Hz is a candidate first expansion after repeatability and cadence checks;
+its extra blanking has not been tested or established safe.
+
 An ANX7580 programming manual remains useful but is not a prerequisite for
 testing the complete path. A manual or documented DP-to-DSI example, and
 identification of the panel controller from public artifacts, could explain

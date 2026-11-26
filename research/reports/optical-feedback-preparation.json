@@ -1,0 +1,71 @@
+{
+  "schema": "optical-feedback-preparation-v1",
+  "date": "2026-11-26",
+  "physical_run_performed": false,
+  "device_actions_this_checkpoint": [],
+  "program": "optical-feedback-v1",
+  "binary_sha256": "d71d5dd704f399b1f20d8d37650c7191167da41c36472853e4f6cc3ab3a22a68",
+  "build_log_sha256": "fa06524b875ea85aab49bd4c4f0294415ae966b4ffeecb7df13bae6b9d16c536",
+  "compiler": "GCC 16.2.1 (Red Hat 16.2.1-2)",
+  "libdrm": "2.4.134",
+  "builder_image_id": "sha256:86af9b98ec71147c8beea6e4f17dd3df5c515d38ad376a12e6102440c45d6b8b",
+  "source_sha256": {
+    "lab/vrr/optical_feedback.c": "427a84dbb658ba0c6e6fb3e1684f08953252330e51228dbf0b9c0ccbd9454349",
+    "lab/vrr/optical_ab.c": "03a6b74d7abd1c40ab67693766c8d7853212009be69eda50f52dc0500491a060",
+    "lab/vrr/optical_fixed.c": "b72ee91547e6d25a3be5dee8421a1e8e2c90e668e09a3a9e76c0c0771197544b",
+    "lab/vrr/ods_vrr_guard.h": "5854b867867a572e8cb7b1e8cacd663b2ddb42c82bc1385db15f330aade53743",
+    "lab/usb/fixed_present.c": "3e8c9e3498eef20d192627c529aa30e6d564a34f4432ed3e3213d03620058c56",
+    "tests/fixtures/optical_feedback_test.c": "0ebdc6a365421c72475a46f7fe1fd0239b8dcae24f509962030d40cb29dca145",
+    "tests/fixtures/optical_ab_test.c": "ac8322007f84dc4f01ae1aea1841923b2916228dd635c889a9d52d3d0ef3ea22",
+    "tests/fixtures/vrr_range_candidates.c": "bdeed006594c84b9e5c81d8739e75359325410e5443235a8056eefb4c1456e61",
+    "opendecksight/optical_ab.py": "c8d7570aea5705c79dde58a55490610cf43ce24a2fb8c0e806bea7433aeafce4",
+    "tools/analyze_optical_ab.py": "bccc07095d1b91bc9b02bfc7a622984ae989826f2ddaeaaaaa09ece83fa665dd",
+    "tools/analyze_vrr_pacing.py": "32ad3aca4247ac38403cf1ca46dac3ac03741de167a12db0f2640f441e5bb752",
+    "tools/run_optical_ab.py": "5263de69e6f52e0f1601f027a920f4548534096e13ce929d46683237ca689714"
+  },
+  "unchanged_driver_module_sha256": "2aea311b29f2ca164c450e383bab84eb83186a4190bf00129461876abd1b6d34",
+  "guard_totals": [
+    1957,
+    1989
+  ],
+  "native_total": 1956,
+  "schedule": {
+    "experimental_B_target_totals": [
+      1964,
+      1980
+    ],
+    "block_frames": 60,
+    "blocks": 12,
+    "submission_lead_ns": 350000,
+    "maximum_submission_lateness_ns": 150000,
+    "first_B_flip": "immediate seed",
+    "fixed_phases_and_disabled_control": "unpaced native flips",
+    "clock_model": "fit first fixed A only"
+  },
+  "proposed_session": {
+    "control_runs": 1,
+    "experimental_runs": 2,
+    "flips_per_run": 1800,
+    "expected_content_transitions_per_run": 1442,
+    "capture_samples_per_run": 5000000,
+    "capture_nominal_rate_hz": 100000,
+    "reboots": 2,
+    "final_boot": "verified disabled native baseline",
+    "new_driver_or_range": false
+  },
+  "checks": [
+    "C builds with warnings as errors",
+    "feedback scheduling fixture under ASan and UBSan",
+    "original rendering/sequence fixture under ASan and UBSan",
+    "experiment refuses /dev/null",
+    "10 focused Python tests",
+    "original two physical captures reanalyzed with unchanged timing results",
+    "58 Hz candidate totals checked with hash-pinned AMD arithmetic under UBSan"
+  ],
+  "limitations": [
+    "350 us lead is an empirical starting point and needs physical validation.",
+    "Plateau targets do not guarantee delivered periods.",
+    "No widened range is implemented or enabled.",
+    "A single sensor cannot establish whole-screen tearing or flicker performance."
+  ]
+}

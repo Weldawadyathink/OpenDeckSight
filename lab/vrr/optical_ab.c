@@ -8,10 +8,17 @@
 #undef main
 #pragma pop_macro("main")
 #include "ods_vrr_guard.h"
+#ifndef ODS_OPTICAL_FEEDBACK
+#define ODS_OPTICAL_FEEDBACK 0
+#endif
+#define FEEDBACK_LEAD_NS 350000ULL
+#define FEEDBACK_LATE_NS 150000ULL
+static uint64_t last_event_ns;
 
 static unsigned phase_frames(unsigned phase) { return phase==1 ? 720 : 360; }
 static unsigned target_total(unsigned frame)
 {
+    if (ODS_OPTICAL_FEEDBACK) return ((frame-1)/60)%2 ? 1980 : 1964;
     unsigned step=(frame-1)%720;
     unsigned triangle=step<=360 ? step : 720-step;
     return 1960+26*triangle/360;
@@ -19,6 +26,13 @@ static unsigned target_total(unsigned frame)
 static uint64_t target_period_ns(unsigned frame)
 {
     return (uint64_t)target_total(frame)*1220*1000000000u/143180000u;
+}
+static uint64_t feedback_deadline(int phase,unsigned frame,uint64_t previous)
+{
+    /* The first flip seeds a new phase. Never inherit an old absolute schedule
+     * after a late flip or a phase-switch hold. Calibration A stays unpaced.
+     */
+    return phase==1 && frame>1 ? previous+target_period_ns(frame)-FEEDBACK_LEAD_NS : 0;
 }
 static bool preamble_lit(unsigned frame) { return frame>=120 && frame<240; }
 
@@ -66,14 +80,22 @@ static int sleep_until(uint64_t deadline)
     return 0;
 }
 static int present(int fd,uint32_t crtc,struct buffer b[2],int phase,
-                   unsigned frame,unsigned ordinal,bool lit,uint64_t deadline)
+                   unsigned frame,unsigned ordinal,bool lit,uint64_t deadline,bool variable)
 {
     struct event e={.pending=true};
     uint64_t submitted=now_ns();
+    if (ODS_OPTICAL_FEEDBACK && deadline &&
+        (submitted<deadline || submitted-deadline>FEEDBACK_LATE_NS)) {
+        fprintf(stderr,"Missed feedback submission deadline; refusing catch-up.\n"); return -1;
+    }
     if (drmModePageFlip(fd,crtc,b[lit?1:0].fb,DRM_MODE_PAGE_FLIP_EVENT,&e) || wait_flip(fd,&e)) return -1;
+    uint64_t received=now_ns();
+    last_event_ns=e.time_ns;
     printf("{\"event\":\"flip\",\"phase\":%d,\"frame\":%u,\"ordinal\":%u,\"marker_lit\":%s,\"target_total\":%u,\"deadline_ns\":%llu,\"submitted_ns\":%llu,\"event_ns\":%llu,\"sequence\":%u}\n",
-           phase,frame,ordinal,lit?"true":"false",phase<0?1956:target_total(frame),
+           phase,frame,ordinal,lit?"true":"false",phase<0 || (ODS_OPTICAL_FEEDBACK && !variable)?1956:target_total(frame),
            (unsigned long long)deadline,(unsigned long long)submitted,(unsigned long long)e.time_ns,e.sequence);
+    if (ODS_OPTICAL_FEEDBACK)
+        printf("{\"event\":\"delivery\",\"ordinal\":%u,\"received_ns\":%llu}\n",ordinal,(unsigned long long)received);
     return 0;
 }
 
@@ -118,7 +140,8 @@ int main(int argc,char **argv)
     if (!saved || !saved->mode_valid || !saved->buffer_id || saved->x || saved->y || !native_mode(&saved->mode)) goto done;
     if (prop(fd,saved->crtc_id,DRM_MODE_OBJECT_CRTC,"VRR_ENABLED",&vrr_prop,&value) || value) goto done;
     if (drmGetCap(fd,DRM_CAP_TIMESTAMP_MONOTONIC,&value) || value!=1) goto done;
-    printf("{\"event\":\"preflight\",\"program\":\"optical-ab-v1\",\"native_mode_verified\":true,\"vrr_capable\":%llu,\"opt_in\":%s,\"experiment\":%s}\n",
+    printf("{\"event\":\"preflight\",\"program\":\"%s\",\"native_mode_verified\":true,\"vrr_capable\":%llu,\"opt_in\":%s,\"experiment\":%s}\n",
+           ODS_OPTICAL_FEEDBACK?"optical-feedback-v1":"optical-ab-v1",
            (unsigned long long)capability,enabled?"true":"false",experiment?"true":"false");
     if (!run) { result=0; goto done; }
     if (!drmIsMaster(fd)) { fprintf(stderr,"DRM master unavailable; refusing takeover.\n"); goto done; }
@@ -131,7 +154,7 @@ int main(int argc,char **argv)
     unsigned ordinal=0;
     printf("{\"event\":\"phase\",\"phase\":-1,\"vrr_requested\":false,\"frames\":360}\n");
     for (unsigned frame=0;frame<360 && !stopped;frame++,ordinal++) {
-        if (now_ns()-start>8000000000ULL || present(fd,saved->crtc_id,b,-1,frame,ordinal,preamble_lit(frame),0)) goto done;
+        if (now_ns()-start>8000000000ULL || present(fd,saved->crtc_id,b,-1,frame,ordinal,preamble_lit(frame),0,false)) goto done;
     }
     for (unsigned phase=0;phase<3 && !stopped;phase++) {
         bool variable=experiment && phase==1;
@@ -143,9 +166,10 @@ int main(int argc,char **argv)
         for (unsigned frame=1;frame<=frames && !stopped;frame++,ordinal++) {
             uint64_t now=now_ns();
             if (now-start>(phase==1?16000000000ULL:8000000000ULL) || now-all_start>40000000000ULL) goto done;
-            if (sleep_until(deadline)) goto done;
+            if (ODS_OPTICAL_FEEDBACK) deadline=variable?feedback_deadline((int)phase,frame,last_event_ns):0;
+            if (deadline && sleep_until(deadline)) goto done;
             if (stopped) break;
-            if (present(fd,saved->crtc_id,b,(int)phase,frame,ordinal,frame%2,deadline)) goto done;
+            if (present(fd,saved->crtc_id,b,(int)phase,frame,ordinal,frame%2,deadline,variable)) goto done;
             deadline+=target_period_ns(frame+1);
         }
     }

@@ -6,7 +6,7 @@ import struct
 import sys
 import tempfile
 import unittest
-from opendecksight.optical_ab import NATIVE_US,compare,expected_flips,expected_edges
+from opendecksight.optical_ab import NATIVE_US,compare,expected_flips,expected_edges,validate_pacing
 from tools.run_optical_ab import remote_program
 from tools.analyze_optical_ab import analyze
 from tests.test_optical_stream import packet
@@ -30,6 +30,27 @@ def fixture(fixed_sink=False):
 
 
 class OpticalABTests(unittest.TestCase):
+    def test_feedback_schedule_uses_latest_event_and_rejects_drift(self):
+        flips,_=fixture()
+        for i,f in enumerate(flips):
+            paced=f['phase']==1
+            f['target_total']=(1980 if ((f['frame']-1)//60)%2 else 1964) if paced else 1956
+            f['deadline_ns']=(flips[i-1]['event_ns']+f['target_total']*1220*1000000000//143180000-350000
+                              if paced and f['frame']>1 else 0)
+            f['submitted_ns']=f['deadline_ns']+200
+        validate_pacing(flips,'optical-feedback-v1',True)
+        flips[900]['deadline_ns']+=1
+        with self.assertRaises(ValueError):validate_pacing(flips,'optical-feedback-v1',True)
+        flips[900]['deadline_ns']-=1;flips[900]['submitted_ns']+=150000
+        with self.assertRaises(ValueError):validate_pacing(flips,'optical-feedback-v1',True)
+
+    def test_feedback_disabled_control_has_no_scheduled_delays(self):
+        flips,_=fixture()
+        for f in flips:f.update(target_total=1956,deadline_ns=0)
+        validate_pacing(flips,'optical-feedback-v1',False)
+        flips[720]['target_total']=1980
+        with self.assertRaises(ValueError):validate_pacing(flips,'optical-feedback-v1',False)
+
     def test_remote_wrapper_is_syntactically_valid_without_execution(self):
         program=remote_program('experiment','0'*64,{'kernel_release':'test','files':{}})
         compile(program,'<remote-wrapper>','exec')
@@ -113,6 +134,19 @@ class OpticalABTests(unittest.TestCase):
             self.assertEqual(result['qualified_edges'],1442)
             self.assertLess(result['phase_summary']['1']['source_residual_us']['max'],20)
             self.assertGreater(result['phase_summary']['1']['fixed_native_grid_residual_us']['max'],7000)
+            pre['program']='optical-feedback-v1'
+            for i,f in enumerate(flips):
+                paced=f['phase']==1
+                f['target_total']=(1980 if ((f['frame']-1)//60)%2 else 1964) if paced else 1956
+                f['deadline_ns']=(flips[i-1]['event_ns']+f['target_total']*1220*1000000000//143180000-350000
+                                  if paced and f['frame']>1 else 0)
+                f['submitted_ns']=f['deadline_ns']+200 if f['deadline_ns'] else f['event_ns']-100000
+            deliveries=[{'event':'delivery','ordinal':f['ordinal'],'received_ns':f['event_ns']+100000} for f in flips]
+            source['events']+=deliveries;path.write_text(json.dumps(source))
+            self.assertEqual(analyze(capture,path)['qualified_edges'],1442)
+            source['events'].pop();path.write_text(json.dumps(source))
+            with self.assertRaises(ValueError):analyze(capture,path)
+            source['events']=source['events'][:-1799]
             source['events'][-1]['success']=False;path.write_text(json.dumps(source))
             with self.assertRaises(ValueError):analyze(capture,path)
 

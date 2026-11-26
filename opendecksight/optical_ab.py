@@ -4,6 +4,35 @@ from .optical_alignment import fit_clock,residual
 NATIVE_US=1220*1956/143180000*1e6
 
 
+def validate_pacing(flips,program,experiment):
+    """Check the declared source schedule, without assuming the sink followed it."""
+    if program not in ('optical-ab-v1','optical-feedback-v1'):
+        raise ValueError('Unknown optical stimulus program')
+    previous=None
+    for f in flips:
+        phase,frame=f['phase'],f['frame']
+        feedback=program=='optical-feedback-v1'
+        paced=feedback and experiment and phase==1
+        if feedback:
+            total=(1964 if ((frame-1)//60)%2==0 else 1980) if paced else 1956
+        else:
+            step=(frame-1)%720
+            total=1956 if phase<0 else 1960+26*min(step,720-step)//360
+        if f['target_total']!=total:
+            raise ValueError('Unexpected submission target')
+        if feedback:
+            deadline=0
+            if paced and frame>1:
+                if previous is None or previous['phase']!=phase:
+                    raise ValueError('Missing feedback anchor')
+                deadline=previous['event_ns']+total*1220*1000000000//143180000-350000
+            if f['deadline_ns']!=deadline:
+                raise ValueError('Feedback deadline does not use previous source event')
+            if deadline and not 0<=f['submitted_ns']-deadline<=150000:
+                raise ValueError('Feedback submission missed its lateness bound')
+        previous=f
+
+
 def expected_flips():
     result=[(-1,i,120<=i<240) for i in range(360)]
     for phase,count in ((0,360),(1,720),(2,360)):

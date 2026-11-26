@@ -1,0 +1,76 @@
+{
+  "schema": "vrr-source-pacing-review-v1",
+  "source_sha256": "d5e90e8d7f77abd40516f6dc779e794f87f5037fb461c4b83883aed2887cd246",
+  "within_B_intervals": 719,
+  "fast_bound_intervals_below_16680_us": 374,
+  "multi_vblank_content_holds": [
+    {
+      "frame": 2,
+      "vblank_steps": 2
+    },
+    {
+      "frame": 303,
+      "vblank_steps": 2
+    },
+    {
+      "frame": 430,
+      "vblank_steps": 2
+    }
+  ],
+  "source_period_us": {
+    "count": 719,
+    "min": 16674.0,
+    "median": 16676.0,
+    "max": 16948.0
+  },
+  "actual_minus_requested_period_us": {
+    "count": 719,
+    "min": -247.19583740745657,
+    "median": -34.1772593937676,
+    "max": 102.78125436513437
+  },
+  "submission_lateness_us": {
+    "count": 719,
+    "min": 0.096,
+    "median": 0.193,
+    "max": 198.134
+  },
+  "submission_to_event_us_for_single_step_periods_above_16700": {
+    "count": 338,
+    "min": 296.982,
+    "median": 352.9305,
+    "max": 449.124
+  },
+  "candidate_ranges": [
+    {
+      "nominal_min_hz": 59,
+      "maximum_total_candidate": 1989,
+      "period_us": 16947.7580667691,
+      "quantized_min_hz": 59.00485456898186,
+      "extra_lines_from_native": 33,
+      "front_porch_lines_if_stretched": 41,
+      "extra_period_us_from_native": 281.18452297806954
+    },
+    {
+      "nominal_min_hz": 58,
+      "maximum_total_candidate": 2023,
+      "period_us": 17237.46333286772,
+      "quantized_min_hz": 58.01317634093174,
+      "extra_lines_from_native": 67,
+      "front_porch_lines_if_stretched": 75,
+      "extra_period_us_from_native": 570.8897890766866
+    }
+  ],
+  "interpretation": "Absolute scheduling persisted across three two-vblank holds; long fast-bound stretches followed. This supports trying event-anchored pacing, but does not isolate kernel or hardware causes.",
+  "limitations": [
+    "Submission-to-event delay is not isolated driver latency or display latency.",
+    "Candidate arithmetic is not a panel tolerance, hardware observation or approved range.",
+    "The feedback lead is a fixed empirical starting point, not a proven latency correction."
+  ],
+  "pinned_arithmetic_check": {
+    "source_sha256": "0f8545961812c69a85b7bd2243f6d89c68c4f8f0f1f10d5009daaa53689f9e3d",
+    "function": "mod_freesync_calc_v_total_from_refresh",
+    "fixture": "tests/fixtures/vrr_range_candidates.c",
+    "result": "Pinned AMD arithmetic: 59-60 -> 1957/1989; 58-60 -> 1957/2023. No hardware test."
+  }
+}

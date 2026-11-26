@@ -19,6 +19,7 @@ is required for anything potentially dangerous to hardware or software.
 | [Bridge VRR experiment plan](vrr-bridge-test-plan.md) | Native AUX result, active-test prerequisites and decision points |
 | [Offline VRR kernel tests](vrr-kernel-research.md) | Candidate OGC source, independent range gates, late-frame fallback and quantization |
 | [Optical VRR measurement](vrr-optical-measurement.md) | Camera versus photodiode, microcontroller capture design and end-to-end evidence |
+| [Controlled optical timing repeat](vrr-optical-feedback.md) | Prepared event-anchored pacing, repeatability criteria and candidate 58–60 Hz arithmetic |
 | [Disposable USB lab](usb-lab.md) | RAM-root image builder, Wi-Fi, passwordless SSH, remote updates and recovery boot |
 | [Fixed-refresh control](vrr-fixed-refresh-control.md) | Physical native-mode page flips, timing guards and fixed-cadence control results |
 | [VRR request validation](vrr-atomic-validation.md) | Physical TEST_ONLY results: accepted requests do not establish variable timing |
