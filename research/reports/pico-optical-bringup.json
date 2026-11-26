@@ -1,0 +1,61 @@
+{
+  "schema": "pico-optical-bringup-v1",
+  "date": "2026-11-26",
+  "instrument": "Raspberry Pi Pico W / RP2040",
+  "sensor_design": "OPT101P at 3.3 V, intended output GP26",
+  "firmware": {
+    "url": "https://micropython.org/resources/firmware/RPI_PICO_W-20260824-v1.29.0.uf2",
+    "sha256": "f918c0a082c6daf53e27998b7f990ba5f065db2e298b21a34024532a20786794",
+    "bytes": 1811456,
+    "uf2_family": "RP2040",
+    "download_date": "2026-11-26"
+  },
+  "method": "16 slow LED-state windows, 256 reads per channel per window; 50 ms settling; software sampling; no timing calibration",
+  "raw_sha256": "4615387b5f82b0b34ab65cd5acd26e3c2ec3ac77c9ab80f16e02f25c0bff6516",
+  "nominal_adc_reference_v": 3.3,
+  "channels": [
+    {
+      "gpio": 26,
+      "off": {
+        "samples": 2048,
+        "mean_v": 0.0575696669718471,
+        "stddev_v": 0.0016679773363938632,
+        "min_u16": 1024,
+        "max_u16": 1344
+      },
+      "on": {
+        "samples": 2048,
+        "mean_v": 0.05782812857633325,
+        "stddev_v": 0.0014441517382345174,
+        "min_u16": 1056,
+        "max_u16": 1264
+      },
+      "on_minus_off_v": 0.00025846160448615013
+    },
+    {
+      "gpio": 27,
+      "off": {
+        "samples": 2048,
+        "mean_v": 0.6812737110894941,
+        "stddev_v": 0.006517623246076676,
+        "min_u16": 12995,
+        "max_u16": 13811
+      },
+      "on": {
+        "samples": 2048,
+        "mean_v": 0.6816726153009841,
+        "stddev_v": 0.005692720027642919,
+        "min_u16": 13043,
+        "max_u16": 13763
+      },
+      "on_minus_off_v": 0.0003989042114900254
+    }
+  ],
+  "finding": "No decisive optical LED response; sensor wiring and optical coupling remain unconfirmed. USB programming, REPL, ADC acquisition and LED command/readback worked.",
+  "limits": [
+    "LED command/readback does not independently prove optical emission.",
+    "GP27 is an auxiliary input observation, not a second connected sensor.",
+    "Voltages use nominal 3.3 V reference; no voltage calibration.",
+    "This is not hardware-paced capture or evidence of panel VRR."
+  ]
+}

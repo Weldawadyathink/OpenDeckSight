@@ -158,3 +158,66 @@ Sensor calibration and host-side analysis can be developed independently of
 the experimental kernel. No runtime pattern or timing experiment has been
 launched on the Deck here. Device changes and experimental timing remain
 subject to approval of a concrete procedure under [AGENTS.md](../AGENTS.md).
+
+## Pico W / OPT101 bring-up checkpoint, 2026-11-26
+
+The selected prototype uses an OPT101P with its internal feedback resistor:
+
+| Pico connection | Physical pin | OPT101 connection |
+| --- | --- | --- |
+| 3V3 OUT | 36 | Pin 1 |
+| AGND | 33 | Pins 3 and 8 |
+| GP26 / ADC0 | 31 | Pin 5, also jumpered to pin 4 |
+| GP27 / ADC1, optional second sensor | 32 | Second sensor pin 5, jumpered to its pin 4 |
+
+Place one 100 nF ceramic capacitor between pins 1 and 3 at each sensor.
+Leave pins 2, 6 and 7 open. Viewed from the clear top with the pin-1 dot
+upper left, the left pins are 1, 2, 3, 4 and the right pins are 8, 7, 6, 5.
+Supply the sensors from 3.3 V, not VBUS or VSYS. Keep separate sensor outputs
+on separate ADC inputs. These are the intended connections, not a remotely
+verified inspection of the physical wiring.
+
+Sources: [TI OPT101 pinout and Figure 21](https://www.ti.com/lit/gpn/OPT101),
+[Pico W pinout](https://datasheets.raspberrypi.com/picow/PicoW-A4-Pinout.pdf).
+
+The onboard Pico W LED is near the USB connector, opposite the antenna end.
+It is controlled through the CYW43 wireless chip, so use it for slow
+light/dark checks, not as an assumed precise timing reference. For later
+hardware-paced characterization, an external LED can use GP15 (physical
+pin 20), a series 1 kOhm resistor and GND (physical pin 18). The ordinary
+non-wireless Pico instead has its onboard LED directly on GP25.
+[Board layouts](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html#board-layouts).
+
+The initial diagnostic uses official Pico W MicroPython v1.29.0 and
+[`tools/pico_optical_probe.py`](../tools/pico_optical_probe.py), sent to RAM:
+
+```sh
+mpremote connect "$PICO_PORT" run tools/pico_optical_probe.py > artifacts/pico-probe.jsonl
+```
+
+Set `PICO_PORT` to the identified Pico USB serial port. Run only with
+authorization to control that instrument. The script drives the board LED,
+reads GP26 and GP27, records raw scaled ADC samples in sixteen LED-state
+windows, then turns the LED off in a `finally` block. It makes no network
+connection, changes no clocks and installs no boot script. A raw `read_u16`
+value represents a scaled 12-bit conversion, not 16-bit ADC precision.
+[MicroPython RP2 reference](https://docs.micropython.org/en/v1.29.0/rp2/quickref.html).
+
+The [anonymous bring-up report](../research/reports/pico-optical-bringup.json)
+records a complete initial run. At GP26, the nominal mean was 57.57 mV with
+the LED off and 57.83 mV with it on: a difference of only 0.26 mV, smaller
+than one nominal 12-bit ADC step and the 1.4-1.7 mV sample noise. This does
+not establish an optical response; supply coupling can also correlate with
+LED commands. Programming, REPL communication, ADC acquisition and LED
+command/readback worked. Neither correct sensor wiring nor optical emission
+and alignment are proven by those facts. GP27 was observed as an auxiliary
+input, not treated as a second sensor.
+
+Next, establish an unmistakable change by pointing the sensor's clear
+sensing face directly at the LED, then comparing covered and brightly lit
+conditions. Check the physical pinout if there is still no response. Only
+after this check should capture progress to hardware-paced ADC/FIFO/DMA
+and edge characterization. One working sensor is sufficient to begin local
+content-arrival measurements and VRR implementation experiments. A second
+sensor strengthens spatial consistency and tearing checks; one trace alone
+does not prove correct whole-panel VRR.
