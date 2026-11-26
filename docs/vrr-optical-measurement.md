@@ -181,9 +181,9 @@ Sources: [TI OPT101 pinout and Figure 21](https://www.ti.com/lit/gpn/OPT101),
 [Pico W pinout](https://datasheets.raspberrypi.com/picow/PicoW-A4-Pinout.pdf).
 
 The onboard Pico W LED is near the USB connector, opposite the antenna end.
-It is controlled through the CYW43 wireless chip, so use it for slow
-light/dark checks, not as an assumed precise timing reference. For later
-hardware-paced characterization, an external LED can use GP15 (physical
+It is controlled through the CYW43 wireless chip. It can provide light/dark
+steps for hardware-paced response-shape measurements, but its command times
+are not an assumed precise timing reference. An optional external LED can use GP15 (physical
 pin 20), a series 1 kOhm resistor and GND (physical pin 18). The ordinary
 non-wireless Pico instead has its onboard LED directly on GP25.
 [Board layouts](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html#board-layouts).
@@ -240,3 +240,53 @@ the bypass capacitor, amplifier linearity, or temporal response. GP27 showed
 coupling as an auxiliary unconnected input and must not be interpreted as a
 second working sensor. The next instrument work is hardware-paced acquisition
 and edge characterization; one validated optical channel is enough to begin.
+
+### Onboard LED with hardware-paced capture: no extra LED required to start
+
+On 2026-11-26, [`tools/pico_optical_dma.py`](../tools/pico_optical_dma.py)
+successfully captured GP26 at a nominal 100,000 samples/s using the RP2040
+ADC divider, FIFO and a DREQ-paced DMA channel. MicroPython schedules the
+onboard LED commands and transfers the completed buffers; it does not time
+individual ADC conversions. This is an initial short-capture implementation,
+not the longer-running instrument originally proposed with the C/C++ SDK.
+
+Four 16,000-sample recordings produced 64,000 samples and 52 optical
+transitions. All chunks, sample counts, CRCs, conversion-error bits and
+DMA/FIFO status checks passed. The measured capture loop durations were
+160.038-160.050 ms for nominal 160 ms buffers. That compares clocks derived
+from the same board reference and includes software start/stop overhead; it
+does not independently calibrate absolute sample timing.
+
+The combined LED/sensor/ADC transition widths were approximately 20-30 us
+(10-90% of each local step, about 24 us median), with a 10 us sample period.
+Linear interpolation gives more digits in the report, not equivalent
+accuracy. Sampling brackets omit amplitude noise, baseline estimation and
+clock uncertainty. Two isolated dark-level readings reached ADC code zero;
+no bright-level reading reached the upper ADC rail. The threshold crossings
+were well above the dark noise floor. These observations characterize this
+light level and geometry, not all panel brightness levels or pure sensor
+latency.
+
+Onboard LED calls took 294-567 us. Their latency does not prevent measuring
+the *shape of the observed optical edge*: the ADC/DMA runs independently,
+and both thresholds come from that same waveform. Command timestamps only
+locate broad search windows. Do not equate requested LED periods to a known
+optical period or use these calls as an electrical-edge reference. This
+distinction removes an external LED purchase as a prerequisite for starting
+panel measurements. A direct GPIO-driven LED remains useful later if a
+known electrical stimulus or tighter timing calibration becomes necessary.
+
+[`tools/analyze_pico_optical_dma.py`](../tools/analyze_pico_optical_dma.py)
+rejects incomplete/corrupt recordings and hardware error flags before
+estimating rising/falling widths. Seven focused tests cover corrupted data,
+hardware faults, missing optical response, and recovery of a synthetic
+80 us edge independently of LED-command duration. The
+[anonymous timing report](../research/reports/pico-onboard-led-timing.json)
+preserves the measured results, code/capture hashes and limits. Raw buffers
+remain ignored under `artifacts/`. The probe turns the LED off and stops
+ADC/DMA capture on exit; it installs no startup script.
+
+Next: develop longer captures, characterize fixed-refresh panel waveforms,
+then compare identifiable content sequences against source presentation
+timing. A second optical channel is useful corroboration, not a prerequisite
+for that first stage. No Deck experiment was performed in this checkpoint.

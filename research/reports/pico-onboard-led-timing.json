@@ -1,0 +1,91 @@
+{
+  "schema": "pico-onboard-led-timing-v1",
+  "raw_sha256": "5dfc5665bc1e84cd7ae1264de685aebdc6e1c9d28e464c51dae39c3492fe6be2",
+  "total_samples": 64000,
+  "total_edges": 52,
+  "width_10_90_interpolated_us": {
+    "min": 18.942023573727056,
+    "median": 23.923058306765597,
+    "max": 29.597211550768407
+  },
+  "transport_and_status_checks_passed": true,
+  "absolute_clock_calibrated": false,
+  "limitations": [
+    "Widths characterize the combined onboard LED, optical sensor and ADC path at this light level.",
+    "LED command times are not reference electrical-edge times; no absolute sensor latency is established.",
+    "Sub-sample interpolation does not imply sub-sample accuracy; sampling brackets omit other uncertainties.",
+    "No independent clock reference or known frame-interval stimulus was used.",
+    "Passing short captures do not establish long-run streaming reliability or panel VRR."
+  ],
+  "date": "2026-11-26",
+  "instrument": "Pico W / RP2040 with OPT101P on GP26",
+  "source_sha256": {
+    "tools/pico_optical_dma.py": "23b9a6b4a790ea59f490e92f725360b8664796d78be3742bc0ffcc9e44d043e7",
+    "tools/analyze_pico_optical_dma.py": "83acb1792a06f9c823d524558ff088e7facff582d5f47f5538f2cf15342bb729"
+  },
+  "captures": [
+    {
+      "seq": 0,
+      "samples": 16000,
+      "sample_rate_nominal_hz": 100000,
+      "sample_period_nominal_us": 10.0,
+      "elapsed_us": 160046,
+      "fcs": 16973837,
+      "cs": 257,
+      "dma_ctrl": 3280933,
+      "min_adc": 0,
+      "max_adc": 1813,
+      "adc_rail_samples": 1
+    },
+    {
+      "seq": 1,
+      "samples": 16000,
+      "sample_rate_nominal_hz": 100000,
+      "sample_period_nominal_us": 10.0,
+      "elapsed_us": 160048,
+      "fcs": 16973837,
+      "cs": 257,
+      "dma_ctrl": 3280933,
+      "min_adc": 0,
+      "max_adc": 1798,
+      "adc_rail_samples": 1
+    },
+    {
+      "seq": 2,
+      "samples": 16000,
+      "sample_rate_nominal_hz": 100000,
+      "sample_period_nominal_us": 10.0,
+      "elapsed_us": 160050,
+      "fcs": 16973837,
+      "cs": 257,
+      "dma_ctrl": 3280933,
+      "min_adc": 6,
+      "max_adc": 1817,
+      "adc_rail_samples": 0
+    },
+    {
+      "seq": 3,
+      "samples": 16000,
+      "sample_rate_nominal_hz": 100000,
+      "sample_period_nominal_us": 10.0,
+      "elapsed_us": 160038,
+      "fcs": 16842765,
+      "cs": 257,
+      "dma_ctrl": 3280933,
+      "min_adc": 12,
+      "max_adc": 1810,
+      "adc_rail_samples": 0
+    }
+  ],
+  "command_duration_us_range": [
+    294,
+    567
+  ],
+  "decision": "No external LED purchase is required to start optical VRR experiments. The onboard LED permits response-shape characterization with hardware-paced ADC sampling; its command schedule is not a timing reference.",
+  "sources": [
+    "https://docs.micropython.org/en/v1.29.0/library/rp2.DMA.html",
+    "https://raw.githubusercontent.com/raspberrypi/pico-sdk/2.2.0/src/rp2040/hardware_regs/include/hardware/regs/adc.h",
+    "https://raw.githubusercontent.com/raspberrypi/pico-sdk/2.2.0/src/rp2040/hardware_regs/include/hardware/regs/dreq.h",
+    "https://raw.githubusercontent.com/georgerobotics/cyw43-driver/main/src/cyw43_ll.c"
+  ]
+}
