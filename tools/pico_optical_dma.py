@@ -27,6 +27,9 @@ FIFO_FAULTS = (1 << 10) | (1 << 11)
 FIFO_CONFIG = (1 << 24) | 8 | 4 | 1  # threshold=1, DREQ, sample error bit, enable
 RATE = 100_000
 COUNT = 16_000
+# mpremote supports chained exec/run in one interpreter session. Set this
+# before run for passive panel snapshots: exec 'OPTICAL_LED_STIMULUS=False'.
+LED_STIMULUS = bool(globals().get("OPTICAL_LED_STIMULUS", True))
 
 
 def capture(led, dma, buf, seq):
@@ -53,7 +56,7 @@ def capture(led, dma, buf, seq):
         elapsed = time.ticks_diff(time.ticks_us(), start)
         if elapsed > 250_000:
             raise RuntimeError("ADC/DMA timeout")
-        if elapsed >= next_edge and next_edge < 140_000:
+        if LED_STIMULUS and elapsed >= next_edge and next_edge < 140_000:
             state ^= 1
             before = time.ticks_diff(time.ticks_us(), start)
             led.value(state)
@@ -78,7 +81,8 @@ def capture(led, dma, buf, seq):
         "elapsed_us": time.ticks_diff(stop, start),
         "fcs": fcs, "cs": cs, "dma_ctrl": dma_ctrl, "remaining": remaining,
         "format": "little-endian uint16; bits 0..11 ADC, bit 15 conversion error",
-        "led_commands": marks, "led_command_timing_is_reference": False,
+        "led_commands": marks, "led_stimulus": LED_STIMULUS,
+        "led_command_timing_is_reference": False,
     }))
     # Send only after capture; avoid full-buffer hex/list allocations on MCU.
     for offset in range(0, COUNT, 256):

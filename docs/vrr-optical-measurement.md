@@ -290,3 +290,54 @@ Next: develop longer captures, characterize fixed-refresh panel waveforms,
 then compare identifiable content sequences against source presentation
 timing. A second optical channel is useful corroboration, not a prerequisite
 for that first stage. No Deck experiment was performed in this checkpoint.
+
+### Fixed-refresh panel target and passive snapshots
+
+[`lab/vrr/optical_fixed.c`](../lab/vrr/optical_fixed.c) supplies a centered
+160-by-160-pixel gray marker with a thin outer positioning border. Centering
+avoids ambiguity from the panel's native portrait orientation. It reuses the
+exact r04 EDID, native mode and `vrr_capable=0` guards from the fixed-refresh
+control. It sends no VRR, AUX, firmware or altered timing request. Its active
+modes require an authorized lab session:
+
+- `--check /dev/dri/cardN`: cached preflight only, with no frame submission.
+- `--position /dev/dri/cardN`: steady gray marker for up to 600 seconds, with
+  SIGINT/SIGTERM/SIGHUP cleanup and restoration of the prior framebuffer/mode.
+- `--measure /dev/dri/cardN`: 1,080 native page flips, nominally 18 seconds:
+  2 s dark, 2 s gray, 2 s dark, 2 s of changes every two frames, 8 s of
+  changes every frame, and 2 s dark. A timestamped record identifies each
+  flip and marker state. These are intended source events, not panel light
+  measurements; late/missing event intervals must be checked in the result.
+- `--preview`: landscape PPM rendering without opening a DRM device.
+
+The local rendering/sequence fixture passed address/undefined-behavior
+sanitizers, including the marker area, framebuffer pitch padding and phase
+boundaries. The shared native-mode guard also passed its existing 16
+rejection cases. An initial physical `--check` and positioning launch
+accepted the exact fixed native mode. Panel waveform acquisition and
+measurement-mode completion remain unverified at this checkpoint.
+
+Use the clear sensing face over the solid center square, keeping metal leads
+off the display glass; a soft opaque shroud can reduce ambient light. Keep
+the Pico attached to the separate capture host. The marker begins at gray
+level 128, not full white, but signal headroom must still be measured before
+interpreting edge timing. Use a more suitable light level or aperture if
+the sensor saturates.
+
+Passive snapshots use the same ADC/FIFO/DMA path with the onboard LED held
+off. Set the explicit option in the same `mpremote` interpreter session:
+
+```sh
+mpremote connect "$PICO_PORT" exec 'OPTICAL_LED_STIMULUS=False' \
+  run tools/pico_optical_dma.py > artifacts/panel-snapshot.jsonl
+```
+
+This records four separate 160 ms snapshots at nominal 100 ksample/s, with
+transfer gaps between captures. It is useful for signal level and static
+brightness-modulation checks, not a continuous 18-second recording.
+`read_captures()` in the host analyzer validates its chunks, CRCs and status
+flags; the LED-step summary deliberately rejects recordings with no LED
+commands. Before sensor placement, the passive option completed 64,000
+samples with empty LED-command lists and no reported capture errors. Longer
+continuous acquisition and panel/source alignment are still required for
+the eventual VRR comparison.
