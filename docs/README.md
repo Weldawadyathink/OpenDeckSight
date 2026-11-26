@@ -15,7 +15,7 @@ is required for anything potentially dangerous to hardware or software.
 | [EC interpreter](ec-interpreter.md) | Instruction traces for table selection, bus buffers and delay counters |
 | [Brightness](brightness.md) | Recovered mailbox and panel protocol |
 | [Validation](hardware-validation.md) | Work requiring the physical device |
-| [Variable refresh feasibility](vrr-feasibility.md) | Read-only VRR finding, bridge/panel uncertainties and next evidence |
+| [Variable refresh feasibility](vrr-feasibility.md) | Narrow-range optical evidence, bridge/panel uncertainties and next evidence |
 | [Bridge VRR experiment plan](vrr-bridge-test-plan.md) | Native AUX result, active-test prerequisites and decision points |
 | [Offline VRR kernel tests](vrr-kernel-research.md) | Candidate OGC source, independent range gates, late-frame fallback and quantization |
 | [Optical VRR measurement](vrr-optical-measurement.md) | Camera versus photodiode, microcontroller capture design and end-to-end evidence |

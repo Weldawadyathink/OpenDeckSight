@@ -3,8 +3,10 @@
 The diagnostic AMD driver, visual stimulus and USB update bundle were built on
 2026-10-04. **One approved physical A/B/A experiment completed: GPU event
 intervals varied during B and returned to fixed timing afterward. No visual
-anomalies were reported. Bridge/panel VRR remains unconfirmed.** The disabled
-baseline was restored by reboot and verified. The ready bundle defaults to
+anomalies were reported. This visual-only test did not establish bridge/panel
+VRR.** A later [optical comparison](vrr-optical-ab.md), completed 2026-11-26,
+found visible changes closely following variable GPU timing at one location.
+The disabled baseline was restored by reboot and verified. The ready bundle defaults to
 `amdgpu.ods_vrr_59_60=0`; installing it never starts a test.
 
 ## Physical experiment result
@@ -48,12 +50,12 @@ hashes, native mode, `vrr_capable = 0`, disabled override and control byte `00`.
 The next boot also selects the disabled baseline. Internal storage remained
 unbound and unmounted, with no swap.
 
-This removes the source-generation prerequisite far enough to proceed to
-optical measurement. The next decisive test is a synchronized photodiode capture
-of visible frame transitions against a controlled irregular submission sequence,
-with a fixed-refresh control. Instrumenting the standard AUX control path would
-also clarify the zero readback. This single short run establishes neither a
-safe operating range nor end-to-end VRR support.
+This removed the source-generation prerequisite far enough to proceed to
+optical measurement. The later [photodiode comparison](vrr-optical-ab.md)
+supplies that evidence with a fixed-refresh control; it has separate results
+and limitations. Instrumenting the standard AUX control path would still
+clarify the zero readback. This visual-only run establishes neither a safe
+operating range nor end-to-end VRR support.
 [Anonymous experiment report](../research/reports/vrr-visual-experiment.json)
 
 ## Driver boundary

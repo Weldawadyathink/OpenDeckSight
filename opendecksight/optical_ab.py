@@ -18,8 +18,19 @@ def expected_edges(flips):
     if [(f['phase'],f['frame'],f['marker_lit']) for f in flips]!=expected:
         raise ValueError('Unexpected optical A/B stimulus')
     for a,b in zip(flips,flips[1:]):
-        if b['event_ns']<=a['event_ns'] or not 1<=((b['sequence']-a['sequence'])&0xffffffff)<=3:
+        step=(b['sequence']-a['sequence'])&0xffffffff
+        dt_us=(b['event_ns']-a['event_ns'])/1000
+        if dt_us<=0 or not 1<=step<0x80000000:
             raise ValueError('Invalid source event/sequence progression')
+        if a['phase']==b['phase']:
+            if step>3:raise ValueError('Unexpected within-phase source hold')
+        else:
+            # Atomic VRR-property commits can hold the old content for several
+            # vblanks. Keep the entire hold and check its clock consistency;
+            # it is not a missing optical sample or an ordinary paced flip.
+            maximum_us=1220*1989/143180000*1e6
+            if not NATIVE_US-2<=dt_us/step<=maximum_us+2:
+                raise ValueError('Phase-boundary sequence/time inconsistency')
     base=flips[0]['event_ns']
     return [{'ordinal':b['ordinal'],'phase':b['phase'],'frame':b['frame'],
              'state':int(b['marker_lit']),'source_us':(b['event_ns']-base)/1000,
@@ -51,7 +62,12 @@ def compare(flips,observed):
         p['source_residual_us']=residual(p,model)
         adjusted=p['time_us']-model['rising_relative_to_falling_us']*p['state']
         p['fixed_native_grid_residual_us']=(adjusted-origin+period/2)%period-period/2
+    holds=[{'from_phase':a['phase'],'to_phase':b['phase'],
+            'source_interval_us':(b['event_ns']-a['event_ns'])/1000,
+            'vblank_steps':(b['sequence']-a['sequence'])&0xffffffff}
+           for a,b in zip(flips,flips[1:]) if a['phase']!=b['phase']]
     return {'model':model,'training_phase':0,'fixed_grid_period_us':period,'pairs':pairs,
+            'phase_boundary_holds':holds,
             'limitations':[
                 'No fit uses the VRR-requested or final fixed phases.',
                 'The fixed countermodel is an uninterrupted native-60-Hz grid, not every possible buffered or fixed-rate behavior.',

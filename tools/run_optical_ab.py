@@ -97,7 +97,9 @@ def main():
             if source['returncode'] or source['timed_out'] or source['stderr']:raise RuntimeError('Display test did not finish cleanly')
             if not any(e.get('event')=='restore' and e.get('success') for e in source['events']):raise RuntimeError('Display restoration not verified')
             if source['post_check']['returncode'] or source['post_check']['stderr']:raise RuntimeError('Post-test preflight failed')
-            print('Capture and framebuffer/VRR-off restoration completed. Experimental boot still requires baseline reboot.')
+            message='Capture and framebuffer/VRR-off restoration completed.'
+            if a.mode=='experiment':message+=' Experimental boot still requires baseline reboot.'
+            print(message)
     finally:
         if capture is not None and capture.poll() is None:
             capture.terminate()

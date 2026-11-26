@@ -522,7 +522,15 @@ retain a common clock model so that fitting cannot absorb the effect under
 test. No optical VRR conclusion follows yet; enabling experimental timings
 still needs concrete human approval under [AGENTS.md](../AGENTS.md).
 
-The [prepared optical A/B/A procedure](vrr-optical-ab.md) now supplies that
-bounded comparison, including a new disabled-boot control, the existing
-guarded VRR boot, and restoration to the disabled slot. It has been built and
-tested locally; the experimental device actions await human approval.
+### First optical VRR comparison, 2026-11-26
+
+The subsequently approved [optical A/B/A experiment](vrr-optical-ab.md)
+completed a new disabled-boot control and one guarded VRR run. Both continuous
+captures recovered all 1,442 intended transitions. During B, visible changes
+followed variable GPU timing with 9.22 us residual standard deviation, while
+their distance from the original 60 Hz grid spread by milliseconds. The
+disabled baseline was restored by reboot and verified. This is strong
+single-location evidence of variable visible-update timing through the full
+path; whole-panel scanout, tearing, flicker, repeatability and wider-range
+support remain open. See the linked report for the clock model, control,
+source pacing limits, analysis revision and provenance.

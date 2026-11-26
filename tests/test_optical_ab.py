@@ -52,6 +52,26 @@ class OpticalABTests(unittest.TestCase):
         flips,observed=fixture()
         with self.assertRaises(ValueError):compare(flips,observed[:-2])
 
+    def test_atomic_phase_boundary_hold_is_retained(self):
+        flips,observed=fixture()
+        for f in flips:
+            if f['ordinal']>=720:
+                f['sequence']+=3;f['event_ns']+=round(3*NATIVE_US*1000)
+        for e,o in zip(expected_edges(flips),observed):
+            if e['ordinal']>=720:o['time_us']+=3*NATIVE_US*1.00002
+        result=compare(flips,observed)
+        hold=next(h for h in result['phase_boundary_holds'] if h['to_phase']==1)
+        self.assertEqual(hold['vblank_steps'],4)
+        self.assertGreater(hold['source_interval_us'],66000)
+        self.assertLess(max(abs(p['source_residual_us']) for p in result['pairs']),.01)
+
+    def test_large_within_phase_hold_and_bad_boundary_counter_rejected(self):
+        for ordinal in (720,800):
+            flips,observed=fixture()
+            for f in flips:
+                if f['ordinal']>=ordinal:f['sequence']+=3
+            with self.assertRaises(ValueError):compare(flips,observed)
+
     def test_held_out_delay_cannot_change_clock_fit(self):
         flips,observed=fixture()
         baseline=compare(flips,observed)

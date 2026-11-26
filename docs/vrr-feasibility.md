@@ -1,17 +1,19 @@
 # True variable refresh on DeckSight: feasibility assessment
 
-Initial research: 2026-10-03; experimental update: 2026-10-04. Scope: LCD Steam
+Initial research: 2026-10-03; optical update: 2026-11-26. Scope: LCD Steam
 Deck / DeckSight r04, using this project's reconstructed firmware, public
-sources, compatibility observations and one approved bounded timing experiment.
-**The ordinary Linux interface does not advertise VRR. A diagnostic driver now
-produces variable GPU event intervals without reported visual anomalies, but
-end-to-end bridge/panel VRR remains unproven.**
+sources, compatibility observations and approved bounded timing experiments.
+**The ordinary Linux interface does not advertise VRR. A guarded diagnostic
+driver now has optical evidence that visible updates follow variable GPU
+timing through the complete bridge/panel path in a narrow 59–60 Hz window.**
+Whole-panel variable scanout, tear-free behavior, a useful wider range and
+production support remain unestablished.
 
-The project has useful control over initialization and display metadata. It has
-not established the two crucial behaviors: variable timing through the bridge,
-and acceptance of that timing by the panel. No defensible success percentage
-can be assigned until those are understood. This is a research direction, not
-an implementation commitment or a finding that VRR is physically impossible.
+The project has useful control over initialization and display metadata. The
+new optical evidence argues against an absolute timing incompatibility in the
+ANX/panel path, materially improving feasibility. It does not identify the
+internal mechanism, establish standards compliance or support a success
+percentage for a wider-range implementation.
 
 The [physical A/B/A experiment](vrr-visual-experiment.md) kept the native pixel
 clock and used a roughly 59–60 Hz window. Reported GPU periods varied only in
@@ -20,6 +22,16 @@ equally smooth in both phases, with no reported tearing or flicker. Sampled
 DPCD `0x107` reads remained zero, leaving standard control-request behavior
 unresolved. The disabled baseline was restored. This is progress past the
 source-generation obstacle, not an optical measurement of variable scanout.
+
+The subsequent [optical fixed / VRR / fixed experiment](vrr-optical-ab.md)
+recovered all 1,442 intended content changes in each of a fixed control and
+one experimental run. During the VRR phase, optical timing followed GPU events
+with 9.22 us residual standard deviation, versus 3.51 ms distance spread from
+the original uninterrupted 60 Hz grid. Clock and polarity calibration used
+only the first fixed phase. Same-polarity optical/source period estimates
+correlated at r = 0.9967. This is strong evidence of variable visible-update
+timing at the measured location, with no whole-screen visual assessment in
+that session. The disabled native baseline was restored and verified.
 
 ## What counts as true VRR
 
@@ -49,6 +61,7 @@ modes does not establish a VRR range.
 | r04 EDID extensions | One CTA extension containing only HDR static metadata | No DisplayID timing-range block or AMD FreeSync vendor block. HDR metadata is independent of VRR. |
 | Existing EC reconstruction | EDID relocation, bridge configuration and panel commands are understood at the transport level | Provides places to investigate changes; several command effects remain opaque. |
 | Public panel identification | A retained ICNA3512 datasheet matches several initialization commands; exact controller identity remains unverified | The generated `DSO:5001` identity is not a controller part number. See the [controller-family evidence](vrr-icna3512.md). |
+| Guarded 59–60 Hz optical comparison | All intended visible changes followed variable GPU timing at one screen location; fixed controls remained native-periodic | Evidence that the complete path can carry variable visible-update timing; one run does not establish whole-panel scanout, wider-range tolerance or production VRR. |
 
 The new [collector](../opendecksight/vrr.py) opens the DRM card read-only and
 calls only `drmModeObjectGetProperties` and `drmModeGetProperty`, plus their
@@ -111,8 +124,9 @@ The complete table and input hashes are in the
 
 Adding an EDID range, advertising a capability bit, or forcing a kernel quirk
 would only change what the driver believes. None would create missing bridge
-or panel behavior. There is not enough evidence to recommend any of those
-changes as an enablement patch.
+or panel behavior. The guarded driver experiment now has supporting optical
+evidence, but there is still insufficient evidence for a general enablement
+patch or fabricated production capability range.
 
 ### 2. Bridge timing: the main transport uncertainty
 
@@ -134,6 +148,13 @@ detecting a rate change would not by itself provide true VRR. Bridge firmware
 and/or documented configuration may be needed; an inflexible timing generator
 would make support on the existing hardware much less likely.
 
+The optical result now constrains this uncertainty: visible updates track
+variable source timing through the existing path in the narrow experiment.
+An unchanged uninterrupted native-60-Hz output does not explain that trace.
+This does not directly measure DSI signaling or exclude every buffering model;
+the bridge's internal implementation and behavior over larger timing changes
+remain unknown.
+
 ### 3. Panel timing: a separate hardware uncertainty
 
 The subsequently retained [ICNA3512 datasheet](vrr-icna3512.md) provides a
@@ -149,6 +170,11 @@ OLED scanout. Its acceptable blanking limits and any required vendor commands
 are unknown. The initialization's tear-control commands and DSC toggle do not
 demonstrate Adaptive-Sync support; the opaque commands remain labeled as such
 in [panel-init.md](panel-init.md).
+
+The narrow optical result is evidence that the configured panel produces
+variable visible-update timing at one location. It does not establish uniform
+whole-panel scans, correct brightness everywhere, tolerated porch limits or
+the absence of tearing. A short timing success is not a reliability result.
 
 Shade Technik lists 144 Hz as a panel capability not supported on the Deck,
 and discusses DSC as a route to higher rates. Those claims concern throughput
@@ -188,29 +214,28 @@ low-frame-rate compensation behavior has been established.
 | --- | --- |
 | Enable a desktop option or edit Gamescope Lua | Insufficient on the observed driver interface; cannot establish hardware support. |
 | Add EDID metadata alone | A plausible experiment only after hardware timing support is established; currently unjustified as a solution. |
-| Driver plus bridge/panel configuration changes | Technically conceivable; substantial uncertainty and reverse engineering remain. |
-| Bridge/panel firmware changes | May be necessary; understanding register transport and reproducing r04 do not provide arbitrary firmware functionality or signing. |
-| Hardware replacement | Could become necessary if the bridge or panel cannot support the required timing; no evidence yet requires this conclusion. |
+| Guarded driver changes with the existing bridge/panel configuration | Now supported by narrow-range optical evidence. Repeatability, source pacing and whole-panel behavior need validation before generalization. |
+| Further bridge/panel configuration or firmware changes | Not shown necessary for the measured narrow case; may be needed for a useful wider range. Firmware functionality and signing remain separate constraints. |
+| Hardware replacement | No evidence currently requires this; the optical result argues against an absolute incompatibility in the narrow case. |
 
-The highest-value experimental next step is optical measurement of visible
-frame transitions against controlled irregular submissions, including a
-fixed-refresh control. The narrow source experiment provides a starting point;
-an ANX7580 programming manual is not a prerequisite for testing the entire path.
-A manual or documented DP-to-DSI example, and identification of the panel
-controller from public artifacts, would still help explain failures and possible
-configuration changes. Supported modes, blanking limits, initialization and
-brightness behavior remain open. No messages have been sent to manufacturers
-as part of this work.
+The highest-value next steps are repeating the narrow optical comparison,
+improving source pacing so more requested intervals are actually exercised,
+and comparing timing at multiple screen locations while checking for tearing,
+blanking and flicker. A second sensor would help compare scan behavior
+simultaneously; the existing sensor remains useful for repeatability and
+sequential location checks. No further hardware purchase is required to
+continue software analysis and narrow-range test development.
 
-Offline analysis can then trace how bridge firmware relates incoming frame
-boundaries to DSI vertical timing. The follow-up bounded receiver-capability
-read resolved the discovery bit, but did not validate physical scanout. The
-diagnostic driver has now passed the capability gates and produced variable
-GPU event intervals. The remaining experimental blocker is observing actual
-panel output and distinguishing variable updates from fixed-rate buffering or
-repeats. The zero control-byte readback also warrants tracing the standard
-driver write path before attributing it to receiver behavior. See the
-[staged bridge test plan](vrr-bridge-test-plan.md).
+An ANX7580 programming manual remains useful but is not a prerequisite for
+testing the complete path. A manual or documented DP-to-DSI example, and
+identification of the panel controller from public artifacts, could explain
+the mechanism and guide larger timing changes. The zero control-byte readback
+also warrants tracing the standard driver write path before attributing it to
+receiver behavior. Supported modes, blanking limits, initialization and
+brightness behavior remain open. No manufacturer correspondence is part of
+this research record. The [staged bridge test plan](vrr-bridge-test-plan.md)
+provides the earlier capability and experiment framework; the optical result
+supersedes its initial lack of physical timing evidence.
 
 Further timing experiments need concrete human approval under the project's
 hardware-risk boundary. A credible success test compares deliberately irregular
@@ -224,8 +249,8 @@ The initial read-only assessment changed no display settings, services,
 installed files, firmware or power state. Its follow-up used one 16-byte native
 AUX capability read through an existing kernel device node, without arbitrary
 bridge-register or MMIO access. The separately approved disposable-USB timing
-experiment and its restoration are documented in the later visual report.
-Neither activity used a vendor installer or flasher.
+experiments and restoration are documented in the visual and optical reports.
+None used a vendor installer or flasher.
 
 ## Reproduction and provenance
 

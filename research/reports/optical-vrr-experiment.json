@@ -1,0 +1,531 @@
+{
+  "schema": "optical-vrr-experiment-v1",
+  "date": "2026-11-26",
+  "prepared_test_commit": "f1f02c3",
+  "display_program_sha256": "c1f14d404f564b4959c6dd90e20927711716f977a4e67edc0df8c8c0a0438b27",
+  "driver_module_sha256": "2aea311b29f2ca164c450e383bab84eb83186a4190bf00129461876abd1b6d34",
+  "sensor_firmware_uf2_sha256": "1b3219606d9ff116f228c292a75dd13ec0e0dd57da001c3f5009c9dfe8efb6ff",
+  "runs": [
+    {
+      "mode": "control",
+      "capture_sha256": "bb65ed4c443270099193546c32acdd65fe136a06b39a442ea6b36acfb0ba4bce",
+      "source_sha256": "136b443040fd3ab8d9e538bc0a065e137e07f62ef153c3caf677169dcf43d935",
+      "sample_count": 5000000,
+      "raw_crossings": 1484,
+      "qualified_edges": 1442,
+      "model": {
+        "offset_us": 687656.9347980563,
+        "scale": 0.9999989418890501,
+        "scale_error_ppm": -1.0581109498586372,
+        "rising_relative_to_falling_us": 213.8208658620715
+      },
+      "phase_summary": {
+        "-1": {
+          "source_period_per_vblank_us": {
+            "count": 359,
+            "min": 16666.0,
+            "median": 16667.0,
+            "max": 16668.0,
+            "stddev": 0.49926816966407667
+          },
+          "source_intervals_outside_native_2us": 0,
+          "source_residual_us": {
+            "count": 2,
+            "min": 2.1844110367819667,
+            "median": 19.29945883806795,
+            "max": 36.41450663935393,
+            "stddev": 17.115047801285982
+          },
+          "fixed_native_grid_residual_us": {
+            "count": 2,
+            "min": 1.4084654966045491,
+            "median": 18.61088574355199,
+            "max": 35.81330599049943,
+            "stddev": 17.20242024694744
+          }
+        },
+        "0": {
+          "source_period_per_vblank_us": {
+            "count": 359,
+            "min": 16666.0,
+            "median": 16667.0,
+            "max": 16667.0,
+            "stddev": 0.49224477339925266
+          },
+          "source_intervals_outside_native_2us": 0,
+          "source_residual_us": {
+            "count": 360,
+            "min": -13.129407543689013,
+            "median": -1.4424920277670026,
+            "max": 105.8254080619663,
+            "stddev": 10.715245680942678
+          },
+          "fixed_native_grid_residual_us": {
+            "count": 360,
+            "min": -12.702951786204721,
+            "median": 0.3902003518596757,
+            "max": 107.2193163510874,
+            "stddev": 10.749019978133292
+          }
+        },
+        "1": {
+          "source_period_per_vblank_us": {
+            "count": 719,
+            "min": 16666.0,
+            "median": 16667.0,
+            "max": 16667.0,
+            "stddev": 0.4916850755995831
+          },
+          "source_intervals_outside_native_2us": 0,
+          "source_residual_us": {
+            "count": 720,
+            "min": -13.96554046496749,
+            "median": 2.0850792434066534,
+            "max": 62.79219936579466,
+            "stddev": 8.37864320032963
+          },
+          "fixed_native_grid_residual_us": {
+            "count": 720,
+            "min": -8.463939916002346,
+            "median": 6.939657519269531,
+            "max": 68.27899339480973,
+            "stddev": 8.76771954309802
+          }
+        },
+        "2": {
+          "source_period_per_vblank_us": {
+            "count": 359,
+            "min": 16666.0,
+            "median": 16667.0,
+            "max": 16667.0,
+            "stddev": 0.49268593068249
+          },
+          "source_intervals_outside_native_2us": 0,
+          "source_residual_us": {
+            "count": 360,
+            "min": -3.7352543398737907,
+            "median": 7.426172561943531,
+            "max": 79.45934223756194,
+            "stddev": 7.9540868309658075
+          },
+          "fixed_native_grid_residual_us": {
+            "count": 360,
+            "min": 2.954918777826606,
+            "median": 14.995323754412311,
+            "max": 87.10313914783,
+            "stddev": 8.046677737071494
+          }
+        }
+      },
+      "display_restore_verified": true,
+      "experimental_boot_still_enabled": false,
+      "limitations": [
+        "No fit uses the VRR-requested or final fixed phases.",
+        "The fixed countermodel is an uninterrupted native-60-Hz grid, not every possible buffered or fixed-rate behavior.",
+        "A short single-location content-update recording does not prove panel refresh behavior or a safe operating range.",
+        "Polarity response and electrical noise can change with content cadence; no automatic VRR verdict."
+      ],
+      "source_flips": 1800,
+      "source_first_to_last_flip_us": 30233175.0,
+      "sample_rate_nominal_hz": 100000,
+      "sample_integrity_checks_passed": true,
+      "capture_status": {
+        "flags": 0,
+        "sent": 5000000,
+        "produced": 5000007,
+        "fcs": 16777485,
+        "cs": 257,
+        "dma_ctrl": 17958885,
+        "max_backlog": 2051
+      },
+      "acquisition_duration_us": 50000071,
+      "adc_lower_rail_samples": 22813,
+      "adc_upper_rail_samples": 0,
+      "settling_groups": 10,
+      "largest_settling_span_us": 109.11639972962439,
+      "new_kernel_messages": []
+    },
+    {
+      "mode": "experiment",
+      "capture_sha256": "b03e77ac915fcb5697e3133eeb158289316249979c813ebef08dff2ee0ba2697",
+      "source_sha256": "d5e90e8d7f77abd40516f6dc779e794f87f5037fb461c4b83883aed2887cd246",
+      "sample_count": 5000000,
+      "raw_crossings": 1450,
+      "qualified_edges": 1442,
+      "model": {
+        "offset_us": 495279.48362143524,
+        "scale": 1.000002229927053,
+        "scale_error_ppm": 2.2299270530101722,
+        "rising_relative_to_falling_us": 215.87128610163927
+      },
+      "phase_summary": {
+        "-1": {
+          "source_period_per_vblank_us": {
+            "count": 359,
+            "min": 16666.0,
+            "median": 16667.0,
+            "max": 16667.0,
+            "stddev": 0.49858389948626836
+          },
+          "source_intervals_outside_native_2us": 0,
+          "source_residual_us": {
+            "count": 2,
+            "min": -4.094446244183928,
+            "median": 20.452445319620892,
+            "max": 44.99933688342571,
+            "stddev": 24.54689156380482
+          },
+          "fixed_native_grid_residual_us": {
+            "count": 2,
+            "min": 4.1296257335943665,
+            "median": 26.763885570473576,
+            "max": 49.398145407352786,
+            "stddev": 22.63425983687921
+          }
+        },
+        "0": {
+          "source_period_per_vblank_us": {
+            "count": 359,
+            "min": 16666.0,
+            "median": 16667.0,
+            "max": 16667.0,
+            "stddev": 0.4963769543121288
+          },
+          "source_intervals_outside_native_2us": 0,
+          "source_residual_us": {
+            "count": 360,
+            "min": -33.68924252409488,
+            "median": -0.6749331266619265,
+            "max": 55.78005727939308,
+            "stddev": 6.158600644492022
+          },
+          "fixed_native_grid_residual_us": {
+            "count": 360,
+            "min": -35.48391058513698,
+            "median": -7.2631910541840625,
+            "max": 52.764266227039116,
+            "stddev": 7.1963648156492095
+          }
+        },
+        "1": {
+          "source_period_per_vblank_us": {
+            "count": 719,
+            "min": 16674.0,
+            "median": 16676.0,
+            "max": 16948.0,
+            "stddev": 78.76089472841028
+          },
+          "source_intervals_outside_native_2us": 719,
+          "source_residual_us": {
+            "count": 720,
+            "min": -12.129414450377226,
+            "median": -2.1160196270793676,
+            "max": 86.67242598719895,
+            "stddev": 9.218545960501384
+          },
+          "fixed_native_grid_residual_us": {
+            "count": 720,
+            "min": -8322.453247346608,
+            "median": 1327.2858769078575,
+            "max": 8327.750896160125,
+            "stddev": 3507.0799166040906
+          }
+        },
+        "2": {
+          "source_period_per_vblank_us": {
+            "count": 359,
+            "min": 16666.0,
+            "median": 16667.0,
+            "max": 16667.0,
+            "stddev": 0.4963769543121288
+          },
+          "source_intervals_outside_native_2us": 0,
+          "source_residual_us": {
+            "count": 360,
+            "min": -14.879568975418806,
+            "median": -3.7284586746245623,
+            "max": 94.55739262327552,
+            "stddev": 9.874679283260615
+          },
+          "fixed_native_grid_residual_us": {
+            "count": 360,
+            "min": 2141.9306431170717,
+            "median": 2158.3095637587794,
+            "max": 2260.7519143644367,
+            "stddev": 10.775566833862854
+          }
+        }
+      },
+      "display_restore_verified": true,
+      "experimental_boot_still_enabled": true,
+      "limitations": [
+        "No fit uses the VRR-requested or final fixed phases.",
+        "The fixed countermodel is an uninterrupted native-60-Hz grid, not every possible buffered or fixed-rate behavior.",
+        "A short single-location content-update recording does not prove panel refresh behavior or a safe operating range.",
+        "Polarity response and electrical noise can change with content cadence; no automatic VRR verdict."
+      ],
+      "source_flips": 1800,
+      "source_first_to_last_flip_us": 30318639.0,
+      "sample_rate_nominal_hz": 100000,
+      "sample_integrity_checks_passed": true,
+      "capture_status": {
+        "flags": 0,
+        "sent": 5000000,
+        "produced": 5000007,
+        "fcs": 16777485,
+        "cs": 257,
+        "dma_ctrl": 17958885,
+        "max_backlog": 2051
+      },
+      "acquisition_duration_us": 50000076,
+      "adc_lower_rail_samples": 20731,
+      "adc_upper_rail_samples": 0,
+      "settling_groups": 4,
+      "largest_settling_span_us": 53.632632955908775,
+      "new_kernel_messages": [
+        "amdgpu: ODS_VRR: set_drr invoked min=1957 max=1989",
+        "amdgpu: ODS_VRR: set_drr invoked min=1956 max=1956"
+      ],
+      "phase_boundary_holds": [
+        {
+          "from_phase": -1,
+          "to_phase": 0,
+          "source_interval_us": 33333.0,
+          "vblank_steps": 2
+        },
+        {
+          "from_phase": 0,
+          "to_phase": 1,
+          "source_interval_us": 67518.0,
+          "vblank_steps": 4
+        },
+        {
+          "from_phase": 1,
+          "to_phase": 2,
+          "source_interval_us": 83333.0,
+          "vblank_steps": 5
+        }
+      ],
+      "variable_phase_rms_us": {
+        "source_residual_us": 9.234292524224742,
+        "fixed_native_grid_residual_us": 3655.6884280261547
+      }
+    }
+  ],
+  "same_polarity_comparison": {
+    "pairs": 718,
+    "source_period_us": {
+      "count": 718,
+      "min": 16674.5,
+      "median": 16675.5,
+      "max": 16917.5,
+      "stddev": 77.81729423969692
+    },
+    "optical_period_us": {
+      "count": 718,
+      "min": 16630.749230599464,
+      "median": 16684.245533444366,
+      "max": 16925.017243783135,
+      "stddev": 78.09470128853711
+    },
+    "optical_minus_source_us": {
+      "count": 718,
+      "min": -44.25076940053623,
+      "median": 0.011727034938303404,
+      "max": 45.10607974164668,
+      "stddev": 6.342048951041118
+    },
+    "pearson_r": 0.9966970669383921,
+    "same_polarity_span_vblanks": {
+      "2": 713,
+      "3": 5
+    },
+    "model": {
+      "offset_us": 495279.48362143524,
+      "scale": 1.000002229927053,
+      "scale_error_ppm": 2.2299270530101722,
+      "rising_relative_to_falling_us": 215.87128610163927
+    },
+    "phase_boundary_holds": [
+      {
+        "from_phase": -1,
+        "to_phase": 0,
+        "source_interval_us": 33333.0,
+        "vblank_steps": 2
+      },
+      {
+        "from_phase": 0,
+        "to_phase": 1,
+        "source_interval_us": 67518.0,
+        "vblank_steps": 4
+      },
+      {
+        "from_phase": 1,
+        "to_phase": 2,
+        "source_interval_us": 83333.0,
+        "vblank_steps": 5
+      }
+    ],
+    "qualification_groups": 4,
+    "largest_settling_span_us": 53.632632955908775,
+    "note": "Overlapping two-transition intervals; correlated observations, not independent calibration trials."
+  },
+  "threshold_sensitivity": [
+    {
+      "middle_v": 0.2,
+      "quiet_us": 100,
+      "passed": true,
+      "qualified_edges": 1442,
+      "model": {
+        "offset_us": 495344.05767236836,
+        "scale": 1.0000020729439087,
+        "scale_error_ppm": 2.07294390874857,
+        "rising_relative_to_falling_us": 87.00415369309485
+      },
+      "source_residual_us": {
+        "count": 720,
+        "min": -39.70007945597172,
+        "median": -0.7962505016475916,
+        "max": 109.4341389015317,
+        "stddev": 8.472878101011707
+      },
+      "fixed_grid_residual_us": {
+        "count": 720,
+        "min": -8323.330876142936,
+        "median": 1328.1764293552842,
+        "max": 8333.013518706648,
+        "stddev": 3506.3678082026827
+      }
+    },
+    {
+      "middle_v": 0.26,
+      "quiet_us": 100,
+      "passed": true,
+      "qualified_edges": 1442,
+      "model": {
+        "offset_us": 495279.48362143524,
+        "scale": 1.000002229927053,
+        "scale_error_ppm": 2.2299270530101722,
+        "rising_relative_to_falling_us": 215.87128610163927
+      },
+      "source_residual_us": {
+        "count": 720,
+        "min": -12.129414450377226,
+        "median": -2.1160196270793676,
+        "max": 86.67242598719895,
+        "stddev": 9.218545960501384
+      },
+      "fixed_grid_residual_us": {
+        "count": 720,
+        "min": -8322.453247346608,
+        "median": 1327.2858769078575,
+        "max": 8327.750896160125,
+        "stddev": 3507.0799166040906
+      }
+    },
+    {
+      "middle_v": 0.32,
+      "quiet_us": 100,
+      "passed": true,
+      "qualified_edges": 1442,
+      "model": {
+        "offset_us": 495211.41953477636,
+        "scale": 1.0000021809789374,
+        "scale_error_ppm": 2.180978937449396,
+        "rising_relative_to_falling_us": 351.1358219925314
+      },
+      "source_residual_us": {
+        "count": 720,
+        "min": -52.58068894781172,
+        "median": -1.0762527137994766,
+        "max": 87.27577363699675,
+        "stddev": 8.74215171332598
+      },
+      "fixed_grid_residual_us": {
+        "count": 720,
+        "min": -8322.398187206301,
+        "median": 1325.251420125831,
+        "max": 8326.469637802977,
+        "stddev": 3507.13898330216
+      }
+    },
+    {
+      "middle_v": 0.26,
+      "quiet_us": 50,
+      "passed": true,
+      "qualified_edges": 1442,
+      "model": {
+        "offset_us": 495279.48362143524,
+        "scale": 1.000002229927053,
+        "scale_error_ppm": 2.2299270530101722,
+        "rising_relative_to_falling_us": 215.87128610163927
+      },
+      "source_residual_us": {
+        "count": 720,
+        "min": -12.129414450377226,
+        "median": -2.1160196270793676,
+        "max": 86.67242598719895,
+        "stddev": 9.218545960501384
+      },
+      "fixed_grid_residual_us": {
+        "count": 720,
+        "min": -8322.453247346608,
+        "median": 1327.2858769078575,
+        "max": 8327.750896160125,
+        "stddev": 3507.0799166040906
+      }
+    },
+    {
+      "middle_v": 0.26,
+      "quiet_us": 200,
+      "passed": true,
+      "qualified_edges": 1442,
+      "model": {
+        "offset_us": 495279.48362143524,
+        "scale": 1.000002229927053,
+        "scale_error_ppm": 2.2299270530101722,
+        "rising_relative_to_falling_us": 215.87128610163927
+      },
+      "source_residual_us": {
+        "count": 720,
+        "min": -12.129414450377226,
+        "median": -2.1160196270793676,
+        "max": 86.67242598719895,
+        "stddev": 9.218545960501384
+      },
+      "fixed_grid_residual_us": {
+        "count": 720,
+        "min": -8322.453247346608,
+        "median": 1327.2858769078575,
+        "max": 8327.750896160125,
+        "stddev": 3507.0799166040906
+      }
+    }
+  ],
+  "final_restoration": {
+    "disabled_override": true,
+    "native_mode_verified": true,
+    "vrr_capable": 0,
+    "disabled_slot_running_and_default": true,
+    "internal_storage_unbound": true,
+    "swap_inactive": true,
+    "msa_control": {
+      "address": "0x107",
+      "value_hex": "00",
+      "ignore_msa_enabled": false
+    },
+    "report_sha256": "417deb87f19a1f292644badee1101d46ec3ac0116f4a269e9164810919e8f56a",
+    "control_read_report_sha256": "143d951e31b45b1462598a40682aeb0dc4c961228347bdbc7a99ab8fac46c34d"
+  },
+  "interpretation": "Strong single-location optical evidence that visible content-update timing follows variable GPU timing through the complete bridge/panel path in the guarded narrow range. Whole-panel scan behavior, tearing, safe wider range, repeatability and production VRR support remain unestablished.",
+  "visual_assessment_available": false,
+  "analysis_revision_note": "The first validator rejected phase-boundary holds of four/five vblanks. It now retains such boundary holds when sequence/time agree with the bounded period range; within-phase checks, all 1442 edges, thresholds and fixed-phase-only clock fit are unchanged. No experiment repeat was performed.",
+  "analysis_sources_sha256": {
+    "opendecksight/optical_ab.py": "b8876b091a08a89008db5bf6e297be209683b699bca14d345ad45bfce8b19796",
+    "opendecksight/optical_alignment.py": "d591d112dff0b1fc056e5e5b87247d2dfed310c7287c5bb613c5bb44ad60e229",
+    "opendecksight/optical_stream.py": "ac68ce404a623951d6dd723c4cda69d67938f725f7655e8fad26c8a66dbe3f98",
+    "tools/analyze_optical_ab.py": "68d3ed7d4e6dcac51bb9823cec8ce53a5e647e6c9e6b61684b19fdfaf73ceb74",
+    "tools/analyze_pico_panel.py": "59df799028665a6b47aa3b81b242cbe101c3f9c064c9dff1392cd8a36856ef3d",
+    "tools/plot_optical_ab.py": "b3502f5e518534ae964cef09ebd05a2d3d6e1a3aa42f24f47cfe4c576cd3202f"
+  }
+}
