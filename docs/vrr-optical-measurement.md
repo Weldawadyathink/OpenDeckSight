@@ -406,3 +406,28 @@ software tasks are gap-free buffered acquisition with loss detection and
 global source-to-sensor sequence alignment. Keep edge-polarity effects in
 that model. A later separately approved bounded VRR comparison is required
 before drawing any conclusion about ANX bridge or panel VRR pass-through.
+
+### Continuous recorder implementation, 2026-11-26
+
+[`lab/pico`](../lab/pico/README.md) now contains a native USB recorder intended
+to remove the burst-transfer gaps. ADC DMA runs continuously into a 32 KiB
+circular buffer while USB transfers copied blocks. Checksummed headers and
+payloads, absolute sample indices, final counts and sticky hardware/overrun
+flags make data loss invalidate a recording. The strict host reader and
+capture CLI preserve the original binary stream. No per-block timing gaps
+are inserted intentionally, but physical continuity remains unverified.
+
+The pinned SDK build succeeded and the combined optical host suite passed
+19 tests. New checks cover partial transport reads, dropped/reordered and
+duplicated packets, truncation, CRC damage, reported instrument failures,
+C/Python packet layout and CRC agreement, and UF2 address/vector checks.
+These are host/build checks, not evidence that the hardware stream works.
+
+The authorized Pico accepted the UF2 copy and exposed the SDK USB device
+identity. Its serial interface did not appear on the host, so physical
+validation stopped before acquisition. Host authorization/enumeration and
+firmware behavior remain possible causes. A normal USB reconnect is the
+next recovery step; ROM BOOTSEL recovery is available if needed. No further
+display stimulus or VRR experiment was run at this checkpoint. Continuous
+capture, deliberate-stall loss detection, and global optical/source
+alignment remain open.
