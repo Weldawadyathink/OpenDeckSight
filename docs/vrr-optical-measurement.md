@@ -431,3 +431,93 @@ next recovery step; ROM BOOTSEL recovery is available if needed. No further
 display stimulus or VRR experiment was run at this checkpoint. Continuous
 capture, deliberate-stall loss detection, and global optical/source
 alignment remain open.
+
+### Continuous acquisition and source alignment validated, 2026-11-26
+
+The native USB serial interface subsequently enumerated without another
+firmware flash. The exact cause of the initial host-access problem was not
+established. A 100,001-sample partial-block capture and a 25-second,
+2,500,000-sample capture passed checksums, sequence/count checks and final
+ADC/FIFO/DMA status checks. The largest pending sample count was 2,051 of
+16,384 available ring slots. Unlike the MicroPython bursts, the ADC ran
+continuously throughout each recording.
+
+A three-second pause in host reads did not exhaust transport buffers and
+the recording remained valid. A 12-second pause produced an incomplete
+stream, which was rejected. No intact final status packet survived that
+stall; do not claim a specific firmware error flag was measured. The Pico
+responded to INFO afterward and passed another short capture without reset.
+Software tests separately verify rejection of reported overrun/error flags,
+missing/duplicated packets and CRC corruption.
+
+Two 25-second continuous captures then covered complete 18-second native
+fixed-refresh stimuli. Each source run completed 1,080 flips with one vblank
+sequence increment per flip, restored the original framebuffer/native mode,
+and produced no new kernel log lines. VRR remained disabled throughout.
+
+The first trace contained 556 raw threshold crossings, including four
+clusters of repeated crossings during falling transitions. The second had
+548 raw crossings and two such clusters. These may reflect emission shape,
+electrical interference, or both; their cause has not been isolated.
+Consequently, raw threshold crossings are not all counted as content changes.
+The detector qualifies a net transition after 100 us without another
+crossing, timestamps the last crossing without adding that delay, and
+retains every raw crossing and the full settling span. The largest span was
+139 us in the first capture and 113 us in the second. This rule was selected
+after inspection of the first trace; the second was acquired with the
+thresholds, qualification rule and fitting procedure unchanged.
+
+[`tools/analyze_optical_continuous.py`](../tools/analyze_optical_continuous.py)
+matches the unique two-second preamble and the entire contiguous 542-edge
+sequence without per-frame time warping or discarded timing outliers. All
+542 intended transitions matched in each run, with no outside qualified
+edges. A single relative clock scale, clock offset and rising-versus-falling
+offset are fit to frames 480-719. The other 302 transitions, including the
+last 240 fast transitions, do not influence that fit. Coefficients are
+estimated separately for each recording. The 2 ms association guard only
+rejects gross misalignment; it is not a precision claim.
+
+| Measurement | First recording | Repeat recording |
+| --- | --- | --- |
+| Valid continuous samples | 2,500,000 | 2,500,000 |
+| Matched intended content changes | 542 / 542 | 542 / 542 |
+| Relative sample/source clock scale error | -0.89 ppm | -0.76 ppm |
+| Rising relative to falling offset | 213 us | 218 us |
+| Held-out fast-edge residual standard deviation | 10.2 us | 9.5 us |
+| Held-out fast-edge residual range | -39 to +56 us | -25 to +67 us |
+| All-edge residual range, including calibration segment | -39 to +56 us | -43 to +116 us |
+| Same-polarity fast-repeat median | 33.33290 ms | 33.33291 ms |
+
+These residuals are model discrepancies, not a complete uncertainty budget.
+Falling edges in the slower two-frame-hold portion retain roughly 35-40 us
+of systematic offset relative to the fast-segment fit. Threshold sensitivity
+also remains material: global midpoints of 0.20, 0.26 and 0.32 V all retained
+the full sequence but changed polarity offsets and residual spread. Held-out
+standard deviations across those midpoints ranged from 9.5 to 15.7 us, with
+individual residuals reaching approximately 105 us. Qualification intervals
+of 50 and 200 us also retained the full sequence; they did not improve or
+replace the primary 100 us result.
+
+Approximately 0.50% and 0.56% of samples reached the ADC's lower rail;
+none reached its upper rail. Dark-level noise, electrical coupling and
+emission variation therefore remain relevant even though the content edges
+were recovered. Keep raw waveforms, qualification spans and polarity effects
+in subsequent analyses. A single sensor observes one screen location and
+cannot reveal refreshes that repeat the same pixel value, scanout elsewhere,
+or whether a delay originates in the bridge versus the panel. The fitted
+clock offset also absorbs pipeline/scan/response latency and does not measure
+absolute display latency.
+
+The [anonymous continuous-capture report](../research/reports/pico-continuous-fixed-refresh.json)
+preserves build/capture/source hashes, status and timing summaries. Full raw
+recordings, source logs and plots remain in ignored `artifacts/`. The combined
+optical suite passes 25 tests, including known clock/bias recovery, missing
+edge rejection, raw settling preservation, and a held-out 120 us delay that
+must remain visible rather than being fitted away.
+
+The continuous acquisition and fixed-refresh alignment blockers are resolved.
+This is enough to develop a bounded optical VRR comparison with the existing
+single sensor. A next experiment must compare against a fixed control and
+retain a common clock model so that fitting cannot absorb the effect under
+test. No optical VRR conclusion follows yet; enabling experimental timings
+still needs concrete human approval under [AGENTS.md](../AGENTS.md).

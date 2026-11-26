@@ -1,0 +1,639 @@
+{
+  "schema": "pico-continuous-fixed-checkpoint-v1",
+  "date": "2026-11-26",
+  "firmware_build": {
+    "sdk_tag": "2.2.0",
+    "sdk_commit": "a1438dff1d38bd9c65dbd693f0e5db4b9ae91779",
+    "tinyusb_commit": "86ad6e56c1700e85f1c5678607a762cfe3aa2f47",
+    "sdk_url": "https://github.com/raspberrypi/pico-sdk",
+    "tinyusb_url": "https://github.com/hathach/tinyusb",
+    "compiler": "arm-none-eabi-gcc (GNU Tools for Arm Embedded Processors 9-2019-q4-major) 9.2.1 20191025 (release) [ARM/arm-9-branch revision 277599]",
+    "binary_sha256": "da12ee7922e834f1b09c7fa38d59d93d88f2f57d9943dc4a77c2508f705ed5df",
+    "uf2_sha256": "1b3219606d9ff116f228c292a75dd13ec0e0dd57da001c3f5009c9dfe8efb6ff",
+    "uf2_bytes": 72192,
+    "sources": {
+      "lab/pico/CMakeLists.txt": "1549ad4b006c982116e830b86187dcf6fe77830e4a3ffcfba08b3358518d9bb5",
+      "lab/pico/capture.c": "e1adccf46b7e5691ad0a992db718d28d2d7d3b7bd4da4b59da6c9b94da8ac71a",
+      "lab/pico/protocol.h": "6ac028078498a05a5592508fdf729ed40a1ada64a551d0c7f395ba7d3ba176e7"
+    }
+  },
+  "physical_bringup": {
+    "partial_final_block_samples": 100001,
+    "long_capture_samples": 2500000,
+    "three_second_read_pause": "Complete recording remained valid; pause did not force loss.",
+    "twelve_second_read_pause": {
+      "rejected": true,
+      "reason": "Incomplete or timed-out optical stream",
+      "raw_bytes": 1036310,
+      "host_read_stall_seconds": 12,
+      "info_recovered": true,
+      "prefix_error": "Incomplete or timed-out optical stream"
+    },
+    "stalled_raw_sha256": "017c5fe785304efddfe7e6c9a248a1db31f74cb033e51f1991ceaa4bc6457e32",
+    "recovery_capture_samples": 10001,
+    "failure_flag_observed": false
+  },
+  "analysis_policy": "Default 0.17/0.26/0.35 V hysteresis and 100 us quiet qualification. Qualification/fitting procedure selected using run 1 and unchanged for newly acquired run 2. Each run fits its own clock/polarity coefficients.",
+  "runs": [
+    {
+      "capture_sha256": "d10d2a1ea43b592a945f335d95f998fac97dc3bb73cd784ae94a7750ba7efcf4",
+      "source_sha256": "f24b5a7f4f3c88da27d7557eda6f9ee7925fb9cb65f8628c8bf45bd03f911711",
+      "source_frames": 1080,
+      "source_event_period_us": {
+        "count": 1079,
+        "min": 16666.0,
+        "median": 16667.0,
+        "max": 16667.0,
+        "stddev": 0.49368108787447906
+      },
+      "source_sequence_steps": [
+        1
+      ],
+      "display_restore_verified": true,
+      "vrr_enabled": false,
+      "kernel_log_unchanged": true,
+      "capture_checks_passed": true,
+      "sample_count": 2500000,
+      "packet_blocks": 1221,
+      "acquisition_config": {
+        "rate": 100000,
+        "requested": 2500000,
+        "gpio": 26,
+        "block_samples": 2048,
+        "ring_samples": 16384,
+        "adc_clock": 48000000,
+        "adc_div": 122624,
+        "firmware_revision": 1
+      },
+      "instrument_status": {
+        "flags": 0,
+        "sent": 2500000,
+        "produced": 2500012,
+        "fcs": 16777485,
+        "cs": 257,
+        "dma_ctrl": 17958885,
+        "max_backlog": 2051
+      },
+      "instrument_elapsed_us": 25000121,
+      "recorded_nominal_seconds": 25.0,
+      "adc_rail_samples": 12455,
+      "voltage_range_nominal": [
+        0.0,
+        0.7712087912087912
+      ],
+      "thresholds_v_nominal": {
+        "low": 0.17,
+        "middle": 0.26,
+        "high": 0.35
+      },
+      "qualification_quiet_us": 100,
+      "raw_crossings": 556,
+      "qualified_edges": 542,
+      "matched_edges": 542,
+      "residual_us": {
+        "count": 542,
+        "min": -39.325270364061,
+        "median": -1.1077238405123353,
+        "max": 55.83532265946269,
+        "stddev": 12.214409505818251
+      },
+      "phase_residual_us": {
+        "preamble": {
+          "count": 2,
+          "min": -3.2142805391922593,
+          "median": 17.424840931314975,
+          "max": 38.06396240182221,
+          "stddev": 20.639121470507234
+        },
+        "two_frame_holds": {
+          "count": 59,
+          "min": -4.93521592207253,
+          "median": 3.957051444798708,
+          "max": 40.17575849965215,
+          "stddev": 18.177151170863
+        },
+        "training_fast": {
+          "count": 240,
+          "min": -10.400391506031156,
+          "median": -1.8549174014478922,
+          "max": 54.38164196535945,
+          "stddev": 8.81151352509842
+        },
+        "held_out_fast": {
+          "count": 240,
+          "min": -39.325270364061,
+          "median": -0.809075428172946,
+          "max": 55.83532265946269,
+          "stddev": 10.174714962219445
+        },
+        "final_dark": {
+          "count": 1,
+          "min": -6.861204169690609,
+          "median": -6.861204169690609,
+          "max": -6.861204169690609,
+          "stddev": 0.0
+        }
+      },
+      "fast_intervals": {
+        "raw_dark_dwell_us": {
+          "count": 240,
+          "min": 16836.161616161466,
+          "median": 16882.01316192001,
+          "max": 16944.98601398617,
+          "stddev": 14.087602548909361
+        },
+        "raw_bright_dwell_us": {
+          "count": 239,
+          "min": 16389.62004662119,
+          "median": 16451.151515152305,
+          "max": 16492.346768656746,
+          "stddev": 13.779127855590872
+        },
+        "same_polarity_repeat_us": {
+          "count": 478,
+          "min": 33277.00073019415,
+          "median": 33332.90013774112,
+          "max": 33392.72654253617,
+          "stddev": 11.943033688236152
+        },
+        "clock_and_polarity_corrected_us": {
+          "count": 479,
+          "min": 16602.804994368547,
+          "median": 16666.498401838806,
+          "max": 16731.83087860546,
+          "stddev": 14.909462679811034
+        }
+      },
+      "limitations": [
+        "One sensor location and native fixed refresh only; no optical VRR pass-through test.",
+        "100 us qualification groups raw recrossings; brief real light pulses and electrical noise are not distinguished.",
+        "Settling spans and all alignment residuals are retained; individual edge uncertainty exceeds nominal sample spacing.",
+        "First-half fast edges calibrate one affine clock transform and polarity bias; remaining edges are held out.",
+        "Association guard is 2 ms, not the claimed measurement accuracy.",
+        "Clock scale is relative to GPU event timestamps, not an independent oscillator calibration.",
+        "Offset absorbs scan position, pipeline and response latency; it is not absolute display latency.",
+        "A content transition does not expose refreshes that repeat the same pixel value.",
+        "The raw ADC voltage reference, electrical interference, scan position and systematic timing errors are not independently calibrated."
+      ],
+      "run": 1,
+      "clock_and_polarity_model": {
+        "offset_us": 793031.8588175718,
+        "scale": 0.9999991056639478,
+        "scale_error_ppm": -0.8943360522151167,
+        "rising_relative_to_falling_us": 213.1700992602855
+      },
+      "training_frame_range": [
+        480,
+        720
+      ],
+      "settling_spans_us": [
+        32.69532889686525,
+        138.76386946439743,
+        67.90185886621475,
+        104.49477937631309
+      ],
+      "outside_qualified_edges": 0
+    },
+    {
+      "capture_sha256": "ce71087eaef0047e8a86c95df600d85801ce0adbe2fefda35c04049a9762b235",
+      "source_sha256": "fd7842d894da039c665b5a90bbd9bc862919a44b19163969ad81acdbc781936f",
+      "source_frames": 1080,
+      "source_event_period_us": {
+        "count": 1079,
+        "min": 16665.0,
+        "median": 16667.0,
+        "max": 16668.0,
+        "stddev": 0.49727298039111156
+      },
+      "source_sequence_steps": [
+        1
+      ],
+      "display_restore_verified": true,
+      "vrr_enabled": false,
+      "kernel_log_unchanged": true,
+      "capture_checks_passed": true,
+      "sample_count": 2500000,
+      "packet_blocks": 1221,
+      "acquisition_config": {
+        "rate": 100000,
+        "requested": 2500000,
+        "gpio": 26,
+        "block_samples": 2048,
+        "ring_samples": 16384,
+        "adc_clock": 48000000,
+        "adc_div": 122624,
+        "firmware_revision": 1
+      },
+      "instrument_status": {
+        "flags": 0,
+        "sent": 2500000,
+        "produced": 2500012,
+        "fcs": 16777485,
+        "cs": 257,
+        "dma_ctrl": 17958885,
+        "max_backlog": 2051
+      },
+      "instrument_elapsed_us": 25000123,
+      "recorded_nominal_seconds": 25.0,
+      "adc_rail_samples": 13888,
+      "voltage_range_nominal": [
+        0.0,
+        0.7849084249084248
+      ],
+      "thresholds_v_nominal": {
+        "low": 0.17,
+        "middle": 0.26,
+        "high": 0.35
+      },
+      "qualification_quiet_us": 100,
+      "raw_crossings": 548,
+      "qualified_edges": 542,
+      "matched_edges": 542,
+      "residual_us": {
+        "count": 542,
+        "min": -42.58022168278694,
+        "median": -1.7034668736159801,
+        "max": 115.89703615382314,
+        "stddev": 12.941878257283774
+      },
+      "phase_residual_us": {
+        "preamble": {
+          "count": 2,
+          "min": -3.2681659469380975,
+          "median": 19.626157308463007,
+          "max": 42.52048056386411,
+          "stddev": 22.894323255401105
+        },
+        "two_frame_holds": {
+          "count": 59,
+          "min": -3.215551027096808,
+          "median": 2.307473598048091,
+          "max": 39.452562956139445,
+          "stddev": 19.04816074141419
+        },
+        "training_fast": {
+          "count": 240,
+          "min": -42.58022168278694,
+          "median": -2.016890913248062,
+          "max": 115.89703615382314,
+          "stddev": 10.947026819958102
+        },
+        "held_out_fast": {
+          "count": 240,
+          "min": -25.382757820189,
+          "median": -2.144076216034591,
+          "max": 67.36056866496801,
+          "stddev": 9.511312158413382
+        },
+        "final_dark": {
+          "count": 1,
+          "min": 2.9152902495115995,
+          "median": 2.9152902495115995,
+          "max": 2.9152902495115995,
+          "stddev": 0.0
+        }
+      },
+      "fast_intervals": {
+        "raw_dark_dwell_us": {
+          "count": 240,
+          "min": 16766.485893419012,
+          "median": 16886.874754033983,
+          "max": 16953.404486419633,
+          "stddev": 14.596055918639058
+        },
+        "raw_bright_dwell_us": {
+          "count": 239,
+          "min": 16378.461904764175,
+          "median": 16446.6176470574,
+          "max": 16565.855015672743,
+          "stddev": 14.602253903842884
+        },
+        "same_polarity_repeat_us": {
+          "count": 478,
+          "min": 33214.59078852087,
+          "median": 33332.912587414496,
+          "max": 33454.524801770225,
+          "stddev": 14.10734697762227
+        },
+        "clock_and_polarity_corrected_us": {
+          "count": 479,
+          "min": 16548.742326843552,
+          "median": 16666.444556828912,
+          "max": 16783.623847110284,
+          "stddev": 14.815529879829489
+        }
+      },
+      "limitations": [
+        "One sensor location and native fixed refresh only; no optical VRR pass-through test.",
+        "100 us qualification groups raw recrossings; brief real light pulses and electrical noise are not distinguished.",
+        "Settling spans and all alignment residuals are retained; individual edge uncertainty exceeds nominal sample spacing.",
+        "First-half fast edges calibrate one affine clock transform and polarity bias; remaining edges are held out.",
+        "Association guard is 2 ms, not the claimed measurement accuracy.",
+        "Clock scale is relative to GPU event timestamps, not an independent oscillator calibration.",
+        "Offset absorbs scan position, pipeline and response latency; it is not absolute display latency.",
+        "A content transition does not expose refreshes that repeat the same pixel value.",
+        "The raw ADC voltage reference, electrical interference, scan position and systematic timing errors are not independently calibrated."
+      ],
+      "run": 2,
+      "clock_and_polarity_model": {
+        "offset_us": 747402.363647664,
+        "scale": 0.9999992420321453,
+        "scale_error_ppm": -0.7579678547031676,
+        "rising_relative_to_falling_us": 217.75610999017954
+      },
+      "training_frame_range": [
+        480,
+        720
+      ],
+      "settling_spans_us": [
+        113.33878190815449,
+        38.528036350384355
+      ],
+      "outside_qualified_edges": 0
+    }
+  ],
+  "sensitivity": [
+    {
+      "run": 1,
+      "middle_v": 0.2,
+      "quiet_us": 100,
+      "passed": true,
+      "raw_crossings": 556,
+      "qualified_edges": 542,
+      "model": {
+        "offset_us": 793102.0204580147,
+        "scale": 0.9999983155262714,
+        "scale_error_ppm": -1.684473728613689,
+        "rising_relative_to_falling_us": 83.58635753765702
+      },
+      "held_out": {
+        "count": 240,
+        "min": -91.16059978492558,
+        "median": 2.5887303398922086,
+        "max": 105.1236976776272,
+        "stddev": 15.74910817550024
+      },
+      "all_residuals": {
+        "count": 542,
+        "min": -91.16059978492558,
+        "median": 0.2983268918469548,
+        "max": 118.80711873434484,
+        "stddev": 15.672570670114338
+      }
+    },
+    {
+      "run": 1,
+      "middle_v": 0.26,
+      "quiet_us": 100,
+      "passed": true,
+      "raw_crossings": 556,
+      "qualified_edges": 542,
+      "model": {
+        "offset_us": 793031.8588175718,
+        "scale": 0.9999991056639478,
+        "scale_error_ppm": -0.8943360522151167,
+        "rising_relative_to_falling_us": 213.1700992602855
+      },
+      "held_out": {
+        "count": 240,
+        "min": -39.325270364061,
+        "median": -0.809075428172946,
+        "max": 55.83532265946269,
+        "stddev": 10.174714962219445
+      },
+      "all_residuals": {
+        "count": 542,
+        "min": -39.325270364061,
+        "median": -1.1077238405123353,
+        "max": 55.83532265946269,
+        "stddev": 12.214409505818251
+      }
+    },
+    {
+      "run": 1,
+      "middle_v": 0.32,
+      "quiet_us": 100,
+      "passed": true,
+      "raw_crossings": 556,
+      "qualified_edges": 542,
+      "model": {
+        "offset_us": 792958.6358614974,
+        "scale": 0.9999997239462888,
+        "scale_error_ppm": -0.2760537112234118,
+        "rising_relative_to_falling_us": 344.7021302320063
+      },
+      "held_out": {
+        "count": 240,
+        "min": -36.83427773416042,
+        "median": -1.5953131457790732,
+        "max": 98.65739594399929,
+        "stddev": 14.297890501454473
+      },
+      "all_residuals": {
+        "count": 542,
+        "min": -36.83427773416042,
+        "median": -0.5820386288687587,
+        "max": 98.65739594399929,
+        "stddev": 16.291544604826
+      }
+    },
+    {
+      "run": 1,
+      "middle_v": 0.26,
+      "quiet_us": 50,
+      "passed": true,
+      "raw_crossings": 556,
+      "qualified_edges": 542,
+      "model": {
+        "offset_us": 793031.8588175718,
+        "scale": 0.9999991056639478,
+        "scale_error_ppm": -0.8943360522151167,
+        "rising_relative_to_falling_us": 213.1700992602855
+      },
+      "held_out": {
+        "count": 240,
+        "min": -39.325270364061,
+        "median": -0.9372512549161911,
+        "max": 55.83532265946269,
+        "stddev": 10.210801234701922
+      },
+      "all_residuals": {
+        "count": 542,
+        "min": -39.325270364061,
+        "median": -1.2020720141008496,
+        "max": 55.83532265946269,
+        "stddev": 12.25366613020559
+      }
+    },
+    {
+      "run": 1,
+      "middle_v": 0.26,
+      "quiet_us": 200,
+      "passed": true,
+      "raw_crossings": 556,
+      "qualified_edges": 542,
+      "model": {
+        "offset_us": 793031.8588175718,
+        "scale": 0.9999991056639478,
+        "scale_error_ppm": -0.8943360522151167,
+        "rising_relative_to_falling_us": 213.1700992602855
+      },
+      "held_out": {
+        "count": 240,
+        "min": -39.325270364061,
+        "median": -0.809075428172946,
+        "max": 55.83532265946269,
+        "stddev": 10.174714962219445
+      },
+      "all_residuals": {
+        "count": 542,
+        "min": -39.325270364061,
+        "median": -1.1077238405123353,
+        "max": 55.83532265946269,
+        "stddev": 12.214409505818251
+      }
+    },
+    {
+      "run": 2,
+      "middle_v": 0.2,
+      "quiet_us": 100,
+      "passed": true,
+      "raw_crossings": 548,
+      "qualified_edges": 542,
+      "model": {
+        "offset_us": 747462.4265308753,
+        "scale": 0.9999994819387928,
+        "scale_error_ppm": -0.5180612071553625,
+        "rising_relative_to_falling_us": 88.66184352897108
+      },
+      "held_out": {
+        "count": 240,
+        "min": -31.01183671876788,
+        "median": -2.4307331200689077,
+        "max": 91.82664111070335,
+        "stddev": 13.19138667759636
+      },
+      "all_residuals": {
+        "count": 542,
+        "min": -31.01183671876788,
+        "median": -1.5525771137326956,
+        "max": 91.82664111070335,
+        "stddev": 12.363909167965991
+      }
+    },
+    {
+      "run": 2,
+      "middle_v": 0.26,
+      "quiet_us": 100,
+      "passed": true,
+      "raw_crossings": 548,
+      "qualified_edges": 542,
+      "model": {
+        "offset_us": 747402.363647664,
+        "scale": 0.9999992420321453,
+        "scale_error_ppm": -0.7579678547031676,
+        "rising_relative_to_falling_us": 217.75610999017954
+      },
+      "held_out": {
+        "count": 240,
+        "min": -25.382757820189,
+        "median": -2.144076216034591,
+        "max": 67.36056866496801,
+        "stddev": 9.511312158413382
+      },
+      "all_residuals": {
+        "count": 542,
+        "min": -42.58022168278694,
+        "median": -1.7034668736159801,
+        "max": 115.89703615382314,
+        "stddev": 12.941878257283774
+      }
+    },
+    {
+      "run": 2,
+      "middle_v": 0.32,
+      "quiet_us": 100,
+      "passed": true,
+      "raw_crossings": 548,
+      "qualified_edges": 542,
+      "model": {
+        "offset_us": 747341.5419242997,
+        "scale": 0.9999982879825053,
+        "scale_error_ppm": -1.7120174946594346,
+        "rising_relative_to_falling_us": 355.4776203595102
+      },
+      "held_out": {
+        "count": 240,
+        "min": -83.87561471574008,
+        "median": 1.9659399399533868,
+        "max": 60.246011201292276,
+        "stddev": 11.530443701438893
+      },
+      "all_residuals": {
+        "count": 542,
+        "min": -106.04489839822054,
+        "median": 0.8847775710746646,
+        "max": 60.246011201292276,
+        "stddev": 15.368334576052007
+      }
+    },
+    {
+      "run": 2,
+      "middle_v": 0.26,
+      "quiet_us": 50,
+      "passed": true,
+      "raw_crossings": 548,
+      "qualified_edges": 542,
+      "model": {
+        "offset_us": 747403.9534197114,
+        "scale": 0.9999989881815448,
+        "scale_error_ppm": -1.0118184552432297,
+        "rising_relative_to_falling_us": 218.70483065396547
+      },
+      "held_out": {
+        "count": 240,
+        "min": -24.050048926845193,
+        "median": -0.6465586228296161,
+        "max": 68.32942663878202,
+        "stddev": 9.384874693287298
+      },
+      "all_residuals": {
+        "count": 542,
+        "min": -42.08521571010351,
+        "median": -0.8481132416054606,
+        "max": 68.32942663878202,
+        "stddev": 11.828350914195243
+      }
+    },
+    {
+      "run": 2,
+      "middle_v": 0.26,
+      "quiet_us": 200,
+      "passed": true,
+      "raw_crossings": 548,
+      "qualified_edges": 542,
+      "model": {
+        "offset_us": 747402.363647664,
+        "scale": 0.9999992420321453,
+        "scale_error_ppm": -0.7579678547031676,
+        "rising_relative_to_falling_us": 217.75610999017954
+      },
+      "held_out": {
+        "count": 240,
+        "min": -25.382757820189,
+        "median": -2.144076216034591,
+        "max": 67.36056866496801,
+        "stddev": 9.511312158413382
+      },
+      "all_residuals": {
+        "count": 542,
+        "min": -42.58022168278694,
+        "median": -1.7034668736159801,
+        "max": 115.89703615382314,
+        "stddev": 12.941878257283774
+      }
+    }
+  ],
+  "tests_passed": 25,
+  "optical_vrr_test_performed": false
+}

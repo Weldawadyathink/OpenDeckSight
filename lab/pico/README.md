@@ -1,11 +1,12 @@
-# Continuous optical recorder (bring-up pending)
+# Continuous optical recorder
 
 This firmware replaces MicroPython on an authorized Pico W. It initializes
 GP26 as ADC0 and native USB; it does not initialize wireless or drive external
 pins. Its intended rate is 100 ksample/s, with a 16,384-sample DMA circular
 buffer and independent 2,048-sample USB packets. Acquisition is finite,
-at most 60 seconds. Physical continuous acquisition has **not yet been
-validated**; do not use its data for a VRR conclusion until bring-up passes.
+at most 60 seconds. Continuous 25-second captures and deliberate-stall
+rejection have passed. Two fixed-refresh optical runs have been aligned with
+GPU events; this is not yet an optical VRR test.
 
 ## Build
 
@@ -61,10 +62,10 @@ samples and the 10 us sample period is nominal, not independently calibrated.
 ## Bring-up and recovery
 
 The first UF2 build passed host protocol/CRC/layout tests and was copied to
-the authorized Pico. USB descriptors reported the SDK Pico identity, but
-the host did not expose a serial interface. The cause remains unresolved
-(host accessory authorization/enumeration versus firmware behavior).
-No successful native-firmware capture or subsequent display test has occurred.
+the authorized Pico. USB descriptors initially appeared without a serial
+interface. On the subsequent check the serial interface enumerated with the
+same firmware, without another flash. The precise cause of the initial host
+enumeration/authorization issue was not established.
 
 First try reconnecting normally with the host unlocked and accepting an
 accessory prompt if one appears. If USB serial still cannot enumerate,
@@ -73,8 +74,24 @@ available regardless of the application firmware. A known-good MicroPython
 image and its hash are retained in ignored artifacts. Do not change wiring
 or move the optical sensor as part of USB recovery.
 
-Before measuring the display, validate a short partial-block capture, a
-long continuous capture, and a deliberately stalled host capture that must
-be rejected. Then align the authorized fixed-refresh optical stimulus with
-GPU events using a global clock transform and separate edge-polarity bias.
-An experimental VRR display change still requires concrete human approval.
+Bring-up passed a 100,001-sample capture with a partial final packet, a
+2,500,000-sample continuous capture, and recovery after an intentionally
+stalled reader. A three-second read pause was absorbed by host buffers; a
+12-second pause truncated the stream, which the strict reader rejected.
+The failure had no intact END packet, so no particular firmware overrun flag
+is claimed to have been observed. Host tests separately cover those flags.
+
+Two subsequent 25-second recordings covered the complete fixed-refresh
+display sequence, each matching all 542 intended optical transitions.
+See [measurement notes](../../docs/vrr-optical-measurement.md) for the
+100 us settling qualification, polarity bias, held-out residuals and
+unresolved electrical/optical noise. With optional NumPy/Matplotlib installed:
+
+```sh
+python3 tools/analyze_optical_continuous.py CAPTURE.bin SOURCE.json \
+  --output artifacts/vrr/analysis.json --plot artifacts/vrr/analysis.png
+```
+
+The source transcript must include the completed sequence, successful
+restoration and post-test native-mode checks. An experimental VRR display
+change still requires concrete human approval.

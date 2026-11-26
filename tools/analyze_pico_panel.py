@@ -62,8 +62,7 @@ def intervals(transitions):
     return adjacent, repeated
 
 
-def analyze(capture_path, source_path, middle_v=0.26):
-    captures = read_captures(capture_path)
+def validate_source(source_path):
     source = json.loads(Path(source_path).read_text())
     if source["returncode"] or source["timed_out"] or source["stderr"]:
         raise ValueError("display experiment failed")
@@ -76,7 +75,8 @@ def analyze(capture_path, source_path, middle_v=0.26):
     if post["returncode"] or post["stderr"] or source["opt_in_after"] not in ("N", "0"):
         raise ValueError("post-test baseline check failed")
     post_event = json.loads(post["stdout"].strip())
-    if post_event["vrr_capable"] != 0 or post_event["opt_in"]:
+    if (post_event["vrr_capable"] != 0 or post_event["opt_in"] or
+            not post_event.get("native_mode_verified") or post_event.get("experiment")):
         raise ValueError("post-test VRR baseline is not disabled")
     flips = [e for e in source["events"] if e["event"] == "flip"]
     if [e["frame"] for e in flips] != list(range(1080)):
@@ -85,6 +85,14 @@ def analyze(capture_path, source_path, middle_v=0.26):
     steps = [(b["sequence"]-a["sequence"]) & 0xFFFFFFFF for a,b in zip(flips, flips[1:])]
     if any(step != 1 for step in steps):
         raise ValueError("source missed native vblank intervals")
+    if any(period <= 0 for period in event_periods):
+        raise ValueError("nonmonotonic source events")
+    return source, flips, event_periods, steps
+
+
+def analyze(capture_path, source_path, middle_v=0.26):
+    captures = read_captures(capture_path)
+    source, flips, event_periods, steps = validate_source(source_path)
     native_us = 1220 * 1956 / 143180000 * 1_000_000
     details, adjacent, repeated = [], [], []
     first = captures[0][0]["capture_start_ticks_us"]
