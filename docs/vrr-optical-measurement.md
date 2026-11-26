@@ -521,3 +521,8 @@ single sensor. A next experiment must compare against a fixed control and
 retain a common clock model so that fitting cannot absorb the effect under
 test. No optical VRR conclusion follows yet; enabling experimental timings
 still needs concrete human approval under [AGENTS.md](../AGENTS.md).
+
+The [prepared optical A/B/A procedure](vrr-optical-ab.md) now supplies that
+bounded comparison, including a new disabled-boot control, the existing
+guarded VRR boot, and restoration to the disabled slot. It has been built and
+tested locally; the experimental device actions await human approval.

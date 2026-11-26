@@ -1,0 +1,48 @@
+{
+  "schema": "optical-ab-build-v1",
+  "date": "2026-11-26",
+  "compiler": "GCC 16.2.1 (Red Hat 16.2.1-2)",
+  "libdrm": "2.4.134",
+  "binary_sha256": "c1f14d404f564b4959c6dd90e20927711716f977a4e67edc0df8c8c0a0438b27",
+  "binary_bytes": 36632,
+  "sources": {
+    "lab/vrr/optical_ab.c": "79fe51aa5ab9fa796b1f69de994f3751787b1152ab369ee3e1cee2df7417f1b9",
+    "lab/vrr/optical_fixed.c": "b72ee91547e6d25a3be5dee8421a1e8e2c90e668e09a3a9e76c0c0771197544b",
+    "lab/vrr/ods_vrr_guard.h": "5854b867867a572e8cb7b1e8cacd663b2ddb42c82bc1385db15f330aade53743",
+    "lab/usb/fixed_present.c": "3e8c9e3498eef20d192627c529aa30e6d564a34f4432ed3e3213d03620058c56",
+    "tests/fixtures/optical_ab_test.c": "ac8322007f84dc4f01ae1aea1841923b2916228dd635c889a9d52d3d0ef3ea22"
+  },
+  "driver_bundle_sha256": "9f562b5bc64b4c54cfacff2c1c81bc5c1787e65dc3cb17ed322ac972408572a1",
+  "driver_build_manifest_sha256": "b8afaf25d42aac7a4691fadd733f1e856f50a0d54823a852ddd6b2c36ab9a4df",
+  "driver_payloads": {
+    "amdgpu.ko": {
+      "sha256": "2aea311b29f2ca164c450e383bab84eb83186a4190bf00129461876abd1b6d34",
+      "size": 46840272
+    },
+    "ods-visual-ab": {
+      "sha256": "9818ecbaec3e91e12fc8eb2399ef2585a2d7b8595c6071866a3a06b4dd007c10",
+      "size": 32552
+    }
+  },
+  "driver_bundle_verified": true,
+  "target_duration_seconds": 30.202131,
+  "expected_flips": 1800,
+  "expected_optical_transitions": 1442,
+  "local_checks": [
+    "warnings as errors",
+    "rendering/sequence assertions under ASan and UBSan",
+    "experiment refused on /dev/null",
+    "unchanged driver source hashes and bundle payload hashes"
+  ],
+  "physical_optical_vrr_run": false,
+  "analysis_tests_passed": 6,
+  "host_tools_sha256": {
+    "tools/run_optical_ab.py": "a76a5a8abad9b142e217fc662214cf3e5212b70e85c7f7135e6f682ca42a0522",
+    "tools/analyze_optical_ab.py": "68d3ed7d4e6dcac51bb9823cec8ce53a5e647e6c9e6b61684b19fdfaf73ceb74",
+    "opendecksight/optical_ab.py": "11f82c5624024898c24cf0134b01d011f904c10fd4b205dcdf856c5fdedfbc7d",
+    "opendecksight/optical_alignment.py": "d591d112dff0b1fc056e5e5b87247d2dfed310c7287c5bb613c5bb44ad60e229",
+    "opendecksight/optical_stream.py": "ac68ce404a623951d6dd723c4cda69d67938f725f7655e8fad26c8a66dbe3f98",
+    "tools/analyze_pico_panel.py": "59df799028665a6b47aa3b81b242cbe101c3f9c064c9dff1392cd8a36856ef3d",
+    "tests/test_optical_ab.py": "81b4a7a2b5cde41945c244612846da1e5c81a63f23296bc22353ccfac5d2a15e"
+  }
+}
