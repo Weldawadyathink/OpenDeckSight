@@ -1,0 +1,184 @@
+{
+  "schema": "pico-fixed-panel-analysis-v1",
+  "date": "2026-11-26",
+  "capture_sha256": "41686beebd3ab89ec2990946e0ac2b4d750e3cb93ba40415f9f6adc713cb40e7",
+  "source_sha256": "a2ed9e40f148de4784783a7a12da3eaa75ec5dc63afefc864f2f335ae34d939c",
+  "source_frames": 1080,
+  "source_event_period_us": {
+    "count": 1079,
+    "min": 16666.0,
+    "median": 16667.0,
+    "max": 16667.0,
+    "stddev": 0.493531438501948
+  },
+  "native_period_calculated_us": 16666.573543791033,
+  "source_sequence_steps": [
+    1
+  ],
+  "display_restore_verified": true,
+  "vrr_enabled": false,
+  "kernel_log_unchanged": true,
+  "capture_checks_passed": true,
+  "capture_bursts": 128,
+  "total_samples": 2048000,
+  "capture_span_s": 78.001207,
+  "recorded_sample_time_s": 20.48,
+  "coverage_fraction": 0.26256003961579727,
+  "sample_period_nominal_us": [
+    10.0
+  ],
+  "thresholds_v_nominal": {
+    "low": 0.17,
+    "middle": 0.26,
+    "high": 0.35
+  },
+  "clusters": [
+    {
+      "intended_frames_between_changes": 1,
+      "adjacent_interval_us": {
+        "count": 112,
+        "min": 16424.20202020202,
+        "median": 16662.399179767606,
+        "max": 16912.46464646465,
+        "stddev": 224.13722605695446
+      },
+      "low_dwell_us": {
+        "count": 56,
+        "min": 16866.971330556236,
+        "median": 16887.508491508488,
+        "max": 16912.46464646465,
+        "stddev": 10.54219086674985
+      },
+      "high_dwell_us": {
+        "count": 56,
+        "min": 16424.20202020202,
+        "median": 16444.994737585665,
+        "max": 16457.827028978973,
+        "stddev": 9.527238648806527
+      },
+      "rising_repeat_us": {
+        "count": 50,
+        "min": 33312.88707975274,
+        "median": 33332.965909090904,
+        "max": 33362.567465701795,
+        "stddev": 8.058667097098185
+      },
+      "falling_repeat_us": {
+        "count": 49,
+        "min": 33323.1227863046,
+        "median": 33333.0,
+        "max": 33346.134259259255,
+        "stddev": 3.978239346814426
+      },
+      "same_polarity_repeat_us": {
+        "count": 99,
+        "min": 33312.88707975274,
+        "median": 33332.99242424242,
+        "max": 33362.567465701795,
+        "stddev": 6.374847843844862
+      }
+    },
+    {
+      "intended_frames_between_changes": 2,
+      "adjacent_interval_us": {
+        "count": 11,
+        "min": 33128.13552188552,
+        "median": 33529.0,
+        "max": 33572.89502164502,
+        "stddev": 201.09017181068145
+      },
+      "low_dwell_us": {
+        "count": 6,
+        "min": 33529.0,
+        "median": 33533.31727640552,
+        "max": 33572.89502164502,
+        "stddev": 15.440513769789188
+      },
+      "high_dwell_us": {
+        "count": 5,
+        "min": 33128.13552188552,
+        "median": 33135.78512396693,
+        "max": 33141.33477633478,
+        "stddev": 4.541423445148126
+      },
+      "rising_repeat_us": {
+        "count": 4,
+        "min": 66670.57851239669,
+        "median": 66673.4356681148,
+        "max": 66701.03054353053,
+        "stddev": 12.482875634282198
+      },
+      "falling_repeat_us": {
+        "count": 4,
+        "min": 66662.05808080808,
+        "median": 66666.36835891381,
+        "max": 66668.50059031876,
+        "stddev": 2.595775512694112
+      },
+      "same_polarity_repeat_us": {
+        "count": 8,
+        "min": 66662.05808080808,
+        "median": 66669.53955135772,
+        "max": 66701.03054353053,
+        "stddev": 11.351839117292094
+      }
+    }
+  ],
+  "unmatched_adjacent_intervals": [],
+  "limitations": [
+    "Separated 160 ms bursts with transfer gaps, not a continuous recording of all display frames.",
+    "No source-to-sensor clock offset/drift fit or exact optical frame matching was performed.",
+    "Same-polarity intervals span two content changes; they do not resolve every individual frame.",
+    "Mixed rising/falling intervals include asymmetric optical response and emission duty effects.",
+    "Sub-sample interpolation and nominal reference voltage are not independent calibrations.",
+    "Only one screen location and the native fixed-refresh mode were tested; no VRR pass-through conclusion."
+  ],
+  "analysis_source_sha256": "ae126c7047be341ac5e17274d31c295e139ddebf3fc9d45e1185dfa13e61a3c8",
+  "capture_source_sha256": "87693cd50e6c500544b75b03d81a8c18d387ee8c54c8f9a4db952aa5cf4eab08",
+  "display_source_sha256": "b72ee91547e6d25a3be5dee8421a1e8e2c90e668e09a3a9e76c0c0771197544b",
+  "threshold_sensitivity": [
+    {
+      "midpoint_v": 0.2,
+      "same_polarity_us": {
+        "count": 99,
+        "min": 33311.30764163373,
+        "median": 33333.0165289256,
+        "max": 33418.22238918106,
+        "stddev": 10.520447620465934
+      },
+      "low_dwell_us": 16753.047494172497,
+      "high_dwell_us": 16578.880165289243
+    },
+    {
+      "midpoint_v": 0.26,
+      "same_polarity_us": {
+        "count": 99,
+        "min": 33312.88707975274,
+        "median": 33332.99242424242,
+        "max": 33362.567465701795,
+        "stddev": 6.374847843844862
+      },
+      "low_dwell_us": 16887.508491508488,
+      "high_dwell_us": 16444.994737585665
+    },
+    {
+      "midpoint_v": 0.32,
+      "same_polarity_us": {
+        "count": 99,
+        "min": 33284.46656649139,
+        "median": 33332.66233766232,
+        "max": 33353.996753246756,
+        "stddev": 6.9437865872898605
+      },
+      "low_dwell_us": 17025.787337662343,
+      "high_dwell_us": 16307.221528471528
+    }
+  ],
+  "observed_transition_count": 140,
+  "capture_gap_s": {
+    "min": 0.45118399999999437,
+    "max": 0.4541190000000005
+  },
+  "interpretation": "Functional single-sensor optical fixed-refresh baseline. Same-polarity repetitions match the intended cadence. Opposite-polarity interval bias must be handled before interpreting narrow VRR timing changes. No variable-refresh mode was tested.",
+  "additional_limit": "Static gray output variation includes possible panel emission modulation and instrument/electrical noise; this run does not isolate each contribution."
+}

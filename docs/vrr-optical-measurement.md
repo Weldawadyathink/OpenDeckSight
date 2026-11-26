@@ -341,3 +341,68 @@ commands. Before sensor placement, the passive option completed 64,000
 samples with empty LED-command lists and no reported capture errors. Longer
 continuous acquisition and panel/source alignment are still required for
 the eventual VRR comparison.
+
+### First optical fixed-refresh panel measurement, 2026-11-26
+
+One OPT101P over the center marker produced a clear signal: the steady gray
+patch averaged approximately 0.517 V, while the dark patch was around
+0.029 V, using nominal ADC reference scaling. Gray-only snapshots had no
+ADC-rail hits. Static gray traces contain variation even without new
+content; panel emission modulation and instrument/electrical noise have not
+been separately identified. Do not count every fluctuation as a content edge.
+
+The approved 1,080-frame fixed-refresh sequence completed successfully.
+Every consecutive source event advanced one vblank and was separated by
+16.666-16.667 ms. The original framebuffer/native mode was restored and
+verified, the override remained disabled, and no new kernel log lines
+appeared. No variable-refresh experiment occurred in this checkpoint.
+
+The Pico captured 128 separate 160 ms buffers at nominal 100 ksample/s,
+including time before and after the display test. All 2,048,000 samples
+passed chunk-count, CRC, conversion-error, FIFO and DMA checks. Transfer
+gaps were approximately 451-454 ms: recorded sample time was 20.48 s over
+approximately 78 s, about 26% coverage. This is explicitly **not** a
+continuous record of the 18-second stimulus. The analyzer never joins
+samples or computes intervals across those gaps.
+
+At the fixed global 0.26 V midpoint with 0.17/0.35 V hysteresis, 140 optical
+transitions were detected. Within the every-frame portion of the stimulus:
+
+| Quantity | Observations | Median | Interpretation |
+| --- | --- | --- | --- |
+| Rising-to-rising interval | 50 | 33.33297 ms | Two content changes at native 60 Hz |
+| Falling-to-falling interval | 49 | 33.33300 ms | Same cadence, independent edge polarity |
+| Combined same-polarity repeats | 99 | 33.33299 ms | Approximately 6.4 us sample standard deviation |
+| Bright dwell, rising to falling | 56 | 16.44499 ms | Includes optical waveform/duty asymmetry |
+| Dark dwell, falling to rising | 56 | 16.88751 ms | Includes the complementary asymmetry |
+
+The slower every-two-frame portion yielded eight same-polarity repetitions
+with a median 66.66954 ms, consistent with the intended approximately
+66.666 ms repeat period at this limited sample count. These are descriptive
+cadence clusters, not a source-to-sensor clock fit or exact frame matching.
+
+The alternating bright/dark dwell bias is roughly 0.22 ms at the selected
+threshold, comparable to the proposed 0.282 ms difference between 59 and
+60 Hz. Treating each mixed-polarity interval as an unbiased frame period
+would therefore be wrong even in this fixed-refresh control. Shifting the
+global midpoint to 0.20 or 0.32 V substantially changed the dwell estimates,
+but the same-polarity median remained 33.33266-33.33302 ms. Outliers and
+spread also depend on the threshold; this is not a complete uncertainty
+budget. Same-polarity intervals span two changes and cannot, by themselves,
+prove variable timing for each individual frame.
+
+[`tools/analyze_pico_panel.py`](../tools/analyze_pico_panel.py) validates the
+source/restoration checks and DMA transcript, preserves unmatched intervals,
+and separates opposite/same-polarity measurements. The combined optical
+analysis suite has 13 focused passing tests, including asymmetric duty,
+noise within hysteresis and preventing artificial intervals across bursts.
+The [anonymous panel report](../research/reports/pico-panel-fixed-refresh.json)
+records source/capture hashes, interval statistics, threshold sensitivity and
+limitations. Raw traces, source logs and a two-panel waveform plot remain in
+ignored `artifacts/`.
+
+The single-sensor setup is sufficient to continue development. The next
+software tasks are gap-free buffered acquisition with loss detection and
+global source-to-sensor sequence alignment. Keep edge-polarity effects in
+that model. A later separately approved bounded VRR comparison is required
+before drawing any conclusion about ANX bridge or panel VRR pass-through.

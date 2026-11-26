@@ -30,6 +30,9 @@ COUNT = 16_000
 # mpremote supports chained exec/run in one interpreter session. Set this
 # before run for passive panel snapshots: exec 'OPTICAL_LED_STIMULUS=False'.
 LED_STIMULUS = bool(globals().get("OPTICAL_LED_STIMULUS", True))
+CAPTURES = int(globals().get("OPTICAL_CAPTURES", 4))
+if not 1 <= CAPTURES <= 128:
+    raise ValueError("OPTICAL_CAPTURES must be between 1 and 128")
 
 
 def capture(led, dma, buf, seq):
@@ -79,6 +82,8 @@ def capture(led, dma, buf, seq):
         "gpio": 26, "samples": COUNT, "sample_rate_nominal_hz": RATE,
         "adc_clock_nominal_hz": 48_000_000, "adc_div_register": mem32[DIV],
         "elapsed_us": time.ticks_diff(stop, start),
+        "capture_start_ticks_us": start,
+        "ticks_period_us": time.ticks_add(0, -1) + 1,
         "fcs": fcs, "cs": cs, "dma_ctrl": dma_ctrl, "remaining": remaining,
         "format": "little-endian uint16; bits 0..11 ADC, bit 15 conversion error",
         "led_commands": marks, "led_stimulus": LED_STIMULUS,
@@ -102,9 +107,9 @@ def main():
     old_div = mem32[DIV]
     old_cs = mem32[CS] & (1 | 2 | (7 << 12))
     try:
-        for seq in range(4):
+        for seq in range(CAPTURES):
             capture(led, dma, buf, seq)
-        print(json.dumps({"type": "complete", "captures": 4}))
+        print(json.dumps({"type": "complete", "captures": CAPTURES}))
     finally:
         mem32[CS] = EN
         while not (mem32[CS] & READY):
